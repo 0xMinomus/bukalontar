@@ -1,11 +1,40 @@
+# Dependencies and build output
 node_modules/
 dist/
+bin/
+coverage/
+*.tsbuildinfo
+
+# Environment files. Examples are safe and must stay committed.
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+!**/.env.example
+
+# Local logs and editor state
 *.log
 .DS_Store
-bin/
+.vscode/
+.idea/
+
+# Personal/Obsidian state and agent scratch files
+.obsidian/
+AGENTS.md
+CLAUDE.md
+.cursor/
+.cursorrules
+.windsurf/
+.aider*
+.continue/
+.omp/
+*.prompt.md
+
+# Submission administration and local test material
+Panduan_Peserta_*.pdf
+Lontar Test/
+_.jpeg
+
+# Keep the embedded frontend placeholder, not generated assets
 !apps/api/internal/webui/dist/
 apps/api/internal/webui/dist/*
 !apps/api/internal/webui/dist/.gitkeep
