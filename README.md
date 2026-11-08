@@ -53,20 +53,24 @@ graph TD
 
 ---
 
-## Menjalankan Frontend
+## Menjalankan Aplikasi
 
-Frontend ada di `apps/web` (React 19 + Vite + TypeScript + Tailwind CSS + shadcn-style components).
+Frontend ada di `apps/web` (React 19 + Vite + TypeScript + Tailwind CSS). Backend ada di `apps/api` (Go stdlib + 9router/Gemini).
 
 ```bash
 npm install
-npm run dev
+cp apps/api/.env.example apps/api/.env   # isi AI_API_KEY dari 9router
+make dev-api                             # terminal 1: API :8080
+npm run dev                              # terminal 2: Vite :5173
 ```
 
-Buka `http://localhost:5173`. Route: `/` landing, `/analisis` pratinjau dan proses, `/hasil` hasil. Saat ini hasil AI memakai data contoh (`VITE_USE_MOCK=true`); backend Go akan dihubungkan setelah alur UI selesai.
+Buka `http://localhost:5173`. Route: `/` landing, `/analisis` pratinjau dan proses, `/hasil` hasil. Hasil AI nyata memakai 9router lokal; `VITE_USE_MOCK=true` tetap tersedia untuk mode UI tanpa API. API key hanya di `apps/api/.env` (ignored), tidak pernah masuk bundle frontend.
+
+Satu binary produksi (frontend di-embed ke Go):
 
 ```bash
-npm run build
-npm run lint
+make build
+./bin/usadha
 ```
 
 ---

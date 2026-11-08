@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://usadha.ai/schema/analysis.json",
+  "title": "UsadhaAI AnalysisResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manuscript_id", "source_reference", "paleography", "ethnomedicinal_entity", "scientific_validation"],
+  "properties": {
+    "manuscript_id": { "type": "string", "minLength": 1 },
+    "source_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lontar_group", "language"],
+      "properties": {
+        "lontar_group": {
+          "enum": ["Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh"]
+        },
+        "lempir_number": { "type": "integer", "minimum": 1 },
+        "language": { "enum": ["Kawi / Jawa Kuno", "Bali Alus"] }
+      }
+    },
+    "paleography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["aksara_bali_detected", "confidence", "transliteration", "indonesian_translation", "english_translation"],
+      "properties": {
+        "aksara_bali_detected": { "type": "boolean" },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "transliteration": { "type": "string", "minLength": 1 },
+        "indonesian_translation": { "type": "string", "minLength": 1 },
+        "english_translation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "ethnomedicinal_entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plant_local_name",
+        "plant_scientific_name",
+        "botanical_family",
+        "kb_match",
+        "plant_part_used",
+        "energy_character",
+        "formulation_type",
+        "adjuvants",
+        "target_ailment",
+        "preparation_instructions"
+      ],
+      "properties": {
+        "plant_local_name": { "type": "string", "minLength": 1 },
+        "plant_scientific_name": { "type": "string" },
+        "botanical_family": { "type": "string" },
+        "kb_match": { "type": "boolean" },
+        "plant_part_used": {
+          "enum": ["Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran"]
+        },
+        "energy_character": { "enum": ["Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)"] },
+        "formulation_type": { "enum": ["Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)"] },
+        "adjuvants": { "type": "array", "items": { "type": "string" } },
+        "target_ailment": { "type": "string", "minLength": 1 },
+        "preparation_instructions": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scientific_validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phytochemical_compounds", "modern_pharmacological_action", "reference_studies", "safety_disclaimer"],
+      "properties": {
+        "phytochemical_compounds": { "type": "array", "items": { "type": "string" } },
+        "modern_pharmacological_action": { "type": "string", "minLength": 1 },
+        "reference_studies": { "type": "array", "items": { "type": "string" } },
+        "safety_disclaimer": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

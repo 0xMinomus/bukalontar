@@ -1,0 +1,128 @@
+[
+  {
+    "id": "taru-sotong",
+    "local_names": ["Taru Sotong", "Sotong", "Jambu Biji", "Jambu Sotong", "Guava"],
+    "scientific_name": "Psidium guajava",
+    "botanical_family": "Myrtaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Don (Daun)",
+    "phytochemical_compounds": ["Tannin", "Quercetin", "Flavonoid"],
+    "modern_pharmacological_action": "Antimikroba terhadap Escherichia coli dan antispasmodik untuk meredakan kontraksi usus.",
+    "reference_studies": [
+      "Tinjauan fitokimia Psidium guajava",
+      "Uji antimikroba ekstrak daun jambu biji"
+    ]
+  },
+  {
+    "id": "taru-pule",
+    "local_names": ["Taru Pule", "Pule", "Kayu Pule", "Pulai"],
+    "scientific_name": "Alstonia scholaris",
+    "botanical_family": "Apocynaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Babakan (Kulit Kayu)",
+    "phytochemical_compounds": ["Echitamine", "Alstonine", "Alkaloid"],
+    "modern_pharmacological_action": "Analgesik dan antipiretik; alkaloid kulit batang pule diteliti untuk efek antinyeri dan penurun demam.",
+    "reference_studies": [
+      "Tinjauan alkaloid Alstonia scholaris",
+      "Kajian etnofarmakologi kulit batang pule"
+    ]
+  },
+  {
+    "id": "taru-kaliasem",
+    "local_names": ["Taru Kaliasem", "Kaliasem", "Kalyasem", "Kalianasem", "Babakan Kaliasem"],
+    "scientific_name": "Syzygium polycephalum",
+    "botanical_family": "Myrtaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Babakan (Kulit Kayu)",
+    "phytochemical_compounds": ["Flavonoid", "Tannin", "Minyak atsiri"],
+    "modern_pharmacological_action": "Aktivitas antioksidan dan antimikroba dari ekstrak kulit batang dan daun.",
+    "reference_studies": [
+      "Etnobotani Syzygium polycephalum",
+      "Skrining fitokimia kulit batang kaliasem"
+    ]
+  },
+  {
+    "id": "taru-kunyit",
+    "local_names": ["Taru Kunyit", "Kunyit", "Kunir", "Kunyit Warangan"],
+    "scientific_name": "Curcuma longa",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Akah (Akar)",
+    "phytochemical_compounds": ["Kurkumin", "Turmerone", "Flavonoid"],
+    "modern_pharmacological_action": "Antiinflamasi dan antioksidan; kurkumin diteliti untuk efek antiradang dan hepatoprotektif.",
+    "reference_studies": [
+      "Tinjauan farmakologi kurkumin",
+      "Kajian etnomedisin Curcuma longa"
+    ]
+  },
+  {
+    "id": "taru-sirih",
+    "local_names": ["Taru Sirih", "Sirih", "Sirih Bali"],
+    "scientific_name": "Piper betle",
+    "botanical_family": "Piperaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Don (Daun)",
+    "phytochemical_compounds": ["Eugenol", "Chavicol", "Tannin"],
+    "modern_pharmacological_action": "Antiseptik dan antioksidan; ekstrak daun sirih digunakan pada sediaan topikal.",
+    "reference_studies": [
+      "Tinjauan fitokimia Piper betle",
+      "Uji aktivitas antimikroba ekstrak daun sirih"
+    ]
+  },
+  {
+    "id": "taru-asam",
+    "local_names": ["Taru Asam", "Asam", "Asam Jawa"],
+    "scientific_name": "Tamarindus indica",
+    "botanical_family": "Fabaceae",
+    "energy_character": "Tis (Dingin)",
+    "plant_part_used": "Buah",
+    "phytochemical_compounds": ["Asam tartarat", "Tannin", "Flavonoid"],
+    "modern_pharmacological_action": "Laksatif ringan dan antioksidan; daging buah digunakan dalam ramuan tradisional.",
+    "reference_studies": [
+      "Tinjauan fitokimia Tamarindus indica",
+      "Kajian etnofarmakologi asam jawa"
+    ]
+  },
+  {
+    "id": "taru-turi",
+    "local_names": ["Taru Turi", "Turi", "Turi Putih", "Turi Merah", "Sesbania"],
+    "scientific_name": "Sesbania grandiflora",
+    "botanical_family": "Fabaceae",
+    "energy_character": "Tis (Dingin)",
+    "plant_part_used": "Don (Daun)",
+    "phytochemical_compounds": ["Flavonoid", "Saponin", "Tannin"],
+    "modern_pharmacological_action": "Antiinflamasi dan antioksidan; daun turi digunakan dalam ramuan tradisional untuk demam dan batuk.",
+    "reference_studies": [
+      "Tinjauan fitokimia Sesbania grandiflora",
+      "Kajian etnofarmakologi daun turi"
+    ]
+  },
+  {
+    "id": "taru-ketumbar",
+    "local_names": ["Taru Ketumbar", "Ketumbar", "Ketumbar Bolong", "Coriander"],
+    "scientific_name": "Coriandrum sativum",
+    "botanical_family": "Apiaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Buah",
+    "phytochemical_compounds": ["Linalool", "Flavonoid", "Minyak atsiri"],
+    "modern_pharmacological_action": "Karminatif dan antispasmodik ringan; biji ketumbar digunakan sebagai adjuvan pencernaan.",
+    "reference_studies": [
+      "Tinjauan fitokimia Coriandrum sativum",
+      "Kajian farmakologi biji ketumbar"
+    ]
+  },
+  {
+    "id": "taru-adas",
+    "local_names": ["Taru Adas", "Adas", "Adas Pulosari", "Fennel"],
+    "scientific_name": "Foeniculum vulgare",
+    "botanical_family": "Apiaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Buah",
+    "phytochemical_compounds": ["Anethole", "Fenchone", "Flavonoid"],
+    "modern_pharmacological_action": "Karminatif dan antispasmodik; minyak atsiri adas membantu meredakan kembung.",
+    "reference_studies": [
+      "Tinjauan fitokimia Foeniculum vulgare",
+      "Kajian farmakologi buah adas"
+    ]
+  }
+]

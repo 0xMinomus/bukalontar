@@ -6,7 +6,8 @@ Frontend prototype for UsadhaAI: React 19, TypeScript, Vite, Tailwind CSS v4, an
 
 - States implemented: landing, preview, processing, result, error.
 - Client preprocessing: downscale, CLAHE, and unsharp mask on Canvas.
-- AI responses are mocked until the Go backend is connected (`VITE_USE_MOCK=true`).
+- Live AI: Go API at `/api/analyze-manuscript` → 9router/Gemini (set `VITE_USE_MOCK=false`).
+- Mock mode remains available with `VITE_USE_MOCK=true` or when no env is set.
 - Sample lontar photos are real archive images. Credits and licenses live in `public/samples/CREDITS.md`.
 
 ## Routes
@@ -23,15 +24,18 @@ From the repository root:
 
 ```bash
 npm install
-npm run dev
+cp apps/api/.env.example apps/api/.env   # isi AI_API_KEY dari 9router
+make dev-api                             # terminal 1: Go API :8080
+npm run dev                              # terminal 2: Vite :5173
 ```
 
-The app runs at `http://localhost:5173`. The Vite dev server proxies `/api` to `http://localhost:8080` for the future Go backend.
+Vite mem-proxy `/api` ke `http://localhost:8080`, jadi browser tetap satu origin saat development.
 
-Production build:
+Production build (frontend + API in one binary):
 
 ```bash
-npm run build
+make build                               # bin/usadha
+./bin/usadha
 ```
 
 ## Environment
@@ -39,11 +43,11 @@ npm run build
 Copy `.env.example` to `.env`:
 
 ```env
-VITE_USE_MOCK=true
+VITE_USE_MOCK=false
 VITE_API_BASE_URL=
 ```
 
-Set `VITE_USE_MOCK=false` only after `/api/analyze-manuscript` exists.
+Set `VITE_USE_MOCK=true` only when working on UI without the Go API. The API key never belongs in this file; it lives in `apps/api/.env`, which is ignored.
 
 ## Design direction
 

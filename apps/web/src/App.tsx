@@ -363,6 +363,7 @@ export default function App() {
                   onFile={(nextFile) => void loadFile(nextFile)}
                   onSample={handleSample}
                   busySampleId={busySampleId}
+                  isMock={IS_MOCK}
                 />
               }
             />

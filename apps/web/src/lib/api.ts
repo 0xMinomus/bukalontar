@@ -36,17 +36,24 @@ export async function analyzeManuscript({
   form.append('source_id', sampleId ?? 'upload')
 
   onStage?.(2)
-  const response = await fetch(`${baseUrl}/api/analyze-manuscript`, {
-    method: 'POST',
-    body: form,
-    signal,
-  })
+  const stageTimer = setTimeout(() => onStage?.(3), 2200)
+  try {
+    const response = await fetch(`${baseUrl}/api/analyze-manuscript`, {
+      method: 'POST',
+      body: form,
+      signal,
+    })
 
-  if (!response.ok) {
-    const detail = await response.text().catch(() => '')
-    throw new Error(detail || `Analisis gagal dengan status ${response.status}.`)
+    if (!response.ok) {
+      const detail = await response.text().catch(() => '')
+      throw new Error(
+        detail || `Analisis gagal dengan status ${response.status}.`,
+      )
+    }
+
+    onStage?.(4)
+    return (await response.json()) as AnalysisResponse
+  } finally {
+    clearTimeout(stageTimer)
   }
-
-  onStage?.(4)
-  return (await response.json()) as AnalysisResponse
 }

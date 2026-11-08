@@ -10,9 +10,15 @@ interface LandingProps {
   onFile: (file: File) => void
   onSample: (sample: Sample) => void
   busySampleId?: string | null
+  isMock: boolean
 }
 
-export function Landing({ onFile, onSample, busySampleId }: LandingProps) {
+export function Landing({
+  onFile,
+  onSample,
+  busySampleId,
+  isMock,
+}: LandingProps) {
   return (
     <section className="relative overflow-hidden border-b border-border/70">
       <div className="relative mx-auto max-w-5xl px-5 pb-14 pt-12 text-center md:px-8 md:pb-20 md:pt-20">
@@ -43,13 +49,15 @@ export function Landing({ onFile, onSample, busySampleId }: LandingProps) {
             disabled={Boolean(busySampleId)}
           />
 
-          <div className="mt-5 flex items-start justify-center gap-2 text-xs leading-relaxed text-muted-foreground">
-            <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-            <p>
-              Pratinjau antarmuka. Hasil AI masih memakai data contoh sampai
-              backend Go terhubung.
-            </p>
-          </div>
+          {isMock ? (
+            <div className="mt-5 flex items-start justify-center gap-2 text-xs leading-relaxed text-muted-foreground">
+              <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
+              <p>
+                Pratinjau antarmuka. Hasil AI masih memakai data contoh;
+                backend Go belum terhubung.
+              </p>
+            </div>
+          ) : null}
         </Reveal>
 
         <Reveal
