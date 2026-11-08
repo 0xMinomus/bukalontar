@@ -1,3 +1,5 @@
+import type { AnalysisResponse } from './analysis'
+
 const NO_PLANT = /^(tidak disebutkan|tidak ada|tidak terdeteksi|bukan naskah usada|tidak ditemukan)/i
 const EMPTY_VALUE =
   /^(tidak disebutkan|tidak ada|tidak terdeteksi|belum tersedia|belum ada)\.?$/i
@@ -37,4 +39,12 @@ export function formatTranslation(value: string): string {
     paragraphs.push(sentences.slice(index, index + 2).join(' ').trim())
   }
   return paragraphs.join('\n\n')
+}
+
+export function analysisSummary(result: AnalysisResponse): string | null {
+  const entity = result.ethnomedicinal_entity
+  const source = usefulText(entity.preparation_instructions)
+    ? entity.preparation_instructions
+    : result.paleography.indonesian_translation
+  return usefulText(source) ? formatTranslation(source) : null
 }

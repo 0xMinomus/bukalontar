@@ -98,6 +98,20 @@
     ]
   },
   {
+    "id": "taru-tabia-bun",
+    "local_names": ["Taru Tabia Bun", "Tabia Bun", "Tabia", "Cabai Besar", "Capsicum"],
+    "scientific_name": "Capsicum annuum",
+    "botanical_family": "Solanaceae",
+    "energy_character": "Panes (Hangat)",
+    "plant_part_used": "Buah",
+    "phytochemical_compounds": ["Kapsaisin", "Flavonoid", "Vitamin C"],
+    "modern_pharmacological_action": "Kapsaisin memberi efek analgesik topikal dan antiinflamasi; buah cabai juga digunakan dalam ramuan penghangat tradisional.",
+    "reference_studies": [
+      "Tinjauan fitokimia Capsicum annuum",
+      "Kajian kapsaisin untuk nyeri topikal"
+    ]
+  },
+  {
     "id": "taru-ketumbar",
     "local_names": ["Taru Ketumbar", "Ketumbar", "Ketumbar Bolong", "Coriander"],
     "scientific_name": "Coriandrum sativum",

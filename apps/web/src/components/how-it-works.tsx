@@ -116,17 +116,17 @@ export function HowItWorks() {
                 <figure>
                   <div className="overflow-hidden rounded-lg border border-border/80 bg-mat">
                     <img
-                      src="/samples/lontar-kemenuh.jpg"
-                      alt="Dua lempir lontar Bali dengan goresan aksara di atas permukaan gelap"
+                      src="/samples/lontar-wanagiri-usada-3.jpg"
+                      alt="Dua lempir lontar usadha Bali dengan goresan aksara di atas permukaan gelap"
                       loading="lazy"
                       decoding="async"
                       className="h-48 w-full object-cover sepia-[0.12] md:h-56"
                     />
                   </div>
                   <figcaption className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
-                    Lontar Kemenuh. Foto oleh{' '}
+                    Lontar Wanagiri, Usada 3. Foto oleh{' '}
                     <a
-                      href="https://commons.wikimedia.org/wiki/File:Bali-lontar-Kemenuh-Kawruhan_Desti_ring_Raga-70.jpg"
+                      href="https://commons.wikimedia.org/wiki/File:Bali-lontar-Wanagiri-Usada-3.jpg"
                       target="_blank"
                       rel="noreferrer"
                       className="underline underline-offset-2 hover:text-foreground"

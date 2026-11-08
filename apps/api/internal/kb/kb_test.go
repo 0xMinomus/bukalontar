@@ -16,6 +16,7 @@ func TestLookupAliases(t *testing.T) {
 		"kalyasĕm":    "Syzygium polycephalum",
 		"Kayu Pule":   "Alstonia scholaris",
 		"Turi Putih":  "Sesbania grandiflora",
+		"Tabia Bun":   "Capsicum annuum",
 	}
 	for name, scientific := range cases {
 		entry, ok := store.Lookup(name)

@@ -10,6 +10,7 @@ import {
 import { AnalysisTabs } from '@/components/analysis-tabs'
 import { LontarLens, type LensView } from '@/components/lontar-lens'
 import { Pipeline } from '@/components/pipeline'
+import { PrintReport } from '@/components/print-report'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -76,7 +77,7 @@ export function ResultWorkspace({
 
   return (
     <section className="result-page mx-auto max-w-[1440px] animate-[fade-rise_500ms_ease-out_both] px-5 py-8 md:px-8 md:py-10">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="screen-only flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="small-caps text-xs font-semibold text-brass-strong">
             Hasil pembacaan
@@ -140,7 +141,7 @@ export function ResultWorkspace({
         </div>
       </div>
 
-      <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border/70 sm:grid-cols-3">
+      <dl className="screen-only mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border/70 sm:grid-cols-3">
         <div className="bg-card px-4 py-3">
           <dt className="label-xs">Aksara Bali</dt>
           <dd className="mt-1 text-sm font-medium">
@@ -167,7 +168,7 @@ export function ResultWorkspace({
         </div>
       </dl>
 
-      <div className="mt-5 grid items-start gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+      <div className="screen-only mt-5 grid items-start gap-5 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="order-2 lg:order-1">
           <LontarLens
             key={originalUrl}
@@ -212,7 +213,7 @@ export function ResultWorkspace({
         </div>
       </div>
 
-      <section className="important-info mt-8 grid gap-7 border-t border-border/70 pt-7 md:grid-cols-[1.1fr_0.95fr_0.95fr]">
+      <section className="screen-only important-info mt-8 grid gap-7 border-t border-border/70 pt-7 md:grid-cols-[1.1fr_0.95fr_0.95fr]">
           <div>
             <p className="small-caps text-xs font-semibold text-brass-strong">
               Cara membaca
@@ -260,6 +261,8 @@ export function ResultWorkspace({
             </a>
           </div>
       </section>
+
+      <PrintReport result={result} originalUrl={originalUrl} />
     </section>
   )
 }

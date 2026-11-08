@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/tabs'
 import type { AnalysisResponse, Confidence } from '@/lib/analysis'
 import {
+  analysisSummary,
   formatTransliteration,
   formatTranslation,
   hasMedicinalPlant,
@@ -60,6 +61,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
   const entity = result.ethnomedicinal_entity
   const validation = result.scientific_validation
   const noPlant = !hasMedicinalPlant(entity.plant_local_name)
+  const hasAilment = usefulText(entity.target_ailment)
   const transliteration =
     formatTransliteration(result.paleography.transliteration) ||
     'Teks aksara belum terbaca.'
@@ -69,12 +71,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
   const english = usefulText(result.paleography.english_translation)
     ? formatTranslation(result.paleography.english_translation)
     : 'Translation is not available for this leaf.'
-  const summarySource = usefulText(entity.preparation_instructions)
-    ? entity.preparation_instructions
-    : result.paleography.indonesian_translation
-  const summary = usefulText(summarySource)
-    ? formatTranslation(summarySource)
-    : null
+  const summary = analysisSummary(result)
   const taxonomy = [
     entity.plant_scientific_name,
     entity.botanical_family,
@@ -86,7 +83,11 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
         <TabsTrigger value="transliterasi">Transliterasi</TabsTrigger>
         <TabsTrigger value="terjemahan">Terjemahan</TabsTrigger>
         <TabsTrigger value="kartu">
-          {noPlant ? 'Catatan naskah' : 'Kartu usada'}
+          {noPlant
+            ? hasAilment
+              ? 'Catatan usada'
+              : 'Catatan naskah'
+            : 'Kartu usada'}
         </TabsTrigger>
         <TabsTrigger value="validasi">Rujukan</TabsTrigger>
       </TabsList>
@@ -154,17 +155,21 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                 />
                 <div>
                   <h3 className="font-heading text-2xl leading-tight tracking-tight">
-                    Bukan naskah usada
+                    {hasAilment
+                      ? 'Naskah usada tanpa tanaman'
+                      : 'Bukan naskah usada'}
                   </h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Lembar ini berisi ajaran atau catatan, bukan resep ramuan
-                    obat.
+                    {hasAilment
+                      ? `Lembar ini membahas ${entity.target_ailment}, tetapi tidak menyebut ramuan tanaman yang bisa dipetakan.`
+                      : 'Lembar ini berisi ajaran atau catatan, bukan resep ramuan obat.'}
                   </p>
                 </div>
               </div>
               <p className="mt-4 text-sm leading-relaxed">
-                Tidak ada tanaman obat atau cara racik yang bisa dipetakan dari
-                teks ini.
+                {hasAilment
+                  ? 'Tidak ada tanaman obat atau cara racik yang disebutkan pada teks ini.'
+                  : 'Tidak ada tanaman obat atau cara racik yang bisa dipetakan dari teks ini.'}
               </p>
               {summary ? (
                 <div className="mt-4 border-t border-border pt-4">
@@ -259,7 +264,9 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
             />
             <p className="text-xs leading-relaxed text-muted-foreground">
               {noPlant
-                ? 'Lembar ini tidak memuat tanaman obat, jadi belum ada rujukan tanaman yang bisa ditampilkan.'
+                ? hasAilment
+                  ? 'Lembar ini membahas keluhan pengobatan, tetapi tidak menyebut tanaman obat yang bisa dirujuk.'
+                  : 'Lembar ini tidak memuat tanaman obat, jadi belum ada rujukan tanaman yang bisa ditampilkan.'
                 : entity.kb_match
                   ? 'Kandungan dan khasiat di bawah dirujuk dari Taru Pramana.'
                   : 'Tanaman ini belum tercatat di Taru Pramana. Rujukan modern belum tersedia.'}
