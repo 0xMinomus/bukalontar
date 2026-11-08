@@ -1,18 +1,21 @@
 import { ArrowUpRight } from 'lucide-react'
 
+import { Ornament } from '@/components/ornament'
+import { Reveal } from '@/components/reveal'
+
 const layers = [
   {
-    number: '01',
+    numeral: 'I',
     title: 'Aksara',
     body: 'Membaca goresan aksara Bali pada lempir, termasuk gantungan, gempelan, dan pangangge yang bertumpuk.',
   },
   {
-    number: '02',
+    numeral: 'II',
     title: 'Bahasa',
     body: 'Menerjemahkan bahasa Kawi klasik ke Indonesia dan Inggris, dengan konteks istilah medis dan etnobotani.',
   },
   {
-    number: '03',
+    numeral: 'III',
     title: 'Botani',
     body: 'Memetakan nama tanaman lokal ke nama ilmiah, famili, dan senyawa aktif dari basis data Taru Pramana.',
   },
@@ -21,23 +24,28 @@ const layers = [
 export function HowItWorks() {
   return (
     <>
-      <section id="alur" className="border-t border-border">
-        <div className="mx-auto max-w-[1440px] px-5 py-12 md:px-8 md:py-16">
-          <div className="max-w-[62ch]">
-            <h2 className="font-serif text-3xl tracking-tight md:text-4xl">
+      <section id="alur" className="border-t border-border/70">
+        <div className="mx-auto max-w-5xl px-5 py-14 md:px-8 md:py-20">
+          <Reveal className="text-center">
+            <p className="small-caps text-xs font-semibold text-brass-strong">
+              Alur kerja
+            </p>
+            <h2 className="mt-3 font-heading text-4xl tracking-tight md:text-5xl">
               Tiga lapis yang dibaca
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <Ornament className="mx-auto mt-4 w-36 text-brass-strong/70" />
+            <p className="mx-auto mt-4 max-w-[62ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
               Lontar usada tidak hanya sulit karena aksaranya. Bahasa dan nama
               tanamannya juga sudah jauh dari percakapan sehari-hari. UsadhaAI
               membaca ketiganya dalam satu alur.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="mt-8 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
+          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border/70">
             {layers.map((layer, index) => (
-              <article
-                key={layer.number}
+              <Reveal
+                key={layer.numeral}
+                delay={index * 90}
                 className={
                   index === 0
                     ? 'md:pr-8'
@@ -46,68 +54,119 @@ export function HowItWorks() {
                       : 'md:pl-8'
                 }
               >
-                <p className="num text-sm font-semibold text-brass-strong">
-                  {layer.number}
-                </p>
-                <h3 className="mt-2 font-serif text-2xl tracking-tight">
-                  {layer.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {layer.body}
-                </p>
-              </article>
+                <article>
+                  <p className="font-heading text-3xl leading-none text-brass-strong">
+                    {layer.numeral}
+                  </p>
+                  <h3 className="mt-2 font-heading text-2xl tracking-tight">
+                    {layer.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {layer.body}
+                  </p>
+                </article>
+              </Reveal>
             ))}
           </div>
 
-          <a
-            href="https://github.com/0xMinomus/digifest/tree/main/docs"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
-          >
-            Baca catatan teknis
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
+          <Reveal className="mt-9 text-center">
+            <a
+              href="https://github.com/0xMinomus/digifest/tree/main/docs"
+              target="_blank"
+              rel="noreferrer"
+              className="small-caps inline-flex items-center gap-1.5 border-b border-brass/50 pb-1 text-xs font-semibold text-primary transition-colors hover:text-brass-strong"
+            >
+              Baca catatan teknis
+              <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </a>
+          </Reveal>
         </div>
       </section>
 
-      <section id="tentang" className="border-t border-border">
-        <div className="mx-auto grid max-w-[1440px] gap-8 px-5 py-12 md:grid-cols-[1.1fr_0.9fr] md:px-8 md:py-16">
-          <div className="max-w-[62ch]">
-            <h2 className="font-serif text-3xl tracking-tight md:text-4xl">
-              Tentang UsadhaAI
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              UsadhaAI adalah purwarupa untuk membuka kembali lontar usada Bali.
-              Fokusnya bukan sekadar membaca huruf, tetapi menyusun pengetahuan
-              obat tradisional yang bisa diperiksa: tanaman apa, bagian mana,
-              bagaimana diracik, dan apa kata fitofarmaka modern.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Antarmuka ini masih memakai data contoh. Backend Go dan pemanggilan
-              Gemini 3.8 Flash akan dihubungkan pada tahap berikutnya.
-            </p>
-          </div>
+      <section id="tentang" className="border-t border-border/70">
+        <div className="mx-auto max-w-5xl px-5 py-14 md:px-8 md:py-20">
+          <Reveal>
+            <div className="paper-panel frame-antique p-6 md:p-10">
+              <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-12">
+                <div>
+                  <p className="small-caps text-xs font-semibold text-brass-strong">
+                    Tentang
+                  </p>
+                  <h2 className="mt-2 font-heading text-4xl tracking-tight md:text-5xl">
+                    UsadhaAI
+                  </h2>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    UsadhaAI adalah purwarupa untuk membuka kembali lontar usada
+                    Bali. Fokusnya bukan sekadar membaca huruf, tetapi menyusun
+                    pengetahuan obat tradisional yang bisa diperiksa: tanaman
+                    apa, bagian mana, bagaimana diracik, dan apa kata
+                    fitofarmaka modern.
+                  </p>
+                  <blockquote className="mt-6 border-l-2 border-brass pl-4">
+                    <p className="font-serif text-[1.05rem] italic leading-relaxed text-foreground">
+                      “Tityang taru sotong, daging anget, rasa sepet, dados
+                      anggen tamba pangemped mising.”
+                    </p>
+                    <cite className="small-caps mt-2 block text-[11px] not-italic text-muted-foreground">
+                      Lontar Taru Pramana, Va. 1384/10
+                    </cite>
+                  </blockquote>
+                </div>
 
-          <div className="border-t border-border pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-            <p className="label-xs">Rujukan naskah</p>
-            <ul className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
-              <li>Lontar Taru Pramana, Gedong Kirtya Va. 1384/10</li>
-              <li>Lontar Usadha Rare, Gedong Kirtya Va. 1391/11</li>
-              <li>Katalog usada Bali dan taksonomi botani modern</li>
-            </ul>
+                <figure>
+                  <div className="overflow-hidden rounded-lg border border-border/80 bg-mat">
+                    <img
+                      src="/samples/lontar-kemenuh.jpg"
+                      alt="Dua lempir lontar Bali dengan goresan aksara di atas permukaan gelap"
+                      loading="lazy"
+                      decoding="async"
+                      className="h-48 w-full object-cover sepia-[0.12] md:h-56"
+                    />
+                  </div>
+                  <figcaption className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+                    Lontar Kemenuh. Foto oleh{' '}
+                    <a
+                      href="https://commons.wikimedia.org/wiki/File:Bali-lontar-Kemenuh-Kawruhan_Desti_ring_Raga-70.jpg"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline underline-offset-2 hover:text-foreground"
+                    >
+                      Eka343
+                    </a>
+                    , CC BY-SA 4.0.
+                  </figcaption>
+                </figure>
+              </div>
 
-            <p className="label-xs mt-6">Repositori</p>
-            <a
-              href="https://github.com/0xMinomus/digifest"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
-            >
-              github.com/0xMinomus/digifest
-              <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
-          </div>
+              <div className="mt-8 grid gap-6 border-t border-border/70 pt-6 md:grid-cols-2">
+                <div>
+                  <p className="label-xs">Rujukan naskah</p>
+                  <ul className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                    <li>Lontar Taru Pramana, Gedong Kirtya Va. 1384/10</li>
+                    <li>Lontar Usadha Rare, Gedong Kirtya Va. 1391/11</li>
+                    <li>Katalog usada Bali dan taksonomi botani modern</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="label-xs">Repositori</p>
+                  <a
+                    href="https://github.com/0xMinomus/digifest"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                  >
+                    github.com/0xMinomus/digifest
+                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                  </a>
+                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                    Antarmuka ini masih memakai data contoh. Backend Go dan
+                    pemanggilan Gemini 3.8 Flash akan dihubungkan pada tahap
+                    berikutnya.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

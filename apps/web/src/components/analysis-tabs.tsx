@@ -115,7 +115,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
         <div className="mt-4 max-h-[470px] overflow-y-auto pr-1 [scrollbar-width:thin]">
           <div className="flex items-start justify-between gap-3 border-b border-border pb-4">
             <div>
-              <h3 className="font-serif text-2xl leading-tight tracking-tight">
+              <h3 className="font-heading text-2xl leading-tight tracking-tight">
                 {entity.plant_local_name}
               </h3>
               <p className="mt-1 text-sm italic text-muted-foreground">

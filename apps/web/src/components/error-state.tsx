@@ -20,7 +20,7 @@ export function ErrorState({
       <div className="flex size-12 items-center justify-center rounded-lg border border-destructive/30 bg-destructive/10 text-destructive">
         <AlertTriangle className="size-5" aria-hidden="true" />
       </div>
-      <h1 className="mt-5 font-serif text-3xl tracking-tight">
+      <h1 className="mt-5 font-heading text-4xl tracking-tight">
         Naskah belum bisa dibaca
       </h1>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

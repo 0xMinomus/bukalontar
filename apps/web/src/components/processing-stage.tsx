@@ -42,10 +42,10 @@ export function ProcessingStage({
           </div>
 
           <div className="p-5 sm:p-7">
-            <p className="text-sm font-medium text-muted-foreground">
+            <p className="small-caps text-xs font-semibold text-brass-strong">
               Tahap 2 · Membaca
             </p>
-            <h1 className="mt-1 font-serif text-3xl tracking-tight">
+            <h1 className="mt-1 font-heading text-4xl tracking-tight">
               Menyusun hasil
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

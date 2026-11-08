@@ -46,10 +46,10 @@ export function PreviewStage({
     <section className="mx-auto max-w-[1440px] px-5 py-8 md:px-8 md:py-10">
       <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-muted-foreground">
+          <p className="small-caps text-xs font-semibold text-brass-strong">
             Tahap 1 · Periksa citra
           </p>
-          <h1 className="mt-1 font-serif text-3xl tracking-tight md:text-4xl">
+          <h1 className="mt-1 font-heading text-4xl tracking-tight md:text-5xl">
             Pastikan aksara terbaca
           </h1>
         </div>

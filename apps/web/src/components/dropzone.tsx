@@ -1,6 +1,7 @@
-import { Camera, ImagePlus, ScanLine } from 'lucide-react'
+import { Camera, ImagePlus } from 'lucide-react'
 import * as React from 'react'
 
+import { BrandMark } from '@/components/brand-mark'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
@@ -23,8 +24,8 @@ export function Dropzone({ onFile, disabled }: DropzoneProps) {
   return (
     <Card
       className={cn(
-        'relative overflow-hidden border-dashed p-5 transition-colors sm:p-6',
-        dragging && 'border-primary bg-forest-soft',
+        'paper-panel frame-antique relative overflow-hidden border-dashed p-5 transition-[border-color,background-color,box-shadow] duration-300 sm:p-6',
+        dragging && 'border-brass bg-accent/60',
         disabled && 'opacity-60',
       )}
       onDragOver={(event) => {
@@ -43,14 +44,22 @@ export function Dropzone({ onFile, disabled }: DropzoneProps) {
       }}
     >
       <div className="flex items-start gap-4">
-        <span className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-secondary text-primary">
-          <ScanLine className="size-5" aria-hidden="true" />
+        <span
+          className={cn(
+            'flex size-12 shrink-0 items-center justify-center rounded-full border border-brass/40 bg-primary text-primary-foreground shadow-[inset_0_0_0_1px_rgb(255_255_255_/_0.14)] transition-transform duration-300',
+            dragging && 'scale-105',
+          )}
+        >
+          <BrandMark className="size-6" />
         </span>
         <div className="min-w-0">
-          <h2 className="font-serif text-2xl leading-tight tracking-tight">
+          <p className="small-caps text-[11px] font-semibold text-brass-strong">
+            Berkas lontar
+          </p>
+          <h2 className="mt-1 font-heading text-3xl leading-none tracking-tight sm:text-4xl">
             Tarik foto lontar ke sini
           </h2>
-          <p className="mt-1.5 max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-[42ch] text-sm leading-relaxed text-muted-foreground">
             Satu lempir atau satu halaman. Pastikan aksara terlihat jelas dan
             seluruh bagian naskah masuk ke frame.
           </p>
@@ -78,13 +87,13 @@ export function Dropzone({ onFile, disabled }: DropzoneProps) {
         </Button>
         <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
           atau tempel dengan
-          <kbd className="rounded border border-border bg-secondary px-1.5 py-0.5 font-sans text-[11px] font-semibold text-foreground">
+          <kbd className="rounded-sm border border-border bg-secondary px-1.5 py-0.5 font-sans text-[11px] font-semibold text-foreground">
             Ctrl V
           </kbd>
         </span>
       </div>
 
-      <p className="mt-4 border-t border-border pt-3 text-xs text-muted-foreground">
+      <p className="mt-5 border-t border-border/70 pt-3 text-xs text-muted-foreground">
         JPG, PNG, atau WEBP. Maksimal 8 MB. Foto diproses tanpa disimpan.
       </p>
 

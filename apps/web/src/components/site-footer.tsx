@@ -4,18 +4,18 @@ import { BrandMark } from '@/components/brand-mark'
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-border/80">
       <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-8">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="flex items-center gap-3">
-            <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <span className="flex size-9 items-center justify-center rounded-full border border-brass/40 bg-primary text-primary-foreground shadow-[inset_0_0_0_1px_rgb(255_255_255_/_0.14)]">
               <BrandMark className="size-4" />
             </span>
             <div>
-              <p className="font-serif text-lg leading-none tracking-tight">
+              <p className="font-heading text-xl leading-none tracking-tight">
                 UsadhaAI
               </p>
-              <p className="mt-1.5 text-xs text-muted-foreground">
+              <p className="small-caps mt-1.5 text-[10px] font-semibold text-muted-foreground">
                 Bali DigiFest 2026 · AI Web Innovation Challenge
               </p>
             </div>
@@ -48,7 +48,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-[11px] leading-relaxed text-muted-foreground">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border/70 pt-4 text-[11px] leading-relaxed text-muted-foreground">
           <p>
             Foto contoh oleh Eka343, lisensi{' '}
             <a
@@ -61,7 +61,7 @@ export function SiteFooter() {
             </a>
             . Dipakai untuk menguji antarmuka.
           </p>
-          <p>UsadhaAI, 2026.</p>
+          <p className="small-caps">UsadhaAI, 2026</p>
         </div>
       </div>
     </footer>

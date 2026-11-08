@@ -39,4 +39,4 @@ Set `VITE_USE_MOCK=false` only after `/api/analyze-manuscript` exists.
 
 ## Design direction
 
-Archival reading room, not a museum cliché: cool bone paper, deep lontar-leaf green, and aged brass used only for status and focus. Source Serif 4 carries display and transliteration text; Plus Jakarta Sans carries the interface. The fiber texture on the page background is deliberate and subtle.
+Balinese archival reading room, not a generic museum skin: warm parchment, sepia ink, deep lontar-leaf green, and aged brass. Cormorant Garamond carries display type; Lora carries body and interface text. The paper grain, brass rules, Roman numerals, and real lontar photographs are deliberate. Motion is limited to scroll reveals, tab changes, hover lifts, and the draggable/zoomable lens. About sections appear only on the landing state so the result view stays focused.

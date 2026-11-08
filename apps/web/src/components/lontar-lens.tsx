@@ -248,7 +248,7 @@ export function LontarLens({
       <div
         ref={viewportRef}
         className={cn(
-          'flex min-h-[220px] select-none items-center justify-center overflow-hidden p-2 sm:min-h-[320px]',
+          'lens-viewport flex min-h-[220px] select-none items-center justify-center overflow-hidden p-2 sm:min-h-[320px]',
           zoomable &&
             'focus-visible:outline-white/70',
           zoomable &&

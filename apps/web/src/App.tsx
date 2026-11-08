@@ -225,7 +225,7 @@ export default function App() {
     <TooltipProvider>
       <div className="flex min-h-[100dvh] flex-col">
         <div className="no-print">
-          <AppHeader />
+          <AppHeader showNav={stage === 'idle'} />
         </div>
 
         <main className="flex-1">
@@ -291,9 +291,11 @@ export default function App() {
             ) : null}
           </div>
 
-          <div className="no-print">
-            <HowItWorks />
-          </div>
+          {stage === 'idle' ? (
+            <div className="no-print">
+              <HowItWorks />
+            </div>
+          ) : null}
         </main>
 
         <div className="no-print">
