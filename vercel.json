@@ -3,7 +3,8 @@
   "services": {
     "api": {
       "root": "apps/api",
-      "runtime": "go"
+      "runtime": "go",
+      "entrypoint": "cmd/server/main.go"
     },
     "web": {
       "root": "apps/web",
