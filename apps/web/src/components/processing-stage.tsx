@@ -9,7 +9,7 @@ const steps = [
   { title: 'Menyiapkan citra', detail: 'Kontras dan ketajaman' },
   { title: 'Membaca aksara', detail: 'Aksara Bali dan pasang aksara' },
   { title: 'Menerjemahkan Kawi', detail: 'Indonesia dan Inggris' },
-  { title: 'Memetakan tanaman', detail: 'Taru Pramana dan taksonomi' },
+  { title: 'Mencocokkan tanaman', detail: 'Taru Pramana dan nama ilmiah' },
 ]
 
 interface ProcessingStageProps {
@@ -43,14 +43,14 @@ export function ProcessingStage({
 
           <div className="p-5 sm:p-7">
             <p className="small-caps text-xs font-semibold text-brass-strong">
-              Tahap 2 · Membaca
+              Membaca lontar
             </p>
             <h1 className="mt-1 font-heading text-4xl tracking-tight">
               Menyusun hasil
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Satu permintaan ke Gemini 3.8 Flash. Hasil akan divalidasi
-              sebelum ditampilkan.
+              Kami sedang membaca aksara, menyusun terjemahan, dan mencocokkan
+              tanaman obat. Hasil akan ditampilkan setelah selesai.
             </p>
 
             <ol className="mt-6 space-y-0" aria-live="polite">

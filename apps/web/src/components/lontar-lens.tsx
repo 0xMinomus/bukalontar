@@ -149,7 +149,7 @@ export function LontarLens({
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-2.5 py-2 print:hidden">
         <div className="flex min-w-0 flex-wrap items-center gap-2">
           <span className="hidden px-1 text-[11px] font-semibold text-white/60 sm:inline">
-            Lontar lens
+            Lensa lontar
           </span>
           <ToggleGroup
             type="single"
@@ -166,14 +166,14 @@ export function LontarLens({
               value="original"
               className="h-7 px-2.5 text-white/65 data-[state=on]:bg-white data-[state=on]:text-mat"
             >
-              Original
+              Asli
             </ToggleGroupItem>
             <ToggleGroupItem
               value="enhanced"
               disabled={!hasEnhanced}
               className="h-7 px-2.5 text-white/65 data-[state=on]:bg-white data-[state=on]:text-mat"
             >
-              Enhanced
+              Diperjelas
             </ToggleGroupItem>
           </ToggleGroup>
         </div>

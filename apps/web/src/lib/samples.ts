@@ -12,7 +12,7 @@ export const samples: Sample[] = [
   {
     id: 'kemenuh',
     name: 'Lontar Kemenuh',
-    detail: 'Kawruhan Desti ring Raga',
+    detail: 'Kawruhan Desti ring Raga · catatan kebatinan',
     src: '/samples/lontar-kemenuh.jpg',
     credit: 'Eka343, CC BY-SA 4.0',
     sourceUrl:
@@ -22,7 +22,7 @@ export const samples: Sample[] = [
   {
     id: 'sukawati',
     name: 'Lontar Sukawati',
-    detail: 'Pamandisuara',
+    detail: 'Pamandisuara · resep usada',
     src: '/samples/lontar-sukawati.jpg',
     credit: 'Eka343, CC BY-SA 4.0',
     sourceUrl:

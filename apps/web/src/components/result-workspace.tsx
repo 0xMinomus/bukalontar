@@ -14,11 +14,18 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import type { AnalysisResponse, Confidence } from '@/lib/analysis'
+import { hasMedicinalPlant } from '@/lib/reading'
 
 const confidenceLabel: Record<Confidence, string> = {
-  low: 'Keyakinan rendah',
-  medium: 'Keyakinan sedang',
-  high: 'Keyakinan tinggi',
+  low: 'Keterbacaan rendah',
+  medium: 'Keterbacaan sedang',
+  high: 'Keterbacaan tinggi',
+}
+
+const confidenceShort: Record<Confidence, string> = {
+  low: 'Rendah',
+  medium: 'Sedang',
+  high: 'Tinggi',
 }
 
 const confidenceVariant: Record<
@@ -65,13 +72,14 @@ export function ResultWorkspace({
   const source = result.source_reference
   const plant = result.ethnomedicinal_entity
   const confidence = result.paleography.confidence
+  const hasPlant = hasMedicinalPlant(plant.plant_local_name)
 
   return (
     <section className="result-page mx-auto max-w-[1440px] animate-[fade-rise_500ms_ease-out_both] px-5 py-8 md:px-8 md:py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="small-caps text-xs font-semibold text-brass-strong">
-            Tahap 3 · Hasil
+            Hasil pembacaan
           </p>
           <h1 className="mt-1 font-heading text-4xl tracking-tight md:text-5xl">
             Hasil analisis
@@ -100,11 +108,11 @@ export function ResultWorkspace({
               variant="outline"
               size="sm"
               onClick={onExport}
-              aria-label="Unduh hasil sebagai JSON"
+              aria-label="Unduh hasil analisis"
               className="size-11 px-0 sm:h-9 sm:w-auto sm:px-3"
             >
               <Download aria-hidden="true" />
-              <span className="hidden sm:inline">JSON</span>
+              <span className="hidden sm:inline">Unduh</span>
             </Button>
             <Button
               type="button"
@@ -132,31 +140,29 @@ export function ResultWorkspace({
         </div>
       </div>
 
-      <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border/70 sm:grid-cols-4">
+      <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border/70 sm:grid-cols-3">
         <div className="bg-card px-4 py-3">
-          <dt className="label-xs">Aksara</dt>
+          <dt className="label-xs">Aksara Bali</dt>
           <dd className="mt-1 text-sm font-medium">
             {result.paleography.aksara_bali_detected
-              ? 'Bali terdeteksi'
-              : 'Tidak terdeteksi'}
+              ? 'Terbaca'
+              : 'Tidak terbaca'}
           </dd>
         </div>
         <div className="bg-card px-4 py-3">
-          <dt className="label-xs">Keyakinan</dt>
+          <dt className="label-xs">Keterbacaan</dt>
           <dd className="mt-1 text-sm font-medium">
-            {confidenceLabel[confidence]}
+            {confidenceShort[confidence]}
           </dd>
         </div>
         <div className="bg-card px-4 py-3">
-          <dt className="label-xs">Kecocokan KB</dt>
+          <dt className="label-xs">Rujukan tanaman</dt>
           <dd className="mt-1 text-sm font-medium">
-            {plant.kb_match ? 'Cocok' : 'Belum cocok'}
-          </dd>
-        </div>
-        <div className="bg-card px-4 py-3">
-          <dt className="label-xs">Mode</dt>
-          <dd className="mt-1 text-sm font-medium">
-            {isMock ? 'Data contoh' : 'AI langsung'}
+            {!hasPlant
+              ? 'Tidak ada'
+              : plant.kb_match
+                ? 'Tercatat'
+                : 'Belum tercatat'}
           </dd>
         </div>
       </dl>
@@ -182,7 +188,7 @@ export function ResultWorkspace({
                 <h2 className="font-heading text-lg leading-none">Bacaan naskah</h2>
               </div>
               <span className="truncate text-xs text-muted-foreground">
-                {plant.plant_local_name}
+                {hasPlant ? plant.plant_local_name : 'Tidak ada tanaman obat'}
               </span>
             </div>
 
@@ -236,12 +242,12 @@ export function ResultWorkspace({
 
           <div>
             <p className="small-caps text-xs font-semibold text-brass-strong">
-              Batas model
+              Catatan keterbacaan
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               Goresan aus, tumpukan pasang aksara, dan istilah arkais bisa
-              salah dibaca. Keyakinan dan rujukan ditampilkan agar hasil bisa
-              diperiksa. Ini bukan pengganti saran medis.
+              salah dibaca. Periksa lempir asli dan rujukan filologi. Ini bukan
+              pengganti saran medis.
             </p>
             <a
               href="https://github.com/0xMinomus/digifest/tree/main/docs"
@@ -249,7 +255,7 @@ export function ResultWorkspace({
               rel="noreferrer"
               className="small-caps mt-3 inline-flex items-center gap-1.5 border-b border-brass/50 pb-1 text-[11px] font-semibold text-primary transition-colors hover:text-brass-strong print:hidden"
             >
-              Baca catatan teknis
+              Panduan membaca
               <ArrowUpRight className="size-3.5" aria-hidden="true" />
             </a>
           </div>

@@ -1,4 +1,4 @@
-import { Check, Copy, Leaf, ShieldCheck } from 'lucide-react'
+import { BookOpen, Check, Copy, Leaf, ShieldCheck } from 'lucide-react'
 import * as React from 'react'
 
 import { Badge } from '@/components/ui/badge'
@@ -11,11 +11,17 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs'
 import type { AnalysisResponse, Confidence } from '@/lib/analysis'
+import {
+  formatTransliteration,
+  formatTranslation,
+  hasMedicinalPlant,
+  usefulText,
+} from '@/lib/reading'
 
 const confidenceLabel: Record<Confidence, string> = {
-  low: 'Keyakinan rendah',
-  medium: 'Keyakinan sedang',
-  high: 'Keyakinan tinggi',
+  low: 'Keterbacaan rendah',
+  medium: 'Keterbacaan sedang',
+  high: 'Keterbacaan tinggi',
 }
 
 function CopyButton({ text, label = 'Salin' }: { text: string; label?: string }) {
@@ -53,24 +59,50 @@ function CopyButton({ text, label = 'Salin' }: { text: string; label?: string })
 export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
   const entity = result.ethnomedicinal_entity
   const validation = result.scientific_validation
+  const noPlant = !hasMedicinalPlant(entity.plant_local_name)
+  const transliteration =
+    formatTransliteration(result.paleography.transliteration) ||
+    'Teks aksara belum terbaca.'
+  const indonesian = usefulText(result.paleography.indonesian_translation)
+    ? formatTranslation(result.paleography.indonesian_translation)
+    : 'Terjemahan belum tersedia untuk lembar ini.'
+  const english = usefulText(result.paleography.english_translation)
+    ? formatTranslation(result.paleography.english_translation)
+    : 'Translation is not available for this leaf.'
+  const summarySource = usefulText(entity.preparation_instructions)
+    ? entity.preparation_instructions
+    : result.paleography.indonesian_translation
+  const summary = usefulText(summarySource)
+    ? formatTranslation(summarySource)
+    : null
+  const taxonomy = [
+    entity.plant_scientific_name,
+    entity.botanical_family,
+  ].filter(usefulText)
 
   return (
     <Tabs defaultValue="transliterasi" className="w-full">
       <TabsList aria-label="Bagian hasil analisis">
         <TabsTrigger value="transliterasi">Transliterasi</TabsTrigger>
         <TabsTrigger value="terjemahan">Terjemahan</TabsTrigger>
-        <TabsTrigger value="kartu">Kartu usada</TabsTrigger>
-        <TabsTrigger value="validasi">Validasi</TabsTrigger>
+        <TabsTrigger value="kartu">
+          {noPlant ? 'Catatan naskah' : 'Kartu usada'}
+        </TabsTrigger>
+        <TabsTrigger value="validasi">Rujukan</TabsTrigger>
       </TabsList>
 
       <TabsContent value="transliterasi">
         <div className="mt-4 max-h-[470px] overflow-y-auto pr-1 [scrollbar-width:thin]">
           <div className="flex items-center justify-between gap-3">
-            <Badge variant="outline">Aksara Bali terdeteksi</Badge>
-            <CopyButton text={result.paleography.transliteration} />
+            <Badge variant="outline">
+              {result.paleography.aksara_bali_detected
+                ? 'Aksara Bali terbaca'
+                : 'Aksara Bali tidak terbaca'}
+            </Badge>
+            <CopyButton text={transliteration} />
           </div>
-          <p className="prose-lontar mt-4">
-            {result.paleography.transliteration}
+          <p className="prose-lontar mt-4 whitespace-pre-line">
+            {transliteration}
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span>{confidenceLabel[result.paleography.confidence]}</span>
@@ -90,10 +122,10 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
           <section>
             <div className="flex items-center justify-between gap-3">
               <h3 className="text-sm font-semibold">Indonesia</h3>
-              <CopyButton text={result.paleography.indonesian_translation} />
+              <CopyButton text={indonesian} />
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-foreground">
-              {result.paleography.indonesian_translation}
+            <p className="mt-2 whitespace-pre-line text-[15px] leading-7 text-foreground">
+              {indonesian}
             </p>
           </section>
 
@@ -102,10 +134,10 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
           <section>
             <div className="flex items-center justify-between gap-3">
               <h3 className="text-sm font-semibold">English</h3>
-              <CopyButton text={result.paleography.english_translation} />
+              <CopyButton text={english} />
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              {result.paleography.english_translation}
+            <p className="mt-2 whitespace-pre-line text-[15px] leading-7 text-muted-foreground">
+              {english}
             </p>
           </section>
         </div>
@@ -113,66 +145,108 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
 
       <TabsContent value="kartu">
         <div className="mt-4 max-h-[470px] overflow-y-auto pr-1 [scrollbar-width:thin]">
-          <div className="flex items-start justify-between gap-3 border-b border-border pb-4">
+          {noPlant ? (
             <div>
-              <h3 className="font-heading text-2xl leading-tight tracking-tight">
-                {entity.plant_local_name}
-              </h3>
-              <p className="mt-1 text-sm italic text-muted-foreground">
-                {entity.plant_scientific_name} · {entity.botanical_family}
+              <div className="flex items-start gap-3 rounded-lg border border-border bg-secondary/40 p-4">
+                <BookOpen
+                  className="mt-0.5 size-4 shrink-0 text-primary"
+                  aria-hidden="true"
+                />
+                <div>
+                  <h3 className="font-heading text-2xl leading-tight tracking-tight">
+                    Bukan naskah usada
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    Lembar ini berisi ajaran atau catatan, bukan resep ramuan
+                    obat.
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed">
+                Tidak ada tanaman obat atau cara racik yang bisa dipetakan dari
+                teks ini.
               </p>
+              {summary ? (
+                <div className="mt-4 border-t border-border pt-4">
+                  <p className="label-xs">Ringkasan isi</p>
+                  <p className="mt-1.5 whitespace-pre-line text-sm leading-7">
+                    {summary}
+                  </p>
+                </div>
+              ) : null}
             </div>
-            <Badge
-              variant={entity.kb_match ? 'success' : 'outline'}
-              className="shrink-0"
-            >
-              <Leaf aria-hidden="true" className="size-3" />
-              {entity.kb_match ? 'Cocok KB' : 'Tidak cocok'}
-            </Badge>
-          </div>
+          ) : (
+            <div>
+              <div className="flex items-start justify-between gap-3 border-b border-border pb-4">
+                <div>
+                  <h3 className="font-heading text-2xl leading-tight tracking-tight">
+                    {entity.plant_local_name}
+                  </h3>
+                  <p className="mt-1 text-sm italic text-muted-foreground">
+                    {taxonomy.length > 0
+                      ? taxonomy.join(' · ')
+                      : 'Belum tercatat di Taru Pramana'}
+                  </p>
+                </div>
+                <Badge
+                  variant={entity.kb_match ? 'success' : 'outline'}
+                  className="shrink-0"
+                >
+                  <Leaf aria-hidden="true" className="size-3" />
+                  {entity.kb_match ? 'Tercatat' : 'Belum tercatat'}
+                </Badge>
+              </div>
 
-          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div>
-              <dt className="label-xs">Bagian dipakai</dt>
-              <dd className="mt-1 text-sm font-medium">
-                {entity.plant_part_used}
-              </dd>
-            </div>
-            <div>
-              <dt className="label-xs">Sifat tradisional</dt>
-              <dd className="mt-1 text-sm font-medium">
-                {entity.energy_character}
-              </dd>
-            </div>
-            <div>
-              <dt className="label-xs">Bentuk racikan</dt>
-              <dd className="mt-1 text-sm font-medium">
-                {entity.formulation_type}
-              </dd>
-            </div>
-            <div>
-              <dt className="label-xs">Indikasi</dt>
-              <dd className="mt-1 text-sm font-medium">
-                {entity.target_ailment}
-              </dd>
-            </div>
-          </dl>
+              <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div>
+                  <dt className="label-xs">Bagian dipakai</dt>
+                  <dd className="mt-1 text-sm font-medium">
+                    {entity.plant_part_used}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="label-xs">Sifat tradisional</dt>
+                  <dd className="mt-1 text-sm font-medium">
+                    {entity.energy_character}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="label-xs">Bentuk racikan</dt>
+                  <dd className="mt-1 text-sm font-medium">
+                    {entity.formulation_type}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="label-xs">Indikasi</dt>
+                  <dd className="mt-1 text-sm font-medium">
+                    {entity.target_ailment}
+                  </dd>
+                </div>
+              </dl>
 
-          <div className="mt-5 border-t border-border pt-4">
-            <p className="label-xs">Cara racik</p>
-            <p className="mt-1.5 text-sm leading-relaxed">
-              {entity.preparation_instructions}
-            </p>
-          </div>
+              <div className="mt-5 border-t border-border pt-4">
+                <p className="label-xs">Cara racik</p>
+                {usefulText(entity.preparation_instructions) ? (
+                  <p className="mt-1.5 whitespace-pre-line text-sm leading-7">
+                    {formatTranslation(entity.preparation_instructions)}
+                  </p>
+                ) : (
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    Tidak ada cara racik yang tercatat.
+                  </p>
+                )}
+              </div>
 
-          <div className="mt-4">
-            <p className="label-xs">Bahan pelengkap</p>
-            <p className="mt-1.5 text-sm">
-              {entity.adjuvants.length > 0
-                ? entity.adjuvants.join(' · ')
-                : 'Tidak ada'}
-            </p>
-          </div>
+              <div className="mt-4">
+                <p className="label-xs">Bahan pelengkap</p>
+                <p className="mt-1.5 text-sm">
+                  {entity.adjuvants.length > 0
+                    ? entity.adjuvants.join(' · ')
+                    : 'Tidak ada'}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </TabsContent>
 
@@ -184,46 +258,63 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
               aria-hidden="true"
             />
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Senyawa dan aksi di bawah berasal dari basis data Taru Pramana,
-              bukan tebakan model.
+              {noPlant
+                ? 'Lembar ini tidak memuat tanaman obat, jadi belum ada rujukan tanaman yang bisa ditampilkan.'
+                : entity.kb_match
+                  ? 'Kandungan dan khasiat di bawah dirujuk dari Taru Pramana.'
+                  : 'Tanaman ini belum tercatat di Taru Pramana. Rujukan modern belum tersedia.'}
             </p>
           </div>
 
-          <section className="mt-4">
-            <p className="label-xs">Senyawa aktif</p>
-            <p className="mt-1.5 text-sm font-medium">
-              {validation.phytochemical_compounds.join(' · ')}
-            </p>
-          </section>
+          {!noPlant ? (
+            <>
+              <section className="mt-4">
+                <p className="label-xs">Kandungan aktif</p>
+                <p className="mt-1.5 text-sm font-medium">
+                  {validation.phytochemical_compounds.length > 0
+                    ? validation.phytochemical_compounds.join(' · ')
+                    : 'Belum tersedia.'}
+                </p>
+              </section>
 
-          <Separator className="my-4" />
+              <Separator className="my-4" />
 
-          <section>
-            <p className="label-xs">Aksi farmakologis</p>
-            <p className="mt-1.5 text-sm leading-relaxed">
-              {validation.modern_pharmacological_action}
-            </p>
-          </section>
+              <section>
+                <p className="label-xs">Khasiat modern</p>
+                <p className="mt-1.5 whitespace-pre-line text-sm leading-7">
+                  {usefulText(validation.modern_pharmacological_action)
+                    ? formatTranslation(validation.modern_pharmacological_action)
+                    : 'Belum tersedia.'}
+                </p>
+              </section>
 
-          <Separator className="my-4" />
+              <Separator className="my-4" />
 
-          <section>
-            <p className="label-xs">Rujukan</p>
-            <ul className="mt-1.5 space-y-1.5">
-              {validation.reference_studies.map((reference) => (
-                <li
-                  key={reference}
-                  className="flex gap-2 text-sm leading-relaxed text-muted-foreground"
-                >
-                  <span
-                    className="mt-2 size-1 shrink-0 rounded-full bg-brass"
-                    aria-hidden="true"
-                  />
-                  {reference}
-                </li>
-              ))}
-            </ul>
-          </section>
+              <section>
+                <p className="label-xs">Sumber rujukan</p>
+                {validation.reference_studies.length > 0 ? (
+                  <ul className="mt-1.5 space-y-1.5">
+                    {validation.reference_studies.map((reference) => (
+                      <li
+                        key={reference}
+                        className="flex gap-2 text-sm leading-relaxed text-muted-foreground"
+                      >
+                        <span
+                          className="mt-2 size-1 shrink-0 rounded-full bg-brass"
+                          aria-hidden="true"
+                        />
+                        {reference}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    Belum ada rujukan.
+                  </p>
+                )}
+              </section>
+            </>
+          ) : null}
         </div>
       </TabsContent>
     </Tabs>

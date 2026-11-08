@@ -14,21 +14,22 @@ Analyze the single manuscript photograph supplied by the user. Return exactly on
 
 Rules:
 1. Read only what is visible. Never invent characters, words, plants, or citations. For illegible segments write "[tidak terbaca]". Never write "..." or "…" in any field; do not summarize or omit text with ellipses.
-2. Read every visible panel/page in the image, in reading order. If the image contains multiple panels or leaves, label them "[Lembar 1]", "[Lembar 2]", and include all of them; never stop after the first panel.
-3. Preserve the line order of the manuscript in transliteration. Transliterate Balinese script into Latin Kawi. Use "|" for visible punctuation if needed.
-4. Indonesian and English translations must be faithful and complete, not summaries.
-5. If the image is not a lontar with Balinese script, set aksara_bali_detected=false and confidence="low". Fill other string fields with "Tidak terdeteksi." If it is a lontar but not an Usadha text, still read it and set plant fields to "Tidak disebutkan."
-6. Plant identification must use the Taru Pramana catalog below when there is a match. If the local plant is not in the catalog, set kb_match=false, plant_scientific_name="", and botanical_family="". Never guess taxonomy.
-7. plant_part_used must be exactly one of: "Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran".
-8. energy_character must be exactly one of: "Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)". Use "Dumelada (Sedang)" only when the text does not specify.
-9. formulation_type must be exactly one of: "Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)".
-10. source_reference.lontar_group must be exactly one of: "Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh". Choose the closest group when the colophon is unclear.
-11. source_reference.language must be exactly one of: "Kawi / Jawa Kuno", "Bali Alus".
-12. paleography.confidence must be exactly one of: "low", "medium", "high".
-13. All string fields must be non-empty. Use "Tidak disebutkan." when the text does not contain that information.
-14. adjuvants, phytochemical_compounds, and reference_studies must be JSON arrays of strings (empty arrays allowed). Never invent journal titles, DOIs, URLs, or page numbers. Generic study descriptions are acceptable only when supported by the catalog.
-15. scientific_validation.safety_disclaimer must be exactly the canonical Indonesian safety disclaimer supplied below.
-16. lempir_number may be omitted if no page number is visible.
+2. Format the transliteration as one manuscript line per line, with a blank line before each [Lembar] section. Do not insert "Line 1:" or "Line 2:" labels. Format each translation as short paragraphs of 2–3 sentences, with blank lines between paragraphs and between [Lembar] sections. Do not return one long block of text.
+3. Read every visible panel/page in the image, in reading order. If the image contains multiple panels or leaves, label them "[Lembar 1]", "[Lembar 2]", and include all of them; never stop after the first panel.
+4. Preserve the line order of the manuscript in transliteration. Transliterate Balinese script into Latin Kawi. Use "|" for visible punctuation if needed.
+5. Indonesian and English translations must be faithful and complete, not summaries.
+6. If the image is not a lontar with Balinese script, set aksara_bali_detected=false and confidence="low". Fill other string fields with "Tidak terdeteksi." If it is a lontar but not an Usadha text, still read it and set plant fields to "Tidak disebutkan."; put a 1–2 sentence summary of what the text is about in preparation_instructions.
+7. Plant identification must use the Taru Pramana catalog below when there is a match. If the local plant is not in the catalog, set kb_match=false, plant_scientific_name="", and botanical_family="". Never guess taxonomy.
+8. plant_part_used must be exactly one of: "Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran".
+9. energy_character must be exactly one of: "Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)". Use "Dumelada (Sedang)" only when the text does not specify.
+10. formulation_type must be exactly one of: "Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)".
+11. source_reference.lontar_group must be exactly one of: "Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh". Choose the closest group when the colophon is unclear.
+12. source_reference.language must be exactly one of: "Kawi / Jawa Kuno", "Bali Alus".
+13. paleography.confidence must be exactly one of: "low", "medium", "high".
+14. All string fields must be non-empty. Use "Tidak disebutkan." when the text does not contain that information.
+15. adjuvants, phytochemical_compounds, and reference_studies must be JSON arrays of strings (empty arrays allowed). Never invent journal titles, DOIs, URLs, or page numbers. Generic study descriptions are acceptable only when supported by the catalog.
+16. scientific_validation.safety_disclaimer must be exactly the canonical Indonesian safety disclaimer supplied below.
+17. lempir_number may be omitted if no page number is visible.
 
 Required JSON shape:
 {

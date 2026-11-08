@@ -8,6 +8,7 @@ Frontend prototype for UsadhaAI: React 19, TypeScript, Vite, Tailwind CSS v4, an
 - Client preprocessing: downscale, CLAHE, and unsharp mask on Canvas.
 - Live AI: Go API at `/api/analyze-manuscript` → 9router/Gemini (set `VITE_USE_MOCK=false`).
 - Mock mode remains available with `VITE_USE_MOCK=true` or when no env is set.
+- Non-usada leaves show a reading summary instead of empty ethnomedicinal fields; KB-grounded plants keep the usada card.
 - Sample lontar photos are real archive images. Credits and licenses live in `public/samples/CREDITS.md`.
 
 ## Routes

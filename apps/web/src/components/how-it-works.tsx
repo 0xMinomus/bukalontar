@@ -76,7 +76,7 @@ export function HowItWorks() {
               rel="noreferrer"
               className="small-caps inline-flex items-center gap-1.5 border-b border-brass/50 pb-1 text-xs font-semibold text-primary transition-colors hover:text-brass-strong"
             >
-              Baca catatan teknis
+              Panduan membaca
               <ArrowUpRight className="size-3.5" aria-hidden="true" />
             </a>
           </Reveal>
@@ -99,8 +99,8 @@ export function HowItWorks() {
                     UsadhaAI adalah purwarupa untuk membuka kembali lontar usada
                     Bali. Fokusnya bukan sekadar membaca huruf, tetapi menyusun
                     pengetahuan obat tradisional yang bisa diperiksa: tanaman
-                    apa, bagian mana, bagaimana diracik, dan apa kata
-                    fitofarmaka modern.
+                    apa, bagian mana, bagaimana diracik, dan bagaimana
+                    khasiatnya menurut riset modern.
                   </p>
                   <blockquote className="mt-6 border-l-2 border-brass pl-4">
                     <p className="font-serif text-[1.05rem] italic leading-relaxed text-foreground">
@@ -159,9 +159,8 @@ export function HowItWorks() {
                     <ArrowUpRight className="size-4" aria-hidden="true" />
                   </a>
                   <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    Antarmuka ini masih memakai data contoh. Backend Go dan
-                    pemanggilan Gemini 3.8 Flash akan dihubungkan pada tahap
-                    berikutnya.
+                    UsadhaAI membaca lontar secara langsung. Hasil ditampilkan
+                    bersama rujukan tanaman dan pengingat medis.
                   </p>
                 </div>
               </div>
