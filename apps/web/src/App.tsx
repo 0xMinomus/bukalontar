@@ -1,3 +1,4 @@
+import { Loader2 } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Navigate,
@@ -21,6 +22,11 @@ import { analyzeManuscript } from '@/lib/api'
 import type { AnalysisResponse } from '@/lib/analysis'
 import { enhanceLontar, type EnhancedImage } from '@/lib/image'
 import type { Sample } from '@/lib/samples'
+import {
+  clearAnalysisSession,
+  loadAnalysisSession,
+  saveAnalysisSession,
+} from '@/lib/session-store'
 
 type Stage = 'idle' | 'preview' | 'processing' | 'result' | 'error'
 
@@ -28,11 +34,29 @@ const MAX_BYTES = 8 * 1024 * 1024
 const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 const IS_MOCK = import.meta.env.VITE_USE_MOCK !== 'false'
 
+function SessionLoading() {
+  return (
+    <div className="mx-auto max-w-5xl px-5 py-24 text-center">
+      <Loader2
+        className="mx-auto size-6 animate-spin text-brass-strong"
+        aria-hidden="true"
+      />
+      <p className="small-caps mt-4 text-xs font-semibold text-brass-strong">
+        Memuat sesi
+      </p>
+      <p className="mt-2 font-heading text-3xl">Menyiapkan hasil</p>
+    </div>
+  )
+}
+
 export default function App() {
   const navigate = useNavigate()
   const location = useLocation()
   const isLanding = location.pathname === '/'
 
+  const [hydrating, setHydrating] = useState(
+    () => location.pathname === '/hasil' || location.pathname === '/analisis',
+  )
   const [stage, setStage] = useState<Stage>('idle')
   const [file, setFile] = useState<File | null>(null)
   const [sourceId, setSourceId] = useState<string | undefined>()
@@ -65,7 +89,48 @@ export default function App() {
     if (stage !== 'idle') window.scrollTo({ top: 0 })
   }, [stage])
 
+  useEffect(() => {
+    if (!hydrating) return
+    let cancelled = false
+    void (async () => {
+      try {
+        const session = await loadAnalysisSession()
+        if (cancelled || !session) return
+        const original = session.original
+        setFile(
+          new File([original], session.fileName, {
+            type: original.type || 'image/jpeg',
+          }),
+        )
+        setSourceId(session.sourceId)
+        setOriginalUrl(URL.createObjectURL(original))
+        if (session.enhanced) {
+          setEnhanced({
+            url: URL.createObjectURL(session.enhanced),
+            blob: session.enhanced,
+            width: session.enhancedMeta?.width ?? 0,
+            height: session.enhancedMeta?.height ?? 0,
+            elapsedMs: session.enhancedMeta?.elapsedMs ?? 0,
+          })
+          setView(session.view)
+        } else {
+          setView('original')
+        }
+        setResult(session.result)
+        setStage('result')
+      } catch {
+        // Corrupt or unavailable store; the route guard sends the user home.
+      } finally {
+        if (!cancelled) setHydrating(false)
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [hydrating])
+
   const clearState = useCallback(() => {
+    void clearAnalysisSession().catch(() => {})
     loadIdRef.current += 1
     abortRef.current?.abort()
     abortRef.current = null
@@ -112,6 +177,7 @@ export default function App() {
       loadIdRef.current = loadId
       abortRef.current?.abort()
       abortRef.current = null
+      void clearAnalysisSession().catch(() => {})
 
       setFile(nextFile)
       setSourceId(sampleId)
@@ -175,6 +241,10 @@ export default function App() {
 
   async function startAnalysis() {
     if (!file) return
+    const manuscriptFile = file
+    const currentEnhanced = enhanced
+    const currentView = view
+    void clearAnalysisSession().catch(() => {})
     abortRef.current?.abort()
     const controller = new AbortController()
     abortRef.current = controller
@@ -186,14 +256,35 @@ export default function App() {
 
     try {
       const nextResult = await analyzeManuscript({
-        file,
-        enhanced: enhanced?.blob ?? null,
+        file: manuscriptFile,
+        enhanced: currentEnhanced?.blob ?? null,
         sampleId: sourceId,
         signal: controller.signal,
         onStage: (nextStep) => {
           if (!controller.signal.aborted) setStep(nextStep)
         },
       })
+      if (controller.signal.aborted) return
+      try {
+        await saveAnalysisSession({
+          result: nextResult,
+          original: manuscriptFile,
+          enhanced: currentEnhanced?.blob ?? null,
+          enhancedMeta: currentEnhanced
+            ? {
+                width: currentEnhanced.width,
+                height: currentEnhanced.height,
+                elapsedMs: currentEnhanced.elapsedMs,
+              }
+            : undefined,
+          fileName: manuscriptFile.name,
+          sourceId,
+          view: currentView,
+          savedAt: Date.now(),
+        })
+      } catch {
+        // Storage unavailable; the result remains usable without refresh.
+      }
       if (controller.signal.aborted) return
       setResult(nextResult)
       setStage('result')
@@ -279,7 +370,9 @@ export default function App() {
             <Route
               path="/analisis"
               element={
-                stage === 'error' ? (
+                hydrating ? (
+                  <SessionLoading />
+                ) : stage === 'error' ? (
                   <ErrorState
                     message={error ?? 'Terjadi kesalahan yang belum dikenali.'}
                     canRetry={Boolean(originalUrl)}
@@ -323,7 +416,9 @@ export default function App() {
             <Route
               path="/hasil"
               element={
-                result && originalUrl ? (
+                hydrating ? (
+                  <SessionLoading />
+                ) : result && originalUrl ? (
                   <ResultWorkspace
                     result={result}
                     originalUrl={originalUrl}

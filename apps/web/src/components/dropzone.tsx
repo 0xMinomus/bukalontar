@@ -94,7 +94,7 @@ export function Dropzone({ onFile, disabled }: DropzoneProps) {
       </div>
 
       <p className="mt-5 border-t border-border/70 pt-3 text-xs text-muted-foreground">
-        JPG, PNG, atau WEBP. Maksimal 8 MB. Foto diproses tanpa disimpan.
+        JPG, PNG, atau WEBP. Maksimal 8 MB. Sesi terakhir disimpan lokal di browser agar hasil bisa dibuka kembali.
       </p>
 
       <input

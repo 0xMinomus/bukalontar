@@ -15,7 +15,7 @@ Frontend prototype for UsadhaAI: React 19, TypeScript, Vite, Tailwind CSS v4, an
 - `/analisis` upload preview, processing, and error states
 - `/hasil` analysis result
 
-Routing uses `BrowserRouter`, so URLs are path based, never hash based. The header logo returns to `/` and clears the active manuscript. The footer is shared by every route.
+Routing uses `BrowserRouter`, so URLs are path based, never hash based. The header logo returns to `/` and clears the active manuscript. The footer is shared by every route. The active result is persisted in IndexedDB, so `/hasil` survives a refresh; the logo or `Naskah baru` clears it. A direct `/hasil` or `/analisis` load without a stored session redirects to `/`.
 
 ## Run
 
