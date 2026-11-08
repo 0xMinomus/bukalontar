@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 	"unicode"
 
@@ -23,6 +24,8 @@ type Service struct {
 	primary  *Client
 	fallback *Client
 	kb       *kb.Store
+	cacheMu  sync.Mutex
+	cache    map[string]cacheEntry
 }
 
 func NewService(cfg Config) (*Service, error) {
@@ -38,6 +41,7 @@ func NewService(cfg Config) (*Service, error) {
 	service := &Service{
 		primary: NewClient(cfg.Primary),
 		kb:      cfg.KB,
+		cache:   make(map[string]cacheEntry),
 	}
 	if cfg.Fallback != nil && strings.TrimSpace(cfg.Fallback.BaseURL) != "" && strings.TrimSpace(cfg.Fallback.Model) != "" {
 		if cfg.Fallback.Timeout <= 0 {
@@ -57,6 +61,11 @@ func (s *Service) Health(ctx context.Context) error {
 }
 
 func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID string) (*model.AnalysisResponse, error) {
+	cacheKey := s.cacheKey(image, sourceID)
+	if cached, ok := s.cached(cacheKey); ok {
+		return cached, nil
+	}
+
 	dataURL := "data:" + mimeType + ";base64," + base64.StdEncoding.EncodeToString(image)
 	messages := []Message{
 		{Role: "system", Content: systemPrompt},
@@ -80,24 +89,34 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 		if err == nil {
 			response.Normalize()
 			s.enrich(response, sourceID)
-			if validationErr := response.Validate(); validationErr == nil {
-				if attempt == 0 && needsContentRetry(response) && canRetryContent(ctx) {
-					err = fmt.Errorf("previous reading appears to cover only a colophon or omit the central text; read the main text of every leaf and extract any named plant and preparation")
-				} else {
-					return response, nil
+			err = response.Validate()
+		}
+		if err != nil {
+			lastErr = err
+			if attempt == 0 {
+				messages = append(messages,
+					Message{Role: "assistant", Content: content},
+					Message{Role: "user", Content: correctionPrompt(err)},
+				)
+				continue
+			}
+			break
+		}
+
+		if needsContentRetry(response) &&
+			!strings.Contains(strings.ToLower(s.primary.Model()), "high") &&
+			canRetryContent(ctx) {
+			if focused, focusErr := s.focusPlant(ctx, image, mimeType); focusErr == nil && focused.Found {
+				snapshot := *response
+				s.mergePlant(response, focused, sourceID)
+				if validationErr := response.Validate(); validationErr != nil {
+					*response = snapshot
 				}
-			} else {
-				err = validationErr
 			}
 		}
-		lastErr = err
 
-		if attempt == 0 {
-			messages = append(messages,
-				Message{Role: "assistant", Content: content},
-				Message{Role: "user", Content: correctionPrompt(err)},
-			)
-		}
+		s.storeCache(cacheKey, response)
+		return response, nil
 	}
 	return nil, fmt.Errorf("%w: %v", ErrInvalidOutput, lastErr)
 }
@@ -107,7 +126,7 @@ func canRetryContent(ctx context.Context) bool {
 	if !ok {
 		return true
 	}
-	return time.Until(deadline) > 90*time.Second
+	return time.Until(deadline) > 45*time.Second
 }
 
 func needsContentRetry(response *model.AnalysisResponse) bool {

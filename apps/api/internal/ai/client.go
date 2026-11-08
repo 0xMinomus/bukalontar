@@ -74,13 +74,17 @@ func (c *Client) Model() string {
 }
 
 func (c *Client) Complete(ctx context.Context, messages []Message) (string, error) {
+	return c.CompleteWithTokens(ctx, messages, 2400)
+}
+
+func (c *Client) CompleteWithTokens(ctx context.Context, messages []Message, maxTokens int) (string, error) {
 	body := map[string]any{
 		"model":       c.cfg.Model,
 		"messages":    messages,
 		"stream":      false,
 		"temperature": 0,
 		"top_p":       1,
-		"max_tokens":  2400,
+		"max_tokens":  maxTokens,
 		"response_format": map[string]string{
 			"type": "json_object",
 		},

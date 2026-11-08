@@ -158,6 +158,107 @@ func TestNeedsContentRetryForColophon(t *testing.T) {
 	}
 }
 
+func TestAnalyzeCachesResult(t *testing.T) {
+	store, err := kb.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	valid, err := json.Marshal(serviceTestResponse())
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var calls atomic.Int32
+	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls.Add(1)
+		_ = json.NewEncoder(w).Encode(map[string]any{
+			"choices": []any{
+				map[string]any{"message": map[string]any{"content": string(valid)}},
+			},
+		})
+	}))
+	defer upstream.Close()
+
+	service, err := NewService(Config{
+		Primary: ProviderConfig{BaseURL: upstream.URL, Model: "test", Timeout: 5 * time.Second},
+		Timeout: 5 * time.Second,
+		KB:      store,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	first, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "kemenuh")
+	if err != nil {
+		t.Fatal(err)
+	}
+	second, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "kemenuh")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if calls.Load() != 1 {
+		t.Fatalf("cache should avoid a second upstream call, got %d", calls.Load())
+	}
+	if first.ManuscriptID != second.ManuscriptID {
+		t.Fatal("cached response differs")
+	}
+}
+
+func TestAnalyzeFocusesWhenNoPlant(t *testing.T) {
+	store, err := kb.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	noPlant := serviceTestResponse()
+	noPlant.Ethnomedicinal.PlantLocalName = "Tidak disebutkan."
+	noPlant.Ethnomedicinal.PlantScientificName = ""
+	noPlant.Ethnomedicinal.BotanicalFamily = ""
+	noPlant.Ethnomedicinal.KBMatch = false
+	noPlant.Ethnomedicinal.TargetAilment = "Tidak disebutkan."
+	noPlant.Ethnomedicinal.PreparationInstructions = "Naskah ini memuat kolofon dan nama penyalin."
+	noPlant.Paleography.Transliteration = "om awighnam astu"
+	mainContent, err := json.Marshal(noPlant)
+	if err != nil {
+		t.Fatal(err)
+	}
+	focusContent := `{"found":true,"plant_local_name":"Taru Sotong","plant_part_used":"Don (Daun)","energy_character":"Panes (Hangat)","formulation_type":"Sasap (Kompres)","adjuvants":["Adas"],"target_ailment":"Mising","preparation_instructions":"Daun ditumbuk lalu ditempelkan.","evidence":"taru sotong"}`
+
+	var calls atomic.Int32
+	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls.Add(1)
+		content := string(mainContent)
+		if calls.Load() > 1 {
+			content = focusContent
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{
+			"choices": []any{
+				map[string]any{"message": map[string]any{"content": content}},
+			},
+		})
+	}))
+	defer upstream.Close()
+
+	service, err := NewService(Config{
+		Primary: ProviderConfig{BaseURL: upstream.URL, Model: "test", Timeout: 5 * time.Second},
+		Timeout: 5 * time.Second,
+		KB:      store,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	response, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "upload")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if calls.Load() != 2 {
+		t.Fatalf("expected main + focus calls, got %d", calls.Load())
+	}
+	if response.Ethnomedicinal.PlantLocalName != "Taru Sotong" || !response.Ethnomedicinal.KBMatch {
+		t.Fatalf("focus result not merged: %#v", response.Ethnomedicinal)
+	}
+}
+
 func TestAnalyzeRejectsBadOutputAfterRepair(t *testing.T) {
 	store, err := kb.Load()
 	if err != nil {

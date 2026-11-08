@@ -46,8 +46,8 @@ Live smoke test:
 
 ```bash
 curl -sS http://127.0.0.1:8080/health | jq .
-curl -sS -F image=@apps/web/public/samples/lontar-kemenuh.jpg \
-  -F source_id=kemenuh \
+curl -sS -F image=@apps/web/public/samples/lontar-wanagiri-usada-3.jpg \
+  -F source_id=wanagiri \
   http://127.0.0.1:8080/api/analyze-manuscript | jq .
 ```
 
@@ -57,6 +57,8 @@ curl -sS -F image=@apps/web/public/samples/lontar-kemenuh.jpg \
 - Image bytes are read into memory; no temp files.
 - Upload is capped at 8 MB before preprocessing and again before the AI call.
 - AI output is parsed even when wrapped in a markdown fence, then validated. One repair attempt is made with the validation error.
+- Results are cached for one hour by sample ID (or image hash for uploads), so repeated analysis of the same leaf returns the same response without another model call.
+- If a valid first pass has no plant or looks like a colophon-only reading, one focused recipe pass retries the leaf before the result is cached.
 - Botanical scientific name, family, active compounds, references, and energy character are overwritten from the KB on a match. On no match, taxonomy and citations are cleared rather than hallucinated.
 - The canonical medical disclaimer is always written by the server.
 - 9router/upstream calls retry on 429, 5xx, timeout, and transport errors; the optional fallback provider is tried after the primary fails.
