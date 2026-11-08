@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://usadha.ai/schema/analysis.json",
-  "title": "UsadhaAI AnalysisResponse",
+  "$id": "https://raw.githubusercontent.com/0xMinomus/bukalontar/main/packages/schema/analysis.json",
+  "title": "BukaLontar AnalysisResponse",
   "type": "object",
   "additionalProperties": false,
   "required": ["manuscript_id", "source_reference", "paleography", "ethnomedicinal_entity", "scientific_validation"],

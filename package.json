@@ -1,5 +1,5 @@
 {
-  "name": "usadha-ai",
+  "name": "bukalontar",
   "private": true,
   "version": "0.0.0",
   "workspaces": [
@@ -7,9 +7,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace @usadha/web",
-    "build": "npm run build --workspace @usadha/web",
-    "preview": "npm run preview --workspace @usadha/web",
-    "lint": "npm run lint --workspace @usadha/web"
+    "dev": "npm run dev --workspace @bukalontar/web",
+    "build": "npm run build --workspace @bukalontar/web",
+    "preview": "npm run preview --workspace @bukalontar/web",
+    "lint": "npm run lint --workspace @bukalontar/web"
   }
 }

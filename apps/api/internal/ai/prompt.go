@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/0xMinomus/digifest/apps/api/internal/kb"
-	"github.com/0xMinomus/digifest/apps/api/internal/model"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/kb"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
 )
 
-const systemPrompt = `You are UsadhaAI, an expert in Balinese lontar paleography, Kawi (Old Javanese), and Balinese ethnopharmacopeia.
+const systemPrompt = `You are BukaLontar, an expert in Balinese lontar paleography, Kawi (Old Javanese), and Balinese ethnopharmacopeia.
 
 Analyze the single manuscript photograph supplied by the user. Return exactly one raw JSON object. Do not use markdown fences, commentary, or extra text.
 

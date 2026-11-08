@@ -1,6 +1,6 @@
-# UsadhaAI Web
+# BukaLontar Web
 
-Frontend prototype for UsadhaAI: React 19, TypeScript, Vite, Tailwind CSS v4, and shadcn-style primitives (Radix UI + CVA).
+Frontend prototype for BukaLontar: React 19, TypeScript, Vite, Tailwind CSS v4, and shadcn-style primitives (Radix UI + CVA).
 
 ## Status
 
@@ -36,8 +36,8 @@ Vite mem-proxy `/api` ke `http://localhost:8080`, jadi browser tetap satu origin
 Production build (frontend + API in one binary):
 
 ```bash
-make build                               # bin/usadha
-./bin/usadha
+make build                               # bin/bukalontar
+./bin/bukalontar
 ```
 
 ## Environment

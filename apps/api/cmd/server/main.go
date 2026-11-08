@@ -10,12 +10,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/0xMinomus/digifest/apps/api/internal/ai"
-	"github.com/0xMinomus/digifest/apps/api/internal/config"
-	"github.com/0xMinomus/digifest/apps/api/internal/handler"
-	"github.com/0xMinomus/digifest/apps/api/internal/kb"
-	"github.com/0xMinomus/digifest/apps/api/internal/ratelimit"
-	"github.com/0xMinomus/digifest/apps/api/internal/webui"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/ai"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/config"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/handler"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/kb"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/ratelimit"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/webui"
 )
 
 func main() {
@@ -77,7 +77,7 @@ func main() {
 	if cfg.AIAPIKey == "" {
 		log.Printf("warning: AI_API_KEY kosong; 9router yang memakai auth akan menolak request")
 	}
-	log.Printf("UsadhaAI API listening on :%s (model=%s, kb=%d entries, frontend_embedded=%t)", cfg.Port, analyzer.Model(), store.Count(), hasIndex)
+	log.Printf("BukaLontar API listening on :%s (model=%s, kb=%d entries, frontend_embedded=%t)", cfg.Port, analyzer.Model(), store.Count(), hasIndex)
 	if fallback == nil {
 		log.Printf("AI fallback disabled")
 	} else {

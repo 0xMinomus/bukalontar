@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xMinomus/digifest/apps/api/internal/model"
-	"github.com/0xMinomus/digifest/apps/api/internal/ratelimit"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/ratelimit"
 )
 
 type fakeAnalyzer struct {

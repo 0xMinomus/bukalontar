@@ -38,7 +38,7 @@ export function AppHeader({ showNav = true, onHome }: AppHeaderProps) {
           </span>
           <span className="flex flex-col leading-none">
             <span className="font-heading text-2xl tracking-tight">
-              UsadhaAI
+              BukaLontar
             </span>
             <span className="small-caps mt-1 text-[10px] font-semibold text-muted-foreground">
               Arsip Usada Bali
@@ -70,11 +70,11 @@ export function AppHeader({ showNav = true, onHome }: AppHeaderProps) {
 
         <div>
           <a
-            href="https://github.com/0xMinomus/digifest"
+            href="https://github.com/0xMinomus/bukalontar"
             target="_blank"
             rel="noreferrer"
             className="inline-flex h-10 items-center gap-2 rounded-lg border border-border/70 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:border-brass/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            aria-label="Buka repositori GitHub UsadhaAI"
+            aria-label="Buka repositori GitHub BukaLontar"
           >
             <Code2 className="size-4" aria-hidden="true" />
             <span className="small-caps hidden sm:inline">GitHub</span>

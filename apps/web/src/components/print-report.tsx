@@ -82,7 +82,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
   return (
     <article className="print-report">
       <header className="report-header">
-        <p className="report-kicker">UsadhaAI · Laporan Pembacaan</p>
+        <p className="report-kicker">BukaLontar · Laporan Pembacaan</p>
         <h1 className="report-title">Hasil Pembacaan Lontar</h1>
         <p className="report-subtitle">
           {source.lontar_group} · Lempir{' '}
@@ -312,7 +312,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
       </section>
 
       <footer className="report-footer">
-        <span>UsadhaAI · Laporan Pembacaan Lontar</span>
+        <span>BukaLontar · Laporan Pembacaan Lontar</span>
         <span>{source.lontar_group}</span>
       </footer>
     </article>

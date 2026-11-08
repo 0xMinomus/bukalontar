@@ -4,7 +4,7 @@ Dokumen ini melengkapi Lampiran C panduan peserta. Isi harus sesuai dengan imple
 
 | Komponen | Keterangan |
 | --- | --- |
-| **Nama Produk** | UsadhaAI |
+| **Nama Produk** | BukaLontar |
 | **Framework / Frontend** | React 19, TypeScript, Vite, Tailwind CSS v4, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge |
 | **Backend / Runtime** | Go standard library (`net/http`), single binary dengan SPA ter-embed |
 | **Database / Storage** | Tidak ada database eksternal. Knowledge base JSON Taru Pramana di-embed dengan `go:embed`; session frontend disimpan di IndexedDB browser |

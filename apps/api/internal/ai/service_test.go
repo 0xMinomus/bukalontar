@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xMinomus/digifest/apps/api/internal/kb"
-	"github.com/0xMinomus/digifest/apps/api/internal/model"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/kb"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
 )
 
 func serviceTestResponse() model.AnalysisResponse {

@@ -8,8 +8,8 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/0xMinomus/digifest/apps/api/internal/kb"
-	"github.com/0xMinomus/digifest/apps/api/internal/model"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/kb"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
 )
 
 type Config struct {
@@ -209,7 +209,7 @@ func (s *Service) enrich(response *model.AnalysisResponse, sourceID string) {
 	}
 	response.Scientific.SafetyDisclaimer = model.SafetyDisclaimer
 	if strings.TrimSpace(response.ManuscriptID) == "" {
-		response.ManuscriptID = fmt.Sprintf("usadha-%s-%d", safeSourceID(sourceID), time.Now().Unix())
+		response.ManuscriptID = fmt.Sprintf("bukalontar-%s-%d", safeSourceID(sourceID), time.Now().Unix())
 	}
 }
 

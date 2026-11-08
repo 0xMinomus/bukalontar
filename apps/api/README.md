@@ -1,6 +1,6 @@
-# UsadhaAI API
+# BukaLontar API
 
-Go stdlib backend for the UsadhaAI web app. It accepts one lontar image, sends it to Gemini through 9router in OpenAI-compatible JSON mode, validates the result, grounds botanical fields against the embedded Taru Pramana KB, and returns the `AnalysisResponse` contract.
+Go stdlib backend for the BukaLontar web app. It accepts one lontar image, sends it to Gemini through 9router in OpenAI-compatible JSON mode, validates the result, grounds botanical fields against the embedded Taru Pramana KB, and returns the `AnalysisResponse` contract.
 
 ## Endpoints
 

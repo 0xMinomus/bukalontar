@@ -13,7 +13,7 @@ export function SiteFooter() {
             </span>
             <div>
               <p className="font-heading text-xl leading-none tracking-tight">
-                UsadhaAI
+                BukaLontar
               </p>
               <p className="small-caps mt-1.5 text-[10px] font-semibold text-muted-foreground">
                 Bali DigiFest 2026 · AI Web Innovation Challenge
@@ -24,7 +24,7 @@ export function SiteFooter() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-muted-foreground">
             <a
               className="transition-colors hover:text-foreground"
-              href="https://github.com/0xMinomus/digifest"
+              href="https://github.com/0xMinomus/bukalontar"
               target="_blank"
               rel="noreferrer"
             >
@@ -32,7 +32,7 @@ export function SiteFooter() {
             </a>
             <a
               className="transition-colors hover:text-foreground"
-              href="https://github.com/0xMinomus/digifest/tree/main/docs"
+              href="https://github.com/0xMinomus/bukalontar/tree/main/docs"
               target="_blank"
               rel="noreferrer"
             >
@@ -64,7 +64,7 @@ export function SiteFooter() {
             </a>
             . Dipakai untuk menguji antarmuka.
           </p>
-          <p className="small-caps">UsadhaAI, 2026</p>
+          <p className="small-caps">BukaLontar, 2026</p>
         </div>
       </div>
     </footer>

@@ -18,7 +18,7 @@ api-build: web-build
 	cp -r apps/web/dist/. apps/api/internal/webui/dist/
 	touch apps/api/internal/webui/dist/.gitkeep
 	mkdir -p bin
-	cd apps/api && go build -o ../../bin/usadha ./cmd/server
+	cd apps/api && go build -o ../../bin/bukalontar ./cmd/server
 
 build: api-build
 

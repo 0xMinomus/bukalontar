@@ -92,8 +92,8 @@ Contoh lengkap ada di `apps/api/.env.example`. File `.env` tidak boleh di-commit
 
 ```bash
 npm install
-make build          # frontend -> Go embed -> bin/usadha
-./bin/usadha
+make build          # frontend -> Go embed -> bin/bukalontar
+./bin/bukalontar
 ```
 
 Binary membaca environment, menyajikan SPA, dan memanggil 9router. Deployment publik harus menyediakan 9router yang dapat dijangkau oleh binary; endpoint gateway tidak boleh diekspos ke internet tanpa autentikasi.

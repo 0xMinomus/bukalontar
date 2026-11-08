@@ -1,4 +1,4 @@
-# Project Concept: UsadhaAI
+# Project Concept: BukaLontar
 **Intelligent Balinese Palm-Leaf Manuscript Paleography & Ethnomedicinal Knowledge Engine**
 *Solusi AI untuk Pelestarian Manuskrip Kuno & Ekstraksi Farmakope Tradisional Bali*
 
@@ -36,7 +36,7 @@ flowchart TD
 1. **Peradaban Pasca-Majapahit:** Ketika kerajaan Majapahit runtuh pada abad ke-15, para cendekiawan, pendeta, dan bangsawan mengungsi ke Bali membawa ribuan karya sastra dan ilmu kedokteran kuno. Bali menjadi satu-satunya wilayah di dunia yang menjaga dan melestarikan naskah-naskah Kawi (bahkan naskah *Kakawin Sutasoma* dan *Nagarakretagama* ditemukan di Bali/Lombok).
 2. **Bahasa Ilmu Pengetahuan & Liturgi:** Di Bali, Bahasa Kawi memiliki kedudukan seperti bahasa Latin bagi bangsa Eropa atau Sanskerta bagi India. Semua mantra pendeta (*Pedanda*), kidung pura, hukum adat (*Awig-Awig/Kutaramanawa*), dan lontar pengobatan (*Usadha*) ditulis dalam bahasa Kawi.
 3. **Mengapa Ini Justru Masalah Utama yang Harus Diselesaikan AI?**
-   Karena adanya perbedaan antara aksara dan bahasa inilah, anak muda Bali maupun akademisi tidak bisa membaca naskah lontar Usadha. **UsadhaAI hadir memecahkan kedua gembok ini sekaligus**: membaca aksara Bali-nya secara visual $\rightarrow$ menerjemahkan bahasa Kawi-nya secara semantik ke Bahasa Indonesia, Bali Alus, dan istilah biologi modern.
+   Karena adanya perbedaan antara aksara dan bahasa inilah, anak muda Bali maupun akademisi tidak bisa membaca naskah lontar Usadha. **BukaLontar hadir memecahkan kedua gembok ini sekaligus**: membaca aksara Bali-nya secara visual $\rightarrow$ menerjemahkan bahasa Kawi-nya secara semantik ke Bahasa Indonesia, Bali Alus, dan istilah biologi modern.
 
 ---
 
@@ -81,10 +81,10 @@ Naskah *Lontar Taru Pramana* ditulis dengan format personifikasi puitis di mana 
 
 ```mermaid
 graph TD
-    UsadhaAI["Platform UsadhaAI"] --> U1["Peneliti Bio-Farmasi & Etnobotani<br/>(Akselerasi Riset Obat Herbal & Fitofarmaka)"]
-    UsadhaAI --> U2["Generasi Muda & Pelajar Bali<br/>(Literasi Aksara Tradisi & Edukasi Budaya)"]
-    UsadhaAI --> U3["Praktisi Herbal & UMKM Wellness Bali<br/>(Standarisasi Loloh & Boreh Tradisional)"]
-    UsadhaAI --> U4["Kurator Museum (Gedong Kirtya dsb.)<br/>(Pengarsipan Digital Cerdas yang Bisa Dicari)"]
+    BukaLontar["Platform BukaLontar"] --> U1["Peneliti Bio-Farmasi & Etnobotani<br/>(Akselerasi Riset Obat Herbal & Fitofarmaka)"]
+    BukaLontar --> U2["Generasi Muda & Pelajar Bali<br/>(Literasi Aksara Tradisi & Edukasi Budaya)"]
+    BukaLontar --> U3["Praktisi Herbal & UMKM Wellness Bali<br/>(Standarisasi Loloh & Boreh Tradisional)"]
+    BukaLontar --> U4["Kurator Museum (Gedong Kirtya dsb.)<br/>(Pengarsipan Digital Cerdas yang Bisa Dicari)"]
 ```
 
 1. **Peneliti Bio-Farmasi & Etnobotani:** Menghemat waktu riset transliterasi manual berbulan-bulan dan memetakan langsung tanaman obat lokal ke senyawa kimia modern (*anti-biopiracy*).

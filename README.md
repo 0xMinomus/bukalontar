@@ -1,14 +1,14 @@
-# UsadhaAI
+# BukaLontar
 
 **Bali DigiFest 2026 — AI Web Innovation Challenge**
 
-UsadhaAI adalah aplikasi web untuk membaca citra manuskrip lontar Usadha Bali, menghasilkan transliterasi dan terjemahan, lalu mengekstrak tanaman obat, bagian yang dipakai, cara racik, dan rujukan farmakologi modern.
+BukaLontar adalah aplikasi web untuk membaca citra manuskrip lontar Usadha Bali, menghasilkan transliterasi dan terjemahan, lalu mengekstrak tanaman obat, bagian yang dipakai, cara racik, dan rujukan farmakologi modern.
 
 Repository ini adalah source code MVP yang dapat dijalankan dan diuji. Tidak ada API key, token, atau data pribadi di dalam repository.
 
 ## Description
 
-Lontar Usadha menyimpan pengetahuan pengobatan tradisional Bali, tetapi terkunci oleh dua hambatan: aksara Bali kuno yang ditulis tanpa spasi dan bahasa Kawi klasik. UsadhaAI memakai model multimodal untuk mengubah foto lontar menjadi:
+Lontar Usadha menyimpan pengetahuan pengobatan tradisional Bali, tetapi terkunci oleh dua hambatan: aksara Bali kuno yang ditulis tanpa spasi dan bahasa Kawi klasik. BukaLontar memakai model multimodal untuk mengubah foto lontar menjadi:
 
 - transliterasi Latin,
 - terjemahan Indonesia dan Inggris,
@@ -106,7 +106,7 @@ Build produksi (frontend di-embed ke binary Go):
 
 ```bash
 make build
-./bin/usadha
+./bin/bukalontar
 ```
 
 Buka `http://localhost:8080`. Health check: `GET /health`.
@@ -115,7 +115,7 @@ Buka `http://localhost:8080`. Health check: `GET /health`.
 
 - **Live MVP:** belum tersedia pada commit ini. Aplikasi saat ini diuji secara lokal di `http://localhost:8080`.
 - **Health check lokal:** `http://localhost:8080/health`
-- **Repository:** <https://github.com/0xMinomus/digifest>
+- **Repository:** <https://github.com/0xMinomus/bukalontar>
 
 URL publik harus diisi sebelum submission. Jangan mengarang URL atau menaruh kredensial demo di repository.
 

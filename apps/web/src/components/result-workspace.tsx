@@ -245,7 +245,7 @@ export function ResultWorkspace({
               pengganti saran medis.
             </p>
             <a
-              href="https://github.com/0xMinomus/digifest/tree/main/docs"
+              href="https://github.com/0xMinomus/bukalontar/tree/main/docs"
               target="_blank"
               rel="noreferrer"
               className="small-caps mt-3 inline-flex items-center gap-1.5 border-b border-brass/50 pb-1 text-[11px] font-semibold text-primary transition-colors hover:text-brass-strong print:hidden"

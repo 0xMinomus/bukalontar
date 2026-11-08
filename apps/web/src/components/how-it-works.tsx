@@ -36,7 +36,7 @@ export function HowItWorks() {
             <Ornament className="mx-auto mt-4 w-36 text-brass-strong/70" />
             <p className="mx-auto mt-4 max-w-[62ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
               Lontar usada tidak hanya sulit karena aksaranya. Bahasa dan nama
-              tanamannya juga sudah jauh dari percakapan sehari-hari. UsadhaAI
+              tanamannya juga sudah jauh dari percakapan sehari-hari. BukaLontar
               membaca ketiganya dalam satu alur.
             </p>
           </Reveal>
@@ -71,7 +71,7 @@ export function HowItWorks() {
 
           <Reveal className="mt-9 text-center">
             <a
-              href="https://github.com/0xMinomus/digifest/tree/main/docs"
+              href="https://github.com/0xMinomus/bukalontar/tree/main/docs"
               target="_blank"
               rel="noreferrer"
               className="small-caps inline-flex items-center gap-1.5 border-b border-brass/50 pb-1 text-xs font-semibold text-primary transition-colors hover:text-brass-strong"
@@ -93,10 +93,10 @@ export function HowItWorks() {
                     Tentang
                   </p>
                   <h2 className="mt-2 font-heading text-4xl tracking-tight md:text-5xl">
-                    UsadhaAI
+                    BukaLontar
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                    UsadhaAI adalah purwarupa untuk membuka kembali lontar usada
+                    BukaLontar adalah purwarupa untuk membuka kembali lontar usada
                     Bali. Fokusnya bukan sekadar membaca huruf, tetapi menyusun
                     pengetahuan obat tradisional yang bisa diperiksa: tanaman
                     apa, bagian mana, bagaimana diracik, dan bagaimana
@@ -150,16 +150,16 @@ export function HowItWorks() {
                 <div>
                   <p className="label-xs">Repositori</p>
                   <a
-                    href="https://github.com/0xMinomus/digifest"
+                    href="https://github.com/0xMinomus/bukalontar"
                     target="_blank"
                     rel="noreferrer"
                     className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
                   >
-                    github.com/0xMinomus/digifest
+                    github.com/0xMinomus/bukalontar
                     <ArrowUpRight className="size-4" aria-hidden="true" />
                   </a>
                   <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    UsadhaAI membaca lontar secara langsung. Hasil ditampilkan
+                    BukaLontar membaca lontar secara langsung. Hasil ditampilkan
                     bersama rujukan tanaman dan pengingat medis.
                   </p>
                 </div>

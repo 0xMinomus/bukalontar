@@ -17,7 +17,7 @@ export interface PersistedSession {
   savedAt: number
 }
 
-const DB_NAME = 'usadha-ai'
+const DB_NAME = 'bukalontar'
 const DB_VERSION = 1
 const STORE_NAME = 'session'
 const ACTIVE_KEY = 'active'
