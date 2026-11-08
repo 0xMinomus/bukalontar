@@ -1,6 +1,6 @@
 # Arsitektur dan Alur Data
 
-Dokumen ini menjelaskan arsitektur MVP yang ada di repository. Fokusnya adalah perilaku kode saat ini, bukan rencana deployment yang belum diverifikasi.
+Dokumen ini menjelaskan arsitektur MVP yang ada di repository. Fokusnya adalah perilaku kode saat ini pada dua mode deployment: binary mandiri dan Vercel Services.
 
 ## Gambaran Runtime
 
@@ -11,7 +11,7 @@ Browser
         |
         | multipart/form-data: image, optional source_id
         v
-Go API (single binary)
+Go API
   validasi input + rate limit
   AI client
         |
@@ -30,7 +30,7 @@ Validasi Go + grounding Taru Pramana
 AnalysisResponse -> tampilan hasil / laporan PDF
 ```
 
-Frontend hasil build di-embed ke binary Go melalui `apps/api/internal/webui`. Satu proses menyajikan API dan SPA, sehingga browser tidak membutuhkan CORS pada deployment normal.
+Pada build mandiri, frontend hasil build di-embed ke binary Go melalui `apps/api/internal/webui`; satu proses menyajikan API dan SPA. Pada deployment Vercel, frontend Vite dan API Go berjalan sebagai dua service, `web` dan `api`, dengan routing yang sama di depan keduanya. Kontrak HTTP tetap sama pada kedua mode.
 
 ## Dua Alur, Satu Kontrak
 

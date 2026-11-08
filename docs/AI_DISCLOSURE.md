@@ -6,9 +6,9 @@ Dokumen ini melengkapi Lampiran C panduan peserta. Isinya harus sesuai dengan im
 | --- | --- |
 | **Nama Produk** | BukaLontar |
 | **Framework / Frontend** | React 19, TypeScript, Vite, Tailwind CSS v4, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge |
-| **Backend / Runtime** | Go standard library (`net/http`), single binary dengan SPA ter-embed |
+| **Backend / Runtime** | Go standard library (`net/http`); pada Vercel, API berjalan sebagai service `api`; binary mandiri dengan SPA ter-embed tersedia untuk deployment non-Vercel |
 | **Database / Storage** | Tidak ada database eksternal. Knowledge base JSON Taru Pramana di-embed dengan `go:embed`. Sesi frontend disimpan di IndexedDB browser |
-| **Hosting / Deployment** | Vercel Services di `https://bukalontar.my.id`, service `web` dan `api`. Build produksi juga dapat dijalankan sebagai satu binary Go |
+| **Hosting / Deployment** | Vercel Services di `https://bukalontar.my.id`, service `web` dan `api`; binary mandiri opsional |
 | **AI Gateway** | 9router, endpoint OpenAI-compatible |
 | **AI Model / API / Method** | Model multimodal melalui 9router, default `ag/gemini-3.8-flash-low`; fallback opsional melalui Command Code Provider API |
 | **Peran AI dalam Produk** | Membaca aksara Bali pada citra lontar, menghasilkan transliterasi dan terjemahan Kawi, serta mengekstrak resep tanaman obat ketika naskahnya adalah lontar Usadha. AI adalah komponen material alur utama, bukan sekadar asisten coding |

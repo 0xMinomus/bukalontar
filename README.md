@@ -140,12 +140,12 @@ Detail teknis ada di [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Kontrak res
 | --- | --- |
 | Frontend | React 19, TypeScript, Vite, Tailwind CSS v4, Radix UI, Lucide |
 | Pengolahan gambar | HTML5 Canvas API |
-| Backend | Go standard library, satu binary |
+| Backend | Go standard library; binary mandiri untuk deployment non-Vercel |
 | Gateway AI | 9router dengan endpoint OpenAI-compatible |
 | Model | Model multimodal melalui 9router, fallback opsional |
 | Knowledge base | JSON Taru Pramana yang di-embed dengan `go:embed` |
 | Kontrak | JSON Schema di `packages/schema/analysis.json` |
-| Deployment | Satu binary Go dengan SPA ter-embed |
+| Deployment | Vercel Services: `web` (Vite) dan `api` (Go); binary mandiri opsional |
 
 ## Menjalankan Proyek
 
