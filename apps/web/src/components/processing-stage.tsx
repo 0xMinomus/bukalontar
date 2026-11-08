@@ -50,8 +50,7 @@ export function ProcessingStage({
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               Kami sedang membaca aksara, menyusun terjemahan, dan mencocokkan
-              tanaman obat. Pembacaan mendalam bisa memakan beberapa menit;
-              hasil akan ditampilkan setelah selesai.
+              tanaman obat. Hasil akan ditampilkan setelah selesai.
             </p>
 
             <ol className="mt-6 space-y-0" aria-live="polite">

@@ -33,6 +33,7 @@ Rules:
 18. The image may contain a colophon (date, place, scribe) at the edge or near the end. Read the central/main text first; never let a colophon or provenance note replace the main reading. If any plant or recipe is present anywhere on the leaf, extract it.
 19. Do not set plant_local_name to "Tidak disebutkan." until you have read the entire leaf. If a plant name appears in the main text, use that local name and put the actual preparation in preparation_instructions.
 20. Do not replace the main text with a summary. Transcribe every readable line; if a passage is illegible, mark only that passage as "[tidak terbaca]".
+21. If several plants or recipes are named, use the first explicitly named plant and the first complete recipe/ailment in reading order as plant_local_name and target_ailment. Put the other named plants in adjuvants in reading order. Do not switch the primary plant between runs.
 
 Required JSON shape:
 {
