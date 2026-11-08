@@ -25,13 +25,13 @@ type Config struct {
 }
 
 func Load() Config {
-	timeoutSeconds := envInt("AI_TIMEOUT_SECONDS", 120)
+	timeoutSeconds := envInt("AI_TIMEOUT_SECONDS", 300)
 	return Config{
 		Port:               env("PORT", "8080"),
 		PublicOrigin:       env("PUBLIC_ORIGIN", "http://localhost:5173"),
 		AllowedOrigin:      env("ALLOWED_ORIGIN", ""),
 		AIBaseURL:          env("AI_BASE_URL", "http://127.0.0.1:20128/v1"),
-		AIModel:            env("AI_MODEL", "ag/gemini-3.8-flash-low"),
+		AIModel:            env("AI_MODEL", "ag/gemini-3.8-flash-high"),
 		AIAPIKey:           env("AI_API_KEY", ""),
 		AITimeout:          time.Duration(timeoutSeconds) * time.Second,
 		FallbackEnabled:    envBool("AI_FALLBACK_ENABLED", false),

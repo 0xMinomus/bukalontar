@@ -17,9 +17,9 @@ Copy `.env.example` to `.env`, then fill the 9router key. `.env` is gitignored; 
 
 ```env
 AI_BASE_URL=http://127.0.0.1:20128/v1
-AI_MODEL=ag/gemini-3.8-flash-low
+AI_MODEL=ag/gemini-3.8-flash-high
 AI_API_KEY=...
-AI_TIMEOUT_SECONDS=120
+AI_TIMEOUT_SECONDS=300
 RATE_LIMIT_PER_MINUTE=60
 ```
 

@@ -30,6 +30,9 @@ Rules:
 15. adjuvants, phytochemical_compounds, and reference_studies must be JSON arrays of strings (empty arrays allowed). Never invent journal titles, DOIs, URLs, or page numbers. Generic study descriptions are acceptable only when supported by the catalog.
 16. scientific_validation.safety_disclaimer must be exactly the canonical Indonesian safety disclaimer supplied below.
 17. lempir_number may be omitted if no page number is visible.
+18. The image may contain a colophon (date, place, scribe) at the edge or near the end. Read the central/main text first; never let a colophon or provenance note replace the main reading. If any plant or recipe is present anywhere on the leaf, extract it.
+19. Do not set plant_local_name to "Tidak disebutkan." until you have read the entire leaf. If a plant name appears in the main text, use that local name and put the actual preparation in preparation_instructions.
+20. Do not replace the main text with a summary. Transcribe every readable line; if a passage is illegible, mark only that passage as "[tidak terbaca]".
 
 Required JSON shape:
 {
@@ -71,8 +74,10 @@ func userPrompt(sourceID string, catalog *kb.Store) string {
 	switch strings.ToLower(strings.TrimSpace(sourceID)) {
 	case "kemenuh":
 		hint = "Known sample: Lontar Kemenuh, Kawruhan Desti ring Raga. It may not be an Usadha text; read what is present and keep plant fields honest."
+	case "wanagiri":
+		hint = "Known sample: Lontar Wanagiri, Usada 3. Read the central text on both leaves; a colophon or provenance note must not replace the main reading."
 	case "sukawati":
-		hint = "Known sample: Lontar Sukawati, Pamandisuara."
+		hint = "Known sample: Lontar Sukawati, Usada 07. Read the full leaf and extract any named plant and preparation."
 	}
 	return fmt.Sprintf(`%s
 
@@ -85,5 +90,5 @@ Read the manuscript in the attached photograph and return the JSON object now.`,
 func correctionPrompt(err error) string {
 	return fmt.Sprintf(`Your previous response could not be accepted: %s
 
-Return a corrected single raw JSON object. Keep every required field, use only the allowed enum values, do not add markdown, and re-check that the arrays are present.`, err.Error())
+If the previous reading focused on a colophon, provenance note, or only one part of the leaf, re-read the central/main text from top to bottom. Do not return only a colophon or a summary of provenance. Extract any named plant and preparation. Return a corrected single raw JSON object. Keep every required field, use only the allowed enum values, do not add markdown, and re-check that the arrays are present.`, err.Error())
 }

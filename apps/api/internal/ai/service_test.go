@@ -143,6 +143,21 @@ func TestEnrichClearsUnknownTaxonomy(t *testing.T) {
 	}
 }
 
+func TestNeedsContentRetryForColophon(t *testing.T) {
+	response := serviceTestResponse()
+	response.Ethnomedicinal.PlantLocalName = "Tidak disebutkan."
+	response.Ethnomedicinal.PreparationInstructions = "Naskah ini memuat kolofon dan nama penyalin."
+	response.Paleography.Transliteration = "om awighnam astu"
+	if !needsContentRetry(&response) {
+		t.Fatal("colophon-only response should trigger a content retry")
+	}
+
+	response.Ethnomedicinal.PlantLocalName = "Taru Sotong"
+	if needsContentRetry(&response) {
+		t.Fatal("a named plant must not trigger a content retry")
+	}
+}
+
 func TestAnalyzeRejectsBadOutputAfterRepair(t *testing.T) {
 	store, err := kb.Load()
 	if err != nil {

@@ -81,7 +81,11 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 			response.Normalize()
 			s.enrich(response, sourceID)
 			if validationErr := response.Validate(); validationErr == nil {
-				return response, nil
+				if attempt == 0 && needsContentRetry(response) && canRetryContent(ctx) {
+					err = fmt.Errorf("previous reading appears to cover only a colophon or omit the central text; read the main text of every leaf and extract any named plant and preparation")
+				} else {
+					return response, nil
+				}
 			} else {
 				err = validationErr
 			}
@@ -96,6 +100,27 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 		}
 	}
 	return nil, fmt.Errorf("%w: %v", ErrInvalidOutput, lastErr)
+}
+
+func canRetryContent(ctx context.Context) bool {
+	deadline, ok := ctx.Deadline()
+	if !ok {
+		return true
+	}
+	return time.Until(deadline) > 90*time.Second
+}
+
+func needsContentRetry(response *model.AnalysisResponse) bool {
+	plant := strings.ToLower(strings.TrimSpace(response.Ethnomedicinal.PlantLocalName))
+	if plant != "" && !strings.HasPrefix(plant, "tidak disebutkan") && !strings.HasPrefix(plant, "tidak ada") {
+		return false
+	}
+	summary := strings.ToLower(response.Ethnomedicinal.PreparationInstructions + " " + response.Paleography.IndonesianTranslation)
+	if strings.Contains(summary, "kolofon") || strings.Contains(summary, "colophon") {
+		return true
+	}
+	transliteration := []rune(strings.TrimSpace(response.Paleography.Transliteration))
+	return len(transliteration) < 260
 }
 
 func (s *Service) complete(ctx context.Context, messages []Message) (string, error) {

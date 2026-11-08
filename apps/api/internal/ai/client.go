@@ -78,7 +78,8 @@ func (c *Client) Complete(ctx context.Context, messages []Message) (string, erro
 		"model":       c.cfg.Model,
 		"messages":    messages,
 		"stream":      false,
-		"temperature": 0.1,
+		"temperature": 0,
+		"top_p":       1,
 		"max_tokens":  2400,
 		"response_format": map[string]string{
 			"type": "json_object",
