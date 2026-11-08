@@ -16,6 +16,7 @@ import {
   formatTransliteration,
   formatTranslation,
   hasMedicinalPlant,
+  resultRecipes,
   usefulText,
 } from '@/lib/reading'
 
@@ -23,6 +24,12 @@ const confidenceLabel: Record<Confidence, string> = {
   low: 'Keterbacaan rendah',
   medium: 'Keterbacaan sedang',
   high: 'Keterbacaan tinggi',
+}
+
+function unique(values: string[]): string[] {
+  return Array.from(
+    new Set(values.map((value) => value.trim()).filter(Boolean)),
+  )
 }
 
 function CopyButton({ text, label = 'Salin' }: { text: string; label?: string }) {
@@ -58,10 +65,14 @@ function CopyButton({ text, label = 'Salin' }: { text: string; label?: string })
 }
 
 export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
-  const entity = result.ethnomedicinal_entity
-  const validation = result.scientific_validation
-  const noPlant = !hasMedicinalPlant(entity.plant_local_name)
-  const hasAilment = usefulText(entity.target_ailment)
+  const recipes = resultRecipes(result)
+  const plantRecipes = recipes.filter((recipe) =>
+    hasMedicinalPlant(recipe.plant_local_name),
+  )
+  const noPlant = plantRecipes.length === 0
+  const hasAilment =
+    usefulText(result.ethnomedicinal_entity.target_ailment) ||
+    recipes.some((recipe) => usefulText(recipe.target_ailment))
   const transliteration =
     formatTransliteration(result.paleography.transliteration) ||
     'Teks aksara belum terbaca.'
@@ -72,10 +83,15 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
     ? formatTranslation(result.paleography.english_translation)
     : 'Translation is not available for this leaf.'
   const summary = analysisSummary(result)
-  const taxonomy = [
-    entity.plant_scientific_name,
-    entity.botanical_family,
-  ].filter(usefulText)
+  const compounds = unique(
+    plantRecipes.flatMap((recipe) => recipe.phytochemical_compounds),
+  )
+  const references = unique(
+    plantRecipes.flatMap((recipe) => recipe.reference_studies),
+  )
+  const actions = plantRecipes.filter((recipe) =>
+    usefulText(recipe.modern_pharmacological_action),
+  )
 
   return (
     <Tabs defaultValue="transliterasi" className="w-full">
@@ -83,11 +99,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
         <TabsTrigger value="transliterasi">Transliterasi</TabsTrigger>
         <TabsTrigger value="terjemahan">Terjemahan</TabsTrigger>
         <TabsTrigger value="kartu">
-          {noPlant
-            ? hasAilment
-              ? 'Catatan usada'
-              : 'Catatan naskah'
-            : 'Kartu usada'}
+          {noPlant ? 'Catatan naskah' : 'Kartu usada'}
         </TabsTrigger>
         <TabsTrigger value="validasi">Rujukan</TabsTrigger>
       </TabsList>
@@ -161,7 +173,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                   </h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     {hasAilment
-                      ? `Lembar ini membahas ${entity.target_ailment}, tetapi tidak menyebut ramuan tanaman yang bisa dipetakan.`
+                      ? `Lembar ini membahas ${result.ethnomedicinal_entity.target_ailment}, tetapi tidak menyebut ramuan tanaman yang bisa dipetakan.`
                       : 'Lembar ini berisi ajaran atau catatan, bukan resep ramuan obat.'}
                   </p>
                 </div>
@@ -182,74 +194,92 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
             </div>
           ) : (
             <div>
-              <div className="flex items-start justify-between gap-3 border-b border-border pb-4">
-                <div>
-                  <h3 className="font-heading text-2xl leading-tight tracking-tight">
-                    {entity.plant_local_name}
-                  </h3>
-                  <p className="mt-1 text-sm italic text-muted-foreground">
-                    {taxonomy.length > 0
-                      ? taxonomy.join(' · ')
-                      : 'Belum tercatat di Taru Pramana'}
-                  </p>
-                </div>
-                <Badge
-                  variant={entity.kb_match ? 'success' : 'outline'}
-                  className="shrink-0"
-                >
-                  <Leaf aria-hidden="true" className="size-3" />
-                  {entity.kb_match ? 'Tercatat' : 'Belum tercatat'}
-                </Badge>
-              </div>
+              {plantRecipes.map((recipe, index) => {
+                const taxonomy = [
+                  recipe.plant_scientific_name,
+                  recipe.botanical_family,
+                ].filter(usefulText)
+                return (
+                  <div
+                    key={`${recipe.plant_local_name}-${index}`}
+                    className={
+                      index > 0 ? 'mt-6 border-t border-border pt-5' : ''
+                    }
+                  >
+                    {plantRecipes.length > 1 ? (
+                      <p className="label-xs mb-2">Resep {index + 1}</p>
+                    ) : null}
+                    <div className="flex items-start justify-between gap-3 border-b border-border pb-4">
+                      <div>
+                        <h3 className="font-heading text-2xl leading-tight tracking-tight">
+                          {recipe.plant_local_name}
+                        </h3>
+                        <p className="mt-1 text-sm italic text-muted-foreground">
+                          {taxonomy.length > 0
+                            ? taxonomy.join(' · ')
+                            : 'Belum tercatat di Taru Pramana'}
+                        </p>
+                      </div>
+                      <Badge
+                        variant={recipe.kb_match ? 'success' : 'outline'}
+                        className="shrink-0"
+                      >
+                        <Leaf aria-hidden="true" className="size-3" />
+                        {recipe.kb_match ? 'Tercatat' : 'Belum tercatat'}
+                      </Badge>
+                    </div>
 
-              <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-                <div>
-                  <dt className="label-xs">Bagian dipakai</dt>
-                  <dd className="mt-1 text-sm font-medium">
-                    {entity.plant_part_used}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="label-xs">Sifat tradisional</dt>
-                  <dd className="mt-1 text-sm font-medium">
-                    {entity.energy_character}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="label-xs">Bentuk racikan</dt>
-                  <dd className="mt-1 text-sm font-medium">
-                    {entity.formulation_type}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="label-xs">Indikasi</dt>
-                  <dd className="mt-1 text-sm font-medium">
-                    {entity.target_ailment}
-                  </dd>
-                </div>
-              </dl>
+                    <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <dt className="label-xs">Bagian dipakai</dt>
+                        <dd className="mt-1 text-sm font-medium">
+                          {recipe.plant_part_used}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="label-xs">Sifat tradisional</dt>
+                        <dd className="mt-1 text-sm font-medium">
+                          {recipe.energy_character}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="label-xs">Bentuk racikan</dt>
+                        <dd className="mt-1 text-sm font-medium">
+                          {recipe.formulation_type}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="label-xs">Indikasi</dt>
+                        <dd className="mt-1 text-sm font-medium">
+                          {recipe.target_ailment}
+                        </dd>
+                      </div>
+                    </dl>
 
-              <div className="mt-5 border-t border-border pt-4">
-                <p className="label-xs">Cara racik</p>
-                {usefulText(entity.preparation_instructions) ? (
-                  <p className="mt-1.5 whitespace-pre-line text-sm leading-7">
-                    {formatTranslation(entity.preparation_instructions)}
-                  </p>
-                ) : (
-                  <p className="mt-1.5 text-sm text-muted-foreground">
-                    Tidak ada cara racik yang tercatat.
-                  </p>
-                )}
-              </div>
+                    <div className="mt-5 border-t border-border pt-4">
+                      <p className="label-xs">Cara racik</p>
+                      {usefulText(recipe.preparation_instructions) ? (
+                        <p className="mt-1.5 whitespace-pre-line text-sm leading-7">
+                          {formatTranslation(recipe.preparation_instructions)}
+                        </p>
+                      ) : (
+                        <p className="mt-1.5 text-sm text-muted-foreground">
+                          Tidak ada cara racik yang tercatat.
+                        </p>
+                      )}
+                    </div>
 
-              <div className="mt-4">
-                <p className="label-xs">Bahan pelengkap</p>
-                <p className="mt-1.5 text-sm">
-                  {entity.adjuvants.length > 0
-                    ? entity.adjuvants.join(' · ')
-                    : 'Tidak ada'}
-                </p>
-              </div>
+                    <div className="mt-4">
+                      <p className="label-xs">Bahan pelengkap</p>
+                      <p className="mt-1.5 text-sm">
+                        {recipe.adjuvants.length > 0
+                          ? recipe.adjuvants.join(' · ')
+                          : 'Tidak ada'}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>
@@ -264,12 +294,8 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
             />
             <p className="text-xs leading-relaxed text-muted-foreground">
               {noPlant
-                ? hasAilment
-                  ? 'Lembar ini membahas keluhan pengobatan, tetapi tidak menyebut tanaman obat yang bisa dirujuk.'
-                  : 'Lembar ini tidak memuat tanaman obat, jadi belum ada rujukan tanaman yang bisa ditampilkan.'
-                : entity.kb_match
-                  ? 'Kandungan dan khasiat di bawah dirujuk dari Taru Pramana.'
-                  : 'Tanaman ini belum tercatat di Taru Pramana. Rujukan modern belum tersedia.'}
+                ? 'Lembar ini tidak memuat tanaman obat, jadi belum ada rujukan tanaman yang bisa ditampilkan.'
+                : `${plantRecipes.length} resep ditemukan. Kandungan dan khasiat di bawah dirujuk dari Taru Pramana bila tanaman tercatat.`}
             </p>
           </div>
 
@@ -278,8 +304,8 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
               <section className="mt-4">
                 <p className="label-xs">Kandungan aktif</p>
                 <p className="mt-1.5 text-sm font-medium">
-                  {validation.phytochemical_compounds.length > 0
-                    ? validation.phytochemical_compounds.join(' · ')
+                  {compounds.length > 0
+                    ? compounds.join(' · ')
                     : 'Belum tersedia.'}
                 </p>
               </section>
@@ -288,20 +314,34 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
 
               <section>
                 <p className="label-xs">Khasiat modern</p>
-                <p className="mt-1.5 whitespace-pre-line text-sm leading-7">
-                  {usefulText(validation.modern_pharmacological_action)
-                    ? formatTranslation(validation.modern_pharmacological_action)
-                    : 'Belum tersedia.'}
-                </p>
+                {actions.length > 0 ? (
+                  <ul className="mt-1.5 space-y-2">
+                    {actions.map((recipe) => (
+                      <li
+                        key={recipe.plant_local_name}
+                        className="whitespace-pre-line text-sm leading-7"
+                      >
+                        <span className="font-semibold">
+                          {recipe.plant_local_name}:
+                        </span>{' '}
+                        {formatTranslation(recipe.modern_pharmacological_action)}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    Belum tersedia.
+                  </p>
+                )}
               </section>
 
               <Separator className="my-4" />
 
               <section>
                 <p className="label-xs">Sumber rujukan</p>
-                {validation.reference_studies.length > 0 ? (
+                {references.length > 0 ? (
                   <ul className="mt-1.5 space-y-1.5">
-                    {validation.reference_studies.map((reference) => (
+                    {references.map((reference) => (
                       <li
                         key={reference}
                         className="flex gap-2 text-sm leading-relaxed text-muted-foreground"

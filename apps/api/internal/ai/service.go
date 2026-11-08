@@ -88,27 +88,13 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 		return nil, firstErr
 	}
 
-	chosen, consistent := chooseResponse(responses)
-	if !consistent {
-		if hasPlantResponse(chosen) || needsContentRetry(chosen) {
-			if !s.highReasoning() && canRetryContent(ctx) {
-				candidates := candidatePlants(responses)
-				if len(candidates) > 0 {
-					if focused, focusErr := s.focusPlant(ctx, image, mimeType, candidates); focusErr == nil && focused.Found {
-						if match := findResponse(plantKey(focused.PlantLocalName), responses); match != nil {
-							chosen = match
-							consistent = true
-						}
-					}
-				}
-			}
-			if !consistent {
-				return nil, ErrUnstable
-			}
-		} else {
-			return chosen, nil
+	chosen := chooseResponse(responses)
+	for _, response := range responses {
+		if response != chosen {
+			mergeRecipes(chosen, response)
 		}
 	}
+	s.enrich(chosen, sourceID)
 	return chosen, nil
 }
 
@@ -150,59 +136,37 @@ func (s *Service) analyzeOnce(ctx context.Context, dataURL, sourceID string) (*m
 	return nil, fmt.Errorf("%w: %v", ErrInvalidOutput, lastErr)
 }
 
-func (s *Service) highReasoning() bool {
-	return strings.Contains(strings.ToLower(s.primary.Model()), "high")
-}
-
-func chooseResponse(responses []*model.AnalysisResponse) (*model.AnalysisResponse, bool) {
+func chooseResponse(responses []*model.AnalysisResponse) *model.AnalysisResponse {
 	best := responses[0]
 	for _, response := range responses[1:] {
-		if len([]rune(response.Paleography.Transliteration)) > len([]rune(best.Paleography.Transliteration)) {
+		if len(response.Recipes) > len(best.Recipes) ||
+			(len(response.Recipes) == len(best.Recipes) &&
+				len([]rune(response.Paleography.Transliteration)) > len([]rune(best.Paleography.Transliteration))) {
 			best = response
 		}
 	}
+	return best
+}
 
-	if !hasPlantResponse(best) {
-		for _, response := range responses {
-			if hasPlantResponse(response) {
-				best = response
-				break
-			}
-		}
+func mergeRecipes(base, other *model.AnalysisResponse) {
+	seen := make(map[string]struct{}, len(base.Recipes))
+	for _, recipe := range base.Recipes {
+		seen[plantKey(recipe.PlantLocalName)] = struct{}{}
 	}
-
-	consistent := true
-	firstKey := ""
-	for _, response := range responses {
-		key := plantKey(response.Ethnomedicinal.PlantLocalName)
+	for _, recipe := range other.Recipes {
+		key := plantKey(recipe.PlantLocalName)
 		if key == "" {
-			consistent = false
 			continue
 		}
-		if firstKey == "" {
-			firstKey = key
-		} else if key != firstKey {
-			consistent = false
+		if _, ok := seen[key]; ok {
+			continue
 		}
-	}
-	consistent = consistent && firstKey != ""
-	return best, consistent
-}
-
-func findResponse(key string, responses []*model.AnalysisResponse) *model.AnalysisResponse {
-	if key == "" {
-		return nil
-	}
-	for _, response := range responses {
-		if plantKey(response.Ethnomedicinal.PlantLocalName) == key {
-			return response
+		if len(base.Recipes) >= 6 {
+			break
 		}
+		seen[key] = struct{}{}
+		base.Recipes = append(base.Recipes, recipe)
 	}
-	return nil
-}
-
-func hasPlantResponse(response *model.AnalysisResponse) bool {
-	return plantKey(response.Ethnomedicinal.PlantLocalName) != ""
 }
 
 func plantKey(name string) string {
@@ -215,27 +179,6 @@ func plantKey(name string) string {
 		return -1
 	}, value)
 	return strings.Join(strings.Fields(value), " ")
-}
-
-func canRetryContent(ctx context.Context) bool {
-	deadline, ok := ctx.Deadline()
-	if !ok {
-		return true
-	}
-	return time.Until(deadline) > 45*time.Second
-}
-
-func needsContentRetry(response *model.AnalysisResponse) bool {
-	plant := strings.ToLower(strings.TrimSpace(response.Ethnomedicinal.PlantLocalName))
-	if plant != "" && !strings.HasPrefix(plant, "tidak disebutkan") && !strings.HasPrefix(plant, "tidak ada") {
-		return false
-	}
-	summary := strings.ToLower(response.Ethnomedicinal.PreparationInstructions + " " + response.Paleography.IndonesianTranslation)
-	if strings.Contains(summary, "kolofon") || strings.Contains(summary, "colophon") {
-		return true
-	}
-	transliteration := []rune(strings.TrimSpace(response.Paleography.Transliteration))
-	return len(transliteration) < 260
 }
 
 func (s *Service) complete(ctx context.Context, messages []Message) (string, error) {
@@ -254,37 +197,49 @@ func (s *Service) complete(ctx context.Context, messages []Message) (string, err
 }
 
 func (s *Service) enrich(response *model.AnalysisResponse, sourceID string) {
-	response.Scientific.SafetyDisclaimer = model.SafetyDisclaimer
-	entry, matched := s.kb.Lookup(response.Ethnomedicinal.PlantLocalName)
-	if matched {
-		response.Ethnomedicinal.KBMatch = true
-		response.Ethnomedicinal.PlantScientificName = entry.ScientificName
-		response.Ethnomedicinal.BotanicalFamily = entry.BotanicalFamily
-		if entry.EnergyCharacter != "" {
-			response.Ethnomedicinal.EnergyCharacter = entry.EnergyCharacter
-		}
-		if len(entry.PhytochemicalCompounds) > 0 {
-			response.Scientific.PhytochemicalCompounds = append([]string(nil), entry.PhytochemicalCompounds...)
-		}
-		if entry.ModernAction != "" {
-			response.Scientific.ModernAction = entry.ModernAction
-		}
-		if len(entry.ReferenceStudies) > 0 {
-			response.Scientific.ReferenceStudies = append([]string(nil), entry.ReferenceStudies...)
-		}
-	} else {
-		response.Ethnomedicinal.KBMatch = false
-		response.Ethnomedicinal.PlantScientificName = ""
-		response.Ethnomedicinal.BotanicalFamily = ""
-		response.Scientific.PhytochemicalCompounds = []string{}
-		response.Scientific.ReferenceStudies = []string{}
-		if strings.TrimSpace(response.Scientific.ModernAction) == "" {
-			response.Scientific.ModernAction = "Belum ada validasi farmakologis modern yang terverifikasi di Taru Pramana Knowledge Base untuk tanaman ini."
-		}
+	if len(response.Recipes) == 0 && strings.TrimSpace(response.Ethnomedicinal.PlantLocalName) != "" {
+		response.Recipes = []model.Recipe{model.RecipeFromResponse(response)}
 	}
-
+	for index := range response.Recipes {
+		s.enrichRecipe(&response.Recipes[index])
+	}
+	if len(response.Recipes) > 0 {
+		response.Ethnomedicinal = response.Recipes[0].ToEthnomedicinal()
+		response.Scientific = response.Recipes[0].ToScientific()
+	}
+	response.Scientific.SafetyDisclaimer = model.SafetyDisclaimer
 	if strings.TrimSpace(response.ManuscriptID) == "" {
 		response.ManuscriptID = fmt.Sprintf("usadha-%s-%d", safeSourceID(sourceID), time.Now().Unix())
+	}
+}
+
+func (s *Service) enrichRecipe(recipe *model.Recipe) {
+	entry, matched := s.kb.Lookup(recipe.PlantLocalName)
+	if matched {
+		recipe.KBMatch = true
+		recipe.PlantScientificName = entry.ScientificName
+		recipe.BotanicalFamily = entry.BotanicalFamily
+		if entry.EnergyCharacter != "" {
+			recipe.EnergyCharacter = entry.EnergyCharacter
+		}
+		if len(entry.PhytochemicalCompounds) > 0 {
+			recipe.PhytochemicalCompounds = append([]string(nil), entry.PhytochemicalCompounds...)
+		}
+		if entry.ModernAction != "" {
+			recipe.ModernAction = entry.ModernAction
+		}
+		if len(entry.ReferenceStudies) > 0 {
+			recipe.ReferenceStudies = append([]string(nil), entry.ReferenceStudies...)
+		}
+		return
+	}
+	recipe.KBMatch = false
+	recipe.PlantScientificName = ""
+	recipe.BotanicalFamily = ""
+	recipe.PhytochemicalCompounds = []string{}
+	recipe.ReferenceStudies = []string{}
+	if strings.TrimSpace(recipe.ModernAction) == "" {
+		recipe.ModernAction = "Belum ada validasi farmakologis modern yang terverifikasi di Taru Pramana Knowledge Base untuk tanaman ini."
 	}
 }
 

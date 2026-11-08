@@ -1,8 +1,33 @@
-import type { AnalysisResponse } from './analysis'
+import type { AnalysisResponse, Recipe } from './analysis'
 
 const NO_PLANT = /^(tidak disebutkan|tidak ada|tidak terdeteksi|bukan naskah usada|tidak ditemukan)/i
 const EMPTY_VALUE =
   /^(tidak disebutkan|tidak ada|tidak terdeteksi|belum tersedia|belum ada)\.?$/i
+
+export function resultRecipes(result: AnalysisResponse): Recipe[] {
+  if (result.recipes && result.recipes.length > 0) {
+    return result.recipes
+  }
+  const entity = result.ethnomedicinal_entity
+  const validation = result.scientific_validation
+  return [
+    {
+      plant_local_name: entity.plant_local_name,
+      plant_scientific_name: entity.plant_scientific_name,
+      botanical_family: entity.botanical_family,
+      kb_match: entity.kb_match,
+      plant_part_used: entity.plant_part_used,
+      energy_character: entity.energy_character,
+      formulation_type: entity.formulation_type,
+      adjuvants: entity.adjuvants,
+      target_ailment: entity.target_ailment,
+      preparation_instructions: entity.preparation_instructions,
+      phytochemical_compounds: validation.phytochemical_compounds,
+      modern_pharmacological_action: validation.modern_pharmacological_action,
+      reference_studies: validation.reference_studies,
+    },
+  ]
+}
 
 export function hasMedicinalPlant(name: string): boolean {
   const value = name.trim()

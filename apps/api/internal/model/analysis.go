@@ -13,6 +13,7 @@ type AnalysisResponse struct {
 	Paleography     Paleography     `json:"paleography"`
 	Ethnomedicinal  Ethnomedicinal  `json:"ethnomedicinal_entity"`
 	Scientific      Scientific      `json:"scientific_validation"`
+	Recipes         []Recipe        `json:"recipes"`
 }
 
 type SourceReference struct {
@@ -78,6 +79,28 @@ func (r *AnalysisResponse) Normalize() {
 	r.Ethnomedicinal.Adjuvants = cleanList(r.Ethnomedicinal.Adjuvants)
 	r.Scientific.PhytochemicalCompounds = cleanList(r.Scientific.PhytochemicalCompounds)
 	r.Scientific.ReferenceStudies = cleanList(r.Scientific.ReferenceStudies)
+
+	for index := range r.Recipes {
+		r.Recipes[index].Normalize()
+	}
+	filtered := r.Recipes[:0]
+	for _, recipe := range r.Recipes {
+		if !recipe.Empty() {
+			filtered = append(filtered, recipe)
+		}
+	}
+	r.Recipes = filtered
+	if len(r.Recipes) == 0 && strings.TrimSpace(r.Ethnomedicinal.PlantLocalName) != "" {
+		r.Recipes = []Recipe{RecipeFromResponse(r)}
+	}
+	if len(r.Recipes) > 6 {
+		r.Recipes = r.Recipes[:6]
+	}
+	if len(r.Recipes) > 0 {
+		r.Ethnomedicinal = r.Recipes[0].ToEthnomedicinal()
+		r.Scientific = r.Recipes[0].ToScientific()
+	}
+
 	if r.SourceReference.LempirNumber != nil && *r.SourceReference.LempirNumber <= 0 {
 		r.SourceReference.LempirNumber = nil
 	}

@@ -22,6 +22,22 @@ export type FormulationType =
   | 'Tutuh (Tetes)'
   | 'Sasap (Kompres)'
 
+export interface Recipe {
+  plant_local_name: string
+  plant_scientific_name: string
+  botanical_family: string
+  kb_match: boolean
+  plant_part_used: PlantPart
+  energy_character: EnergyCharacter
+  formulation_type: FormulationType
+  adjuvants: string[]
+  target_ailment: string
+  preparation_instructions: string
+  phytochemical_compounds: string[]
+  modern_pharmacological_action: string
+  reference_studies: string[]
+}
+
 export interface AnalysisResponse {
   manuscript_id: string
   source_reference: {
@@ -54,6 +70,7 @@ export interface AnalysisResponse {
     reference_studies: string[]
     safety_disclaimer: string
   }
+  recipes?: Recipe[]
 }
 
 export const SAFETY_DISCLAIMER =

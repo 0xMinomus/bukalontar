@@ -4,6 +4,7 @@ import {
   formatTransliteration,
   formatTranslation,
   hasMedicinalPlant,
+  resultRecipes,
   usefulText,
 } from '@/lib/reading'
 
@@ -22,13 +23,25 @@ function plain(value: string, fallback = 'Tidak tercatat.') {
   return usefulText(value) ? value : fallback
 }
 
+function unique(values: string[]): string[] {
+  return Array.from(
+    new Set(values.map((value) => value.trim()).filter(Boolean)),
+  )
+}
+
 export function PrintReport({ result, originalUrl }: PrintReportProps) {
   const source = result.source_reference
   const paleography = result.paleography
   const entity = result.ethnomedicinal_entity
   const validation = result.scientific_validation
-  const hasPlant = hasMedicinalPlant(entity.plant_local_name)
-  const hasAilment = usefulText(entity.target_ailment)
+  const recipes = resultRecipes(result)
+  const plantRecipes = recipes.filter((recipe) =>
+    hasMedicinalPlant(recipe.plant_local_name),
+  )
+  const hasPlant = plantRecipes.length > 0
+  const hasAilment =
+    usefulText(entity.target_ailment) ||
+    recipes.some((recipe) => usefulText(recipe.target_ailment))
   const transliteration =
     formatTransliteration(paleography.transliteration) ||
     'Teks aksara belum terbaca.'
@@ -39,20 +52,32 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
     ? formatTranslation(paleography.english_translation)
     : 'Translation is not available for this leaf.'
   const summary = hasPlant
-    ? [
-        `${entity.plant_local_name} digunakan untuk ${plain(entity.target_ailment)}`,
-        plain(entity.preparation_instructions, 'Cara racik belum tercatat.'),
-      ].join('\n\n')
+    ? plantRecipes.length > 1
+      ? `Ditemukan ${plantRecipes.length} resep pada lempir ini. Rincian setiap resep ada di bagian Kartu Usada.`
+      : [
+          `${plantRecipes[0].plant_local_name} digunakan untuk ${plain(plantRecipes[0].target_ailment)}`,
+          plain(
+            plantRecipes[0].preparation_instructions,
+            'Cara racik belum tercatat.',
+          ),
+        ].join('\n\n')
     : analysisSummary(result)
   const taxonomy = [
-    entity.plant_scientific_name,
-    entity.botanical_family,
+    plantRecipes[0]?.plant_scientific_name,
+    plantRecipes[0]?.botanical_family,
   ].filter(usefulText)
+  const compounds = unique(
+    plantRecipes.flatMap((recipe) => recipe.phytochemical_compounds),
+  )
+  const references = unique(
+    plantRecipes.flatMap((recipe) => recipe.reference_studies),
+  )
+  const actions = plantRecipes.filter((recipe) =>
+    usefulText(recipe.modern_pharmacological_action),
+  )
   const hasValidation =
     hasPlant &&
-    (validation.phytochemical_compounds.length > 0 ||
-      usefulText(validation.modern_pharmacological_action) ||
-      validation.reference_studies.length > 0)
+    (compounds.length > 0 || actions.length > 0 || references.length > 0)
 
   return (
     <article className="print-report">
@@ -101,26 +126,38 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
             </div>
             <div className="report-field">
               <dt>Tanaman</dt>
-              <dd>{hasPlant ? entity.plant_local_name : 'Tidak ada tanaman obat'}</dd>
+              <dd>
+                {hasPlant
+                  ? plantRecipes.length > 1
+                    ? `${plantRecipes.length} resep: ${plantRecipes
+                        .map((recipe) => recipe.plant_local_name)
+                        .join(', ')}`
+                    : plantRecipes[0].plant_local_name
+                  : 'Tidak ada tanaman obat'}
+              </dd>
             </div>
             <div className="report-field">
               <dt>Rujukan tanaman</dt>
               <dd>
                 {!hasPlant
                   ? 'Tidak ada'
-                  : entity.kb_match
-                    ? 'Tercatat di Taru Pramana'
-                    : 'Belum tercatat di Taru Pramana'}
+                  : plantRecipes.length > 1
+                    ? `${plantRecipes.filter((recipe) => recipe.kb_match).length}/${plantRecipes.length} tercatat di Taru Pramana`
+                    : plantRecipes[0].kb_match
+                      ? 'Tercatat di Taru Pramana'
+                      : 'Belum tercatat di Taru Pramana'}
               </dd>
             </div>
             <div className="report-field">
               <dt>Nama ilmiah</dt>
               <dd>
-                {taxonomy.length > 0
-                  ? taxonomy.join(' · ')
-                  : hasPlant
-                    ? 'Belum terverifikasi'
-                    : 'Tidak ada'}
+                {hasPlant
+                  ? plantRecipes.length > 1
+                    ? 'Lihat rincian resep'
+                    : taxonomy.length > 0
+                      ? taxonomy.join(' · ')
+                      : 'Belum terverifikasi'
+                  : 'Tidak ada'}
               </dd>
             </div>
           </dl>
@@ -152,7 +189,13 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
         <p className="report-prose">{english}</p>
       </section>
 
-      <section className="report-section report-section-card">
+      <section
+        className={
+          plantRecipes.length <= 2
+            ? 'report-section report-section-card'
+            : 'report-section'
+        }
+      >
         <h2 className="report-section-title">
           {hasPlant
             ? 'Kartu Usada'
@@ -161,44 +204,54 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
               : 'Catatan Naskah'}
         </h2>
         {hasPlant ? (
-          <>
-            <dl className="report-kv">
-              <div className="report-field">
-                <dt>Tanaman</dt>
-                <dd>{entity.plant_local_name}</dd>
-              </div>
-              <div className="report-field">
-                <dt>Bagian dipakai</dt>
-                <dd>{plain(entity.plant_part_used)}</dd>
-              </div>
-              <div className="report-field">
-                <dt>Sifat tradisional</dt>
-                <dd>{plain(entity.energy_character)}</dd>
-              </div>
-              <div className="report-field">
-                <dt>Bentuk racikan</dt>
-                <dd>{plain(entity.formulation_type)}</dd>
-              </div>
-              <div className="report-field">
-                <dt>Indikasi</dt>
-                <dd>{plain(entity.target_ailment)}</dd>
-              </div>
-              <div className="report-field">
-                <dt>Bahan pelengkap</dt>
-                <dd>
-                  {entity.adjuvants.length > 0
-                    ? entity.adjuvants.join(' · ')
-                    : 'Tidak ada'}
-                </dd>
-              </div>
-            </dl>
-            <h3 className="report-subheading">Cara racik</h3>
-            <p className="report-prose">
-              {usefulText(entity.preparation_instructions)
-                ? formatTranslation(entity.preparation_instructions)
-                : 'Cara racik belum tercatat.'}
-            </p>
-          </>
+          plantRecipes.map((recipe, index) => (
+            <div
+              className="report-recipe"
+              key={`${recipe.plant_local_name}-${index}`}
+            >
+              <h3 className="report-subheading">
+                {plantRecipes.length > 1
+                  ? `Resep ${index + 1} · ${recipe.plant_local_name}`
+                  : recipe.plant_local_name}
+              </h3>
+              <dl className="report-kv">
+                <div className="report-field">
+                  <dt>Tanaman</dt>
+                  <dd>{recipe.plant_local_name}</dd>
+                </div>
+                <div className="report-field">
+                  <dt>Bagian dipakai</dt>
+                  <dd>{plain(recipe.plant_part_used)}</dd>
+                </div>
+                <div className="report-field">
+                  <dt>Sifat tradisional</dt>
+                  <dd>{plain(recipe.energy_character)}</dd>
+                </div>
+                <div className="report-field">
+                  <dt>Bentuk racikan</dt>
+                  <dd>{plain(recipe.formulation_type)}</dd>
+                </div>
+                <div className="report-field">
+                  <dt>Indikasi</dt>
+                  <dd>{plain(recipe.target_ailment)}</dd>
+                </div>
+                <div className="report-field">
+                  <dt>Bahan pelengkap</dt>
+                  <dd>
+                    {recipe.adjuvants.length > 0
+                      ? recipe.adjuvants.join(' · ')
+                      : 'Tidak ada'}
+                  </dd>
+                </div>
+              </dl>
+              <h3 className="report-subheading">Cara racik</h3>
+              <p className="report-prose">
+                {usefulText(recipe.preparation_instructions)
+                  ? formatTranslation(recipe.preparation_instructions)
+                  : 'Cara racik belum tercatat.'}
+              </p>
+            </div>
+          ))
         ) : (
           <p className="report-prose">
             {hasAilment
@@ -215,24 +268,29 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
             <div className="report-field">
               <dt>Kandungan aktif</dt>
               <dd>
-                {validation.phytochemical_compounds.length > 0
-                  ? validation.phytochemical_compounds.join(' · ')
-                  : 'Belum tersedia'}
-              </dd>
-            </div>
-            <div className="report-field">
-              <dt>Khasiat modern</dt>
-              <dd>
-                {usefulText(validation.modern_pharmacological_action)
-                  ? formatTranslation(validation.modern_pharmacological_action)
+                {compounds.length > 0
+                  ? compounds.join(' · ')
                   : 'Belum tersedia'}
               </dd>
             </div>
           </dl>
-          <h3 className="report-subheading">Sumber rujukan</h3>
-          {validation.reference_studies.length > 0 ? (
+          <h3 className="report-subheading">Khasiat modern</h3>
+          {actions.length > 0 ? (
             <ul className="report-list">
-              {validation.reference_studies.map((reference) => (
+              {actions.map((recipe) => (
+                <li key={recipe.plant_local_name}>
+                  <strong>{recipe.plant_local_name}:</strong>{' '}
+                  {formatTranslation(recipe.modern_pharmacological_action)}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="report-prose">Belum tersedia.</p>
+          )}
+          <h3 className="report-subheading">Sumber rujukan</h3>
+          {references.length > 0 ? (
+            <ul className="report-list">
+              {references.map((reference) => (
                 <li key={reference}>{reference}</li>
               ))}
             </ul>
@@ -250,9 +308,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
           dibaca. Periksa lempir asli dan rujukan filologi sebelum mengambil
           keputusan penting.
         </p>
-        <p className="report-disclaimer">
-          {validation.safety_disclaimer}
-        </p>
+        <p className="report-disclaimer">{validation.safety_disclaimer}</p>
       </section>
 
       <footer className="report-footer">

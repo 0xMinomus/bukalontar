@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import type { AnalysisResponse, Confidence } from '@/lib/analysis'
-import { hasMedicinalPlant } from '@/lib/reading'
+import { hasMedicinalPlant, resultRecipes } from '@/lib/reading'
 
 const confidenceLabel: Record<Confidence, string> = {
   low: 'Keterbacaan rendah',
@@ -68,9 +68,11 @@ export function ResultWorkspace({
   isMock,
 }: ResultWorkspaceProps) {
   const source = result.source_reference
-  const plant = result.ethnomedicinal_entity
   const confidence = result.paleography.confidence
-  const hasPlant = hasMedicinalPlant(plant.plant_local_name)
+  const plantRecipes = resultRecipes(result).filter((recipe) =>
+    hasMedicinalPlant(recipe.plant_local_name),
+  )
+  const hasPlant = plantRecipes.length > 0
 
   return (
     <section className="result-page mx-auto max-w-[1440px] animate-[fade-rise_500ms_ease-out_both] px-5 py-8 md:px-8 md:py-10">
@@ -147,9 +149,11 @@ export function ResultWorkspace({
           <dd className="mt-1 text-sm font-medium">
             {!hasPlant
               ? 'Tidak ada'
-              : plant.kb_match
-                ? 'Tercatat'
-                : 'Belum tercatat'}
+              : plantRecipes.length > 1
+                ? `${plantRecipes.filter((recipe) => recipe.kb_match).length}/${plantRecipes.length} tercatat`
+                : plantRecipes[0].kb_match
+                  ? 'Tercatat'
+                  : 'Belum tercatat'}
           </dd>
         </div>
       </dl>
@@ -175,7 +179,11 @@ export function ResultWorkspace({
                 <h2 className="font-heading text-lg leading-none">Bacaan naskah</h2>
               </div>
               <span className="truncate text-xs text-muted-foreground">
-                {hasPlant ? plant.plant_local_name : 'Tidak ada tanaman obat'}
+                {!hasPlant
+                  ? 'Tidak ada tanaman obat'
+                  : plantRecipes.length > 1
+                    ? `${plantRecipes.length} resep`
+                    : plantRecipes[0].plant_local_name}
               </span>
             </div>
 

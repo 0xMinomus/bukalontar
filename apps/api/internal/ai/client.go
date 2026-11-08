@@ -57,7 +57,6 @@ func (e *UpstreamError) Error() string {
 var (
 	ErrInvalidOutput = errors.New("AI returned invalid structured output")
 	ErrNotDetected   = errors.New("aksara Bali tidak terdeteksi pada gambar")
-	ErrUnstable      = errors.New("pembacaan belum stabil")
 )
 
 func NewClient(cfg ProviderConfig) *Client {
@@ -75,7 +74,7 @@ func (c *Client) Model() string {
 }
 
 func (c *Client) Complete(ctx context.Context, messages []Message) (string, error) {
-	return c.CompleteWithTokens(ctx, messages, 2400)
+	return c.CompleteWithTokens(ctx, messages, 5000)
 }
 
 func (c *Client) CompleteWithTokens(ctx context.Context, messages []Message, maxTokens int) (string, error) {
