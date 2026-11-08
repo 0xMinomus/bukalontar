@@ -32,7 +32,7 @@ type Stage = 'idle' | 'preview' | 'processing' | 'result' | 'error'
 
 const MAX_BYTES = 8 * 1024 * 1024
 const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
-const IS_MOCK = import.meta.env.VITE_USE_MOCK !== 'false'
+const IS_MOCK = import.meta.env.VITE_USE_MOCK === 'true'
 
 function SessionLoading() {
   return (

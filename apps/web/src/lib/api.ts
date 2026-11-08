@@ -16,7 +16,7 @@ export async function analyzeManuscript({
   signal,
   onStage,
 }: AnalyzeInput): Promise<AnalysisResponse> {
-  const useMock = import.meta.env.VITE_USE_MOCK !== 'false'
+  const useMock = import.meta.env.VITE_USE_MOCK === 'true'
   const baseUrl = import.meta.env.VITE_API_BASE_URL ?? ''
 
   if (useMock) {
