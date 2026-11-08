@@ -62,7 +62,7 @@ npm install
 npm run dev
 ```
 
-Buka `http://localhost:5173`. Saat ini hasil AI memakai data contoh (`VITE_USE_MOCK=true`); backend Go akan dihubungkan setelah alur UI selesai.
+Buka `http://localhost:5173`. Route: `/` landing, `/analisis` pratinjau dan proses, `/hasil` hasil. Saat ini hasil AI memakai data contoh (`VITE_USE_MOCK=true`); backend Go akan dihubungkan setelah alur UI selesai.
 
 ```bash
 npm run build

@@ -14,10 +14,7 @@ interface LandingProps {
 
 export function Landing({ onFile, onSample, busySampleId }: LandingProps) {
   return (
-    <section
-      id="workspace"
-      className="relative overflow-hidden border-b border-border/70"
-    >
+    <section className="relative overflow-hidden border-b border-border/70">
       <div className="relative mx-auto max-w-5xl px-5 pb-14 pt-12 text-center md:px-8 md:pb-20 md:pt-20">
         <Reveal>
           <p className="small-caps text-xs font-semibold text-brass-strong">

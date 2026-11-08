@@ -38,13 +38,16 @@ export function SiteFooter() {
             >
               Dokumentasi
             </a>
-            <a
-              className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
-              href="#workspace"
+            <button
+              type="button"
+              onClick={() =>
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }
+              className="inline-flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 transition-colors hover:text-foreground"
             >
               Kembali ke atas
               <ArrowUp className="size-3.5" aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
 

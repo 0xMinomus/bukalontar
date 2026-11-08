@@ -9,6 +9,14 @@ Frontend prototype for UsadhaAI: React 19, TypeScript, Vite, Tailwind CSS v4, an
 - AI responses are mocked until the Go backend is connected (`VITE_USE_MOCK=true`).
 - Sample lontar photos are real archive images. Credits and licenses live in `public/samples/CREDITS.md`.
 
+## Routes
+
+- `/` landing and about sections
+- `/analisis` upload preview, processing, and error states
+- `/hasil` analysis result
+
+Routing uses `BrowserRouter`, so URLs are path based, never hash based. The header logo returns to `/` and clears the active manuscript. The footer is shared by every route.
+
 ## Run
 
 From the repository root:

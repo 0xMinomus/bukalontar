@@ -1,14 +1,37 @@
 import { Code2 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { BrandMark } from '@/components/brand-mark'
 
-export function AppHeader({ showNav = true }: { showNav?: boolean }) {
+interface AppHeaderProps {
+  showNav?: boolean
+  onHome?: () => void
+}
+
+const sections = [
+  ['Ruang kerja', 'top'],
+  ['Alur', 'alur'],
+  ['Tentang', 'tentang'],
+] as const
+
+function scrollToSection(target: string) {
+  if (target === 'top') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return
+  }
+  document
+    .getElementById(target)
+    ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+export function AppHeader({ showNav = true, onHome }: AppHeaderProps) {
   return (
     <header className="border-b border-border/80 bg-background">
       <div className="relative mx-auto flex h-[4.5rem] max-w-[1440px] items-center justify-between gap-4 px-5 md:px-8">
-        <a
-          href="#workspace"
-          className="flex items-center gap-3 justify-self-start rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        <Link
+          to="/"
+          onClick={onHome}
+          className="flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <span className="flex size-10 items-center justify-center rounded-full border border-brass/45 bg-primary text-primary-foreground shadow-[inset_0_0_0_1px_rgb(255_255_255_/_0.15)]">
             <BrandMark className="size-5" />
@@ -21,29 +44,26 @@ export function AppHeader({ showNav = true }: { showNav?: boolean }) {
               Arsip Usada Bali
             </span>
           </span>
-        </a>
+        </Link>
 
         {showNav ? (
           <nav
             aria-label="Navigasi utama"
             className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex"
           >
-            {[
-              ['Ruang kerja', '#workspace'],
-              ['Alur', '#alur'],
-              ['Tentang', '#tentang'],
-            ].map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className="group relative py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            {sections.map(([label, target]) => (
+              <button
+                key={target}
+                type="button"
+                onClick={() => scrollToSection(target)}
+                className="group relative cursor-pointer border-0 bg-transparent py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {label}
                 <span
                   className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-brass transition-transform duration-300 group-hover:scale-x-100"
                   aria-hidden="true"
                 />
-              </a>
+              </button>
             ))}
           </nav>
         ) : null}

@@ -1,4 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom'
 
 import { AppHeader } from '@/components/app-header'
 import { ErrorState } from '@/components/error-state'
@@ -22,6 +29,10 @@ const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 const IS_MOCK = import.meta.env.VITE_USE_MOCK !== 'false'
 
 export default function App() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const isLanding = location.pathname === '/'
+
   const [stage, setStage] = useState<Stage>('idle')
   const [file, setFile] = useState<File | null>(null)
   const [sourceId, setSourceId] = useState<string | undefined>()
@@ -54,7 +65,7 @@ export default function App() {
     if (stage !== 'idle') window.scrollTo({ top: 0 })
   }, [stage])
 
-  const reset = useCallback(() => {
+  const clearState = useCallback(() => {
     loadIdRef.current += 1
     abortRef.current?.abort()
     abortRef.current = null
@@ -72,55 +83,71 @@ export default function App() {
     setStage('idle')
   }, [])
 
-  const loadFile = useCallback(async (nextFile: File, sampleId?: string) => {
-    if (!ACCEPTED_TYPES.includes(nextFile.type)) {
-      setError('Format foto harus JPG, PNG, atau WEBP.')
-      setStage('error')
-      return
-    }
-    if (nextFile.size > MAX_BYTES) {
-      setError('Ukuran foto melebihi 8 MB. Kompres atau pilih foto lain.')
-      setStage('error')
-      return
-    }
+  const reset = useCallback(() => {
+    clearState()
+    navigate('/')
+  }, [clearState, navigate])
 
-    const loadId = loadIdRef.current + 1
-    loadIdRef.current = loadId
-    abortRef.current?.abort()
-    abortRef.current = null
+  const handleLogo = useCallback(() => {
+    clearState()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [clearState])
 
-    setFile(nextFile)
-    setSourceId(sampleId)
-    setOriginalUrl(URL.createObjectURL(nextFile))
-    setEnhanced(null)
-    setEnhanceError(null)
-    setEnhancing(true)
-    setResult(null)
-    setError(null)
-    setStep(1)
-    setView('original')
-    setStage('preview')
-
-    try {
-      const nextEnhanced = await enhanceLontar(nextFile)
-      if (loadIdRef.current !== loadId) {
-        URL.revokeObjectURL(nextEnhanced.url)
+  const loadFile = useCallback(
+    async (nextFile: File, sampleId?: string) => {
+      if (!ACCEPTED_TYPES.includes(nextFile.type)) {
+        setError('Format foto harus JPG, PNG, atau WEBP.')
+        setStage('error')
+        navigate('/analisis')
         return
       }
-      setEnhanced(nextEnhanced)
-      setView('enhanced')
-    } catch (cause) {
-      if (loadIdRef.current === loadId) {
-        setEnhanceError(
-          cause instanceof Error
-            ? cause.message
-            : 'Peningkatan kontras gagal.',
-        )
+      if (nextFile.size > MAX_BYTES) {
+        setError('Ukuran foto melebihi 8 MB. Kompres atau pilih foto lain.')
+        setStage('error')
+        navigate('/analisis')
+        return
       }
-    } finally {
-      if (loadIdRef.current === loadId) setEnhancing(false)
-    }
-  }, [])
+
+      const loadId = loadIdRef.current + 1
+      loadIdRef.current = loadId
+      abortRef.current?.abort()
+      abortRef.current = null
+
+      setFile(nextFile)
+      setSourceId(sampleId)
+      setOriginalUrl(URL.createObjectURL(nextFile))
+      setEnhanced(null)
+      setEnhanceError(null)
+      setEnhancing(true)
+      setResult(null)
+      setError(null)
+      setStep(1)
+      setView('original')
+      setStage('preview')
+      navigate('/analisis')
+
+      try {
+        const nextEnhanced = await enhanceLontar(nextFile)
+        if (loadIdRef.current !== loadId) {
+          URL.revokeObjectURL(nextEnhanced.url)
+          return
+        }
+        setEnhanced(nextEnhanced)
+        setView('enhanced')
+      } catch (cause) {
+        if (loadIdRef.current === loadId) {
+          setEnhanceError(
+            cause instanceof Error
+              ? cause.message
+              : 'Peningkatan kontras gagal.',
+          )
+        }
+      } finally {
+        if (loadIdRef.current === loadId) setEnhancing(false)
+      }
+    },
+    [navigate],
+  )
 
   async function handleSample(sample: Sample) {
     if (busySampleId) return
@@ -135,9 +162,12 @@ export default function App() {
       await loadFile(nextFile, sample.id)
     } catch (cause) {
       setError(
-        cause instanceof Error ? cause.message : 'Contoh arsip tidak bisa dimuat.',
+        cause instanceof Error
+          ? cause.message
+          : 'Contoh arsip tidak bisa dimuat.',
       )
       setStage('error')
+      navigate('/analisis')
     } finally {
       setBusySampleId(null)
     }
@@ -152,6 +182,7 @@ export default function App() {
     setStage('processing')
     setStep(1)
     setError(null)
+    navigate('/analisis')
 
     try {
       const nextResult = await analyzeManuscript({
@@ -166,18 +197,21 @@ export default function App() {
       if (controller.signal.aborted) return
       setResult(nextResult)
       setStage('result')
+      navigate('/hasil')
     } catch (cause) {
       if (
         controller.signal.aborted ||
         (cause instanceof DOMException && cause.name === 'AbortError')
       ) {
         setStage('preview')
+        navigate('/analisis')
         return
       }
       setError(
         cause instanceof Error ? cause.message : 'Analisis gagal. Coba lagi.',
       )
       setStage('error')
+      navigate('/analisis')
     } finally {
       if (abortRef.current === controller) abortRef.current = null
     }
@@ -188,6 +222,7 @@ export default function App() {
     abortRef.current = null
     setStage('preview')
     setStep(1)
+    navigate('/analisis')
   }
 
   function downloadJson() {
@@ -225,73 +260,91 @@ export default function App() {
     <TooltipProvider>
       <div className="flex min-h-[100dvh] flex-col">
         <div className="no-print">
-          <AppHeader showNav={stage === 'idle'} />
+          <AppHeader showNav={isLanding} onHome={handleLogo} />
         </div>
 
         <main className="flex-1">
-          <div id="workspace">
-            {stage === 'idle' ? (
-              <Landing
-                onFile={(nextFile) => void loadFile(nextFile)}
-                onSample={handleSample}
-                busySampleId={busySampleId}
-              />
-            ) : null}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Landing
+                  onFile={(nextFile) => void loadFile(nextFile)}
+                  onSample={handleSample}
+                  busySampleId={busySampleId}
+                />
+              }
+            />
 
-            {stage === 'preview' && file && originalUrl ? (
-              <PreviewStage
-                fileName={file.name}
-                fileSize={file.size}
-                dimensions={
-                  enhanced
-                    ? { width: enhanced.width, height: enhanced.height }
-                    : undefined
-                }
-                originalUrl={originalUrl}
-                enhancedUrl={enhanced?.url}
-                enhancing={enhancing}
-                enhanceError={enhanceError}
-                enhanceElapsedMs={enhanced?.elapsedMs}
-                view={view}
-                onViewChange={setView}
-                onAnalyze={() => void startAnalysis()}
-                onReset={reset}
-              />
-            ) : null}
+            <Route
+              path="/analisis"
+              element={
+                stage === 'error' ? (
+                  <ErrorState
+                    message={error ?? 'Terjadi kesalahan yang belum dikenali.'}
+                    canRetry={Boolean(originalUrl)}
+                    onRetry={() => {
+                      setStage('preview')
+                      navigate('/analisis')
+                    }}
+                    onReset={reset}
+                  />
+                ) : !file || !originalUrl ? (
+                  <Navigate to="/" replace />
+                ) : stage === 'processing' ? (
+                  <ProcessingStage
+                    imageUrl={enhanced?.url ?? originalUrl}
+                    step={step}
+                    onCancel={cancelAnalysis}
+                  />
+                ) : (
+                  <PreviewStage
+                    fileName={file.name}
+                    fileSize={file.size}
+                    dimensions={
+                      enhanced
+                        ? { width: enhanced.width, height: enhanced.height }
+                        : undefined
+                    }
+                    originalUrl={originalUrl}
+                    enhancedUrl={enhanced?.url}
+                    enhancing={enhancing}
+                    enhanceError={enhanceError}
+                    enhanceElapsedMs={enhanced?.elapsedMs}
+                    view={view}
+                    onViewChange={setView}
+                    onAnalyze={() => void startAnalysis()}
+                    onReset={reset}
+                  />
+                )
+              }
+            />
 
-            {stage === 'processing' && (originalUrl || enhanced?.url) ? (
-              <ProcessingStage
-                imageUrl={enhanced?.url ?? originalUrl ?? ''}
-                step={step}
-                onCancel={cancelAnalysis}
-              />
-            ) : null}
+            <Route
+              path="/hasil"
+              element={
+                result && originalUrl ? (
+                  <ResultWorkspace
+                    result={result}
+                    originalUrl={originalUrl}
+                    enhancedUrl={enhanced?.url}
+                    view={view}
+                    onViewChange={setView}
+                    onReset={reset}
+                    onExport={downloadJson}
+                    onPrint={() => window.print()}
+                    isMock={IS_MOCK}
+                  />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
 
-            {stage === 'result' && result && originalUrl ? (
-              <ResultWorkspace
-                result={result}
-                originalUrl={originalUrl}
-                enhancedUrl={enhanced?.url}
-                view={view}
-                onViewChange={setView}
-                onReset={reset}
-                onExport={downloadJson}
-                onPrint={() => window.print()}
-                isMock={IS_MOCK}
-              />
-            ) : null}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
 
-            {stage === 'error' ? (
-              <ErrorState
-                message={error ?? 'Terjadi kesalahan yang belum dikenali.'}
-                canRetry={Boolean(originalUrl)}
-                onRetry={() => setStage('preview')}
-                onReset={reset}
-              />
-            ) : null}
-          </div>
-
-          {stage === 'idle' ? (
+          {isLanding ? (
             <div className="no-print">
               <HowItWorks />
             </div>
