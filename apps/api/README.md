@@ -1,6 +1,6 @@
 # BukaLontar API
 
-Go stdlib backend for the BukaLontar web app. It accepts one lontar image, sends it to Gemini through 9router in OpenAI-compatible JSON mode, validates the result, grounds botanical fields against the embedded Taru Pramana KB, and returns the `AnalysisResponse` contract.
+Go stdlib backend for the BukaLontar web app. It accepts one Balinese lontar image, sends it to a multimodal model through 9router in OpenAI-compatible JSON mode, validates the result, grounds botanical fields against the embedded Taru Pramana KB, and returns the `AnalysisResponse` contract. Non-Usadha lontar images return a reading and translation; Usadha leaves may also return recipe cards.
 
 ## Endpoints
 
@@ -20,7 +20,7 @@ AI_BASE_URL=http://127.0.0.1:20128/v1
 AI_MODEL=ag/gemini-3.8-flash-low
 AI_API_KEY=
 AI_TIMEOUT_SECONDS=120
-RATE_LIMIT_PER_MINUTE=60
+RATE_LIMIT_PER_MINUTE=10
 ```
 
 For the fallback route, set `AI_FALLBACK_ENABLED=true` and the `AI_FALLBACK_*` values. The fallback uses the same OpenAI-compatible client.

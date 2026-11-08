@@ -1,8 +1,8 @@
-# Architecture & Data Flow
+# Arsitektur dan Alur Data
 
-Dokumen ini merangkum arsitektur MVP yang ada di repository, bukan rencana deployment yang belum diverifikasi.
+Dokumen ini menjelaskan arsitektur MVP yang ada di repository. Fokusnya adalah perilaku kode saat ini, bukan rencana deployment yang belum diverifikasi.
 
-## Runtime Overview
+## Gambaran Runtime
 
 ```text
 Browser
@@ -12,7 +12,7 @@ Browser
         | multipart/form-data: image, optional source_id
         v
 Go API (single binary)
-  input validation + rate limit
+  validasi input + rate limit
   AI client
         |
         | POST /v1/chat/completions, JSON mode
@@ -20,58 +20,69 @@ Go API (single binary)
 9router (OpenAI-compatible)
         |
         v
-Gemini 3.8 Flash
+Model multimodal
         |
-        | structured JSON
+        | JSON terstruktur
         v
-Go validation + Taru Pramana KB grounding
+Validasi Go + grounding Taru Pramana
         |
         v
-AnalysisResponse -> React result view / print report
+AnalysisResponse -> tampilan hasil / laporan PDF
 ```
 
 Frontend hasil build di-embed ke binary Go melalui `apps/api/internal/webui`. Satu proses menyajikan API dan SPA, sehingga browser tidak membutuhkan CORS pada deployment normal.
 
-## Request Flow
+## Dua Alur, Satu Kontrak
 
-1. **Client preprocessing.** `apps/web/src/lib/image.ts` mengecilkan gambar, menerapkan CLAHE, dan unsharp mask. File hasil dikirim sebagai `multipart/form-data`.
-2. **Validation.** Handler membatasi ukuran upload (8 MB), tipe gambar, dan rate limit per menit. Tidak ada file yang ditulis ke disk.
-3. **Inference.** `apps/api/internal/ai` mengirim image sebagai data URL ke endpoint OpenAI-compatible. Dua request independen dijalankan untuk membaca lembar yang padat.
-4. **Structured parsing.** Respons model harus berupa JSON. Markdown fence dibersihkan sebelum parsing. Satu repair attempt dilakukan bila validasi gagal.
-5. **Merge.** Resep dari kedua hasil digabung, dideduplikasi berdasarkan nama tanaman lokal, dan dibatasi maksimal enam resep. Field top-level memakai resep pertama untuk kompatibilitas kontrak lama.
-6. **Grounding.** Bila nama tanaman cocok dengan Taru Pramana KB, nama ilmiah, family, senyawa, rujukan, dan energy character diambil dari KB. Bila tidak cocok, taxonomy dan sitasi dikosongkan agar tidak menjadi halusinasi.
-7. **Response.** Disclaimer medis kanonik ditulis server. Frontend menampilkan seluruh resep, dan print report merender daftar yang sama.
+Aplikasi memakai satu kontrak respons untuk dua kebutuhan:
 
-## API Surface
+| Alur | Kondisi | Isi respons |
+| --- | --- | --- |
+| Pembacaan lontar umum | Naskah tidak memuat resep Usadha | Transliterasi, terjemahan, sumber, ringkasan |
+| Alur Usadha | Naskah memuat satu atau beberapa resep | Semua field umum, ditambah `recipes[]` dan validasi tanaman |
+
+`recipes[]` boleh kosong. Field `ethnomedicinal_entity` dan `scientific_validation` tetap ada untuk kompatibilitas kontrak, tetapi nilainya memakai penanda "tidak disebutkan" jika naskah tidak memuat resep.
+
+## Alur Request
+
+1. **Preprocessing klien.** `apps/web/src/lib/image.ts` mengecilkan gambar, menerapkan CLAHE, dan unsharp mask. Hasilnya dikirim sebagai `multipart/form-data`.
+2. **Validasi.** Handler membatasi ukuran upload 8 MB, tipe gambar, dan rate limit per menit. Tidak ada file yang ditulis ke disk.
+3. **Inferensi.** `apps/api/internal/ai` mengirim gambar sebagai data URL. Dua request independen dijalankan untuk mengurangi hasil yang terpotong.
+4. **Parsing.** Respons model harus berupa JSON. Markdown fence dibersihkan sebelum parsing. Satu repair attempt dilakukan bila validasi gagal.
+5. **Merge.** Resep dari kedua hasil digabung, dideduplikasi berdasarkan nama tanaman lokal, dan dibatasi maksimal enam resep. Field top-level memakai resep pertama untuk kompatibilitas.
+6. **Grounding.** Bila nama tanaman cocok dengan Taru Pramana, nama ilmiah, famili, senyawa, rujukan, dan energy character diambil dari knowledge base. Bila tidak cocok, taxonomy dan sitasi dikosongkan agar tidak menjadi halusinasi.
+7. **Respons.** Disclaimer medis kanonik ditulis server. Frontend menampilkan hasil bacaan dan, bila ada, kartu Usadha.
+
+## API
 
 | Method | Path | Keterangan |
 | --- | --- | --- |
 | `POST` | `/api/analyze-manuscript` | Upload gambar dan terima `AnalysisResponse` |
-| `GET` | `/health` | Status proses, KB, dan keterjangkauan 9router |
+| `GET` | `/health` | Status proses, knowledge base, dan keterjangkauan 9router |
 | `GET` | `/api/health` | Alias health check |
 | `GET` | `/` dan route SPA | Frontend hasil build |
 
-Kontrak lengkap: `packages/schema/analysis.json`.
+Kontrak lengkap ada di `packages/schema/analysis.json`.
 
-## Data Model
+## Model Data
 
 `AnalysisResponse` berisi:
 
 - `manuscript_id` dan `source_reference`;
-- `paleography` — deteksi aksara, confidence, transliterasi, terjemahan Indonesia/Inggris;
-- `ethnomedicinal_entity` — field resep utama untuk kompatibilitas;
-- `scientific_validation` — senyawa, aksi farmakologis, rujukan, dan disclaimer;
-- `recipes[]` — daftar lengkap resep pada lembar, termasuk data tanaman dan validasi per resep.
+- `paleography`: deteksi aksara, confidence, transliterasi, terjemahan Indonesia dan Inggris;
+- `ethnomedicinal_entity`: field resep utama untuk kompatibilitas;
+- `scientific_validation`: senyawa, aksi farmakologis, rujukan, dan disclaimer;
+- `recipes[]`: daftar resep pada lembar, termasuk data tanaman dan validasi per resep.
 
-## Reliability
+## Keandalan
 
 - Retry pada 429, 5xx, timeout, dan transport error.
 - Fallback provider opsional melalui `AI_FALLBACK_*`; tidak aktif secara default.
 - Validasi schema di Go sebelum respons dikirim ke browser.
-- Error API dikembalikan sebagai pesan yang dapat ditampilkan; tidak ada hasil palsu.
-- Rate limit default 10 request/menit/klien.
+- Error API dikembalikan sebagai pesan yang dapat ditampilkan. Tidak ada hasil palsu.
+- Rate limit default 10 request per menit per klien.
 
-## Configuration
+## Konfigurasi
 
 Semua konfigurasi sensitif berasal dari environment:
 
@@ -88,27 +99,24 @@ AI_FALLBACK_API_KEY=
 
 Contoh lengkap ada di `apps/api/.env.example`. File `.env` tidak boleh di-commit.
 
-## Build and Deployment
+## Build dan Deployment
 
 ```bash
 npm install
-make build          # frontend -> Go embed -> bin/bukalontar
+make build
 ./bin/bukalontar
 ```
 
-Binary membaca environment, menyajikan SPA, dan memanggil 9router. Deployment publik harus menyediakan 9router yang dapat dijangkau oleh binary; endpoint gateway tidak boleh diekspos ke internet tanpa autentikasi.
+Binary membaca environment, menyajikan SPA, dan memanggil 9router. Deployment publik harus menyediakan 9router yang dapat dijangkau oleh binary. Endpoint gateway tidak boleh diekspos ke internet tanpa autentikasi.
 
-## Testing
+## Pengujian
 
 ```bash
 cd apps/api
 go test ./...
 go vet ./...
-```
 
-Frontend:
-
-```bash
+cd ../..
 npm run lint
 npm run build
 ```

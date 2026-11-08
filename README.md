@@ -1,86 +1,150 @@
+<div align="center">
+
+<img src="logos/bukalontar-icon.png" alt="Logo BukaLontar" width="112" />
+
 # BukaLontar
 
-**Bali DigiFest 2026 — AI Web Innovation Challenge**
+**Baca lontar Bali, dari aksara sampai konteks.**
 
-BukaLontar adalah aplikasi web untuk membaca citra manuskrip lontar Usadha Bali, menghasilkan transliterasi dan terjemahan, lalu mengekstrak tanaman obat, bagian yang dipakai, cara racik, dan rujukan farmakologi modern.
+Aplikasi web untuk membaca citra lontar Bali, menghasilkan transliterasi dan terjemahan, serta menampilkan konteks naskah. Untuk lontar Usadha, BukaLontar menambahkan ekstraksi resep tanaman obat yang terhubung ke basis pengetahuan Taru Pramana.
 
-Repository ini adalah source code MVP yang dapat dijalankan dan diuji. Tidak ada API key, token, atau data pribadi di dalam repository.
+![Status](https://img.shields.io/badge/status-MVP-b08d57)
+![AI](https://img.shields.io/badge/AI-multimodal-4f6f52)
+![Stack](https://img.shields.io/badge/stack-React%20%2B%20Go-2f3e46)
+![Competition](https://img.shields.io/badge/competition-Bali%20DigiFest%202026-9c6644)
 
-## Description
+[Repositori](https://github.com/0xMinomus/bukalontar) | [Dokumentasi](docs/README.md) | [AI Disclosure](docs/AI_DISCLOSURE.md)
 
-Lontar Usadha menyimpan pengetahuan pengobatan tradisional Bali, tetapi terkunci oleh dua hambatan: aksara Bali kuno yang ditulis tanpa spasi dan bahasa Kawi klasik. BukaLontar memakai model multimodal untuk mengubah foto lontar menjadi:
+</div>
 
-- transliterasi Latin,
-- terjemahan Indonesia dan Inggris,
-- daftar resep tanaman,
-- nama lokal Bali, taksonomi botani, bagian tanaman, dan bentuk racikan,
-- senyawa fitokimia serta rujukan ilmiah yang tersedia di knowledge base.
+---
 
-Model AI adalah bagian material dari alur produk: tanpa inferensi multimodal, citra lontar tidak dapat diubah menjadi data terstruktur yang dapat dicari.
+## Daftar Isi
 
-## Problem & Target User
+- [Tentang](#tentang)
+- [Masalah dan Target Pengguna](#masalah-dan-target-pengguna)
+- [Cakupan Produk](#cakupan-produk)
+- [Fitur](#fitur)
+- [Cara Kerja AI](#cara-kerja-ai)
+- [Arsitektur](#arsitektur)
+- [Teknologi](#teknologi)
+- [Menjalankan Proyek](#menjalankan-proyek)
+- [Struktur Repositori](#struktur-repositori)
+- [Data, Sumber, dan Kredit](#data-sumber-dan-kredit)
+- [Keamanan dan Privasi](#keamanan-dan-privasi)
+- [AI dan Technology Disclosure](#ai-dan-technology-disclosure)
+- [Batasan Saat Ini](#batasan-saat-ini)
+- [Tim](#tim)
+- [Dokumentasi Lanjutan](#dokumentasi-lanjutan)
 
-**Masalah:** Banyak naskah lontar Usadha rusak, sulit dibaca, dan hanya dipahami oleh segelintir filolog. Proses manual membutuhkan waktu lama dan tidak dapat diskalakan untuk ribuan lembar.
+## Tentang
 
-**Target user:**
+Lontar adalah warisan tulis Bali yang mencakup banyak genre: Usadha, Kakawin, Babad, Geguritan, tutur, dan naskah lain. Banyak di antaranya belum terbaca oleh generasi muda, peneliti, atau pengunjung museum karena dua lapis hambatan: aksara Bali kuno dan bahasa Kawi.
 
-- pelajar dan generasi muda Bali yang ingin membaca warisan tulis leluhur;
-- peneliti etnofarmasi dan botani;
-- praktisi herbal serta UMKM wellness;
-- kurator museum, perpustakaan, dan arsip budaya.
+BukaLontar adalah pembaca lontar berbasis AI. Unggah foto lempir, lalu aplikasi menampilkan transliterasi Latin, terjemahan Indonesia dan Inggris, serta informasi sumber naskah. Alur ini berlaku untuk lontar Bali secara umum.
 
-## Key Features
+Untuk lontar Usadha, hasilnya diperkaya dengan lapisan khusus: nama tanaman lokal, nama ilmiah, bagian tanaman, bentuk racikan, indikasi, senyawa fitokimia, dan rujukan dari Taru Pramana. Lapisan ini tidak dipaksakan pada naskah yang bukan Usadha.
 
-- **Lontar image preprocessing** di browser: downscale, CLAHE, dan unsharp mask sebelum dikirim.
-- **Pembacaan multimodal**: transliterasi, terjemahan Indonesia, dan terjemahan Inggris.
-- **Multi-resep per lembar**: satu lembar dapat memuat beberapa resep; semuanya ditampilkan sebagai kartu terpisah.
-- **Knowledge-base grounding**: nama ilmiah, family, senyawa, dan rujukan diambil dari Taru Pramana KB saat cocok; field yang tidak terverifikasi tidak diisi dengan klaim palsu.
-- **Hasil yang dapat diunduh**: laporan cetak/PDF berisi seluruh resep, terjemahan, rujukan, dan disclaimer.
-- **Mode mock** untuk pengembangan UI tanpa API.
+## Masalah dan Target Pengguna
 
-## Tech Stack
+**Masalah utama**
+
+- Aksara Bali pada lontar ditulis tanpa spasi dan memakai pasang aksara yang bertumpuk.
+- Banyak naskah memakai bahasa Kawi klasik, bukan bahasa Bali sehari-hari.
+- Foto lontar sering gelap, aus, atau miring, sehingga pembacaan manual memakan waktu.
+- Pengetahuan tanaman obat di lontar Usadha tersebar dan sulit dihubungkan dengan taksonomi modern.
+
+**Target pengguna**
+
+- Pelajar, mahasiswa, dan masyarakat yang ingin membaca lontar Bali.
+- Peneliti filologi, sejarah, dan etnobotani.
+- Kurator museum, perpustakaan, dan arsip budaya.
+- Praktisi herbal serta peneliti fitofarmaka yang bekerja dengan lontar Usadha.
+
+## Cakupan Produk
+
+| Alur | Naskah | Keluaran utama |
+| --- | --- | --- |
+| Pembacaan lontar umum | Semua lontar Bali yang dapat dibaca | Transliterasi, terjemahan Indonesia, terjemahan Inggris, ringkasan isi |
+| Alur Usadha | Lontar Usadha | Semua keluaran umum, ditambah satu atau beberapa kartu resep tanaman obat |
+
+Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa setiap lontar adalah Usadha, dan naskah non-Usadha tetap dapat dibaca sebagai teks.
+
+## Fitur
+
+### Pembacaan lontar
+
+- Preprocessing gambar di browser: downscale, CLAHE, dan unsharp mask.
+- Transkripsi aksara Bali ke Latin.
+- Terjemahan Indonesia dan Inggris.
+- Label sumber, nomor lempir, dan tingkat keterbacaan.
+- Tampilan hasil yang bisa disalin dan diekspor menjadi laporan PDF.
+
+### Alur Usadha
+
+- Deteksi beberapa resep dalam satu lembar.
+- Identifikasi nama tanaman lokal dan pencocokan dengan Taru Pramana.
+- Bagian tanaman, sifat tradisional, bentuk racikan, dan indikasi.
+- Senyawa fitokimia dan rujukan ilmiah yang tersedia di knowledge base.
+- Label "belum tercatat" saat tanaman tidak ditemukan di knowledge base.
+- Disclaimer medis dari server, bukan dari model.
+
+### Antarmuka
+
+- Lensa lontar dengan zoom dan mode kontras.
+- Pratinjau sebelum analisis.
+- Mode mock untuk pengembangan UI tanpa API.
+- Tata letak responsif dan laporan cetak.
+
+## Cara Kerja AI
+
+1. Browser mengecilkan dan mempertajam foto lontar.
+2. Gambar dikirim ke `POST /api/analyze-manuscript`.
+3. Backend memvalidasi ukuran dan tipe file, lalu mengirim gambar ke model multimodal.
+4. Dua pembacaan independen dijalankan untuk mengurangi hasil yang terpotong.
+5. Setiap respons diparse sebagai JSON, divalidasi, dan diperbaiki satu kali bila schema tidak sesuai.
+6. Hasil digabung. Untuk lontar Usadha, resep digabung dan dideduplikasi. Untuk naskah umum, daftar resep dapat kosong.
+7. Nama ilmiah, famili, senyawa, dan rujukan digrounding ke Taru Pramana. Field yang tidak cocok dikosongkan, bukan ditebak.
+8. Frontend menampilkan hasil bacaan dan, bila ada, kartu resep Usadha.
+
+Model tidak dipakai untuk menulis disclaimer, membuat sitasi palsu, atau mengisi taksonomi yang tidak ada di knowledge base.
+
+## Arsitektur
+
+```mermaid
+flowchart LR
+    U["Browser<br/>React + Canvas"] -->|multipart image| A["Go API<br/>validasi + rate limit"]
+    A -->|dua pembacaan independen| R["9router<br/>OpenAI-compatible"]
+    R --> G["Model multimodal"]
+    G -->|JSON| A
+    A -->|validasi + merge| K["Taru Pramana KB<br/>embedded JSON"]
+    K -->|hasil ter-grounding| A
+    A -->|AnalysisResponse| U
+    U --> P["Tampilan hasil + laporan PDF"]
+```
+
+Detail teknis ada di [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Kontrak respons ada di [`packages/schema/analysis.json`](packages/schema/analysis.json).
+
+## Teknologi
 
 | Layer | Teknologi |
 | --- | --- |
 | Frontend | React 19, TypeScript, Vite, Tailwind CSS v4, Radix UI, Lucide |
-| Image processing | HTML5 Canvas API |
-| Backend | Go standard library (`net/http`), single binary |
-| AI gateway | 9router, OpenAI-compatible endpoint |
-| AI model | Gemini 3.8 Flash (`ag/gemini-3.8-flash-low`), fallback `google/gemini-3.8-flash` via Command Code |
-| Knowledge base | Embedded JSON, Taru Pramana (`go:embed`) |
-| Contract | JSON Schema di `packages/schema/analysis.json` |
-| Hosting | Satu binary Go dengan SPA ter-embed; URL publik belum dikonfigurasi |
+| Pengolahan gambar | HTML5 Canvas API |
+| Backend | Go standard library, satu binary |
+| Gateway AI | 9router dengan endpoint OpenAI-compatible |
+| Model | Model multimodal melalui 9router, fallback opsional |
+| Knowledge base | JSON Taru Pramana yang di-embed dengan `go:embed` |
+| Kontrak | JSON Schema di `packages/schema/analysis.json` |
+| Deployment | Satu binary Go dengan SPA ter-embed |
 
-## AI Implementation
+## Menjalankan Proyek
 
-1. Browser mengirim foto lontar ke `POST /api/analyze-manuscript`.
-2. Backend memvalidasi tipe dan ukuran gambar, lalu memanggil model dua kali secara independen.
-3. Setiap hasil diparse sebagai JSON, divalidasi, dan diperbaiki sekali jika schema tidak sesuai.
-4. Dua hasil digabung menjadi daftar resep (maksimal 6, deduplikasi berdasarkan nama tanaman).
-5. Nama ilmiah, family, senyawa, dan rujukan digrounding ke Taru Pramana KB.
-6. Disclaimer medis selalu ditulis oleh server, bukan oleh model.
+Prasyarat:
 
-Konfigurasi model dan endpoint ada di environment variable. Kunci API tidak pernah dikirim ke frontend dan tidak disimpan di repository.
-
-## Architecture / Data Flow
-
-```mermaid
-flowchart LR
-    U["Browser<br/>React + Canvas"] -->|multipart image| A["Go API<br/>validate + rate limit"]
-    A -->|2 independent calls| R["9router<br/>OpenAI-compatible"]
-    R --> G["Gemini 3.8 Flash"]
-    G -->|JSON analysis| A
-    A -->|validate + merge| K["Taru Pramana KB<br/>embedded JSON"]
-    K -->|grounded recipes| A
-    A -->|AnalysisResponse| U
-    U --> P["Result UI + PDF report"]
-```
-
-Detail teknis: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Schema respons: [`packages/schema/analysis.json`](packages/schema/analysis.json).
-
-## Installation / Run Instructions
-
-Prasyarat: Node.js 20+, npm, Go 1.24+.
+- Node.js 20 atau lebih baru
+- npm
+- Go 1.24 atau lebih baru
 
 ```bash
 npm install
@@ -88,13 +152,13 @@ cp apps/api/.env.example apps/api/.env
 # Isi AI_BASE_URL, AI_MODEL, dan AI_API_KEY sesuai instance 9router.
 ```
 
-Terminal 1 — API:
+Terminal pertama:
 
 ```bash
 make dev-api
 ```
 
-Terminal 2 — frontend:
+Terminal kedua:
 
 ```bash
 npm run dev
@@ -102,60 +166,85 @@ npm run dev
 
 Buka `http://localhost:5173`.
 
-Build produksi (frontend di-embed ke binary Go):
+Build produksi:
 
 ```bash
 make build
 ./bin/bukalontar
 ```
 
-Buka `http://localhost:8080`. Health check: `GET /health`.
+Buka `http://localhost:8080`. Health check tersedia di `GET /health`.
 
-## Deployment URL
+Pengujian:
 
-- **Live MVP:** belum tersedia pada commit ini. Aplikasi saat ini diuji secara lokal di `http://localhost:8080`.
-- **Health check lokal:** `http://localhost:8080/health`
-- **Repository:** <https://github.com/0xMinomus/bukalontar>
+```bash
+cd apps/api
+go test ./...
+go vet ./...
 
-URL publik harus diisi sebelum submission. Jangan mengarang URL atau menaruh kredensial demo di repository.
-
-## Team Members
-
-- **Andika Putra** — developer dan pemelihara repository.
-
-## Known Limitations
-
-- Output model tidak deterministik. Dua request berturut-turut dapat membaca baris atau resep yang berbeda; multi-resep menampilkan seluruh hasil yang ditemukan, bukan menjamin hasil identik.
-- Kualitas pembacaan bergantung pada kualitas foto, pencahayaan, dan ketajaman goresan lontar.
-- Model default berjalan melalui 9router lokal; deployment publik membutuhkan gateway AI yang tersedia 24/7.
-- Knowledge base masih terbatas pada entri Taru Pramana yang dikurasi; tanaman di luar KB diberi label belum terverifikasi.
-- Belum ada autentikasi, database eksternal, atau akun demo karena aplikasi tidak menyimpan data pengguna.
-- Belum ada URL deployment publik pada commit ini.
-
-## Third-party Resources / Credits
-
-- Foto sampel lontar: Eka343, CC BY-SA 4.0 — lihat [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
-- Font: Cormorant Garamond dan Lora via Google Fonts.
-- Library frontend: React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge.
-- AI gateway: 9router; fallback Command Code Provider API.
-- Knowledge base: Taru Pramana, dikurasi di `apps/api/internal/kb/data/taru-pramana.json`. Sumber dan batasan dijelaskan di [`docs/PROJECT_CONCEPT.md`](docs/PROJECT_CONCEPT.md).
-
-## AI & Technology Disclosure
-
-Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI coding assistant digunakan untuk membantu implementasi dan dokumentasi; prompt, log, dan konfigurasi agen tidak disimpan di repository. Keputusan teknis dan source code tetap menjadi tanggung jawab tim.
-
-## Repository Layout
-
-```text
-apps/api/          Go API, AI client, KB, validation, embedded SPA
-apps/web/          React frontend, Canvas preprocessing, result UI, PDF report
-packages/schema/   JSON contract for AnalysisResponse
-docs/              Project concept, architecture, AI disclosure
+cd ../..
+npm run lint
+npm run build
 ```
 
-## Security
+## Struktur Repositori
 
-- `.env` dan seluruh varian lokal di-ignore; hanya `.env.example` yang boleh masuk repository.
-- `.env.example` tidak berisi API key, token, password, atau credential.
-- Tidak ada data pribadi atau data pasien dalam repository.
-- Jangan commit file konfigurasi agen, log lokal, atau state editor.
+```text
+apps/api/          API Go, AI client, validasi, KB, SPA ter-embed
+apps/web/          React, preprocessing Canvas, tampilan hasil, laporan PDF
+packages/schema/   Kontrak JSON AnalysisResponse
+docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
+```
+
+## Data, Sumber, dan Kredit
+
+- Foto sampel lontar: Eka343, CC BY-SA 4.0. Detail di [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
+- Knowledge base Taru Pramana: `apps/api/internal/kb/data/taru-pramana.json`.
+- Rujukan naskah dan konteks: [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
+- Font: Cormorant Garamond dan Lora melalui Google Fonts.
+- Library frontend: React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge.
+- Gateway AI: 9router. Fallback provider bersifat opsional.
+
+## Keamanan dan Privasi
+
+- API key hanya dibaca dari environment server.
+- `.env` dan varian lokal di-ignore. Hanya `.env.example` yang masuk repository.
+- Tidak ada data pribadi, data pasien, atau credential demo di repository.
+- Gambar diproses di memori dan tidak disimpan sebagai file oleh backend.
+- Endpoint 9router tidak boleh dibuka ke publik tanpa autentikasi.
+- Laporan kerentanan mengikuti [`SECURITY.md`](SECURITY.md).
+
+## AI dan Technology Disclosure
+
+Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI coding assistant digunakan untuk membantu implementasi dan dokumentasi. Prompt, log, dan konfigurasi agen tidak disimpan di repository. Keputusan teknis dan source code tetap menjadi tanggung jawab tim.
+
+## Batasan Saat Ini
+
+- Output model tidak deterministik. Dua permintaan berturut-turut dapat membaca baris atau resep yang berbeda.
+- Kualitas pembacaan bergantung pada kualitas foto, pencahayaan, dan ketajaman goresan.
+- Untuk naskah non-Usadha, hasil terstruktur masih terbatas pada bacaan, terjemahan, dan ringkasan. Klasifikasi genre yang mendalam belum tersedia.
+- Knowledge base masih terbatas pada entri Taru Pramana yang dikurasi.
+- Model membutuhkan gateway AI yang tersedia saat demo.
+- Belum ada autentikasi, database eksternal, atau akun demo.
+- URL deployment publik belum tersedia pada commit ini.
+
+## Tim
+
+- **Andika Putra**: developer dan pemelihara repository.
+
+## Dokumentasi Lanjutan
+
+- [Indeks dokumentasi](docs/README.md)
+- [Konsep produk](docs/PROJECT_CONCEPT.md)
+- [Arsitektur dan alur data](docs/ARCHITECTURE.md)
+- [Alur Usadha](docs/USADHA_MODE.md)
+- [Sumber data dan kredit](docs/DATA_SOURCES.md)
+- [AI dan Technology Disclosure](docs/AI_DISCLOSURE.md)
+- [Proposal Tahap 1](docs/proposal/proposal-final.html)
+- [Proposal PDF](docs/proposal/AIWIC2026_TimBukaLontar_BukaLontar.pdf)
+- [Panduan kontribusi](CONTRIBUTING.md)
+- [Kebijakan keamanan](SECURITY.md)
+
+---
+
+Dibuat untuk **Bali DigiFest 2026, AI Web Innovation Challenge**.

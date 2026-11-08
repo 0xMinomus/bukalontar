@@ -1,106 +1,100 @@
-# Project Concept: BukaLontar
-**Intelligent Balinese Palm-Leaf Manuscript Paleography & Ethnomedicinal Knowledge Engine**
-*Solusi AI untuk Pelestarian Manuskrip Kuno & Ekstraksi Farmakope Tradisional Bali*
+# Konsep Produk: BukaLontar
 
----
+**Pembaca lontar Bali berbasis AI, dengan alur khusus untuk naskah Usadha.**
 
-## 1. Problem & Background (Latar Belakang Masalah)
+## 1. Masalah
 
-Pulau Bali memiliki salah satu kekayaan peradaban literasi manuskrip daun lontar (*rontal*) terbesar di Asia Tenggara. Berdasarkan data resmi sensus dan konservasi naskah kuno:
-* **Dinas Kebudayaan Provinsi Bali (Tim Penyuluh Bahasa Bali):** Telah mendata, membersihkan, dan mengidentifikasi **lebih dari 25.000 cakep naskah lontar** milik masyarakat di 9 kabupaten/kota di Bali.
-* **UPTD Gedong Kirtya (Singaraja, Buleleng):** Perpustakaan lontar tertua di Bali (berdiri sejak 1928) menyimpan lebih dari **1.750 cakep naskah lontar asli**, di mana **Kelompok Va (Usadha)** secara khusus menampung ratusan judul naskah kedokteran tradisional Bali.
+Bali memiliki salah satu warisan naskah daun lontar terbesar di Asia Tenggara. Data yang sering dirujuk:
 
-Namun, kekayaan intelektual leluhur ini menghadapi ancaman kepunahan kritis akibat fenomena yang kami rumuskan sebagai **The Double Barrier Problem (Dua Lapis Hambatan)**:
+- Dinas Kebudayaan Provinsi Bali mencatat lebih dari 25.000 cakep lontar milik masyarakat.
+- UPTD Gedong Kirtya di Singaraja menyimpan lebih dari 1.750 cakep naskah lontar asli, termasuk kelompok Usadha.
 
-```mermaid
-flowchart TD
-    Lontar["Manuskrip Fisik Lontar Kuno<br/>(Tersimpan di Gedong Kirtya / Griya / Banjar)"] --> B1["Gembok 1: Hambatan Aksara (Visual Barrier)<br/>• Aksara Bali Kuno tanpa spasi (Scriptio Continua)<br/>• Pasang Aksara rumit (gantungan, gempelan, pangangge)<br/>• Fisik rapuh, gelap, baret jelaga kemiri"]
-    Lontar --> B2["Gembok 2: Hambatan Bahasa (Linguistic Barrier)<br/>• Ditulis dalam Bahasa Kawi / Jawa Kuno Klasik<br/>• Bukan bahasa Bali lisan pergaulan sehari-hari<br/>• Penuh terminologi etnobotani & anatomi kuno"]
-    
-    B1 --> Lock["Akibat: 99% Generasi Muda & Peneliti Modern<br/>TIDAK MAMPU Membaca & Mengakses Formulasi Obat Bali"]
-    B2 --> Lock
-    Lock --> Loss["Dampak Fatal:<br/>1. Kepunahan Ilmu Pengobatan Tradisional Leluhur<br/>2. Ancaman Biopiracy (Paten Tanaman Obat Asli Bali Dicuri Asing)"]
-```
+Namun, akses terhadap isinya masih terbatas oleh dua hambatan utama:
 
----
+1. **Hambatan aksara.** Aksara Bali kuno ditulis tanpa spasi, dengan pasang aksara yang bertumpuk. Foto lontar sering gelap, aus, atau miring.
+2. **Hambatan bahasa.** Banyak naskah memakai bahasa Kawi klasik, bukan bahasa Bali sehari-hari. Istilah tanaman, penyakit, dan ritual sering tidak lagi dipahami.
 
-## 2. Fakta Budaya & Linguistik: Mengapa Lontar Bali Berbahasa Kawi?
+Hambatan ini membuat lontar lebih sering disimpan daripada dibaca. Pengetahuan di dalamnya sulit dipelajari, sulit dicari, dan sulit dihubungkan dengan penelitian modern.
 
-> [!NOTE]
-> **Fakta Kunci untuk Dewan Juri:**
-> Banyak orang awam salah kaprah mengira lontar di Bali ditulis dalam bahasa Bali pergaulan sehari-hari. Faktanya:
-> * **Aksaranya:** **100% Aksara Bali** (aksara tradisi Bali).
-> * **Bahasanya:** **Bahasa Kawi (Jawa Kuno Klasik) & Bali Alus**.
+## 2. Arah Produk
 
-### Mengapa Bahasa Kawi Menjadi Bahasa Resmi Lontar Bali?
-1. **Peradaban Pasca-Majapahit:** Ketika kerajaan Majapahit runtuh pada abad ke-15, para cendekiawan, pendeta, dan bangsawan mengungsi ke Bali membawa ribuan karya sastra dan ilmu kedokteran kuno. Bali menjadi satu-satunya wilayah di dunia yang menjaga dan melestarikan naskah-naskah Kawi (bahkan naskah *Kakawin Sutasoma* dan *Nagarakretagama* ditemukan di Bali/Lombok).
-2. **Bahasa Ilmu Pengetahuan & Liturgi:** Di Bali, Bahasa Kawi memiliki kedudukan seperti bahasa Latin bagi bangsa Eropa atau Sanskerta bagi India. Semua mantra pendeta (*Pedanda*), kidung pura, hukum adat (*Awig-Awig/Kutaramanawa*), dan lontar pengobatan (*Usadha*) ditulis dalam bahasa Kawi.
-3. **Mengapa Ini Justru Masalah Utama yang Harus Diselesaikan AI?**
-   Karena adanya perbedaan antara aksara dan bahasa inilah, anak muda Bali maupun akademisi tidak bisa membaca naskah lontar Usadha. **BukaLontar hadir memecahkan kedua gembok ini sekaligus**: membaca aksara Bali-nya secara visual $\rightarrow$ menerjemahkan bahasa Kawi-nya secara semantik ke Bahasa Indonesia, Bali Alus, dan istilah biologi modern.
+BukaLontar tidak dibatasi pada satu genre naskah. Produk ini adalah pembaca lontar Bali secara umum:
 
----
+- menerima foto lempir,
+- menghasilkan transliterasi Latin,
+- menerjemahkan teks ke Indonesia dan Inggris,
+- menampilkan sumber dan tingkat keterbacaan,
+- menyediakan laporan yang dapat disalin atau dicetak.
 
-## 3. Data Katalog Resmi Lontar Usadha di Bali
+Di atas alur umum itu, lontar Usadha mendapat perlakuan khusus. Jika naskah memuat resep tanaman obat, BukaLontar mengekstrak tanaman, bagian yang dipakai, bentuk racikan, indikasi, senyawa, dan rujukan. Untuk naskah non-Usadha, lapisan resep tidak dipaksakan.
 
-Berikut adalah data naskah nyata yang tersimpan di museum dan balai budaya di Bali, membuktikan bahwa naskah ini nyata dan memiliki spesialisasi medis yang sangat terstruktur:
+Pendekatan ini penting agar produk tidak mengklaim semua lontar sebagai naskah pengobatan. Lontar Kakawin, Babad, Geguritan, atau tutur tetap dibaca sebagai teks, bukan sebagai resep.
 
-| Nama Lontar | Nomor Katalog Gedong Kirtya | Spesialisasi Medis Tradisional |
-| :--- | :--- | :--- |
-| **Lontar Taru Pramana** | No. `Va. 1384/10` | Ensiklopedia etnobotani (khasiat 100+ tanaman obat Bali). |
-| **Lontar Usadha Rare** | No. `Va. 1391/11` | Pediatri (kesehatan ibu, bayi, dan anak-anak). |
-| **Lontar Usadha Tiwang** | No. `Va. 1389/9` | Neurologi & spasme (penyakit kejang, saraf, kram otot). |
-| **Lontar Usadha Tuju** | No. `Va. 1380/6` | Reumatologi (rematik, asam urat, linu persendian). |
-| **Lontar Usadha Buduh** | No. `Va. 1395/15` | Psikiatri (gangguan kejiwaan dan kesehatan mental). |
-| **Lontar Usadha Kacacar** | Koleksi Pusdok Kebudayaan Bali | Dermatologi & infeksi (penyakit cacar, campak, kulit). |
+## 3. Pengguna Utama
 
----
+- **Pelajar dan mahasiswa** yang ingin membaca lontar tanpa harus menguasai paleografi terlebih dahulu.
+- **Peneliti filologi, sejarah, dan budaya** yang membutuhkan transkripsi awal dan terjemahan sebagai bahan pemeriksaan.
+- **Kurator museum dan arsip** yang ingin membuat katalog foto lontar lebih mudah dicari.
+- **Peneliti etnobotani dan fitofarmaka** yang bekerja dengan lontar Usadha.
+- **Praktisi herbal** yang membutuhkan rujukan tekstual, dengan pemahaman bahwa hasil AI bukan nasihat medis.
 
-## 4. Bukti Teks Asli & Pembuktian Bio-Farmasi Modern
+## 4. Alur Pengguna
 
-Naskah *Lontar Taru Pramana* ditulis dengan format personifikasi puitis di mana setiap tanaman berbicara memaparkan sifat rasa (*panes, tis, dumelada*) dan khasiatnya:
+1. Pengguna membuka aplikasi dan memilih foto lontar.
+2. Browser melakukan preprocessing ringan: downscale, CLAHE, dan unsharp mask.
+3. Backend memvalidasi gambar dan menjalankan dua pembacaan independen.
+4. Hasil dibaca sebagai JSON, divalidasi, lalu digabung.
+5. Pengguna melihat transliterasi, terjemahan, sumber, dan tingkat keterbacaan.
+6. Jika naskah memuat resep Usadha, pengguna melihat kartu tanaman dan rincian racikan.
+7. Pengguna dapat menyalin hasil atau mengunduh laporan PDF.
 
-### Studi Kasus 1: Taru Sotong (Pohon Jambu Biji) untuk Penyakit Diare (*Mising*)
-* **Teks Asli Lontar (Transliterasi Bahasa Kawi):**
-  > *"Tityang taru sotong, daging anget, rasa sepet, dados anggen tamba pangemped mising, sa, muncuk tityange ulig, anggen papuser ring pungsed, ra, katumbar bolong, 3, lunak."*
-* **Terjemahan Bahasa Indonesia:**
-  > *"Hamba Pohon Jambu Biji (Sotong), sifat daging buah hamba hangat, rasanya sepat, dapat dipergunakan sebagai obat penahan mencret (diare). Sarana: ambil pucuk daun hamba kemudian ditumbuk/diulek, lalu ditempelkan pada pusar. Ramuan pelengkap: campurkan 3 butir ketumbar bolong dan asam jawa."*
-* **Validasi Bio-Farmasi Ilmiah:**
-  Pucuk daun jambu biji (*Psidium guajava*) terbukti secara klinis mengandung senyawa *tannin* dan *quercetin* yang bersifat antimikroba (menghambat bakteri *E. coli*) dan antispasmodik (meredakan kontraksi usus).
+## 5. Alur Usadha
 
-### Studi Kasus 2: Taru Pule (Pohon Pule) untuk Sakit Perut Mendadak (*Cika*)
-* **Teks Asli Lontar (Transliterasi Bahasa Kawi):**
-  > *"Tityang taru pule, daging tis, kulit getep panes, dados anggen tamba cika, sa, babakan tityang kaurab adas, temutitis, ulig anggen boreh..."*
-* **Terjemahan Bahasa Indonesia:**
-  > *"Hamba Pohon Pule, getah/daging hamba sejuk, kulit batang hamba hangat, dapat digunakan sebagai obat kram perut/kolik mendadak (cika). Sarana: kulit kayu hamba dicampur adas dan temutitis (rimpang kunyit kecil), diulek lalu dibalurkan sebagai boreh."*
-* **Validasi Bio-Farmasi Ilmiah:**
-  Kulit batang pule (*Alstonia scholaris*) mengandung alkaloid *echitamine* dan *alstonine* yang memiliki efek analgesik (antinyeri) dan antipiretik (penurun demam).
+Alur Usadha adalah fitur khusus, bukan mode terpisah yang harus dipilih pengguna. Jika model menemukan resep pada naskah, hasil resep ditampilkan. Jika tidak, hasil tetap berguna sebagai bacaan dan terjemahan.
 
----
+Cakupan alur Usadha:
 
-## 5. Target Pengguna & Manfaat Proyek
+- nama tanaman lokal Bali,
+- nama ilmiah dan famili jika cocok dengan Taru Pramana,
+- bagian tanaman: daun, kulit kayu, akar, buah, bunga, atau campuran,
+- sifat tradisional: panas, dingin, atau sedang,
+- bentuk racikan: loloh, boreh, tutuh, atau sasap,
+- indikasi dan cara racik,
+- senyawa fitokimia dan rujukan yang tersedia di knowledge base,
+- disclaimer medis kanonik.
 
-```mermaid
-graph TD
-    BukaLontar["Platform BukaLontar"] --> U1["Peneliti Bio-Farmasi & Etnobotani<br/>(Akselerasi Riset Obat Herbal & Fitofarmaka)"]
-    BukaLontar --> U2["Generasi Muda & Pelajar Bali<br/>(Literasi Aksara Tradisi & Edukasi Budaya)"]
-    BukaLontar --> U3["Praktisi Herbal & UMKM Wellness Bali<br/>(Standarisasi Loloh & Boreh Tradisional)"]
-    BukaLontar --> U4["Kurator Museum (Gedong Kirtya dsb.)<br/>(Pengarsipan Digital Cerdas yang Bisa Dicari)"]
-```
+Detail teknis ada di [USADHA_MODE.md](USADHA_MODE.md).
 
-1. **Peneliti Bio-Farmasi & Etnobotani:** Menghemat waktu riset transliterasi manual berbulan-bulan dan memetakan langsung tanaman obat lokal ke senyawa kimia modern (*anti-biopiracy*).
-2. **Generasi Muda & Pelajar Bali:** Membuka akses naskah lontar leluhur yang selama ini dianggap rumit, kuno, dan angker menjadi informasi interaktif di layar gawai.
-3. **Praktisi Herbal (*Balian Usadha*) & Industri *Wellness Tourism* Bali:** Memberikan referensi takaran racikan tradisional yang higienis, terstandarisasi, dan aman untuk spa/kuliner herbal Bali.
-4. **Kurator Museum & Pustakawan:** Mengubah arsip foto lontar mati menjadi basis data pengetahuan yang dapat dicari (*searchable digital database*).
+## 6. Prinsip Responsible AI
 
----
+- **Sumber lebih penting daripada kelancaran.** Teks yang tidak terbaca ditandai, bukan ditebak.
+- **Taksonomi tidak boleh dikarang.** Nama ilmiah dan famili hanya diisi jika ada di knowledge base.
+- **Sitasi tidak boleh dikarang.** Rujukan yang tidak tersedia dikosongkan.
+- **Hasil adalah alat bantu.** Pengguna tetap perlu memeriksa lempir asli dan rujukan filologi.
+- **Bukan alat diagnosis.** BukaLontar tidak memberikan diagnosis, dosis, atau instruksi pengobatan.
+- **Privasi.** Gambar diproses untuk analisis dan tidak disimpan sebagai file oleh backend.
 
-## 6. Prinsip Responsible AI & Etika
+## 7. Batasan dan Non-Tujuan
 
-* **Medical Safety Disclaimer Wajib:**
-  Setiap hasil analisis menampilkan peringatan:
-  > *"Informasi ini ditujukan untuk preservasi warisan budaya dan edukasi fitofarmaka. Untuk penanganan medis darurat, selalu konsultasikan dengan dokter atau tenaga kesehatan profesional."*
-* **Integritas Sumber Manuskrip:** Setiap resep mencantumkan rujukan lontar asalnya (nama cakep, nomor lempir, dan koleksi pustaka terkait).
+- Bukan pengganti filolog atau ahli bahasa Kawi.
+- Bukan sistem OCR sempurna untuk semua kondisi foto.
+- Bukan database medis dan bukan sumber nasihat pengobatan.
+- Belum melakukan klasifikasi genre naskah secara mendalam.
+- Belum menyediakan pencarian lintas koleksi atau integrasi katalog eksternal.
 
----
+## 8. Sumber dan Rujukan
 
-*Lanjutkan membaca ke arsitektur teknis dan pipeline AI di [docs/ARCHITECTURE.md](ARCHITECTURE.md).*
+- Dinas Kebudayaan Provinsi Bali, data sensus dan konservasi naskah lontar.
+- UPTD Gedong Kirtya, Singaraja, katalog naskah lontar.
+- Lontar Taru Pramana, Va. 1384/10.
+- Lontar Usadha Rare, Va. 1391/11.
+- Foto sampel: Eka343, CC BY-SA 4.0, melalui Wikimedia Commons.
+
+Rincian ada di [DATA_SOURCES.md](DATA_SOURCES.md).
+
+## 9. Bacaan Lanjutan
+
+- [Arsitektur dan alur data](ARCHITECTURE.md)
+- [Alur Usadha](USADHA_MODE.md)
+- [AI dan Technology Disclosure](AI_DISCLOSURE.md)
+- [Indeks dokumentasi](README.md)
