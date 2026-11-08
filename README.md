@@ -240,9 +240,7 @@ Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI c
 - [Alur Usadha](docs/USADHA_MODE.md)
 - [Sumber data dan kredit](docs/DATA_SOURCES.md)
 - [AI dan Technology Disclosure](docs/AI_DISCLOSURE.md)
-- [Proposal Tahap 1](docs/proposal/proposal.html)
 - [Proposal PDF](docs/proposal/AIWIC2026_0xAlpha_BukaLontar.pdf)
-- [Audit proposal](docs/proposal/AUDIT.md)
 - [Panduan kontribusi](CONTRIBUTING.md)
 - [Kebijakan keamanan](SECURITY.md)
 
