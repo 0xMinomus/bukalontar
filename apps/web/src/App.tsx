@@ -316,19 +316,6 @@ export default function App() {
     navigate('/analisis')
   }
 
-  function downloadJson() {
-    if (!result) return
-    const blob = new Blob([JSON.stringify(result, null, 2)], {
-      type: 'application/json',
-    })
-    const url = URL.createObjectURL(blob)
-    const anchor = document.createElement('a')
-    anchor.href = url
-    anchor.download = `${result.manuscript_id}.json`
-    anchor.click()
-    URL.revokeObjectURL(url)
-  }
-
   useEffect(() => {
     function onPaste(event: ClipboardEvent) {
       if (stage !== 'idle' && stage !== 'error') return
@@ -427,7 +414,6 @@ export default function App() {
                     view={view}
                     onViewChange={setView}
                     onReset={reset}
-                    onExport={downloadJson}
                     onPrint={() => window.print()}
                     isMock={IS_MOCK}
                   />

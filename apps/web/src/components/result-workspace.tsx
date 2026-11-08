@@ -3,7 +3,6 @@ import {
   BookOpen,
   Download,
   Info,
-  Printer,
   RotateCcw,
 } from 'lucide-react'
 
@@ -54,7 +53,6 @@ interface ResultWorkspaceProps {
   view: LensView
   onViewChange: (view: LensView) => void
   onReset: () => void
-  onExport: () => void
   onPrint: () => void
   isMock: boolean
 }
@@ -66,7 +64,6 @@ export function ResultWorkspace({
   view,
   onViewChange,
   onReset,
-  onExport,
   onPrint,
   isMock,
 }: ResultWorkspaceProps) {
@@ -108,23 +105,12 @@ export function ResultWorkspace({
               type="button"
               variant="outline"
               size="sm"
-              onClick={onExport}
-              aria-label="Unduh hasil analisis"
+              onClick={onPrint}
+              aria-label="Unduh laporan sebagai PDF"
               className="size-11 px-0 sm:h-9 sm:w-auto sm:px-3"
             >
               <Download aria-hidden="true" />
               <span className="hidden sm:inline">Unduh</span>
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={onPrint}
-              aria-label="Cetak hasil analisis"
-              className="size-11 px-0 sm:h-9 sm:w-auto sm:px-3"
-            >
-              <Printer aria-hidden="true" />
-              <span className="hidden sm:inline">Cetak</span>
             </Button>
             <Button
               type="button"
