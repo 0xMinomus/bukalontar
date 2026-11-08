@@ -22,6 +22,7 @@ Aplikasi web untuk membaca citra lontar Bali, menghasilkan transliterasi dan ter
 ## Daftar Isi
 
 - [Tentang](#tentang)
+- [Screenshot](#screenshot)
 - [Masalah dan Target Pengguna](#masalah-dan-target-pengguna)
 - [Cakupan Produk](#cakupan-produk)
 - [Fitur](#fitur)
@@ -44,6 +45,14 @@ Lontar adalah warisan tulis Bali yang mencakup banyak genre: Usadha, Kakawin, Ba
 BukaLontar adalah pembaca lontar berbasis AI. Unggah foto lempir, lalu aplikasi menampilkan transliterasi Latin, terjemahan Indonesia dan Inggris, serta informasi sumber naskah. Alur ini berlaku untuk lontar Bali secara umum.
 
 Untuk lontar Usadha, hasilnya diperkaya dengan lapisan khusus: nama tanaman lokal, nama ilmiah, bagian tanaman, bentuk racikan, indikasi, senyawa fitokimia, dan rujukan dari Taru Pramana. Lapisan ini tidak dipaksakan pada naskah yang bukan Usadha.
+
+## Screenshot
+
+<p align="center">
+  <img src="docs/assets/landing-page.png" alt="Landing page BukaLontar" width="900" />
+</p>
+
+Landing page BukaLontar: unggah satu lempir, mulai dari arsip contoh, lalu baca hasilnya.
 
 ## Masalah dan Target Pengguna
 
