@@ -10,8 +10,9 @@ Dokumentasi ini menjelaskan produk, arsitektur, alur AI, dan batasan BukaLontar.
 4. [Alur Usadha](USADHA_MODE.md) untuk fitur resep tanaman obat.
 5. [Sumber data](DATA_SOURCES.md) untuk rujukan naskah, foto, dan knowledge base.
 6. [AI Disclosure](AI_DISCLOSURE.md) untuk teknologi dan peran AI.
-7. [Proposal Tahap 1](proposal/proposal-final.html) untuk versi proposal yang dapat dicetak.
-8. [Proposal PDF](proposal/AIWIC2026_TimBukaLontar_BukaLontar.pdf) untuk file submission.
+7. [Proposal Tahap 1](proposal/proposal.html) untuk versi proposal yang dapat dicetak.
+8. [Proposal PDF](proposal/AIWIC2026_0xAlpha_BukaLontar.pdf) untuk file submission.
+9. [Audit proposal](proposal/AUDIT.md) untuk catatan pemeriksaan dokumen.
 
 ## Peta dokumen
 
@@ -22,7 +23,7 @@ graph TD
     README --> USADHA["USADHA_MODE.md<br/>Resep tanaman obat"]
     README --> SOURCES["DATA_SOURCES.md<br/>Naskah, foto, knowledge base"]
     README --> DISCLOSURE["AI_DISCLOSURE.md<br/>Teknologi dan peran AI"]
-    README --> PROPOSAL["proposal/proposal-final.html<br/>Proposal Tahap 1"]
+    README --> PROPOSAL["proposal/proposal.html<br/>Proposal Tahap 1"]
     ARCH --> USADHA
     USADHA --> SOURCES
 ```

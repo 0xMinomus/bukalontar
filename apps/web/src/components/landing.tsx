@@ -13,82 +13,45 @@ interface LandingProps {
   isMock: boolean
 }
 
-export function Landing({
-  onFile,
-  onSample,
-  busySampleId,
-  isMock,
-}: LandingProps) {
+export function Landing({ onFile, onSample, busySampleId, isMock }: LandingProps) {
   return (
-    <section className="relative overflow-hidden border-b border-border/70">
-      <div className="relative mx-auto max-w-5xl px-5 pb-14 pt-12 text-center md:px-8 md:pb-20 md:pt-20">
-        <Reveal>
-          <p className="small-caps text-xs font-semibold text-brass-strong">
-            Bali DigiFest 2026 · Arsip Usada
-          </p>
-
-          <h1 className="mt-6 font-heading text-[clamp(3.3rem,9vw,7.4rem)] font-medium leading-[0.9] tracking-[-0.035em] text-foreground">
-            Baca lontar.
-            <br />
-            <span className="italic text-primary">Temukan usadha.</span>
+    <section className="manuscript-landing">
+      <div className="landing-folio mx-auto max-w-5xl px-5 text-center md:px-8">
+        <div className="hero-copy">
+          <h1 className="font-heading">
+            Baca lontar,<br />
+            <em>pahami isinya.</em>
           </h1>
-
-          <Ornament className="mx-auto mt-7 w-44 text-brass-strong/75" />
-
-          <p className="mx-auto mt-5 max-w-[58ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Foto lempir lontar, lalu baca transliterasi aksara Bali, terjemahan
-            bahasa Kawi, dan kartu tanaman obat dalam satu alur.
+          <p className="mx-auto max-w-[46ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Dari foto lempir ke aksara Latin, terjemahan, dan konteks naskah Bali.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal delay={130} className="mx-auto mt-9 max-w-4xl text-left">
+        <div className="upload-scene">
+          <span className="scene-leaf scene-leaf-left" aria-hidden="true" />
+          <span className="scene-leaf scene-leaf-right" aria-hidden="true" />
           <Dropzone onFile={onFile} />
-          <SamplePicker
-            onSelect={onSample}
-            busyId={busySampleId}
-            disabled={Boolean(busySampleId)}
-          />
+        </div>
+        <p className="upload-note text-xs leading-relaxed text-muted-foreground">
+          JPG, PNG, WEBP · Maks. 8 MB · Bisa tempel dengan Ctrl V
+        </p>
 
+        <Reveal className="sample-folio text-left">
+          <SamplePicker onSelect={onSample} busyId={busySampleId} disabled={Boolean(busySampleId)} />
           {isMock ? (
-            <div className="mt-5 flex items-start justify-center gap-2 text-xs leading-relaxed text-muted-foreground">
+            <div className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
               <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-              <p>
-                Pratinjau antarmuka. Hasil AI masih memakai data contoh;
-                backend Go belum terhubung.
-              </p>
+              <p>Mode contoh. Hasil memakai data demonstrasi, bukan pembacaan foto Anda.</p>
             </div>
           ) : null}
         </Reveal>
 
-        <Reveal
-          delay={220}
-          className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-border/70 pt-5 text-xs text-muted-foreground"
-        >
-          <span>
-            <span className="small-caps font-semibold text-brass-strong">
-              Aksara
-            </span>{' '}
-            Bali
-          </span>
-          <span aria-hidden="true" className="text-border">
-            ·
-          </span>
-          <span>
-            <span className="small-caps font-semibold text-brass-strong">
-              Bahasa
-            </span>{' '}
-            Kawi
-          </span>
-          <span aria-hidden="true" className="text-border">
-            ·
-          </span>
-          <span>
-            <span className="small-caps font-semibold text-brass-strong">
-              Rujukan
-            </span>{' '}
-            Taru Pramana
-          </span>
-        </Reveal>
+        <div className="landing-colophon">
+          <Ornament className="mx-auto w-32 text-brass-strong" />
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            Kakawin, babad, geguritan, tutur, dan usadha.<br className="sm:hidden" /> Setiap lontar dibaca sesuai isinya.
+          </p>
+        </div>
       </div>
     </section>
   )

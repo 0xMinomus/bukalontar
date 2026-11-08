@@ -132,7 +132,7 @@ export function PreviewStage({
           </Button>
 
           <p className="mt-2 text-center text-xs leading-relaxed text-muted-foreground">
-            AI akan membaca aksara, menerjemahkan Kawi, lalu memetakan tanaman.
+            AI membaca aksara dan menerjemahkan isi naskah. Resep Usadha ditampilkan bila ditemukan.
           </p>
 
           <Separator className="my-5" />

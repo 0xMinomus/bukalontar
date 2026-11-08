@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 const steps = [
   { title: 'Menyiapkan citra', detail: 'Kontras dan ketajaman' },
   { title: 'Membaca aksara', detail: 'Aksara Bali dan pasang aksara' },
-  { title: 'Menerjemahkan Kawi', detail: 'Indonesia dan Inggris' },
-  { title: 'Mencocokkan tanaman', detail: 'Taru Pramana dan nama ilmiah' },
+  { title: 'Menyusun terjemahan', detail: 'Indonesia dan Inggris' },
+  { title: 'Memeriksa konteks', detail: 'Sumber naskah dan resep Usadha bila ada' },
 ]
 
 interface ProcessingStageProps {
@@ -36,7 +36,7 @@ export function ProcessingStage({
               className="absolute inset-0 size-full object-cover opacity-70"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-mat via-transparent to-transparent" />
-            <p className="absolute inset-x-4 bottom-4 text-[11px] font-medium text-white/60">
+            <p className="absolute inset-x-4 bottom-4 text-[11px] font-medium text-white">
               Lempir sedang dibaca
             </p>
           </div>
@@ -49,8 +49,8 @@ export function ProcessingStage({
               Menyusun hasil
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Kami sedang membaca aksara, menyusun terjemahan, dan mencocokkan
-              tanaman obat. Hasil akan ditampilkan setelah selesai.
+              Aksara sedang dibaca dan diterjemahkan. Jika ada resep Usadha,
+              hasilnya dilengkapi rujukan tanaman yang tersedia.
             </p>
 
             <ol className="mt-6 space-y-0" aria-live="polite">

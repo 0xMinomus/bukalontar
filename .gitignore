@@ -28,9 +28,11 @@ CLAUDE.md
 .continue/
 .omp/
 *.prompt.md
+.impeccable/
 
 # Submission administration and local test material
 Panduan_Peserta_*.pdf
+/AIWIC2026_0xAlpha_BukaLontar.pdf
 Lontar Test/
 _.jpeg
 

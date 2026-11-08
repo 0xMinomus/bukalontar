@@ -337,7 +337,7 @@ export default function App() {
   return (
     <TooltipProvider>
       <div className="flex min-h-[100dvh] flex-col">
-        <div className="no-print">
+        <div className="no-print app-header-shell">
           <AppHeader showNav={isLanding} onHome={handleLogo} />
         </div>
 

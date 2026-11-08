@@ -75,7 +75,7 @@ export function ResultWorkspace({
   const hasPlant = plantRecipes.length > 0
 
   return (
-    <section className="result-page mx-auto max-w-[1440px] animate-[fade-rise_500ms_ease-out_both] px-5 py-8 md:px-8 md:py-10">
+    <section className="result-page mx-auto max-w-[1440px] px-5 py-8 md:px-8 md:py-10">
       <div className="screen-only flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="small-caps text-xs font-semibold text-brass-strong">

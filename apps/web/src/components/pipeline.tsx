@@ -2,7 +2,7 @@ import { Check } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-const steps = ['Unggah', 'Tingkatkan', 'Baca', 'Petakan']
+const steps = ['Unggah', 'Tingkatkan', 'Baca', 'Konteks']
 
 export function Pipeline({ current = steps.length }: { current?: number }) {
   return (

@@ -12,52 +12,36 @@ const layers = [
   {
     numeral: 'II',
     title: 'Bahasa',
-    body: 'Menerjemahkan bahasa Kawi klasik ke Indonesia dan Inggris, dengan konteks istilah medis dan etnobotani.',
+    body: 'Membaca isi naskah dalam terjemahan Indonesia dan Inggris, sambil tetap menyandingkannya dengan teks asli.',
   },
   {
     numeral: 'III',
-    title: 'Botani',
-    body: 'Memetakan nama tanaman lokal ke nama ilmiah, famili, dan senyawa aktif dari basis data Taru Pramana.',
+    title: 'Konteks',
+    body: 'Menampilkan sumber dan keterbacaan. Jika ada resep Usadha, tanaman dicocokkan dengan basis pengetahuan Taru Pramana.',
   },
 ]
 
 export function HowItWorks() {
   return (
     <>
-      <section id="alur" className="border-t border-border/70">
+      <section id="alur" className="reading-section">
         <div className="mx-auto max-w-5xl px-5 py-14 md:px-8 md:py-20">
           <Reveal className="text-center">
-            <p className="small-caps text-xs font-semibold text-brass-strong">
-              Alur kerja
-            </p>
-            <h2 className="mt-3 font-heading text-4xl tracking-tight md:text-5xl">
-              Tiga lapis yang dibaca
+            <h2 className="font-heading text-4xl tracking-tight md:text-5xl">
+              Dari goresan ke bacaan
             </h2>
             <Ornament className="mx-auto mt-4 w-36 text-brass-strong/70" />
             <p className="mx-auto mt-4 max-w-[62ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Lontar usada tidak hanya sulit karena aksaranya. Bahasa dan nama
-              tanamannya juga sudah jauh dari percakapan sehari-hari. BukaLontar
-              membaca ketiganya dalam satu alur.
+              Unggah satu lempir. Baca teks Latin dan terjemahannya, lalu
+              periksa kembali bagian yang kurang jelas pada foto asli.
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border/70">
+          <div className="reading-leaves mt-10">
             {layers.map((layer, index) => (
-              <Reveal
-                key={layer.numeral}
-                delay={index * 90}
-                className={
-                  index === 0
-                    ? 'md:pr-8'
-                    : index === 1
-                      ? 'md:px-8'
-                      : 'md:pl-8'
-                }
-              >
+              <Reveal key={layer.numeral} delay={index * 70} className="reading-leaf">
                 <article>
-                  <p className="font-heading text-3xl leading-none text-brass-strong">
-                    {layer.numeral}
-                  </p>
+                  <Ornament className="mb-4 w-16 text-brass-strong" />
                   <h3 className="mt-2 font-heading text-2xl tracking-tight">
                     {layer.title}
                   </h3>
@@ -83,26 +67,26 @@ export function HowItWorks() {
         </div>
       </section>
 
-      <section id="tentang" className="border-t border-border/70">
-        <div className="mx-auto max-w-5xl px-5 py-14 md:px-8 md:py-20">
+      <section id="tentang" className="about-section">
+        <div className="mx-auto max-w-5xl px-5 pb-16 pt-8 md:px-8 md:pb-24">
           <Reveal>
-            <div className="paper-panel frame-antique p-6 md:p-10">
+            <div className="paper-panel frame-antique about-folio p-6 md:p-10">
               <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-12">
                 <div>
-                  <p className="small-caps text-xs font-semibold text-brass-strong">
-                    Tentang
-                  </p>
-                  <h2 className="mt-2 font-heading text-4xl tracking-tight md:text-5xl">
-                    BukaLontar
+                  <h2 className="font-heading text-4xl tracking-tight md:text-5xl">
+                    Lontar menyimpan<br /><em>banyak pengetahuan.</em>
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                    BukaLontar adalah purwarupa untuk membuka kembali lontar usada
-                    Bali. Fokusnya bukan sekadar membaca huruf, tetapi menyusun
-                    pengetahuan obat tradisional yang bisa diperiksa: tanaman
-                    apa, bagian mana, bagaimana diracik, dan bagaimana
-                    khasiatnya menurut riset modern.
+                    Kakawin, babad, geguritan, tutur, hingga usadha. BukaLontar
+                    membantu membaca naskah Bali dari foto, tanpa menganggap
+                    setiap lempir sebagai catatan pengobatan.
                   </p>
-                  <blockquote className="mt-6 border-l-2 border-brass pl-4">
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    Bila naskah memuat resep Usadha, kartu tanaman dan rujukan
+                    Taru Pramana tetap hadir. Hasil dapat disalin atau dicetak
+                    sebagai laporan untuk diperiksa lebih lanjut.
+                  </p>
+                  <blockquote className="mt-6 border-l border-brass pl-4">
                     <p className="font-serif text-[1.05rem] italic leading-relaxed text-foreground">
                       “Tityang taru sotong, daging anget, rasa sepet, dados
                       anggen tamba pangemped mising.”
@@ -159,8 +143,8 @@ export function HowItWorks() {
                     <ArrowUpRight className="size-4" aria-hidden="true" />
                   </a>
                   <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    BukaLontar membaca lontar secara langsung. Hasil ditampilkan
-                    bersama rujukan tanaman dan pengingat medis.
+                    Hasil AI adalah bacaan awal. Periksa lempir asli dan rujukan
+                    filologi; informasi Usadha bukan nasihat medis.
                   </p>
                 </div>
               </div>

@@ -8,8 +8,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-8">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="flex items-center gap-3">
-            <span className="flex size-9 items-center justify-center rounded-full border border-brass/40 bg-primary text-primary-foreground shadow-[inset_0_0_0_1px_rgb(255_255_255_/_0.14)]">
-              <BrandMark className="size-4" />
+            <span className="flex size-11 items-center justify-center">
+              <BrandMark className="size-11" />
             </span>
             <div>
               <p className="font-heading text-xl leading-none tracking-tight">
