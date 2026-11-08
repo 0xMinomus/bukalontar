@@ -20,7 +20,7 @@ typography:
     fontFamily: "Lora Variable, Georgia, serif"
 rounded:
   control: "6px"
-  header: "10px"
+  header: "0px"
 spacing:
   small: "12px"
   medium: "24px"
@@ -45,11 +45,11 @@ Cormorant Garamond brings the fine, engraved character of the reference to headi
 
 ## Layout
 
-Center the concise upload instruction on the manuscript stack. Preserve existing navigation targets and routes. The header shell sticks at the viewport top; the header retains a small breathing gap. Navigation becomes a second row below 640px. Result pages keep their existing work areas, tabs, and controls.
+Center the concise upload instruction on the manuscript stack. Preserve existing navigation targets and routes. The sticky header spans the full viewport width, flush with the top, without floating margins, rounded corners, or a shadow. Its inner content is capped at 1200px. Height is 65px on desktop and 84px on the mobile landing page; navigation becomes a compact second row below 640px. Result tabs retain horizontal scrolling when necessary, but hide native scrollbar chrome and prevent vertical overflow.
 
 ## Elevation & Depth
 
-Only the header uses backdrop blur. Soft shadows separate overlapping leaves and the fixed navigation from paper; content panels do not all float. Reduced transparency uses a solid header.
+Only the header uses backdrop blur. Soft shadows separate overlapping leaves from paper; the header is separated by a thin bottom rule rather than elevation. Reduced transparency uses a solid header.
 
 ## Shapes
 

@@ -26,10 +26,10 @@ export function AppHeader({ showNav = true, onHome }: AppHeaderProps) {
     <header className="app-header no-print">
       <div className="header-inner">
         <Link to="/" onClick={onHome} className="brand-link">
-          <BrandMark className="size-11" />
+          <BrandMark className="size-9" />
           <span className="flex flex-col leading-none">
-            <span className="font-heading text-[1.8rem] font-semibold tracking-tight">BukaLontar</span>
-            <span className="mt-1 text-[10px] text-muted-foreground">Aksara, bahasa, pengetahuan Bali</span>
+            <span className="font-heading text-[1.6rem] font-semibold tracking-tight">BukaLontar</span>
+            <span className="mt-1 hidden text-[10px] text-muted-foreground sm:block">Aksara, bahasa, pengetahuan Bali</span>
           </span>
         </Link>
         {showNav ? (
