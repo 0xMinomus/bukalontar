@@ -31,7 +31,7 @@ graph TD
 2. [**02. Project Concept — UsadhaAI**](docs/02_PROJECT_CONCEPT_USADHAAI.md)
    * Penjelasan masalah *The Double Barrier Problem* (Aksara Bali + Bahasa Kawi), data sensus Disbud Bali (>25.000 lontar), katalog Gedong Kirtya (Va. 1384/10 *Taru Pramana*), dan validasi bio-farmasi modern.
 3. [**03. System Architecture & AI Pipeline**](docs/03_SYSTEM_ARCHITECTURE_AND_AI_PIPELINE.md)
-   * Alur teknis end-to-end: Preprocessing visual $\rightarrow$ Multimodal Vision (Gemini) $\rightarrow$ Ekstraksi Entitas Terstruktur $\rightarrow$ Mapping Taksonomi Botani Modern $\rightarrow$ UI Interaktif.
+   * Alur teknis end-to-end: Preprocessing visual $\rightarrow$ Multimodal Vision (Gemini 3.8 Flash) $\rightarrow$ Ekstraksi Entitas Terstruktur $\rightarrow$ Mapping Taksonomi Botani Modern $\rightarrow$ UI Interaktif.
 4. [**04. Explicit Knowledge Graph & Ontologies**](docs/04_KNOWLEDGE_GRAPH.md)
    * Pemetaan relasi antar-entitas: Aturan Lomba $\leftrightarrow$ Sensus Lontar $\leftrightarrow$ Bahasa Kawi $\leftrightarrow$ Fitur MVP $\leftrightarrow$ Model AI $\leftrightarrow$ Dataset Botani.
 5. [**05. Submission Checklist & Templates**](docs/05_SUBMISSION_CHECKLIST_AND_TEMPLATES.md)
@@ -49,7 +49,7 @@ graph TD
 | **Masalah Inti** | **The Double Barrier Problem**: Naskah lontar pengobatan Bali terkunci oleh 2 lapis hambatan: (1) Aksara Bali kuno tanpa spasi, dan (2) Bahasa Kawi (Jawa Kuno Klasik). |
 | **Prinsip AI** | **Material AI**: Multimodal Vision + LLM Reasoning + Structured Bio-Entity Extraction + Botanical Knowledge Graph Mapping |
 | **Target MVP** | Web Application responsif, clean-start testing, interactive high-res lontar lens, instant transliteration, and digital ethnopharmacopeia card |
-| **Tech Stack** | Next.js 15, Tailwind CSS, TypeScript, Gemini 1.5/2.0 Flash API, Taru Pramana Knowledge Base, Vercel |
+| **Tech Stack** | React 19 + TypeScript + Vite, Tailwind CSS, Go (single binary + embedded SPA), Gemini 3.8 Flash via 9router/Command Code, Taru Pramana Knowledge Base, Docker Compose + Caddy di VM |
 
 ---
 
