@@ -53,4 +53,22 @@ graph TD
 
 ---
 
+## Menjalankan Frontend
+
+Frontend ada di `apps/web` (React 19 + Vite + TypeScript + Tailwind CSS + shadcn-style components).
+
+```bash
+npm install
+npm run dev
+```
+
+Buka `http://localhost:5173`. Saat ini hasil AI memakai data contoh (`VITE_USE_MOCK=true`); backend Go akan dihubungkan setelah alur UI selesai.
+
+```bash
+npm run build
+npm run lint
+```
+
+---
+
 *Lihat rincian lengkap konsep proyek di [docs/02_PROJECT_CONCEPT_USADHAAI.md](docs/02_PROJECT_CONCEPT_USADHAAI.md).*

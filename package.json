@@ -1,0 +1,15 @@
+{
+  "name": "usadha-ai",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @usadha/web",
+    "build": "npm run build --workspace @usadha/web",
+    "preview": "npm run preview --workspace @usadha/web",
+    "lint": "npm run lint --workspace @usadha/web"
+  }
+}
