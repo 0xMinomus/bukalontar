@@ -34,6 +34,7 @@ Rules:
 19. Do not set plant_local_name to "Tidak disebutkan." until you have read the entire leaf. If a plant name appears in the main text, use that local name and put the actual preparation in preparation_instructions.
 20. Do not replace the main text with a summary. Transcribe every readable line; if a passage is illegible, mark only that passage as "[tidak terbaca]".
 21. If several plants or recipes are named, use the first explicitly named plant and the first complete recipe/ailment in reading order as plant_local_name and target_ailment. Put the other named plants in adjuvants in reading order. Do not switch the primary plant between runs.
+22. If the photograph contains multiple separate lontar leaves, the topmost leaf is the primary source. Extract the first recipe from the topmost leaf only. Do not use a recipe from a lower leaf as the primary entity; lower leaves are secondary context only.
 
 Required JSON shape:
 {
@@ -76,7 +77,7 @@ func userPrompt(sourceID string, catalog *kb.Store) string {
 	case "kemenuh":
 		hint = "Known sample: Lontar Kemenuh, Kawruhan Desti ring Raga. It may not be an Usadha text; read what is present and keep plant fields honest."
 	case "wanagiri":
-		hint = "Known sample: Lontar Wanagiri, Usada 3. Read the central text on both leaves; a colophon or provenance note must not replace the main reading."
+		hint = "Known sample: Lontar Wanagiri, Usada 3. The photo contains multiple separate leaves; use the topmost leaf only and read its central text. A colophon or lower leaf must not replace the main reading."
 	case "sukawati":
 		hint = "Known sample: Lontar Sukawati, Usada 07. Read the full leaf and extract any named plant and preparation."
 	}

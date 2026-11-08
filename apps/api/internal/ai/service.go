@@ -5,7 +5,6 @@ import (
 	"encoding/base64"
 	"fmt"
 	"strings"
-	"sync"
 	"time"
 	"unicode"
 
@@ -24,8 +23,6 @@ type Service struct {
 	primary  *Client
 	fallback *Client
 	kb       *kb.Store
-	cacheMu  sync.Mutex
-	cache    map[string]cacheEntry
 }
 
 func NewService(cfg Config) (*Service, error) {
@@ -41,7 +38,6 @@ func NewService(cfg Config) (*Service, error) {
 	service := &Service{
 		primary: NewClient(cfg.Primary),
 		kb:      cfg.KB,
-		cache:   make(map[string]cacheEntry),
 	}
 	if cfg.Fallback != nil && strings.TrimSpace(cfg.Fallback.BaseURL) != "" && strings.TrimSpace(cfg.Fallback.Model) != "" {
 		if cfg.Fallback.Timeout <= 0 {
@@ -60,13 +56,63 @@ func (s *Service) Health(ctx context.Context) error {
 	return s.primary.Health(ctx)
 }
 
+type analysisResult struct {
+	response *model.AnalysisResponse
+	err      error
+}
+
 func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID string) (*model.AnalysisResponse, error) {
-	cacheKey := s.cacheKey(image, sourceID)
-	if cached, ok := s.cached(cacheKey); ok {
-		return cached, nil
+	dataURL := "data:" + mimeType + ";base64," + base64.StdEncoding.EncodeToString(image)
+
+	results := make(chan analysisResult, 2)
+	for range 2 {
+		go func() {
+			response, err := s.analyzeOnce(ctx, dataURL, sourceID)
+			results <- analysisResult{response: response, err: err}
+		}()
 	}
 
-	dataURL := "data:" + mimeType + ";base64," + base64.StdEncoding.EncodeToString(image)
+	responses := make([]*model.AnalysisResponse, 0, 2)
+	var firstErr error
+	for range 2 {
+		result := <-results
+		if result.err != nil {
+			if firstErr == nil {
+				firstErr = result.err
+			}
+			continue
+		}
+		responses = append(responses, result.response)
+	}
+	if len(responses) == 0 {
+		return nil, firstErr
+	}
+
+	chosen, consistent := chooseResponse(responses)
+	if !consistent {
+		if hasPlantResponse(chosen) || needsContentRetry(chosen) {
+			if !s.highReasoning() && canRetryContent(ctx) {
+				candidates := candidatePlants(responses)
+				if len(candidates) > 0 {
+					if focused, focusErr := s.focusPlant(ctx, image, mimeType, candidates); focusErr == nil && focused.Found {
+						if match := findResponse(plantKey(focused.PlantLocalName), responses); match != nil {
+							chosen = match
+							consistent = true
+						}
+					}
+				}
+			}
+			if !consistent {
+				return nil, ErrUnstable
+			}
+		} else {
+			return chosen, nil
+		}
+	}
+	return chosen, nil
+}
+
+func (s *Service) analyzeOnce(ctx context.Context, dataURL, sourceID string) (*model.AnalysisResponse, error) {
 	messages := []Message{
 		{Role: "system", Content: systemPrompt},
 		{
@@ -84,41 +130,91 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 		if err != nil {
 			return nil, err
 		}
-
 		response, err := parseAnalysis(content)
 		if err == nil {
 			response.Normalize()
 			s.enrich(response, sourceID)
 			err = response.Validate()
 		}
-		if err != nil {
-			lastErr = err
-			if attempt == 0 {
-				messages = append(messages,
-					Message{Role: "assistant", Content: content},
-					Message{Role: "user", Content: correctionPrompt(err)},
-				)
-				continue
-			}
-			break
+		if err == nil {
+			return response, nil
 		}
-
-		if needsContentRetry(response) &&
-			!strings.Contains(strings.ToLower(s.primary.Model()), "high") &&
-			canRetryContent(ctx) {
-			if focused, focusErr := s.focusPlant(ctx, image, mimeType); focusErr == nil && focused.Found {
-				snapshot := *response
-				s.mergePlant(response, focused, sourceID)
-				if validationErr := response.Validate(); validationErr != nil {
-					*response = snapshot
-				}
-			}
+		lastErr = err
+		if attempt == 0 {
+			messages = append(messages,
+				Message{Role: "assistant", Content: content},
+				Message{Role: "user", Content: correctionPrompt(err)},
+			)
 		}
-
-		s.storeCache(cacheKey, response)
-		return response, nil
 	}
 	return nil, fmt.Errorf("%w: %v", ErrInvalidOutput, lastErr)
+}
+
+func (s *Service) highReasoning() bool {
+	return strings.Contains(strings.ToLower(s.primary.Model()), "high")
+}
+
+func chooseResponse(responses []*model.AnalysisResponse) (*model.AnalysisResponse, bool) {
+	best := responses[0]
+	for _, response := range responses[1:] {
+		if len([]rune(response.Paleography.Transliteration)) > len([]rune(best.Paleography.Transliteration)) {
+			best = response
+		}
+	}
+
+	if !hasPlantResponse(best) {
+		for _, response := range responses {
+			if hasPlantResponse(response) {
+				best = response
+				break
+			}
+		}
+	}
+
+	consistent := true
+	firstKey := ""
+	for _, response := range responses {
+		key := plantKey(response.Ethnomedicinal.PlantLocalName)
+		if key == "" {
+			consistent = false
+			continue
+		}
+		if firstKey == "" {
+			firstKey = key
+		} else if key != firstKey {
+			consistent = false
+		}
+	}
+	consistent = consistent && firstKey != ""
+	return best, consistent
+}
+
+func findResponse(key string, responses []*model.AnalysisResponse) *model.AnalysisResponse {
+	if key == "" {
+		return nil
+	}
+	for _, response := range responses {
+		if plantKey(response.Ethnomedicinal.PlantLocalName) == key {
+			return response
+		}
+	}
+	return nil
+}
+
+func hasPlantResponse(response *model.AnalysisResponse) bool {
+	return plantKey(response.Ethnomedicinal.PlantLocalName) != ""
+}
+
+func plantKey(name string) string {
+	value := strings.ToLower(strings.TrimSpace(name))
+	value = strings.TrimPrefix(value, "taru ")
+	value = strings.Map(func(char rune) rune {
+		if unicode.IsLetter(char) || unicode.IsDigit(char) || unicode.IsSpace(char) {
+			return char
+		}
+		return -1
+	}, value)
+	return strings.Join(strings.Fields(value), " ")
 }
 
 func canRetryContent(ctx context.Context) bool {

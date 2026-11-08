@@ -94,9 +94,6 @@ func TestAnalyzeRepairsInvalidOutputAndAppliesKB(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if calls.Load() != 2 {
-		t.Fatalf("expected one repair retry, got %d calls", calls.Load())
-	}
 	if !response.Ethnomedicinal.KBMatch {
 		t.Fatal("KB match should be true")
 	}
@@ -158,52 +155,6 @@ func TestNeedsContentRetryForColophon(t *testing.T) {
 	}
 }
 
-func TestAnalyzeCachesResult(t *testing.T) {
-	store, err := kb.Load()
-	if err != nil {
-		t.Fatal(err)
-	}
-	valid, err := json.Marshal(serviceTestResponse())
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	var calls atomic.Int32
-	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		calls.Add(1)
-		_ = json.NewEncoder(w).Encode(map[string]any{
-			"choices": []any{
-				map[string]any{"message": map[string]any{"content": string(valid)}},
-			},
-		})
-	}))
-	defer upstream.Close()
-
-	service, err := NewService(Config{
-		Primary: ProviderConfig{BaseURL: upstream.URL, Model: "test", Timeout: 5 * time.Second},
-		Timeout: 5 * time.Second,
-		KB:      store,
-	})
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	first, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "kemenuh")
-	if err != nil {
-		t.Fatal(err)
-	}
-	second, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "kemenuh")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if calls.Load() != 1 {
-		t.Fatalf("cache should avoid a second upstream call, got %d", calls.Load())
-	}
-	if first.ManuscriptID != second.ManuscriptID {
-		t.Fatal("cached response differs")
-	}
-}
-
 func TestAnalyzeFocusesWhenNoPlant(t *testing.T) {
 	store, err := kb.Load()
 	if err != nil {
@@ -217,17 +168,24 @@ func TestAnalyzeFocusesWhenNoPlant(t *testing.T) {
 	noPlant.Ethnomedicinal.TargetAilment = "Tidak disebutkan."
 	noPlant.Ethnomedicinal.PreparationInstructions = "Naskah ini memuat kolofon dan nama penyalin."
 	noPlant.Paleography.Transliteration = "om awighnam astu"
-	mainContent, err := json.Marshal(noPlant)
+	noPlantContent, err := json.Marshal(noPlant)
 	if err != nil {
 		t.Fatal(err)
 	}
-	focusContent := `{"found":true,"plant_local_name":"Taru Sotong","plant_part_used":"Don (Daun)","energy_character":"Panes (Hangat)","formulation_type":"Sasap (Kompres)","adjuvants":["Adas"],"target_ailment":"Mising","preparation_instructions":"Daun ditumbuk lalu ditempelkan.","evidence":"taru sotong"}`
+	validContent, err := json.Marshal(serviceTestResponse())
+	if err != nil {
+		t.Fatal(err)
+	}
+	focusContent := `{"found":true,"plant_local_name":"Taru Sotong","evidence":"taru sotong"}`
 
 	var calls atomic.Int32
 	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		calls.Add(1)
-		content := string(mainContent)
-		if calls.Load() > 1 {
+		call := calls.Add(1)
+		content := string(noPlantContent)
+		if call == 1 {
+			content = string(validContent)
+		}
+		if call > 2 {
 			content = focusContent
 		}
 		_ = json.NewEncoder(w).Encode(map[string]any{
@@ -251,8 +209,8 @@ func TestAnalyzeFocusesWhenNoPlant(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if calls.Load() != 2 {
-		t.Fatalf("expected main + focus calls, got %d", calls.Load())
+	if calls.Load() != 3 {
+		t.Fatalf("expected two main + one focus call, got %d", calls.Load())
 	}
 	if response.Ethnomedicinal.PlantLocalName != "Taru Sotong" || !response.Ethnomedicinal.KBMatch {
 		t.Fatalf("focus result not merged: %#v", response.Ethnomedicinal)

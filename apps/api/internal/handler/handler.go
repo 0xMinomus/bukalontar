@@ -94,6 +94,9 @@ func (h *handler) analyze(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, context.DeadlineExceeded):
 			log.Printf("analyze: timeout")
 			writeError(w, http.StatusGatewayTimeout, "Analisis melebihi batas waktu. Coba lagi dengan foto yang lebih kecil.")
+		case errors.Is(err, ai.ErrUnstable):
+			log.Printf("analyze: unstable reading")
+			writeError(w, http.StatusUnprocessableEntity, "Pembacaan belum stabil karena lembar ini memuat beberapa resep atau tulisannya kurang jelas. Coba foto satu lempir dengan pencahayaan lebih baik.")
 		case errors.Is(err, ai.ErrInvalidOutput):
 			log.Printf("analyze: invalid output: %v", err)
 			writeError(w, http.StatusBadGateway, "AI mengembalikan format yang tidak valid. Coba foto lain atau ulangi.")

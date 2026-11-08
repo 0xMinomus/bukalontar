@@ -57,6 +57,7 @@ func (e *UpstreamError) Error() string {
 var (
 	ErrInvalidOutput = errors.New("AI returned invalid structured output")
 	ErrNotDetected   = errors.New("aksara Bali tidak terdeteksi pada gambar")
+	ErrUnstable      = errors.New("pembacaan belum stabil")
 )
 
 func NewClient(cfg ProviderConfig) *Client {
