@@ -175,6 +175,15 @@ make build
 
 Buka `http://localhost:8080`. Health check tersedia di `GET /health`.
 
+## Deployment URL
+
+- Live MVP: <https://bukalontar.my.id>
+- Health check: <https://bukalontar.my.id/health>
+- Hosting: Vercel Services, service `web` dan `api`
+- AI gateway: 9router di `https://dashboard.minomus.my.id/v1`
+
+Untuk deployment Vercel, `AI_BASE_URL` harus diisi endpoint publik 9router, bukan `127.0.0.1`. Health check akan mengembalikan `503` bila env tersebut belum masuk ke project.
+
 Pengujian:
 
 ```bash
@@ -226,7 +235,7 @@ Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI c
 - Knowledge base masih terbatas pada entri Taru Pramana yang dikurasi.
 - Model membutuhkan gateway AI yang tersedia saat demo.
 - Belum ada autentikasi, database eksternal, atau akun demo.
-- URL deployment publik belum tersedia pada commit ini.
+- Deployment publik berjalan di Vercel Services. `AI_BASE_URL` Vercel harus mengarah ke endpoint publik 9router agar health check `ok`.
 
 ## Tim
 

@@ -107,7 +107,14 @@ make build
 ./bin/bukalontar
 ```
 
-Binary membaca environment, menyajikan SPA, dan memanggil 9router. Deployment publik harus menyediakan 9router yang dapat dijangkau oleh binary. Endpoint gateway tidak boleh diekspos ke internet tanpa autentikasi.
+Untuk deployment publik, repository memakai Vercel Services:
+
+- `web`: Vite static frontend di `apps/web`
+- `api`: Go server di `apps/api`
+- URL: `https://bukalontar.my.id`
+- Health check: `https://bukalontar.my.id/health`
+
+`AI_BASE_URL` di Vercel harus mengarah ke endpoint publik 9router, bukan `127.0.0.1`. Endpoint gateway tidak boleh diekspos ke internet tanpa autentikasi.
 
 ## Pengujian
 
