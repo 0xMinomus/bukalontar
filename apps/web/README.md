@@ -51,6 +51,13 @@ VITE_API_BASE_URL=
 
 Set `VITE_USE_MOCK=true` only when working on UI without the Go API. The API key never belongs in this file; it lives in `apps/api/.env`, which is ignored.
 
+## Link previews
+
+`index.html` includes static Open Graph and Twitter Card metadata so link crawlers do not need JavaScript. The public image is `/og-bukalontar-v1.jpg`: a 1200 × 630 JPEG using the existing logo, local Cormorant Garamond and Lora fonts, parchment palette, and a real lontar photograph. Large title text leads the card; the photograph shows the manuscript rather than a simulated reading result. Source attribution is printed on the image and documented in `public/samples/CREDITS.md`.
+
+Metadata uses absolute URLs on `https://www.bukalontar.my.id`. Deploy the HTML and public image together. Verify that the image URL returns `200` with `Content-Type: image/jpeg`, not the SPA HTML fallback. When changing the artwork, increment its filename and update both image URLs in the metadata; messaging apps may retain old previews. Existing WhatsApp messages may keep their cached preview after deployment.
+
+
 ## Design direction
 
 Balinese lontar reading desk, following the supplied antique parchment reference. Warm paper and sepia preserve the manuscript material; olive marks primary actions, and honey-gold leaves echo the supplied logo. Cormorant Garamond carries display text; Lora carries body text. Four critical WOFF2 assets are preloaded from `src/assets/fonts` in development and hashed by Vite for production. Their OFL licenses accompany the source assets. Font faces use `font-display: optional`: a slow connection keeps the initial fallback for that visit rather than swapping fonts after paint. Latin Extended subsets remain available for transliteration.
