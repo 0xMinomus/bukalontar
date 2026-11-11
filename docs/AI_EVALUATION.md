@@ -89,6 +89,10 @@ Karena itu bantuan bersifat eksperimental. Default produk adalah `examples`: han
 
 Batas metodologi: dua halaman dari satu naskah, satu model, tiga pengulangan. Transkripsi Wikisource mencakup dua sisi lembar (2B dan 3A), sedangkan model dapat membaca hanya sebagian, sehingga CER absolut tidak dapat ditafsirkan sebagai akurasi halaman. Dua mode berbeda tidak diuji dengan penghitung yang sama bila jumlah respons berhasil berbeda (satu kegagalan `ocr`).
 
+### Model reasoning lebih tinggi
+
+`ag/gemini-3.8-flash-high` diuji pada dua halaman yang sama, mode `none` dan `examples`, dua pengulangan. Seluruh delapan permintaan mencapai batas 120 detik (`context deadline exceeded`) sehingga tidak ada respons yang dapat dinilai CER-nya. Model ini tidak dipakai untuk alur interaktif pada konfigurasi timeout sekarang. Penyebab (antrean provider dibanding beban model) tidak dipisahkan. Data: `evaluation/assist-high-timeout-20261112.jsonl`.
+
 ## Perubahan produk yang diterapkan
 
 - Satu pass menggantikan dua pass dan union yang dapat memperbanyak temuan tanpa dasar.
