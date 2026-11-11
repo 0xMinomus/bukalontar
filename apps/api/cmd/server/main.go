@@ -21,6 +21,9 @@ import (
 func main() {
 	config.LoadDotEnv()
 	cfg := config.Load()
+	if cfg.AIModel != "ag/gemini-3.8-flash-low" {
+		log.Fatal("AI_MODEL must be ag/gemini-3.8-flash-low")
+	}
 
 	store, err := kb.Load()
 	if err != nil {
@@ -35,20 +38,9 @@ func main() {
 		APIKey:          cfg.AIAPIKey,
 		Timeout:         cfg.AITimeout,
 	}
-	var fallback *ai.ProviderConfig
-	if cfg.FallbackEnabled && cfg.FallbackBaseURL != "" && cfg.FallbackModel != "" && cfg.FallbackAPIKey != "" {
-		fallback = &ai.ProviderConfig{
-			Name:    "command-code",
-			BaseURL: cfg.FallbackBaseURL,
-			Model:   cfg.FallbackModel,
-			APIKey:  cfg.FallbackAPIKey,
-			Timeout: cfg.AITimeout,
-		}
-	}
 
 	analyzer, err := ai.NewService(ai.Config{
 		Primary:           primary,
-		Fallback:          fallback,
 		Timeout:           cfg.AITimeout,
 		KB:                store,
 		ReadingAssistance: cfg.AIReadingAssistance,
@@ -80,11 +72,7 @@ func main() {
 		log.Printf("warning: AI_API_KEY kosong; 9router yang memakai auth akan menolak request")
 	}
 	log.Printf("BukaLontar API listening on :%s (model=%s, kb=%d entries, frontend_embedded=%t)", cfg.Port, analyzer.Model(), store.Count(), hasIndex)
-	if fallback == nil {
-		log.Printf("AI fallback disabled")
-	} else {
-		log.Printf("AI fallback configured: %s", fallback.Model)
-	}
+	log.Printf("AI fallback disabled; only Gemini 3.8 Flash Low is supported")
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {

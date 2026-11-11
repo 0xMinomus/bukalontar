@@ -15,6 +15,15 @@ import (
 //go:embed assets/*
 var assets embed.FS
 
+//go:embed assets/glyph-chart.jpg
+var chartJPEG []byte
+
+// Chart returns the labelled contact sheet of all published glyph exemplars.
+// It is a reference chart, not target-manuscript text.
+func Chart() ([]byte, string) {
+	return chartJPEG, "image/jpeg"
+}
+
 // Example is a character illustration, not a transcription of the target image.
 type Example struct {
 	Image       []byte
@@ -35,19 +44,29 @@ var once sync.Once
 
 func load() {
 	data, err := assets.ReadFile("assets/catalog.json")
-	if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 	var records []record
-	if err := json.Unmarshal(data, &records); err != nil { panic(err) }
+	if err := json.Unmarshal(data, &records); err != nil {
+		panic(err)
+	}
 	for _, r := range records {
 		data, err := assets.ReadFile("assets/" + r.File)
-		if err != nil { panic(err) }
+		if err != nil {
+			panic(err)
+		}
 		img, err := gif.Decode(bytes.NewReader(data))
-		if err != nil { panic(err) }
+		if err != nil {
+			panic(err)
+		}
 		var out bytes.Buffer
-		if err := png.Encode(&out, img); err != nil { panic(err) }
+		if err := png.Encode(&out, img); err != nil {
+			panic(err)
+		}
 		catalog = append(catalog, Example{
 			Image: out.Bytes(), MIME: "image/png", Label: r.Label,
-			Source: "Siahaan et al., DeepLontar, Scientific Data 2022, Table 1 (CC BY 4.0): " + r.URL,
+			Source:      "Siahaan et al., DeepLontar, Scientific Data 2022, Table 1 (CC BY 4.0): " + r.URL,
 			Granularity: "character",
 		})
 	}
@@ -61,7 +80,7 @@ func load() {
 func Select(query string) []Example {
 	once.Do(load)
 	q := strings.ToLower(query)
-	type scored struct { index, score int }
+	type scored struct{ index, score int }
 	var matches []scored
 	for i, e := range catalog {
 		label := strings.ToLower(e.Label)
@@ -69,7 +88,10 @@ func Select(query string) []Example {
 		for _, part := range strings.FieldsFunc(q, func(r rune) bool {
 			return !(r >= 'a' && r <= 'z')
 		}) {
-			if part == label { matches = append(matches, scored{i, 2}); break }
+			if part == label {
+				matches = append(matches, scored{i, 2})
+				break
+			}
 		}
 		if strings.Contains(label, " ") && strings.Contains(q, label) {
 			matches = append(matches, scored{i, 3})
@@ -79,14 +101,25 @@ func Select(query string) []Example {
 	result := make([]Example, 0, 3)
 	seen := make(map[int]bool)
 	for _, m := range matches {
-		if !seen[m.index] { result = append(result, catalog[m.index]); seen[m.index] = true }
-		if len(result) == 3 { return result }
+		if !seen[m.index] {
+			result = append(result, catalog[m.index])
+			seen[m.index] = true
+		}
+		if len(result) == 3 {
+			return result
+		}
 	}
 	for _, name := range []string{"Ha", "Na", "Ca"} {
 		for i, e := range catalog {
-			if e.Label == name && !seen[i] { result = append(result, e); seen[i] = true; break }
+			if e.Label == name && !seen[i] {
+				result = append(result, e)
+				seen[i] = true
+				break
+			}
 		}
-		if len(result) == 3 { break }
+		if len(result) == 3 {
+			break
+		}
 	}
 	return result
 }

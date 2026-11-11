@@ -22,6 +22,7 @@ type ReadingAssistance struct {
 	OCRModel       string   `json:"ocr_model,omitempty"`
 	OCRMS          int64    `json:"ocr_ms"`
 	FocusRegions   int      `json:"focus_regions"`
+	LeafRegions    int      `json:"leaf_regions"`
 	ExampleCount   int      `json:"example_count"`
 	ExampleSources []string `json:"example_sources"`
 	Warnings       []string `json:"warnings"`
@@ -165,7 +166,7 @@ func (r *AnalysisResponse) Validate() error {
 		"Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha",
 	})
 	enum(r.SourceReference.Language, "source_reference.language", []string{
-		"Kawi / Jawa Kuno", "Bali Alus", "Tidak diketahui",
+		"Kawi / Jawa Kuno", "Bali", "Bali Alus", "Tidak diketahui",
 	})
 	enum(r.Paleography.Confidence, "paleography.confidence", []string{"low", "medium", "high"})
 	require(r.Paleography.Transliteration, "paleography.transliteration")

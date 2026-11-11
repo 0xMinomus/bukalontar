@@ -12,7 +12,7 @@ export const samples: Sample[] = [
   {
     id: 'wanagiri',
     name: 'Lontar Wanagiri',
-    detail: 'Usada 3 · catatan pengobatan',
+    detail: 'Usada 3 · beraksara Bali',
     src: '/samples/lontar-wanagiri-usada-3.jpg',
     credit: 'Eka343, CC BY-SA 4.0',
     sourceUrl:
@@ -22,7 +22,7 @@ export const samples: Sample[] = [
   {
     id: 'sukawati',
     name: 'Lontar Sukawati',
-    detail: 'Usada 07 · resep usada',
+    detail: 'Usada 07 · beraksara Bali',
     src: '/samples/lontar-sukawati-usada-07.jpg',
     credit: 'Eka343, CC BY-SA 4.0',
     sourceUrl:

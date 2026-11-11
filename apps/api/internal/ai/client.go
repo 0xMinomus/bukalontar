@@ -218,10 +218,6 @@ func retryable(err error) bool {
 	return errors.As(err, &urlErr)
 }
 
-func shouldFallback(err error) bool {
-	return retryable(err)
-}
-
 func upstreamMessage(raw []byte) string {
 	var decoded struct {
 		Error struct {

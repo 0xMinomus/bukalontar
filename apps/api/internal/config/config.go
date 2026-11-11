@@ -19,10 +19,6 @@ type Config struct {
 	AIReadingAssistance string
 	AIAPIKey            string
 	AITimeout           time.Duration
-	FallbackEnabled     bool
-	FallbackBaseURL     string
-	FallbackModel       string
-	FallbackAPIKey      string
 	RateLimitPerMinute  int
 }
 
@@ -38,10 +34,6 @@ func Load() Config {
 		AIReadingAssistance: env("AI_READING_ASSISTANCE", "examples"),
 		AIAPIKey:            env("AI_API_KEY", ""),
 		AITimeout:           time.Duration(timeoutSeconds) * time.Second,
-		FallbackEnabled:     envBool("AI_FALLBACK_ENABLED", false),
-		FallbackBaseURL:     env("AI_FALLBACK_BASE_URL", ""),
-		FallbackModel:       env("AI_FALLBACK_MODEL", ""),
-		FallbackAPIKey:      env("AI_FALLBACK_API_KEY", ""),
 		RateLimitPerMinute:  envInt("RATE_LIMIT_PER_MINUTE", 10),
 	}
 }
@@ -89,16 +81,4 @@ func envInt(key string, fallback int) int {
 		return fallback
 	}
 	return value
-}
-
-func envBool(key string, fallback bool) bool {
-	value := strings.TrimSpace(os.Getenv(key))
-	if value == "" {
-		return fallback
-	}
-	parsed, err := strconv.ParseBool(value)
-	if err != nil {
-		return fallback
-	}
-	return parsed
 }

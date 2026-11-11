@@ -47,7 +47,7 @@ Aplikasi memakai satu kontrak respons untuk dua kebutuhan:
 
 1. **Preprocessing klien.** `apps/web/src/lib/image.ts` mengecilkan gambar, menerapkan CLAHE, dan unsharp mask. Hasilnya dikirim sebagai `multipart/form-data`.
 2. **Validasi.** Handler membatasi ukuran upload 8 MB, tipe gambar, dan rate limit per menit. Tidak ada file yang ditulis ke disk.
-3. **Inferensi.** `apps/api/internal/ai` mengirim gambar sebagai data URL untuk satu pembacaan. Sebelumnya `apps/api/internal/ocr` memilih maksimal dua area fokus dari foto yang sama, dan tiga contoh glif berlabel ahli ditambahkan sebagai referensi visual. Jalur Codex menerima `AI_REASONING_EFFORT`, default `low`; model non-Codex memakai temperature 0.
+3. **Inferensi.** `apps/api/internal/ai` terlebih dahulu mengklasifikasikan aksara pada foto target saja, tanpa contoh glif atau katalog tanaman (maksimal 256 token). Hanya keputusan `balinese/high` melanjutkan satu pembacaan dengan Gemini 3.8 Flash Low. Default `examples` menambahkan tiga contoh glif ahli; crop lokal hanya pada mode eksperimental. Kedua panggilan memakai model yang sama dan berbagi tenggat permintaan. Temperature 0 tidak menjamin determinisme.
 4. **Parsing.** Respons model harus berupa JSON. Markdown fence dibersihkan sebelum parsing. Satu repair attempt dilakukan bila validasi gagal.
 5. **Resep.** Maksimal enam resep dipertahankan sesuai urutan model. Tidak ada union lintas pembacaan atau pemilihan berdasarkan panjang teks. Persiapan berbeda tidak dihapus hanya karena nama tanamannya sama.
 6. **Grounding.** Nama ilmiah, famili, senyawa, rujukan, tautan literatur, aksi farmakologis, dan energy character berasal dari KB saat tanaman cocok. Tanaman tak dikenal tidak boleh mempertahankan sitasi atau klaim farmakologi dari model.
@@ -77,10 +77,12 @@ Kontrak lengkap ada di `packages/schema/analysis.json`.
 ## Keandalan
 
 - Retry pada 429, 5xx, timeout, dan transport error.
-- Fallback provider opsional melalui `AI_FALLBACK_*`; tidak aktif secara default.
+- Server hanya menerima `AI_MODEL=ag/gemini-3.8-flash-low`; tidak ada fallback model.
 - Validasi schema di Go sebelum respons dikirim ke browser.
 - Error API dikembalikan sebagai pesan yang dapat ditampilkan. Tidak ada hasil palsu.
 - Rate limit default 10 request per menit per klien.
+- Pemeriksaan aksara adalah panggilan Gemini terpisah tanpa contoh glif atau katalog. Keputusan non-Bali, campuran, atau meragukan tidak mencapai pembaca; keluaran pemeriksaan rusak menghasilkan error, bukan izin membaca. Server juga mengosongkan seluruh bacaan/resep ketika pembaca menolak atau transkripsi/transliterasi mengandung aksara mirip non-Bali. Kedua pemeriksaan tetap bergantung pada model umum, bukan classifier terlatih independen.
+- Bahasa teks dipisahkan dari aksara: bahasa Kawi dapat ditulis dalam aksara Bali. Transkripsi Unicode eksperimental tidak ditampilkan di UI/PDF karena belum layak berdasarkan evaluasi.
 
 ## Konfigurasi
 
@@ -93,10 +95,6 @@ AI_REASONING_EFFORT=low
 AI_READING_ASSISTANCE=examples
 AI_API_KEY=
 AI_TIMEOUT_SECONDS=120
-AI_FALLBACK_ENABLED=false
-AI_FALLBACK_BASE_URL=
-AI_FALLBACK_MODEL=
-AI_FALLBACK_API_KEY=
 ```
 
 Contoh lengkap ada di `apps/api/.env.example`. File `.env` tidak boleh di-commit.

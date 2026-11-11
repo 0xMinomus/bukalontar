@@ -30,10 +30,6 @@ export function resultRecipes(result: AnalysisResponse): Recipe[] {
   ]
 }
 
-export function hasBalinese(value: string | null | undefined): boolean {
-  return !!value && /[\u1B00-\u1B7F]/.test(value)
-}
-
 export function safeReferenceLinks(recipe: Recipe) {
   if (!recipe.kb_match) return []
   return (recipe.reference_links ?? []).filter((link) => {

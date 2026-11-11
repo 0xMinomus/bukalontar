@@ -86,7 +86,7 @@ export function ResultWorkspace({
           </h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
             {source.lontar_group} · Lempir{' '}
-            {source.lempir_number ?? 'tidak tercatat'} · {source.language}
+            {source.lempir_number ?? 'tidak tercatat'} · Bahasa teks: {source.language}
             <span className="sm:hidden">
               {' '}
               · {confidenceLabel[confidence]}
@@ -158,27 +158,6 @@ export function ResultWorkspace({
         </div>
       </dl>
 
-      {result.reading_assistance && result.reading_assistance.mode !== 'none' ? (
-        <details className="screen-only mt-4 rounded-lg border border-border bg-card px-4 py-3 text-sm">
-          <summary className="cursor-pointer font-medium">Bantuan pembacaan</summary>
-          <p className="mt-2 leading-relaxed text-muted-foreground">
-            {result.reading_assistance.ocr_model
-              ? `Model lokal memilih ${result.reading_assistance.focus_regions} area fokus dalam ${result.reading_assistance.ocr_ms} ms. `
-              : ''}
-            {result.reading_assistance.example_count} contoh glif berlabel disertakan sebagai referensi, bukan teks naskah ini.
-            {' '}Pemilihan area teks bukan transkripsi mandiri dan bukan training ulang model bahasa.
-          </p>
-          {result.reading_assistance.example_sources.length > 0 ? (
-            <p className="mt-2 break-words text-xs text-muted-foreground">
-              Sumber contoh: {result.reading_assistance.example_sources.join('; ')}
-            </p>
-          ) : null}
-          {result.reading_assistance.warnings.map((warning, index) => (
-            <p key={index} className="mt-2 text-xs text-muted-foreground">{warning}</p>
-          ))}
-        </details>
-      ) : null}
-
       <div className="screen-only mt-5 grid items-start gap-5 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="order-2 lg:order-1">
           <LontarLens
@@ -234,9 +213,10 @@ export function ResultWorkspace({
               Cara membaca
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Transliterasi mengikuti bunyi aksara Bali. Terjemahan Kawi
-              bersifat semantik, bukan kata per kata. Periksa lempir asli dan
-              rujukan filologi untuk keputusan penting.
+              Transliterasi mengubah aksara Bali menjadi huruf Latin. Bahasa teks
+              dapat berupa Bali atau Kawi/Jawa Kuno; bahasa bukan jenis aksara.
+              Pembacaan ditujukan hanya untuk aksara Bali. Deteksi AI dapat keliru;
+              periksa lempir asli.
             </p>
           </div>
 

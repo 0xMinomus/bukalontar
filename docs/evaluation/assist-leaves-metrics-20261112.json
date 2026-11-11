@@ -1,0 +1,5 @@
+[
+  {"variant":"assist-v3-examples","model":"ag/gemini-3.8-flash-low","runs":4,"successful":4,"median_seconds":17.892,"balinese_character_error_rate":0.8834,"transliteration_pair_agreement":0.2347},
+  {"variant":"assist-v3-leaves","model":"ag/gemini-3.8-flash-low","runs":4,"successful":4,"median_seconds":24.723,"balinese_character_error_rate":0.9651,"transliteration_pair_agreement":0.2231},
+  {"variant":"assist-v3-all","model":"ag/gemini-3.8-flash-low","runs":4,"successful":4,"median_seconds":26.492,"balinese_character_error_rate":1.0,"transliteration_pair_agreement":0.2022}
+]

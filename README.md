@@ -146,7 +146,7 @@ Detail teknis ada di [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Kontrak res
 | Pengolahan gambar | HTML5 Canvas API |
 | Backend | Go standard library; binary mandiri untuk deployment non-Vercel |
 | Gateway AI | 9router dengan endpoint OpenAI-compatible |
-| Model | Model multimodal melalui 9router, fallback opsional |
+| Model | Hanya `ag/gemini-3.8-flash-low` melalui 9router, tanpa fallback model |
 | Knowledge base | JSON Taru Pramana yang di-embed dengan `go:embed` |
 | Bantuan pembacaan | Detektor teks ridge + LinearSVC HOG dilatih dari DeepLontar; 55 contoh glif ahli di-embed |
 | Kontrak | JSON Schema di `packages/schema/analysis.json` |
@@ -163,7 +163,7 @@ Prasyarat:
 ```bash
 npm install
 cp apps/api/.env.example apps/api/.env
-# Isi AI_BASE_URL, AI_MODEL, dan AI_API_KEY sesuai instance 9router.
+# Isi AI_BASE_URL dan AI_API_KEY sesuai instance 9router; pertahankan AI_MODEL=ag/gemini-3.8-flash-low.
 ```
 
 Terminal pertama:
@@ -226,7 +226,7 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 - Rujukan naskah dan konteks: [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
 - Font: Cormorant Garamond dan Lora melalui Google Fonts.
 - Library frontend: React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge.
-- Gateway AI: 9router. Fallback provider bersifat opsional.
+- Gateway AI: 9router, hanya Gemini 3.8 Flash Low tanpa fallback model.
 
 ## Keamanan dan Privasi
 

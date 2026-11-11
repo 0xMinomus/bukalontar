@@ -3,7 +3,6 @@ import {
   analysisSummary,
   formatTransliteration,
   formatTranslation,
-  hasBalinese,
   hasMedicinalPlant,
   resultRecipes,
   safeReferenceLinks,
@@ -89,7 +88,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
         <h1 className="report-title">Hasil Pembacaan Lontar</h1>
         <p className="report-subtitle">
           {source.lontar_group} · Lempir{' '}
-          {source.lempir_number ?? 'tidak tercatat'} · {source.language}
+          {source.lempir_number ?? 'tidak tercatat'} · Bahasa teks: {source.language}
         </p>
       </header>
 
@@ -116,7 +115,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
               <dd>{source.lempir_number ?? 'Tidak tercatat'}</dd>
             </div>
             <div className="report-field">
-              <dt>Bahasa</dt>
+              <dt>Bahasa teks (bukan aksara)</dt>
               <dd>{plain(source.language)}</dd>
             </div>
             <div className="report-field">
@@ -177,33 +176,11 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
         </p>
       </section>
 
-      {result.reading_assistance && result.reading_assistance.mode !== 'none' ? (
-        <section className="report-section">
-          <h2 className="report-section-title">Bantuan pembacaan</h2>
-          <p className="report-prose">
-            {result.reading_assistance.focus_regions} area fokus dari model lokal; {result.reading_assistance.example_count} contoh glif berlabel.
-            {' '}Area fokus bukan transkripsi mandiri. Contoh bukan teks naskah ini; model bahasa tidak dilatih ulang.
-          </p>
-          {result.reading_assistance.example_sources.map((source, index) => (
-            <p key={index} className="report-prose">{source}</p>
-          ))}
-          {result.reading_assistance.warnings.map((warning, index) => (
-            <p key={index} className="report-prose">{warning}</p>
-          ))}
-        </section>
-      ) : null}
-
       <section className="report-section">
         <h2 className="report-section-title">Transliterasi</h2>
         <p className="report-prose">{transliteration}</p>
       </section>
 
-      {hasBalinese(paleography.balinese_transcription) ? (
-        <section className="report-section">
-          <h2 className="report-section-title">Aksara Bali</h2>
-          <p className="report-prose">{paleography.balinese_transcription}</p>
-        </section>
-      ) : null}
 
       <section className="report-section">
         <h2 className="report-section-title">Terjemahan Indonesia</h2>

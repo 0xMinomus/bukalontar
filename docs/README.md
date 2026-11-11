@@ -4,6 +4,7 @@ Dokumentasi ini menjelaskan produk, arsitektur, alur AI, dan batasan BukaLontar.
 
 ## Mulai di sini
 
+- [Status proyek](STATUS.md) untuk kondisi terkini, angka, dan batasan.
 1. [README proyek](../README.md) untuk gambaran umum dan cara menjalankan aplikasi.
 2. [Konsep produk](PROJECT_CONCEPT.md) untuk masalah, target pengguna, dan arah produk.
 3. [Arsitektur](ARCHITECTURE.md) untuk alur data dan kontrak API.

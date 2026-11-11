@@ -1,7 +1,10 @@
 package ocr
 
 import (
+	"bytes"
+	"context"
 	"image"
+	"image/jpeg"
 	"sort"
 )
 
@@ -99,4 +102,59 @@ func leafRegions(src image.Image) []image.Rectangle {
 		regions = append(regions, image.Rect(left, top, right, bottom))
 	}
 	return regions
+}
+
+// LeafCrops returns up to max full-leaf enlargements in top-to-bottom order.
+// The crops help the multimodal model read small strokes; they are not OCR text.
+func (r *Recognizer) LeafCrops(ctx context.Context, data []byte, max int) ([]FocusImage, error) {
+	src, _, err := image.Decode(bytes.NewReader(data))
+	if err != nil {
+		return nil, err
+	}
+	if max <= 0 {
+		max = 2
+	}
+	regions := leafRegions(src)
+	bounds := src.Bounds()
+	crops := make([]FocusImage, 0, 2)
+	for _, rect := range regions {
+		if err := ctx.Err(); err != nil {
+			return crops, err
+		}
+		rect = rect.Intersect(bounds)
+		if rect.Dx() < 40 || rect.Dy() < 10 {
+			continue
+		}
+		width := rect.Dx()
+		if width > 1400 {
+			width = 1400
+		}
+		height := rect.Dy() * width / rect.Dx()
+		if height < 1 || width < 1 {
+			continue
+		}
+		out := image.NewRGBA(image.Rect(0, 0, width, height))
+		for y := 0; y < height; y++ {
+			for x := 0; x < width; x++ {
+				out.Set(x, y, src.At(rect.Min.X+(2*x+1)*rect.Dx()/(2*width), rect.Min.Y+(2*y+1)*rect.Dy()/(2*height)))
+			}
+		}
+		var encoded bytes.Buffer
+		if err := jpeg.Encode(&encoded, out, &jpeg.Options{Quality: 88}); err != nil {
+			return crops, err
+		}
+		crops = append(crops, FocusImage{
+			Data: encoded.Bytes(), MimeType: "image/jpeg",
+			Box: [4]float64{
+				float64(rect.Min.X-bounds.Min.X) / float64(bounds.Dx()),
+				float64(rect.Min.Y-bounds.Min.Y) / float64(bounds.Dy()),
+				float64(rect.Dx()) / float64(bounds.Dx()),
+				float64(rect.Dy()) / float64(bounds.Dy()),
+			},
+		})
+		if len(crops) == max {
+			break
+		}
+	}
+	return crops, nil
 }

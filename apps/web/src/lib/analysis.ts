@@ -54,7 +54,7 @@ export interface AnalysisResponse {
   source_reference: {
     lontar_group: LontarGroup
     lempir_number?: number
-    language: 'Kawi / Jawa Kuno' | 'Bali Alus' | 'Tidak diketahui'
+    language: 'Kawi / Jawa Kuno' | 'Bali' | 'Bali Alus' | 'Tidak diketahui'
   }
   paleography: {
     aksara_bali_detected: boolean
@@ -85,10 +85,11 @@ export interface AnalysisResponse {
   }
   recipes?: Recipe[]
   reading_assistance?: {
-    mode: 'none' | 'examples' | 'ocr' | 'both'
+    mode: 'none' | 'examples' | 'ocr' | 'both' | 'leaves' | 'all' | 'chart'
     ocr_model?: string
     ocr_ms: number
     focus_regions: number
+    leaf_regions: number
     example_count: number
     example_sources: string[]
     warnings: string[]

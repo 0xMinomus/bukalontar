@@ -15,7 +15,6 @@ import {
   analysisSummary,
   formatTransliteration,
   formatTranslation,
-  hasBalinese,
   hasMedicinalPlant,
   resultRecipes,
   safeReferenceLinks,
@@ -85,9 +84,6 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
     ? formatTranslation(result.paleography.english_translation)
     : 'Translation is not available for this leaf.'
   const summary = analysisSummary(result)
-  const balinese = hasBalinese(result.paleography.balinese_transcription)
-    ? (result.paleography.balinese_transcription?.trim() ?? '')
-    : ''
   const compounds = unique(
     plantRecipes.flatMap((recipe) => recipe.phytochemical_compounds),
   )
@@ -122,21 +118,10 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
           <p className="prose-lontar mt-4 whitespace-pre-line">
             {transliteration}
           </p>
-          {balinese ? (
-            <div className="mt-4 rounded-lg border border-border bg-secondary/30 px-3 py-2">
-              <div className="flex items-center justify-between gap-3">
-                <p className="label-xs">Aksara Bali</p>
-                <CopyButton text={balinese} />
-              </div>
-              <p className="mt-1 whitespace-pre-line break-words text-lg leading-8">
-                {balinese}
-              </p>
-            </div>
-          ) : null}
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span>{confidenceLabel[result.paleography.confidence]}</span>
             <span aria-hidden="true">·</span>
-            <span>{result.source_reference.language}</span>
+            <span>Bahasa teks: {result.source_reference.language}</span>
             <span aria-hidden="true">·</span>
             <span>
               {result.source_reference.lontar_group}, lempir{' '}

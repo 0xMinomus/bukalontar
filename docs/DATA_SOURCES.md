@@ -54,8 +54,8 @@ Korpus lokal menggunakan [DeepLontar v2](https://doi.org/10.6084/m9.figshare.201
 ## Model dan Gateway
 
 - Gateway: 9router dengan endpoint OpenAI-compatible.
-- Model default: `ag/gemini-3.8-flash-low`.
-- Fallback: opsional melalui Command Code Provider API.
+- Model produk: hanya `ag/gemini-3.8-flash-low`.
+- Tidak ada fallback model.
 - Konfigurasi dan API key tidak disimpan di repository.
 
 ## Library dan Aset

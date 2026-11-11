@@ -14,7 +14,6 @@ import (
 
 type Config struct {
 	Primary           ProviderConfig
-	Fallback          *ProviderConfig
 	Timeout           time.Duration
 	KB                *kb.Store
 	ReadingAssistance string
@@ -22,7 +21,6 @@ type Config struct {
 
 type Service struct {
 	primary        *Client
-	fallback       *Client
 	kb             *kb.Store
 	assistanceMode string
 	ocr            *ocr.Recognizer
@@ -47,12 +45,6 @@ func NewService(cfg Config) (*Service, error) {
 	if err := service.initializeAssistance(cfg.ReadingAssistance); err != nil {
 		return nil, err
 	}
-	if cfg.Fallback != nil && strings.TrimSpace(cfg.Fallback.BaseURL) != "" && strings.TrimSpace(cfg.Fallback.Model) != "" {
-		if cfg.Fallback.Timeout <= 0 {
-			cfg.Fallback.Timeout = cfg.Timeout
-		}
-		service.fallback = NewClient(*cfg.Fallback)
-	}
 	return service, nil
 }
 
@@ -65,15 +57,24 @@ func (s *Service) Health(ctx context.Context) error {
 }
 
 func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID string) (*model.AnalysisResponse, error) {
+	accepted, err := s.acceptsScript(ctx, image, mimeType)
+	if err != nil {
+		return nil, err
+	}
+	if !accepted {
+		response := &model.AnalysisResponse{}
+		enforceBalineseScope(response)
+		response.Normalize()
+		s.enrich(response, sourceID)
+		return response, nil
+	}
 	parts, assistance, err := s.prepareReading(ctx, image, mimeType)
 	if err != nil {
 		return nil, err
 	}
 	response, err := s.analyzeOnce(ctx, parts, sourceID)
 	if err == nil {
-		if removed := sanitizeBalinese(&response.Paleography); removed > 0 {
-			assistance.Warnings = append(assistance.Warnings, "Karakter dari aksara mirip (mis. Jawa) dibuang dari transkripsi aksara; periksa foto asli.")
-		}
+		sanitizeBalinese(&response.Paleography)
 		if response.Paleography.AksaraBaliDetected && !hasBalinese(response.Paleography.BalineseTranscription) {
 			assistance.Warnings = append(assistance.Warnings, "Model tidak menghasilkan transkripsi aksara Bali literal untuk lembar ini.")
 		}
@@ -96,6 +97,7 @@ func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID
 		}
 		response, err := parseAnalysis(content)
 		if err == nil {
+			enforceBalineseScope(response)
 			response.Normalize()
 			s.enrich(response, sourceID)
 			err = response.Validate()
@@ -115,18 +117,7 @@ func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID
 }
 
 func (s *Service) complete(ctx context.Context, messages []Message) (string, error) {
-	content, err := s.primary.Complete(ctx, messages)
-	if err == nil {
-		return content, nil
-	}
-	if s.fallback == nil || !shouldFallback(err) {
-		return "", err
-	}
-	fallbackContent, fallbackErr := s.fallback.Complete(ctx, messages)
-	if fallbackErr == nil {
-		return fallbackContent, nil
-	}
-	return "", fmt.Errorf("primary provider: %v; fallback provider: %w", err, fallbackErr)
+	return s.primary.Complete(ctx, messages)
 }
 
 func (s *Service) enrich(response *model.AnalysisResponse, sourceID string) {

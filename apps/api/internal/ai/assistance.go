@@ -15,19 +15,27 @@ func (s *Service) initializeAssistance(mode string) error {
 		mode = "both"
 	}
 	switch mode {
-	case "none", "examples", "ocr", "both":
+	case "none", "examples", "ocr", "both", "leaves", "all", "chart":
 	default:
 		return fmt.Errorf("invalid reading assistance mode %q", mode)
 	}
 	s.assistanceMode = mode
-	if mode == "ocr" || mode == "both" {
+	if mode == "ocr" || mode == "both" || mode == "leaves" || mode == "all" {
 		var err error
 		s.ocr, err = ocr.Load()
 		if err != nil {
 			return fmt.Errorf("load trained reading detector: %w", err)
 		}
 	}
-	if mode == "examples" || mode == "both" {
+	if mode == "chart" {
+		data, mimeType := readingexamples.Chart()
+		s.exampleParts = append(s.exampleParts,
+			ContentPart{Type: "text", Text: "REFERENCE GLYPH CHART: one labelled chart of the 55 published Balinese glyph classes (DeepLontar Table 1, CC BY 4.0). It is a legend, not text from the target manuscript."},
+			ContentPart{Type: "image_url", ImageURL: &ImageURL{URL: imageDataURL(data, mimeType)}},
+		)
+		s.exampleSources = append(s.exampleSources, "Siahaan et al., DeepLontar, Scientific Data 2022, Table 1 (CC BY 4.0); chart assembled by BukaLontar")
+	}
+	if mode == "examples" || mode == "both" || mode == "all" {
 		for _, example := range readingexamples.Select("") {
 			s.exampleParts = append(s.exampleParts,
 				ContentPart{Type: "text", Text: fmt.Sprintf("REFERENCE GLYPH EXAMPLE (not target text): %s. Granularity: %s. Source: %s", example.Label, example.Granularity, example.Source)},
@@ -51,7 +59,23 @@ func (s *Service) prepareReading(ctx context.Context, image []byte, mimeType str
 		ContentPart{Type: "text", Text: "TARGET MANUSCRIPT: read this photograph. Reference glyph examples above are NOT text from this manuscript."},
 		ContentPart{Type: "image_url", ImageURL: &ImageURL{URL: imageDataURL(image, mimeType)}},
 	)
-	if s.ocr != nil {
+	if s.ocr != nil && (s.assistanceMode == "leaves" || s.assistanceMode == "all") {
+		leaves, err := s.ocr.LeafCrops(ctx, image, 2)
+		if ctx.Err() != nil {
+			return nil, nil, ctx.Err()
+		}
+		if err != nil {
+			metadata.Warnings = append(metadata.Warnings, "Pemisahan daun tidak tersedia; model membaca foto asli.")
+		}
+		for i, leaf := range leaves {
+			parts = append(parts,
+				ContentPart{Type: "text", Text: fmt.Sprintf("LEAF %d OF THE SAME TARGET: full-leaf enlargement in reading order (normalized x,y,width,height %.3f,%.3f,%.3f,%.3f). Use it for small strokes. It is not an extra leaf; do not duplicate its content or recipes.", i+1, leaf.Box[0], leaf.Box[1], leaf.Box[2], leaf.Box[3])},
+				ContentPart{Type: "image_url", ImageURL: &ImageURL{URL: imageDataURL(leaf.Data, leaf.MimeType)}},
+			)
+			metadata.LeafRegions++
+		}
+	}
+	if s.ocr != nil && (s.assistanceMode == "ocr" || s.assistanceMode == "both" || s.assistanceMode == "all") {
 		evidence, err := s.ocr.Recognize(ctx, image)
 		if ctx.Err() != nil {
 			return nil, nil, ctx.Err()

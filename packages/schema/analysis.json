@@ -10,12 +10,13 @@
     "reading_assistance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mode", "ocr_ms", "focus_regions", "example_count", "example_sources", "warnings"],
+      "required": ["mode", "ocr_ms", "focus_regions", "leaf_regions", "example_count", "example_sources", "warnings"],
       "properties": {
-        "mode": { "enum": ["none", "examples", "ocr", "both"] },
+        "mode": { "enum": ["none", "examples", "ocr", "both", "leaves", "all", "chart"] },
         "ocr_model": { "type": "string" },
         "ocr_ms": { "type": "integer", "minimum": 0 },
         "focus_regions": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "leaf_regions": { "type": "integer", "minimum": 0, "maximum": 2 },
         "example_count": { "type": "integer", "minimum": 0, "maximum": 3 },
         "example_sources": { "type": "array", "items": { "type": "string" } },
         "warnings": { "type": "array", "items": { "type": "string" } }
@@ -30,7 +31,7 @@
           "enum": ["Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha"]
         },
         "lempir_number": { "type": "integer", "minimum": 1 },
-        "language": { "enum": ["Kawi / Jawa Kuno", "Bali Alus", "Tidak diketahui"] }
+        "language": { "enum": ["Kawi / Jawa Kuno", "Bali", "Bali Alus", "Tidak diketahui"] }
       }
     },
     "paleography": {

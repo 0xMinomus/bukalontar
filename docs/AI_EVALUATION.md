@@ -93,17 +93,55 @@ Batas metodologi: dua halaman dari satu naskah, satu model, tiga pengulangan. Tr
 
 `ag/gemini-3.8-flash-high` diuji pada dua halaman yang sama, mode `none` dan `examples`, dua pengulangan. Seluruh delapan permintaan mencapai batas 120 detik (`context deadline exceeded`) sehingga tidak ada respons yang dapat dinilai CER-nya. Model ini tidak dipakai untuk alur interaktif pada konfigurasi timeout sekarang. Penyebab (antrean provider dibanding beban model) tidak dipisahkan. Data: `evaluation/assist-high-timeout-20261112.jsonl`.
 
+### Eksperimen daun yang sempat terputus
+
+Hasil 12 percobaan Flash Low dari sesi sebelumnya dipulihkan dari berkas lokal, bukan dijalankan ulang. Dua halaman Aji Kreket, dua pengulangan per mode, referensi sama dengan evaluasi sebelumnya:
+
+| Mode | Respons | CER Bali | Median | Kesepakatan pasangan transliterasi |
+| --- | --- | --- | --- | --- |
+| `examples` | 4/4 | 0,8834 | 17,892 detik | 0,2347 |
+| `leaves` | 4/4 | 0,9651 | 24,723 detik | 0,2231 |
+| `all` | 4/4 | 1,0000 | 26,492 detik | 0,2022 |
+
+Perbesaran daun dan gabungan semua bantuan tidak memperbaiki hasil pada sampel ini, sekaligus lebih lambat. Default tetap `examples`; tidak ada klaim bacaan sudah akurat atau konsisten. CER `examples` berbeda dari batch sebelumnya, bukan kenaikan yang terbukti karena tidak ada eksperimen terkontrol baru. Batas keselarasan sisi daun dan transkripsi tetap berlaku. Data: `evaluation/assist-leaves-20261112.jsonl`; metrik: `evaluation/assist-leaves-metrics-20261112.json`.
+
+### Pembatasan aksara: temuan awal 12 November
+
+Hanya `ag/gemini-3.8-flash-low` dipanggil dalam pekerjaan lanjutan ini. Prompt satu-pass yang meminta klasifikasi target dan normalisasi penolakan diuji tiga kali pada masing-masing foto Wanagiri, Sukawati, lontar Babad Surapati Acad. 240 halaman PDF 7 (dikategorikan Commons sebagai aksara Jawa), dan contoh Kawi modern. Foto Bali diterima 3/6; contoh Kawi ditolak 3/3. Lontar pembanding menghasilkan satu penolakan, satu respons kosong upstream, dan satu bacaan/resep yang lolos. Kegagalan tidak dihitung sebagai penolakan benar.
+
+Data sebelum pemeriksaan terpisah: `evaluation/bali-scope-20261112.jsonl` dan `evaluation/bali-scope-jawa-20261112.jsonl`. Ini bukti prompt satu-pass belum cukup, bukan bukti pembatasan berhasil. Pemeriksaan foto target tanpa contoh glif/katalog kemudian dipisahkan dari pembacaan, tetap memakai Flash Low. Kontrol browser memperlihatkan foto Bali Sukawati yang diperjelas ditolak pada jalur pertama; pada jalur terpisah Wanagiri diterima, tetapi lontar pembanding yang diperjelas juga pernah lolos dan menghasilkan resep. Penolakan salah dan penerimaan salah tetap mungkin.
+
+Sumber dan byte input pembanding tersedia di [kredit input](evaluation/script-inputs/CREDITS.md). Contoh Kawi merupakan gambar huruf cetak berlabel Latin, bukan foto lontar Kawi kuno. Klasifikasi Babad Surapati didasarkan pada kategori Commons; belum ada validasi aksara oleh paleografer independen. Jangan mengubah hasil sulit menjadi klaim sukses atau menganggap metadata bahasa pasti mengidentifikasi aksara.
+
+Hasil akhir pemeriksaan terpisah (`evaluation/bali-gated-20261112.jsonl`), tiga pengulangan per gambar, byte asli tanpa preprocessing browser:
+
+| Input | Diterima | Ditolak | Gagal upstream | Median seluruh percobaan |
+| --- | --- | --- | --- | --- |
+| Wanagiri, aksara Bali | 2 | 1 | 0 | 33,998 detik |
+| Sukawati, aksara Bali | 2 | 1 | 0 | 16,552 detik |
+| Babad Surapati, pembanding kategori aksara Jawa | 2 | 0 | 1 | 29,129 detik |
+| Contoh Kawi cetak | 0 | 3 | 0 | 8,302 detik |
+
+**Target penolakan Jawa/Kawi secara andal belum tercapai.** Dua respons pembanding lolos; salah satunya berisi resep. Tidak ada dasar untuk mengklaim model lebih pintar, terjemahan akurat, konsistensi meningkat, atau kecepatan tetap sama. Pemeriksaan terpisah mengisolasi keputusan dari contoh/katalog, tetapi tidak membuat Gemini menjadi classifier independen. Sampel kecil, kategori sumber belum divalidasi ahli, dan tidak ada ground truth bacaan/resep untuk foto ini. Jangan menghitung semua respons HTTP 200 sebagai bacaan yang benar.
+
+Sebanyak 11 respons terstruktur akhir lolos JSON Schema draft 2020-12. Satu respons kosong upstream tidak dinilai sebagai penolakan. Pengujian backend setelah penambahan gate: 33 kasus lulus pada paket AI, model, dan handler. Browser nyata: Wanagiri menghasilkan HTTP 200; foto pembanding yang diperjelas juga menghasilkan HTTP 200 (kegagalan pembatasan), sementara Sukawati pada jalur sebelumnya menghasilkan HTTP 422 (penolakan salah). UI/PDF membedakan bahasa dari aksara, tidak menampilkan Unicode eksperimen/panel bantuan; viewport 390 px tidak overflow. Build produksi `make build` berhasil.
+
+Prasyarat yang belum tersedia untuk klaim lebih kuat: label aksara oleh ahli pada foto sulit lintas Bali/Jawa/Kawi, pasangan citra-bacaan ahli, dan discriminator yang tervalidasi pada holdout independen. Menambah prompt atau mengulang model yang sama bukan pengganti bukti tersebut.
+
+
+
 ## Perubahan produk yang diterapkan
 
-- Satu pass menggantikan dua pass dan union yang dapat memperbanyak temuan tanpa dasar.
+- Satu pembacaan menggantikan dua pembacaan dan union yang dapat memperbanyak temuan tanpa dasar. Pemeriksaan aksara terpisah kini mendahului pembacaan, bukan pass kedua untuk menggabungkan resep.
 - Grup naskah/bahasa boleh tidak diketahui; prompt tidak lagi menyuruh memilih kelompok Usadha terdekat.
 - Resep non-Usadha/tidak teridentifikasi tidak dibuat dari penanda kosong. Bentuk obat tidak otomatis menjadi loloh ketika tidak disebutkan.
 - Field ilmiah, klaim farmakologi, dan tautan rujukan ditentukan KB server. Model tidak boleh mempertahankan tautan atau klaim ilmiah untuk tanaman yang tidak cocok.
 - Kartu resep, tab Rujukan, dan PDF memuat tautan PubMed terkurasi. Pencarian literatur dibedakan dari artikel tinjauan. Tautan tidak dinyatakan sebagai bukti khasiat resep.
 - Label UI membedakan aksara terdeteksi dari teks terbaca. Tidak ditemukannya resep tidak dianggap bukti naskah pasti non-Usadha.
 - Detektor teks dan pengenal glif lokal dilatih dari DeepLontar. Default bantuan `examples`; crop fokus opt-in dan eksperimental.
-- Model diminta menuliskan transkripsi aksara Bali literal. Karakter dari aksara mirip (Jawa, Kawi, Sunda, Devanagari) dibuang server dengan peringatan; transkripsi kosong juga diberi peringatan.
-- Panel bantuan pembacaan dan bagian aksara Bali tersedia di UI dan laporan cetak, dengan batasan eksplisit.
+- Model diminta menuliskan transkripsi aksara Bali literal untuk evaluasi. Target yang ditolak atau keluaran transkripsi/transliterasi dengan konflik aksara tidak mempertahankan bacaan/resep. Transkripsi Unicode eksperimental tidak ditampilkan di UI/PDF.
+- Panel bantuan tidak ditampilkan di UI atau PDF; metadata bantuan tetap tersedia di API untuk evaluasi.
+- Mode bantuan diperluas: `chart` (lembar contekan 55 glif), `leaves` (perbesaran daun), `all`. Tidak ada yang terbukti menurunkan CER.
 
 ## Reproduksi
 
@@ -114,7 +152,7 @@ python3 scripts/deeplontar.py acquire
 python3 scripts/deeplontar.py validate
 go -C apps/api build -o /tmp/bukalontar-evaluate ./cmd/evaluate
 /tmp/bukalontar-evaluate \
-  -models ag/gemini-3.8-flash-low,cx/gpt-6.1-sol \
+  -models ag/gemini-3.8-flash-low \
   -reasoning low -repeat 3 -variant rerun \
   -out /tmp/bukalontar-rerun.jsonl \
   apps/web/public/samples/lontar-wanagiri-usada-3.jpg \

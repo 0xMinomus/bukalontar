@@ -10,8 +10,8 @@ Dokumen ini melengkapi Lampiran C panduan peserta. Isinya harus sesuai dengan im
 | **Database / Storage** | Tidak ada database eksternal. Knowledge base JSON Taru Pramana di-embed dengan `go:embed`. Sesi frontend disimpan di IndexedDB browser |
 | **Hosting / Deployment** | Vercel Services di `https://bukalontar.my.id`, service `web` dan `api`; binary mandiri opsional |
 | **AI Gateway** | 9router, endpoint OpenAI-compatible |
-| **AI Model / API / Method** | Model multimodal melalui 9router, default `ag/gemini-3.8-flash-low`; fallback opsional melalui Command Code Provider API. Bantuan lokal: detektor teks ridge 10 bobot dan pengenal glif HOG + LinearSVC, keduanya dilatih dari anotasi DeepLontar dan di-embed |
-| **Peran AI dalam Produk** | Membaca aksara Bali pada citra lontar, menghasilkan transliterasi dan terjemahan Kawi, serta mengekstrak resep tanaman obat ketika naskahnya adalah lontar Usadha. AI adalah komponen material alur utama, bukan sekadar asisten coding |
+| **AI Model / API / Method** | Hanya `ag/gemini-3.8-flash-low` melalui 9router, tanpa fallback model. Bantuan lokal: detektor teks ridge 10 bobot dan pengenal glif HOG + LinearSVC, keduanya dilatih dari anotasi DeepLontar dan di-embed |
+| **Peran AI dalam Produk** | Membaca citra lontar beraksara Bali, menghasilkan transliterasi dan terjemahan, serta mengekstrak resep ketika didukung bacaan Usadha. Bahasa Kawi/Jawa Kuno bukan aksara Kawi; aksara Jawa dan Kawi di luar lingkup. Klasifikasi masih bergantung pada model umum, bukan model yang telah kehilangan kemampuan membaca aksara lain |
 | **Dataset / Data Source** | Taru Pramana KB; foto Wikimedia Commons CC BY-SA 4.0; 200 citra asli DeepLontar v2 CC BY 4.0 dengan label kotak karakter untuk pelatihan detektor lokal; satu berkas anotasi dikarantina; lima halaman Wikisource berlabel tangan sebagai holdout evaluasi. Tidak ada data pribadi. Detail di DATA_SOURCES.md |
 | **Open-source Libraries** | React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge; Go standard library |
 | **Template / Boilerplate** | Vite React TypeScript starter; komponen UI shadcn-style |
@@ -26,6 +26,8 @@ Dokumen ini melengkapi Lampiran C panduan peserta. Isinya harus sesuai dengan im
 Ada pelatihan model lokal, tetapi bukan fine-tuning model bahasa. `scripts/train_lontar_ocr.py` melatih detektor okupansi teks dan pengenal glif dari 159 lembar train. Kedua artefak di-embed sebagai bantuan pembacaan; ID kelas glif tetap opasitas dan tidak pernah dikeluarkan sebagai teks.
 
 Tidak ada fine-tuning model bahasa: endpoint `GET /v1/fine_tuning/jobs` pada router mengembalikan HTTP 404. Bobot Gemini/Sol tidak diubah. Metrik, batasan, dan cara melatih ulang ada di [OCR_TRAINING.md](OCR_TRAINING.md).
+
+Transkripsi Unicode Bali tetap tersedia sebagai keluaran API eksperimental, tetapi tidak ditampilkan di UI atau PDF: CER pada evaluasi sebelumnya melebihi 0,95. Menampilkan karakter Unicode Bali tidak membuktikan bacaannya benar. Pembatasan produk memakai satu panggilan klasifikasi aksara tanpa referensi/katalog sebelum satu pembacaan, lalu normalisasi penolakan server. Keduanya menggunakan Gemini 3.8 Flash Low. Ini menambah satu panggilan pada foto yang diterima, bukan fine-tuning atau jaminan deteksi sempurna.
 
 
 ## Pernyataan

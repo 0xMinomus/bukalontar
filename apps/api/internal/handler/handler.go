@@ -107,7 +107,7 @@ func (h *handler) analyze(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if !result.Paleography.AksaraBaliDetected {
-		writeError(w, http.StatusUnprocessableEntity, "Aksara Bali tidak terdeteksi pada foto ini. Gunakan foto lontar yang lebih jelas dan tidak terpotong.")
+		writeError(w, http.StatusUnprocessableEntity, "Foto belum dapat dipastikan beraksara Bali. BukaLontar hanya menerima aksara Bali, bukan aksara Jawa/Kawi atau campuran. Gunakan foto yang jelas.")
 		return
 	}
 

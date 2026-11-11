@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -63,6 +64,9 @@ func TestAnalyzeRepairsInvalidOutputAndAppliesKB(t *testing.T) {
 
 	var calls atomic.Int32
 	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if serveAcceptedScript(w, r) {
+			return
+		}
 		call := calls.Add(1)
 		content := "not json"
 		if call > 1 {
@@ -150,6 +154,9 @@ func TestAnalyzeRejectsBadOutputAfterRepair(t *testing.T) {
 		t.Fatal(err)
 	}
 	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if serveAcceptedScript(w, r) {
+			return
+		}
 		fmt.Fprint(w, `{"choices":[{"message":{"content":"not json"}}]}`)
 	}))
 	defer upstream.Close()
@@ -179,6 +186,9 @@ func TestAnalyzeReplacesModelCitationsWithCuratedSources(t *testing.T) {
 		t.Fatal(err)
 	}
 	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if serveAcceptedScript(w, r) {
+			return
+		}
 		_ = json.NewEncoder(w).Encode(map[string]any{
 			"choices": []any{map[string]any{"message": map[string]any{"content": string(raw)}}},
 		})
@@ -211,5 +221,122 @@ func TestAnalyzeReplacesModelCitationsWithCuratedSources(t *testing.T) {
 		if !foundReview {
 			t.Fatal("curated guava review missing from result")
 		}
+	}
+}
+
+func TestAnalyzeWithholdsRejectedOrConflictingScript(t *testing.T) {
+	for _, script := range []string{"rejected", "ꦲꦤ", "𑼒𑼀", "ᬅꦲ"} {
+		t.Run(script, func(t *testing.T) {
+			input := serviceTestResponse()
+			input.Paleography.AksaraBaliDetected = script != "rejected"
+			input.Paleography.BalineseTranscription = script
+			content, err := json.Marshal(input)
+			if err != nil {
+				t.Fatal(err)
+			}
+			upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				if serveAcceptedScript(w, r) {
+					return
+				}
+				json.NewEncoder(w).Encode(map[string]any{
+					"choices": []any{map[string]any{"message": map[string]any{"content": string(content)}}},
+				})
+			}))
+			defer upstream.Close()
+			store, err := kb.Load()
+			if err != nil {
+				t.Fatal(err)
+			}
+			service, err := NewService(Config{
+				Primary: ProviderConfig{BaseURL: upstream.URL, Model: "test", Timeout: time.Second},
+				KB:      store,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			result, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "scope")
+			if err != nil {
+				t.Fatal(err)
+			}
+			if result.Paleography.AksaraBaliDetected || result.Paleography.Confidence != "low" ||
+				result.Paleography.BalineseTranscription != "" ||
+				result.Paleography.Transliteration != "Tidak terdeteksi." ||
+				result.Paleography.IndonesianTranslation != "Tidak terdeteksi." ||
+				result.Paleography.EnglishTranslation != "Tidak terdeteksi." {
+				t.Fatalf("rejected target leaked a reading: %+v", result.Paleography)
+			}
+			if len(result.Recipes) != 0 || result.Ethnomedicinal.KBMatch ||
+				result.Ethnomedicinal.PlantLocalName != "Tidak disebutkan." ||
+				len(result.Scientific.ReferenceLinks) != 0 ||
+				result.SourceReference.Language != "Tidak diketahui" || result.SourceReference.LempirNumber != nil {
+				t.Fatalf("rejected target leaked findings: %+v", result)
+			}
+		})
+	}
+}
+
+func serveAcceptedScript(w http.ResponseWriter, r *http.Request) bool {
+	var request struct {
+		MaxTokens int `json:"max_tokens"`
+	}
+	_ = json.NewDecoder(r.Body).Decode(&request)
+	if request.MaxTokens != 256 {
+		return false
+	}
+	_ = json.NewEncoder(w).Encode(map[string]any{
+		"choices": []any{map[string]any{"message": map[string]any{
+			"content": `{"script":"balinese","confidence":"high"}`,
+		}}},
+	})
+	return true
+}
+
+func TestScriptGateNeverReadsRejectedOrInvalidDecisions(t *testing.T) {
+	for _, decision := range []string{
+		`{"script":"javanese","confidence":"high"}`,
+		`{"script":"kawi","confidence":"high"}`,
+		`{"script":"mixed","confidence":"high"}`,
+		`{"script":"uncertain","confidence":"low"}`,
+		`{"script":"balinese","confidence":"low"}`,
+		`{"script":"unknown","confidence":"high"}`,
+		`{}`,
+		`not json`,
+	} {
+		t.Run(decision, func(t *testing.T) {
+			var calls atomic.Int32
+			upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				calls.Add(1)
+				_ = json.NewEncoder(w).Encode(map[string]any{
+					"choices": []any{map[string]any{"message": map[string]any{"content": decision}}},
+				})
+			}))
+			defer upstream.Close()
+			store, err := kb.Load()
+			if err != nil {
+				t.Fatal(err)
+			}
+			service, err := NewService(Config{
+				Primary: ProviderConfig{BaseURL: upstream.URL, Model: "test", Timeout: time.Second},
+				KB:      store,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			result, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "scope")
+			if calls.Load() != 1 {
+				t.Fatal("rejected or invalid script decision reached the manuscript reader")
+			}
+			if err == nil && (result.Paleography.AksaraBaliDetected || len(result.Recipes) != 0 ||
+				result.Paleography.Transliteration != "Tidak terdeteksi.") {
+				t.Fatalf("rejected script produced a reading: %+v", result)
+			}
+			valid := strings.Contains(decision, `"script":`) && !strings.Contains(decision, `"unknown"`)
+			if valid && err != nil {
+				t.Fatalf("valid refusal returned an error: %v", err)
+			}
+			if !valid && err == nil {
+				t.Fatal("invalid classifier output must fail closed")
+			}
+		})
 	}
 }
