@@ -15,14 +15,16 @@ Naskah asli tetap menjadi sumber utama. Hasil AI tidak menggantikan pemeriksaan 
 
 ## Foto Sampel
 
-Foto sampel dipakai untuk menguji antarmuka dan pipeline.
+Contoh yang dapat dipilih adalah sisi depan Usada Lare dan Usada Rare 154 dari Balai Bahasa Bali. Keduanya memiliki transkripsi aksara Bali tervalidasi di Wikisource Bali. Pemotongan membuang latar meja dan sisi belakang, bukan menggambar ulang aksara. Penolakan model tidak menentukan identitas aksara.
 
 | File | Kreator | Lisensi | Sumber |
 | --- | --- | --- | --- |
+| `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [transkripsi tervalidasi](https://ban.wikisource.org/w/index.php?oldid=105197) |
+| `lontar-usada-rare-154-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Rare_154.jpg), [transkripsi tervalidasi](https://ban.wikisource.org/w/index.php?oldid=105194) |
 | `lontar-wanagiri-usada-3.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Wanagiri-Usada-3.jpg) |
 | `lontar-sukawati-usada-07.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) |
 
-Detail lisensi juga tersedia di [`apps/web/public/samples/CREDITS.md`](../apps/web/public/samples/CREDITS.md).
+Wanagiri/Sukawati dipertahankan untuk aset dekoratif/kartu berbagi dan evaluasi historis, bukan pilihan contoh. Detail lisensi, koordinat crop, dan SHA-256 tersedia di [`apps/web/public/samples/CREDITS.md`](../apps/web/public/samples/CREDITS.md).
 
 ## Korpus DeepLontar
 

@@ -184,6 +184,6 @@ const taruPule: AnalysisResponse = {
 }
 
 export function mockAnalysis(sampleId?: string): AnalysisResponse {
-  const data = sampleId === 'sukawati' ? taruPule : taruSotong
+  const data = sampleId === 'usada-rare-154' ? taruPule : taruSotong
   return structuredClone(data)
 }

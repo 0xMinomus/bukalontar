@@ -16,6 +16,7 @@ BukaLontar membaca foto lontar Bali, menghasilkan transliterasi, terjemahan, dan
 - Detektor teks dan pengenal glif lokal dilatih dari 159 lembar DeepLontar; inferensi Go murni.
 - Lima halaman Wikisource berlabel sebagai holdout evaluasi; skrip CER tersedia.
 - Hasil uji penolakan belum memenuhi target: pada batch akhir, dua respons lontar pembanding kategori Jawa lolos dan satu gagal upstream; contoh Kawi cetak ditolak 3/3. Foto Bali diterima 4/6. Lihat [laporan dan batas label](AI_EVALUATION.md#pembatasan-aksara-temuan-awal-12-november).
+- Kedua contoh pilihan diganti menjadi sisi depan Usada Lare dan Usada Rare 154, dengan transkripsi aksara Bali tervalidasi di Wikisource. Uji klik contoh terakhir menghasilkan HTTP 200 untuk keduanya; Rare sempat ditolak pada uji upload awal. Model/pengaman tidak diubah dan tidak ada bypass untuk contoh.
 
 ## Angka terakhir
 

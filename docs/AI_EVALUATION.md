@@ -181,3 +181,21 @@ Runner menolak menimpa berkas keluaran yang sudah ada. Baseline lama dikompilasi
 - `make build` berhasil membangun TypeScript/Vite, menyematkan aset terbaru, dan menghasilkan binary Go produksi.
 
 Perubahan dikerjakan dan diuji lokal. Tidak ada klaim deployment produksi diperbarui atau training model berhasil.
+
+## Penggantian contoh pilihan setelah laporan penolakan
+
+Wanagiri memiliki bacaan yang telah divalidasi di [Wikisource Bali](https://ban.wikisource.org/w/index.php?oldid=127924). Metadata [Commons Sukawati](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) mencantumkan writing system Balinese. Penolakan aplikasi bukan bukti keduanya menggunakan aksara Kawi. Sebelumnya false rejection telah terjadi pada foto Bali; penyebab keputusan spesifik model tidak dapat ditentukan hanya dari HTTP 422.
+
+Kedua contoh pilihan kini memakai sisi depan **Usada Lare** dan **Usada Rare 154**, foto Eka343 dari Balai Bahasa Bali. Transkripsi tervalidasi di Wikisource memakai blok aksara Bali: [Lare, revisi 105197](https://ban.wikisource.org/w/index.php?oldid=105197), [Rare 154, revisi 105194](https://ban.wikisource.org/w/index.php?oldid=105194). Foto dipotong untuk mempertahankan satu sisi daun utuh dan mengurangi latar meja, kemudian diperkecil ke lebar 2400 px. Tidak ada rekonstruksi glif. Kredit, koordinat, dimensi, dan checksum ada di `apps/web/public/samples/CREDITS.md`.
+
+Pengujian nyata memakai Gemini 3.8 Flash Low yang sama, preprocessing browser default, tanpa mock atau pengecualian berdasarkan `source_id`. Tidak ada perubahan backend, prompt, atau pengaman penolakan dalam penggantian contoh ini.
+
+| Jalur | Contoh | HTTP | Waktu |
+| --- | --- | --- | --- |
+| Upload awal | Usada Lare, depan | 200 | 28,807 detik |
+| Upload awal | Usada Rare 154, depan | 422 | 32,252 detik |
+| Klik contoh landing | Usada Lare, depan | 200 | 32,491 detik |
+| Klik contoh landing | Usada Rare 154, depan | 200 | 25,936 detik |
+
+Seluruh hasil, termasuk penolakan awal, disimpan di `evaluation/replacement-samples-web-20261112.jsonl`. Kedua tombol contoh lolos pemeriksaan terakhir, tetapi satu penolakan pada sumber yang sama menunjukkan masalah deteksi belum hilang. Ini verifikasi penggantian contoh dan alur antarmuka, bukan bukti akurasi bacaan, stabilitas, atau peningkatan model. Thumbnail keduanya termuat; pada viewport 390 px lebar dokumen tetap 390 px dan tidak ada error JavaScript yang tercatat.
+
