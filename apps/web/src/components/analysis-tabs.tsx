@@ -15,8 +15,10 @@ import {
   analysisSummary,
   formatTransliteration,
   formatTranslation,
+  hasBalinese,
   hasMedicinalPlant,
   resultRecipes,
+  safeReferenceLinks,
   usefulText,
 } from '@/lib/reading'
 
@@ -83,6 +85,9 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
     ? formatTranslation(result.paleography.english_translation)
     : 'Translation is not available for this leaf.'
   const summary = analysisSummary(result)
+  const balinese = hasBalinese(result.paleography.balinese_transcription)
+    ? (result.paleography.balinese_transcription?.trim() ?? '')
+    : ''
   const compounds = unique(
     plantRecipes.flatMap((recipe) => recipe.phytochemical_compounds),
   )
@@ -109,14 +114,25 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
           <div className="flex items-center justify-between gap-3">
             <Badge variant="outline">
               {result.paleography.aksara_bali_detected
-                ? 'Aksara Bali terbaca'
-                : 'Aksara Bali tidak terbaca'}
+                ? 'Aksara Bali terdeteksi'
+                : 'Aksara Bali tidak terdeteksi'}
             </Badge>
             <CopyButton text={transliteration} />
           </div>
           <p className="prose-lontar mt-4 whitespace-pre-line">
             {transliteration}
           </p>
+          {balinese ? (
+            <div className="mt-4 rounded-lg border border-border bg-secondary/30 px-3 py-2">
+              <div className="flex items-center justify-between gap-3">
+                <p className="label-xs">Aksara Bali</p>
+                <CopyButton text={balinese} />
+              </div>
+              <p className="mt-1 whitespace-pre-line break-words text-lg leading-8">
+                {balinese}
+              </p>
+            </div>
+          ) : null}
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span>{confidenceLabel[result.paleography.confidence]}</span>
             <span aria-hidden="true">·</span>
@@ -167,21 +183,19 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                 />
                 <div>
                   <h3 className="font-heading text-2xl leading-tight tracking-tight">
-                    {hasAilment
-                      ? 'Naskah usada tanpa tanaman'
-                      : 'Bukan naskah usada'}
+                    {result.source_reference.lontar_group === 'Non-Usadha'
+                      ? 'Naskah non-Usadha'
+                      : 'Resep belum teridentifikasi'}
                   </h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     {hasAilment
-                      ? `Lembar ini membahas ${result.ethnomedicinal_entity.target_ailment}, tetapi tidak menyebut ramuan tanaman yang bisa dipetakan.`
-                      : 'Lembar ini berisi ajaran atau catatan, bukan resep ramuan obat.'}
+                      ? `Hasil pembacaan menyebut ${result.ethnomedicinal_entity.target_ailment}, tetapi belum ada resep tanaman yang berhasil dipetakan.`
+                      : 'Belum ada resep yang berhasil diidentifikasi. Bagian yang tidak terbaca tidak membuktikan bahwa naskah tidak memuat resep.'}
                   </p>
                 </div>
               </div>
               <p className="mt-4 text-sm leading-relaxed">
-                {hasAilment
-                  ? 'Tidak ada tanaman obat atau cara racik yang disebutkan pada teks ini.'
-                  : 'Tidak ada tanaman obat atau cara racik yang bisa dipetakan dari teks ini.'}
+                Periksa bacaan dan foto asli sebelum menyimpulkan isi naskah.
               </p>
               {summary ? (
                 <div className="mt-4 border-t border-border pt-4">
@@ -277,6 +291,19 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                           : 'Tidak ada'}
                       </p>
                     </div>
+                    {safeReferenceLinks(recipe).length > 0 ? (
+                      <div className="mt-4">
+                        <p className="label-xs">Tautan dari knowledge base</p>
+                        <ul className="mt-1.5 space-y-1 text-sm">
+                          {safeReferenceLinks(recipe).map((link) => (
+                            <li key={link.url}>
+                              <a className="underline underline-offset-2" href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="mt-1 text-xs text-muted-foreground">Tautan ini bukan sumber naskah dan tidak membuktikan khasiat resep.</p>
+                      </div>
+                    ) : null}
                   </div>
                 )
               })}
@@ -295,7 +322,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
             <p className="text-xs leading-relaxed text-muted-foreground">
               {noPlant
                 ? 'Lembar ini tidak memuat tanaman obat, jadi belum ada rujukan tanaman yang bisa ditampilkan.'
-                : `${plantRecipes.length} resep ditemukan. Kandungan dan khasiat di bawah dirujuk dari Taru Pramana bila tanaman tercatat.`}
+                : `${plantRecipes.length} resep ditemukan. Nama dan cara racik berasal dari pembacaan naskah; informasi tambahan berasal dari knowledge base bila tanaman tercatat.`}
             </p>
           </div>
 
@@ -338,7 +365,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
               <Separator className="my-4" />
 
               <section>
-                <p className="label-xs">Sumber rujukan</p>
+                <p className="label-xs">Deskripsi rujukan di knowledge base</p>
                 {references.length > 0 ? (
                   <ul className="mt-1.5 space-y-1.5">
                     {references.map((reference) => (
@@ -359,6 +386,22 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                     Belum ada rujukan.
                   </p>
                 )}
+                {plantRecipes.map((recipe) => {
+                  const links = safeReferenceLinks(recipe)
+                  return links.length > 0 ? (
+                    <div className="mt-4" key={recipe.plant_local_name}>
+                      <p className="text-sm font-semibold">{recipe.plant_local_name}: tautan dari knowledge base</p>
+                      <ul className="mt-1.5 space-y-1.5">
+                        {links.map((link) => (
+                          <li key={link.url} className="text-sm">
+                            <a className="underline underline-offset-2" href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null
+                })}
+                <p className="mt-3 text-xs text-muted-foreground">Tautan literatur bukan sumber naskah; hasil pencarian tidak membuktikan khasiat resep.</p>
               </section>
             </>
           ) : null}

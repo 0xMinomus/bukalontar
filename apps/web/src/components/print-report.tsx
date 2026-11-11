@@ -3,8 +3,10 @@ import {
   analysisSummary,
   formatTransliteration,
   formatTranslation,
+  hasBalinese,
   hasMedicinalPlant,
   resultRecipes,
+  safeReferenceLinks,
   usefulText,
 } from '@/lib/reading'
 
@@ -77,7 +79,8 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
   )
   const hasValidation =
     hasPlant &&
-    (compounds.length > 0 || actions.length > 0 || references.length > 0)
+    (compounds.length > 0 || actions.length > 0 || references.length > 0 ||
+      plantRecipes.some((recipe) => safeReferenceLinks(recipe).length > 0))
 
   return (
     <article className="print-report">
@@ -122,7 +125,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
             </div>
             <div className="report-field">
               <dt>Aksara Bali</dt>
-              <dd>{paleography.aksara_bali_detected ? 'Terbaca' : 'Tidak terbaca'}</dd>
+              <dd>{paleography.aksara_bali_detected ? 'Terdeteksi' : 'Tidak terdeteksi'}</dd>
             </div>
             <div className="report-field">
               <dt>Tanaman</dt>
@@ -133,7 +136,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
                         .map((recipe) => recipe.plant_local_name)
                         .join(', ')}`
                     : plantRecipes[0].plant_local_name
-                  : 'Tidak ada tanaman obat'}
+                  : 'Resep belum teridentifikasi'}
               </dd>
             </div>
             <div className="report-field">
@@ -170,14 +173,37 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
           {summary ??
             (hasPlant
               ? 'Ringkasan isi belum tersedia.'
-              : 'Lembar ini tidak memuat resep ramuan obat. Tidak ada tanaman obat atau cara racik yang bisa dipetakan dari teks ini.')}
+              : 'Belum ada resep yang berhasil diidentifikasi. Bagian yang tidak terbaca tidak membuktikan bahwa naskah tidak memuat resep.')}
         </p>
       </section>
+
+      {result.reading_assistance && result.reading_assistance.mode !== 'none' ? (
+        <section className="report-section">
+          <h2 className="report-section-title">Bantuan pembacaan</h2>
+          <p className="report-prose">
+            {result.reading_assistance.focus_regions} area fokus dari model lokal; {result.reading_assistance.example_count} contoh glif berlabel.
+            {' '}Area fokus bukan transkripsi mandiri. Contoh bukan teks naskah ini; model bahasa tidak dilatih ulang.
+          </p>
+          {result.reading_assistance.example_sources.map((source, index) => (
+            <p key={index} className="report-prose">{source}</p>
+          ))}
+          {result.reading_assistance.warnings.map((warning, index) => (
+            <p key={index} className="report-prose">{warning}</p>
+          ))}
+        </section>
+      ) : null}
 
       <section className="report-section">
         <h2 className="report-section-title">Transliterasi</h2>
         <p className="report-prose">{transliteration}</p>
       </section>
+
+      {hasBalinese(paleography.balinese_transcription) ? (
+        <section className="report-section">
+          <h2 className="report-section-title">Aksara Bali</h2>
+          <p className="report-prose">{paleography.balinese_transcription}</p>
+        </section>
+      ) : null}
 
       <section className="report-section">
         <h2 className="report-section-title">Terjemahan Indonesia</h2>
@@ -250,13 +276,27 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
                   ? formatTranslation(recipe.preparation_instructions)
                   : 'Cara racik belum tercatat.'}
               </p>
+              {safeReferenceLinks(recipe).length > 0 ? (
+                <>
+                  <h3 className="report-subheading">Tautan dari knowledge base</h3>
+                  <ul className="report-list">
+                    {safeReferenceLinks(recipe).map((link) => (
+                      <li key={link.url}>
+                        <a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+                        {' '}({link.url})
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="report-prose">Tautan literatur bukan sumber naskah dan tidak membuktikan khasiat resep.</p>
+                </>
+              ) : null}
             </div>
           ))
         ) : (
           <p className="report-prose">
             {hasAilment
               ? `Lembar ini membahas ${entity.target_ailment}, tetapi tidak menyebut ramuan tanaman yang bisa dipetakan.`
-              : 'Tidak ada tanaman obat atau cara racik pada lembar ini.'}
+              : 'Belum ada tanaman obat atau cara racik yang berhasil diidentifikasi.'}
           </p>
         )}
       </section>
@@ -287,7 +327,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
           ) : (
             <p className="report-prose">Belum tersedia.</p>
           )}
-          <h3 className="report-subheading">Sumber rujukan</h3>
+          <h3 className="report-subheading">Deskripsi rujukan di knowledge base</h3>
           {references.length > 0 ? (
             <ul className="report-list">
               {references.map((reference) => (

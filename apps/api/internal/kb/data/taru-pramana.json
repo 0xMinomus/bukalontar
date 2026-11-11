@@ -11,6 +11,10 @@
     "reference_studies": [
       "Tinjauan fitokimia Psidium guajava",
       "Uji antimikroba ekstrak daun jambu biji"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Psidium guajava", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Psidium+guajava", "kind": "literature_search"},
+      {"title": "Gutiérrez dkk. (2008): tinjauan Psidium guajava", "url": "https://pubmed.ncbi.nlm.nih.gov/18353572/", "kind": "literature"}
     ]
   },
   {
@@ -25,6 +29,9 @@
     "reference_studies": [
       "Tinjauan alkaloid Alstonia scholaris",
       "Kajian etnofarmakologi kulit batang pule"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Alstonia scholaris", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Alstonia+scholaris", "kind": "literature_search"}
     ]
   },
   {
@@ -39,6 +46,9 @@
     "reference_studies": [
       "Etnobotani Syzygium polycephalum",
       "Skrining fitokimia kulit batang kaliasem"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Syzygium polycephalum", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Syzygium%20polycephalum", "kind": "literature_search"}
     ]
   },
   {
@@ -53,6 +63,9 @@
     "reference_studies": [
       "Tinjauan farmakologi kurkumin",
       "Kajian etnomedisin Curcuma longa"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Curcuma longa", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Curcuma%20longa", "kind": "literature_search"}
     ]
   },
   {
@@ -67,6 +80,9 @@
     "reference_studies": [
       "Tinjauan fitokimia Piper betle",
       "Uji aktivitas antimikroba ekstrak daun sirih"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Piper betle", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Piper+betle", "kind": "literature_search"}
     ]
   },
   {
@@ -81,6 +97,9 @@
     "reference_studies": [
       "Tinjauan fitokimia Tamarindus indica",
       "Kajian etnofarmakologi asam jawa"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Tamarindus indica", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Tamarindus+indica", "kind": "literature_search"}
     ]
   },
   {
@@ -95,6 +114,9 @@
     "reference_studies": [
       "Tinjauan fitokimia Sesbania grandiflora",
       "Kajian etnofarmakologi daun turi"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Sesbania grandiflora", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sesbania%20grandiflora", "kind": "literature_search"}
     ]
   },
   {
@@ -109,6 +131,9 @@
     "reference_studies": [
       "Tinjauan fitokimia Capsicum annuum",
       "Kajian kapsaisin untuk nyeri topikal"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Capsicum annuum", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Capsicum%20annuum", "kind": "literature_search"}
     ]
   },
   {
@@ -123,6 +148,9 @@
     "reference_studies": [
       "Tinjauan fitokimia Coriandrum sativum",
       "Kajian farmakologi biji ketumbar"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Coriandrum sativum", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Coriandrum%20sativum", "kind": "literature_search"}
     ]
   },
   {
@@ -137,6 +165,9 @@
     "reference_studies": [
       "Tinjauan fitokimia Foeniculum vulgare",
       "Kajian farmakologi buah adas"
+    ],
+    "reference_links": [
+      {"title": "PubMed: pencarian Foeniculum vulgare", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Foeniculum+vulgare", "kind": "literature_search"}
     ]
   }
 ]

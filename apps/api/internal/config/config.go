@@ -10,35 +10,39 @@ import (
 )
 
 type Config struct {
-	Port               string
-	PublicOrigin       string
-	AllowedOrigin      string
-	AIBaseURL          string
-	AIModel            string
-	AIAPIKey           string
-	AITimeout          time.Duration
-	FallbackEnabled    bool
-	FallbackBaseURL    string
-	FallbackModel      string
-	FallbackAPIKey     string
-	RateLimitPerMinute int
+	Port                string
+	PublicOrigin        string
+	AllowedOrigin       string
+	AIBaseURL           string
+	AIModel             string
+	AIReasoningEffort   string
+	AIReadingAssistance string
+	AIAPIKey            string
+	AITimeout           time.Duration
+	FallbackEnabled     bool
+	FallbackBaseURL     string
+	FallbackModel       string
+	FallbackAPIKey      string
+	RateLimitPerMinute  int
 }
 
 func Load() Config {
 	timeoutSeconds := envInt("AI_TIMEOUT_SECONDS", 120)
 	return Config{
-		Port:               env("PORT", "8080"),
-		PublicOrigin:       env("PUBLIC_ORIGIN", "http://localhost:5173"),
-		AllowedOrigin:      env("ALLOWED_ORIGIN", ""),
-		AIBaseURL:          env("AI_BASE_URL", "http://127.0.0.1:20128/v1"),
-		AIModel:            env("AI_MODEL", "ag/gemini-3.8-flash-low"),
-		AIAPIKey:           env("AI_API_KEY", ""),
-		AITimeout:          time.Duration(timeoutSeconds) * time.Second,
-		FallbackEnabled:    envBool("AI_FALLBACK_ENABLED", false),
-		FallbackBaseURL:    env("AI_FALLBACK_BASE_URL", ""),
-		FallbackModel:      env("AI_FALLBACK_MODEL", ""),
-		FallbackAPIKey:     env("AI_FALLBACK_API_KEY", ""),
-		RateLimitPerMinute: envInt("RATE_LIMIT_PER_MINUTE", 10),
+		Port:                env("PORT", "8080"),
+		PublicOrigin:        env("PUBLIC_ORIGIN", "http://localhost:5173"),
+		AllowedOrigin:       env("ALLOWED_ORIGIN", ""),
+		AIBaseURL:           env("AI_BASE_URL", "http://127.0.0.1:20128/v1"),
+		AIModel:             env("AI_MODEL", "ag/gemini-3.8-flash-low"),
+		AIReasoningEffort:   env("AI_REASONING_EFFORT", "low"),
+		AIReadingAssistance: env("AI_READING_ASSISTANCE", "examples"),
+		AIAPIKey:            env("AI_API_KEY", ""),
+		AITimeout:           time.Duration(timeoutSeconds) * time.Second,
+		FallbackEnabled:     envBool("AI_FALLBACK_ENABLED", false),
+		FallbackBaseURL:     env("AI_FALLBACK_BASE_URL", ""),
+		FallbackModel:       env("AI_FALLBACK_MODEL", ""),
+		FallbackAPIKey:      env("AI_FALLBACK_API_KEY", ""),
+		RateLimitPerMinute:  envInt("RATE_LIMIT_PER_MINUTE", 10),
 	}
 }
 

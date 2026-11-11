@@ -5,6 +5,8 @@ export type LontarGroup =
   | 'Usadha Tiwang'
   | 'Usadha Dalem'
   | 'Usadha Yeh'
+  | 'Tidak diketahui'
+  | 'Non-Usadha'
 
 export type PlantPart =
   | 'Don (Daun)'
@@ -13,14 +15,22 @@ export type PlantPart =
   | 'Buah'
   | 'Sekar (Bunga)'
   | 'Campuran'
+  | 'Tidak disebutkan.'
 
-export type EnergyCharacter = 'Panes (Hangat)' | 'Tis (Dingin)' | 'Dumelada (Sedang)'
+export type EnergyCharacter = 'Panes (Hangat)' | 'Tis (Dingin)' | 'Dumelada (Sedang)' | 'Tidak disebutkan.'
 
 export type FormulationType =
   | 'Loloh (Minum)'
   | 'Boreh (Balur)'
   | 'Tutuh (Tetes)'
   | 'Sasap (Kompres)'
+  | 'Tidak disebutkan.'
+
+export interface ReferenceLink {
+  title: string
+  url: string
+  kind: 'literature_search' | 'literature'
+}
 
 export interface Recipe {
   plant_local_name: string
@@ -36,6 +46,7 @@ export interface Recipe {
   phytochemical_compounds: string[]
   modern_pharmacological_action: string
   reference_studies: string[]
+  reference_links?: ReferenceLink[]
 }
 
 export interface AnalysisResponse {
@@ -43,11 +54,12 @@ export interface AnalysisResponse {
   source_reference: {
     lontar_group: LontarGroup
     lempir_number?: number
-    language: 'Kawi / Jawa Kuno' | 'Bali Alus'
+    language: 'Kawi / Jawa Kuno' | 'Bali Alus' | 'Tidak diketahui'
   }
   paleography: {
     aksara_bali_detected: boolean
     confidence: Confidence
+    balinese_transcription?: string
     transliteration: string
     indonesian_translation: string
     english_translation: string
@@ -68,9 +80,19 @@ export interface AnalysisResponse {
     phytochemical_compounds: string[]
     modern_pharmacological_action: string
     reference_studies: string[]
+    reference_links?: ReferenceLink[]
     safety_disclaimer: string
   }
   recipes?: Recipe[]
+  reading_assistance?: {
+    mode: 'none' | 'examples' | 'ocr' | 'both'
+    ocr_model?: string
+    ocr_ms: number
+    focus_regions: number
+    example_count: number
+    example_sources: string[]
+    warnings: string[]
+  }
 }
 
 export const SAFETY_DISCLAIMER =

@@ -86,3 +86,40 @@ func TestNormalizeFillsListsAndCanonicalDisclaimer(t *testing.T) {
 		t.Fatal("safety disclaimer must be canonical")
 	}
 }
+
+func TestValidateAllowsUnknownManuscriptClassification(t *testing.T) {
+	for _, group := range []string{"Tidak diketahui", "Non-Usadha"} {
+		response := validResponse()
+		response.SourceReference.LontarGroup = group
+		response.SourceReference.Language = "Tidak diketahui"
+		if err := response.Validate(); err != nil {
+			t.Fatalf("%q rejected: %v", group, err)
+		}
+	}
+}
+
+func TestNonMedicinalReadingDoesNotCreatePlaceholderRecipe(t *testing.T) {
+	response := validResponse()
+	response.SourceReference.LontarGroup = "Non-Usadha"
+	response.Ethnomedicinal.PlantLocalName = "Tidak disebutkan."
+	response.Ethnomedicinal.TargetAilment = "Tidak disebutkan."
+	response.Ethnomedicinal.PreparationInstructions = "Naskah memuat penanggalan."
+	response.Ethnomedicinal.PlantPartUsed = "Tidak disebutkan."
+	response.Ethnomedicinal.EnergyCharacter = "Tidak disebutkan."
+	response.Ethnomedicinal.FormulationType = "Tidak disebutkan."
+	response.Normalize()
+	if len(response.Recipes) != 0 {
+		t.Fatal("non-medicinal content must not become a recipe")
+	}
+	if err := response.Validate(); err != nil {
+		t.Fatalf("non-medicinal reading rejected: %v", err)
+	}
+}
+
+func TestUnspecifiedPreparationIsNotTurnedIntoDrinkingMedicine(t *testing.T) {
+	recipe := Recipe{PlantLocalName: "Taru Sotong"}
+	recipe.Normalize()
+	if recipe.FormulationType != "Tidak disebutkan." || recipe.EnergyCharacter != "Tidak disebutkan." || recipe.PlantPartUsed != "Tidak disebutkan." {
+		t.Fatal("missing recipe details must remain unspecified")
+	}
+}

@@ -10,14 +10,23 @@ Dokumen ini melengkapi Lampiran C panduan peserta. Isinya harus sesuai dengan im
 | **Database / Storage** | Tidak ada database eksternal. Knowledge base JSON Taru Pramana di-embed dengan `go:embed`. Sesi frontend disimpan di IndexedDB browser |
 | **Hosting / Deployment** | Vercel Services di `https://bukalontar.my.id`, service `web` dan `api`; binary mandiri opsional |
 | **AI Gateway** | 9router, endpoint OpenAI-compatible |
-| **AI Model / API / Method** | Model multimodal melalui 9router, default `ag/gemini-3.8-flash-low`; fallback opsional melalui Command Code Provider API |
+| **AI Model / API / Method** | Model multimodal melalui 9router, default `ag/gemini-3.8-flash-low`; fallback opsional melalui Command Code Provider API. Bantuan lokal: detektor teks ridge 10 bobot dan pengenal glif HOG + LinearSVC, keduanya dilatih dari anotasi DeepLontar dan di-embed |
 | **Peran AI dalam Produk** | Membaca aksara Bali pada citra lontar, menghasilkan transliterasi dan terjemahan Kawi, serta mengekstrak resep tanaman obat ketika naskahnya adalah lontar Usadha. AI adalah komponen material alur utama, bukan sekadar asisten coding |
-| **Dataset / Data Source** | Taru Pramana KB di `apps/api/internal/kb/data/taru-pramana.json`; foto sampel lontar dari Wikimedia Commons dengan lisensi CC BY-SA 4.0. Tidak ada data pribadi atau data pasien |
+| **Dataset / Data Source** | Taru Pramana KB; foto Wikimedia Commons CC BY-SA 4.0; 200 citra asli DeepLontar v2 CC BY 4.0 dengan label kotak karakter untuk pelatihan detektor lokal; satu berkas anotasi dikarantina; lima halaman Wikisource berlabel tangan sebagai holdout evaluasi. Tidak ada data pribadi. Detail di DATA_SOURCES.md |
 | **Open-source Libraries** | React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge; Go standard library |
 | **Template / Boilerplate** | Vite React TypeScript starter; komponen UI shadcn-style |
-| **AI Coding Assistant** | Command Code coding assistant digunakan untuk membantu implementasi dan dokumentasi. Prompt dan log agen tidak disimpan di repository. Source code ditinjau dan diuji oleh tim |
+| **AI Coding Assistant** | Command Code dan OpenAI Codex digunakan untuk membantu implementasi, evaluasi, serta dokumentasi. Prompt percakapan dan log agen tidak disimpan di repository. Prompt produk dan hasil evaluasi model disertakan untuk reproduksi. Keputusan teknis dan source code tetap menjadi tanggung jawab tim |
 | **Pre-existing Components** | Tidak ada produk komersial pre-existing. Repository ini dibangun untuk Bali DigiFest 2026 |
 | **Third-party Assets / Credits** | Foto lontar: Eka343, CC BY-SA 4.0 (`apps/web/public/samples/CREDITS.md`); font Cormorant Garamond dan Lora dari Google Fonts |
+
+## Status Evaluasi dan Pelatihan
+
+`cx/gpt-6.1-sol` diuji melalui 9router dengan input gambar dan reasoning rendah; pengujian diagnostik reasoning tinggi juga dilakukan. Dukungan vision pada daftar model tidak menjamin kemampuan membaca lontar. Hasil dan keputusan pemilihan model dicatat dalam [AI_EVALUATION.md](AI_EVALUATION.md).
+
+Ada pelatihan model lokal, tetapi bukan fine-tuning model bahasa. `scripts/train_lontar_ocr.py` melatih detektor okupansi teks dan pengenal glif dari 159 lembar train. Kedua artefak di-embed sebagai bantuan pembacaan; ID kelas glif tetap opasitas dan tidak pernah dikeluarkan sebagai teks.
+
+Tidak ada fine-tuning model bahasa: endpoint `GET /v1/fine_tuning/jobs` pada router mengembalikan HTTP 404. Bobot Gemini/Sol tidak diubah. Metrik, batasan, dan cara melatih ulang ada di [OCR_TRAINING.md](OCR_TRAINING.md).
+
 
 ## Pernyataan
 

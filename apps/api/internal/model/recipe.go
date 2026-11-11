@@ -3,19 +3,20 @@ package model
 import "strings"
 
 type Recipe struct {
-	PlantLocalName          string   `json:"plant_local_name"`
-	PlantScientificName     string   `json:"plant_scientific_name"`
-	BotanicalFamily         string   `json:"botanical_family"`
-	KBMatch                 bool     `json:"kb_match"`
-	PlantPartUsed           string   `json:"plant_part_used"`
-	EnergyCharacter         string   `json:"energy_character"`
-	FormulationType         string   `json:"formulation_type"`
-	Adjuvants               []string `json:"adjuvants"`
-	TargetAilment           string   `json:"target_ailment"`
-	PreparationInstructions string   `json:"preparation_instructions"`
-	PhytochemicalCompounds  []string `json:"phytochemical_compounds"`
-	ModernAction            string   `json:"modern_pharmacological_action"`
-	ReferenceStudies        []string `json:"reference_studies"`
+	PlantLocalName          string          `json:"plant_local_name"`
+	PlantScientificName     string          `json:"plant_scientific_name"`
+	BotanicalFamily         string          `json:"botanical_family"`
+	KBMatch                 bool            `json:"kb_match"`
+	PlantPartUsed           string          `json:"plant_part_used"`
+	EnergyCharacter         string          `json:"energy_character"`
+	FormulationType         string          `json:"formulation_type"`
+	Adjuvants               []string        `json:"adjuvants"`
+	TargetAilment           string          `json:"target_ailment"`
+	PreparationInstructions string          `json:"preparation_instructions"`
+	PhytochemicalCompounds  []string        `json:"phytochemical_compounds"`
+	ModernAction            string          `json:"modern_pharmacological_action"`
+	ReferenceStudies        []string        `json:"reference_studies"`
+	ReferenceLinks          []ReferenceLink `json:"reference_links"`
 }
 
 func (r *Recipe) Normalize() {
@@ -31,22 +32,29 @@ func (r *Recipe) Normalize() {
 	r.Adjuvants = cleanList(r.Adjuvants)
 	r.PhytochemicalCompounds = cleanList(r.PhytochemicalCompounds)
 	r.ReferenceStudies = cleanList(r.ReferenceStudies)
+	if r.ReferenceLinks == nil {
+		r.ReferenceLinks = []ReferenceLink{}
+	}
 
 	if !validPlantPart(r.PlantPartUsed) {
-		r.PlantPartUsed = "Campuran"
+		r.PlantPartUsed = "Tidak disebutkan."
 	}
 	if !validEnergy(r.EnergyCharacter) {
-		r.EnergyCharacter = "Dumelada (Sedang)"
+		r.EnergyCharacter = "Tidak disebutkan."
 	}
 	if !validFormulation(r.FormulationType) {
-		r.FormulationType = "Loloh (Minum)"
+		r.FormulationType = "Tidak disebutkan."
 	}
 }
 
 func (r Recipe) Empty() bool {
-	return strings.TrimSpace(r.PlantLocalName) == "" &&
-		strings.TrimSpace(r.TargetAilment) == "" &&
-		strings.TrimSpace(r.PreparationInstructions) == ""
+	name := strings.ToLower(strings.Trim(strings.TrimSpace(r.PlantLocalName), "."))
+	switch name {
+	case "", "tidak disebutkan", "tidak terdeteksi", "tidak terbaca", "[tidak terbaca]":
+		return true
+	default:
+		return false
+	}
 }
 
 func (r Recipe) ToEthnomedicinal() Ethnomedicinal {
@@ -69,6 +77,7 @@ func (r Recipe) ToScientific() Scientific {
 		PhytochemicalCompounds: r.PhytochemicalCompounds,
 		ModernAction:           r.ModernAction,
 		ReferenceStudies:       r.ReferenceStudies,
+		ReferenceLinks:         r.ReferenceLinks,
 		SafetyDisclaimer:       SafetyDisclaimer,
 	}
 }
@@ -88,12 +97,13 @@ func RecipeFromResponse(response *AnalysisResponse) Recipe {
 		PhytochemicalCompounds:  response.Scientific.PhytochemicalCompounds,
 		ModernAction:            response.Scientific.ModernAction,
 		ReferenceStudies:        response.Scientific.ReferenceStudies,
+		ReferenceLinks:          response.Scientific.ReferenceLinks,
 	}
 }
 
 func validPlantPart(value string) bool {
 	switch value {
-	case "Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran":
+	case "Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran", "Tidak disebutkan.":
 		return true
 	default:
 		return false
@@ -102,7 +112,7 @@ func validPlantPart(value string) bool {
 
 func validEnergy(value string) bool {
 	switch value {
-	case "Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)":
+	case "Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)", "Tidak disebutkan.":
 		return true
 	default:
 		return false
@@ -111,7 +121,7 @@ func validEnergy(value string) bool {
 
 func validFormulation(value string) bool {
 	switch value {
-	case "Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)":
+	case "Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)", "Tidak disebutkan.":
 		return true
 	default:
 		return false

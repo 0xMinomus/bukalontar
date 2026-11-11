@@ -15,11 +15,12 @@ import (
 )
 
 type ProviderConfig struct {
-	Name    string
-	BaseURL string
-	Model   string
-	APIKey  string
-	Timeout time.Duration
+	Name            string
+	BaseURL         string
+	Model           string
+	APIKey          string
+	ReasoningEffort string
+	Timeout         time.Duration
 }
 
 type Client struct {
@@ -74,20 +75,26 @@ func (c *Client) Model() string {
 }
 
 func (c *Client) Complete(ctx context.Context, messages []Message) (string, error) {
-	return c.CompleteWithTokens(ctx, messages, 5000)
+	return c.CompleteWithTokens(ctx, messages, 8000)
 }
 
 func (c *Client) CompleteWithTokens(ctx context.Context, messages []Message, maxTokens int) (string, error) {
 	body := map[string]any{
-		"model":       c.cfg.Model,
-		"messages":    messages,
-		"stream":      false,
-		"temperature": 0,
-		"top_p":       1,
-		"max_tokens":  maxTokens,
-		"response_format": map[string]string{
-			"type": "json_object",
-		},
+		"model":           c.cfg.Model,
+		"messages":        messages,
+		"stream":          false,
+		"max_tokens":      maxTokens,
+		"response_format": map[string]string{"type": "json_object"},
+	}
+	if strings.HasPrefix(c.cfg.Model, "cx/") {
+		effort := c.cfg.ReasoningEffort
+		if effort == "" {
+			effort = "low"
+		}
+		body["reasoning_effort"] = effort
+	} else {
+		body["temperature"] = 0
+		body["top_p"] = 1
 	}
 	payload, err := json.Marshal(body)
 	if err != nil {

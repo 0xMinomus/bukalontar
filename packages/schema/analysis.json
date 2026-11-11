@@ -7,16 +7,30 @@
   "required": ["manuscript_id", "source_reference", "paleography", "ethnomedicinal_entity", "scientific_validation"],
   "properties": {
     "manuscript_id": { "type": "string", "minLength": 1 },
+    "reading_assistance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "ocr_ms", "focus_regions", "example_count", "example_sources", "warnings"],
+      "properties": {
+        "mode": { "enum": ["none", "examples", "ocr", "both"] },
+        "ocr_model": { "type": "string" },
+        "ocr_ms": { "type": "integer", "minimum": 0 },
+        "focus_regions": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "example_count": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "example_sources": { "type": "array", "items": { "type": "string" } },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
     "source_reference": {
       "type": "object",
       "additionalProperties": false,
       "required": ["lontar_group", "language"],
       "properties": {
         "lontar_group": {
-          "enum": ["Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh"]
+          "enum": ["Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha"]
         },
         "lempir_number": { "type": "integer", "minimum": 1 },
-        "language": { "enum": ["Kawi / Jawa Kuno", "Bali Alus"] }
+        "language": { "enum": ["Kawi / Jawa Kuno", "Bali Alus", "Tidak diketahui"] }
       }
     },
     "paleography": {
@@ -26,6 +40,7 @@
       "properties": {
         "aksara_bali_detected": { "type": "boolean" },
         "confidence": { "enum": ["low", "medium", "high"] },
+        "balinese_transcription": { "type": "string" },
         "transliteration": { "type": "string", "minLength": 1 },
         "indonesian_translation": { "type": "string", "minLength": 1 },
         "english_translation": { "type": "string", "minLength": 1 }
@@ -52,10 +67,10 @@
         "botanical_family": { "type": "string" },
         "kb_match": { "type": "boolean" },
         "plant_part_used": {
-          "enum": ["Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran"]
+          "enum": ["Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran", "Tidak disebutkan."]
         },
-        "energy_character": { "enum": ["Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)"] },
-        "formulation_type": { "enum": ["Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)"] },
+        "energy_character": { "enum": ["Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)", "Tidak disebutkan."] },
+        "formulation_type": { "enum": ["Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)", "Tidak disebutkan."] },
         "adjuvants": { "type": "array", "items": { "type": "string" } },
         "target_ailment": { "type": "string", "minLength": 1 },
         "preparation_instructions": { "type": "string", "minLength": 1 }
@@ -67,8 +82,9 @@
       "required": ["phytochemical_compounds", "modern_pharmacological_action", "reference_studies", "safety_disclaimer"],
       "properties": {
         "phytochemical_compounds": { "type": "array", "items": { "type": "string" } },
-        "modern_pharmacological_action": { "type": "string", "minLength": 1 },
+        "modern_pharmacological_action": { "type": "string" },
         "reference_studies": { "type": "array", "items": { "type": "string" } },
+        "reference_links": { "$ref": "#/$defs/referenceLinks" },
         "safety_disclaimer": { "type": "string", "minLength": 1 }
       }
     },
@@ -99,16 +115,32 @@
           "botanical_family": { "type": "string" },
           "kb_match": { "type": "boolean" },
           "plant_part_used": {
-            "enum": ["Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran"]
+            "enum": ["Don (Daun)", "Babakan (Kulit Kayu)", "Akah (Akar)", "Buah", "Sekar (Bunga)", "Campuran", "Tidak disebutkan."]
           },
-          "energy_character": { "enum": ["Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)"] },
-          "formulation_type": { "enum": ["Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)"] },
+          "energy_character": { "enum": ["Panes (Hangat)", "Tis (Dingin)", "Dumelada (Sedang)", "Tidak disebutkan."] },
+          "formulation_type": { "enum": ["Loloh (Minum)", "Boreh (Balur)", "Tutuh (Tetes)", "Sasap (Kompres)", "Tidak disebutkan."] },
           "adjuvants": { "type": "array", "items": { "type": "string" } },
           "target_ailment": { "type": "string", "minLength": 1 },
           "preparation_instructions": { "type": "string", "minLength": 1 },
           "phytochemical_compounds": { "type": "array", "items": { "type": "string" } },
           "modern_pharmacological_action": { "type": "string" },
-          "reference_studies": { "type": "array", "items": { "type": "string" } }
+          "reference_studies": { "type": "array", "items": { "type": "string" } },
+          "reference_links": { "$ref": "#/$defs/referenceLinks" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "referenceLinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "url", "kind"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+          "kind": { "enum": ["literature", "literature_search"] }
         }
       }
     }

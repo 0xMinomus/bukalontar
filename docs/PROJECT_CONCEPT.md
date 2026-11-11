@@ -42,8 +42,8 @@ Pendekatan ini penting agar produk tidak mengklaim semua lontar sebagai naskah p
 
 1. Pengguna membuka aplikasi dan memilih foto lontar.
 2. Browser melakukan preprocessing ringan: downscale, CLAHE, dan unsharp mask.
-3. Backend memvalidasi gambar dan menjalankan dua pembacaan independen.
-4. Hasil dibaca sebagai JSON, divalidasi, lalu digabung.
+3. Backend memvalidasi gambar dan menjalankan satu pembacaan.
+4. Hasil dibaca sebagai JSON, divalidasi, dan digrounding ke knowledge base tanpa menggabungkan bacaan stokastik.
 5. Pengguna melihat transliterasi, terjemahan, sumber, dan tingkat keterbacaan.
 6. Jika naskah memuat resep Usadha, pengguna melihat kartu tanaman dan rincian racikan.
 7. Pengguna dapat menyalin hasil atau mengunduh laporan PDF.

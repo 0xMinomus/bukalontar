@@ -1,0 +1,26 @@
+{
+  "609e5364a2d12ed8b6e8b6cbb3cd1d8ad8a7a4551d2e4d353502033db3d226e7": {
+    "aksara_bali_detected": true,
+    "reference_kind": "image-presence-only; no expert transcription"
+  },
+  "cb7e69bdf5bf53ab4d4a5968cef1014e7c3fde232675d6de94a733411098e6c0": {
+    "aksara_bali_detected": true,
+    "reference_kind": "image-presence-only; no expert transcription"
+  },
+  "d3417313be57122d28f7407c7376d6c7253cf1e3c6f91174c95c362b9bbac5c2": {
+    "aksara_bali_detected": false,
+    "reference_kind": "image-presence-only; no expert transcription"
+  },
+  "75dd10af7548aba0f30dfd656a40bca44d3e267a1c05c0dafcba86df06593f27": {
+    "aksara_bali_detected": true,
+    "reference_kind": "image-presence-only; no expert transcription"
+  },
+  "bd384d0b0dcf63b9996e912c03ee9d5181f2bf091c51e2cfbea21b604a0cbd6e": {
+    "aksara_bali_detected": true,
+    "reference_kind": "image-presence-only; no expert transcription"
+  },
+  "df1b7132b16c8d72bd09dd1fe54debf7c792e51dc6e7ccdc9ee25c45adeed0ec": {
+    "aksara_bali_detected": true,
+    "reference_kind": "image-presence-only; no expert transcription"
+  }
+}

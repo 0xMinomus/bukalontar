@@ -28,11 +28,12 @@ func main() {
 	}
 
 	primary := ai.ProviderConfig{
-		Name:    "9router",
-		BaseURL: cfg.AIBaseURL,
-		Model:   cfg.AIModel,
-		APIKey:  cfg.AIAPIKey,
-		Timeout: cfg.AITimeout,
+		Name:            "9router",
+		BaseURL:         cfg.AIBaseURL,
+		Model:           cfg.AIModel,
+		ReasoningEffort: cfg.AIReasoningEffort,
+		APIKey:          cfg.AIAPIKey,
+		Timeout:         cfg.AITimeout,
 	}
 	var fallback *ai.ProviderConfig
 	if cfg.FallbackEnabled && cfg.FallbackBaseURL != "" && cfg.FallbackModel != "" && cfg.FallbackAPIKey != "" {
@@ -46,10 +47,11 @@ func main() {
 	}
 
 	analyzer, err := ai.NewService(ai.Config{
-		Primary:  primary,
-		Fallback: fallback,
-		Timeout:  cfg.AITimeout,
-		KB:       store,
+		Primary:           primary,
+		Fallback:          fallback,
+		Timeout:           cfg.AITimeout,
+		KB:                store,
+		ReadingAssistance: cfg.AIReadingAssistance,
 	})
 	if err != nil {
 		log.Fatalf("initialize AI service: %v", err)

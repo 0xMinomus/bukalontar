@@ -123,6 +123,7 @@ func TestEnrichClearsUnknownTaxonomy(t *testing.T) {
 	response := serviceTestResponse()
 	response.Ethnomedicinal.PlantLocalName = "Taru Khayalan"
 	response.Ethnomedicinal.KBMatch = true
+	response.Scientific.ReferenceLinks = []model.ReferenceLink{{Title: "Invented", URL: "https://example.org/fake", Kind: "literature"}}
 	response.Scientific.SafetyDisclaimer = "wrong"
 	service.enrich(&response, "upload")
 
@@ -134,6 +135,9 @@ func TestEnrichClearsUnknownTaxonomy(t *testing.T) {
 	}
 	if len(response.Scientific.PhytochemicalCompounds) != 0 || len(response.Scientific.ReferenceStudies) != 0 {
 		t.Fatal("unknown plant citations must be cleared")
+	}
+	if len(response.Scientific.ReferenceLinks) != 0 || response.Scientific.ModernAction == "Model action" {
+		t.Fatal("unknown plant must not retain model-supplied links or efficacy claims")
 	}
 	if response.Scientific.SafetyDisclaimer != model.SafetyDisclaimer {
 		t.Fatal("safety disclaimer must be canonical")
@@ -160,5 +164,52 @@ func TestAnalyzeRejectsBadOutputAfterRepair(t *testing.T) {
 	}
 	if _, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "upload"); err == nil {
 		t.Fatal("expected invalid output error")
+	}
+}
+
+func TestAnalyzeReplacesModelCitationsWithCuratedSources(t *testing.T) {
+	store, err := kb.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	reading := serviceTestResponse()
+	reading.Scientific.ReferenceLinks = []model.ReferenceLink{{Title: "Fake study", URL: "javascript:alert(1)", Kind: "literature"}}
+	raw, err := json.Marshal(reading)
+	if err != nil {
+		t.Fatal(err)
+	}
+	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_ = json.NewEncoder(w).Encode(map[string]any{
+			"choices": []any{map[string]any{"message": map[string]any{"content": string(raw)}}},
+		})
+	}))
+	defer upstream.Close()
+	service, err := NewService(Config{
+		Primary: ProviderConfig{BaseURL: upstream.URL, Model: "test", Timeout: time.Second},
+		KB:      store,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, err := service.Analyze(context.Background(), []byte{0xff, 0xd8, 0xff}, "image/jpeg", "upload")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(result.Recipes) != 1 {
+		t.Fatalf("expected one grounded medicinal preparation, got %d", len(result.Recipes))
+	}
+	for _, validation := range []model.Scientific{result.Scientific, result.Recipes[0].ToScientific()} {
+		foundReview := false
+		for _, link := range validation.ReferenceLinks {
+			if link.URL == "https://pubmed.ncbi.nlm.nih.gov/18353572/" {
+				foundReview = true
+			}
+			if link.URL == "javascript:alert(1)" {
+				t.Fatal("untrusted model URL escaped grounding")
+			}
+		}
+		if !foundReview {
+			t.Fatal("curated guava review missing from result")
+		}
 	}
 }

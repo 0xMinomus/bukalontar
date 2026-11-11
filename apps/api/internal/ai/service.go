@@ -2,7 +2,6 @@ package ai
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"strings"
 	"time"
@@ -10,19 +9,25 @@ import (
 
 	"github.com/0xMinomus/bukalontar/apps/api/internal/kb"
 	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
+	"github.com/0xMinomus/bukalontar/apps/api/internal/ocr"
 )
 
 type Config struct {
-	Primary  ProviderConfig
-	Fallback *ProviderConfig
-	Timeout  time.Duration
-	KB       *kb.Store
+	Primary           ProviderConfig
+	Fallback          *ProviderConfig
+	Timeout           time.Duration
+	KB                *kb.Store
+	ReadingAssistance string
 }
 
 type Service struct {
-	primary  *Client
-	fallback *Client
-	kb       *kb.Store
+	primary        *Client
+	fallback       *Client
+	kb             *kb.Store
+	assistanceMode string
+	ocr            *ocr.Recognizer
+	exampleParts   []ContentPart
+	exampleSources []string
 }
 
 func NewService(cfg Config) (*Service, error) {
@@ -38,6 +43,9 @@ func NewService(cfg Config) (*Service, error) {
 	service := &Service{
 		primary: NewClient(cfg.Primary),
 		kb:      cfg.KB,
+	}
+	if err := service.initializeAssistance(cfg.ReadingAssistance); err != nil {
+		return nil, err
 	}
 	if cfg.Fallback != nil && strings.TrimSpace(cfg.Fallback.BaseURL) != "" && strings.TrimSpace(cfg.Fallback.Model) != "" {
 		if cfg.Fallback.Timeout <= 0 {
@@ -56,58 +64,28 @@ func (s *Service) Health(ctx context.Context) error {
 	return s.primary.Health(ctx)
 }
 
-type analysisResult struct {
-	response *model.AnalysisResponse
-	err      error
-}
-
 func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID string) (*model.AnalysisResponse, error) {
-	dataURL := "data:" + mimeType + ";base64," + base64.StdEncoding.EncodeToString(image)
-
-	results := make(chan analysisResult, 2)
-	for range 2 {
-		go func() {
-			response, err := s.analyzeOnce(ctx, dataURL, sourceID)
-			results <- analysisResult{response: response, err: err}
-		}()
+	parts, assistance, err := s.prepareReading(ctx, image, mimeType)
+	if err != nil {
+		return nil, err
 	}
-
-	responses := make([]*model.AnalysisResponse, 0, 2)
-	var firstErr error
-	for range 2 {
-		result := <-results
-		if result.err != nil {
-			if firstErr == nil {
-				firstErr = result.err
-			}
-			continue
+	response, err := s.analyzeOnce(ctx, parts, sourceID)
+	if err == nil {
+		if removed := sanitizeBalinese(&response.Paleography); removed > 0 {
+			assistance.Warnings = append(assistance.Warnings, "Karakter dari aksara mirip (mis. Jawa) dibuang dari transkripsi aksara; periksa foto asli.")
 		}
-		responses = append(responses, result.response)
-	}
-	if len(responses) == 0 {
-		return nil, firstErr
-	}
-
-	chosen := chooseResponse(responses)
-	for _, response := range responses {
-		if response != chosen {
-			mergeRecipes(chosen, response)
+		if response.Paleography.AksaraBaliDetected && !hasBalinese(response.Paleography.BalineseTranscription) {
+			assistance.Warnings = append(assistance.Warnings, "Model tidak menghasilkan transkripsi aksara Bali literal untuk lembar ini.")
 		}
+		response.ReadingAssistance = assistance
 	}
-	s.enrich(chosen, sourceID)
-	return chosen, nil
+	return response, err
 }
 
-func (s *Service) analyzeOnce(ctx context.Context, dataURL, sourceID string) (*model.AnalysisResponse, error) {
+func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID string) (*model.AnalysisResponse, error) {
 	messages := []Message{
 		{Role: "system", Content: systemPrompt},
-		{
-			Role: "user",
-			Content: []ContentPart{
-				{Type: "text", Text: userPrompt(sourceID, s.kb)},
-				{Type: "image_url", ImageURL: &ImageURL{URL: dataURL}},
-			},
-		},
+		{Role: "user", Content: parts},
 	}
 
 	var lastErr error
@@ -136,51 +114,6 @@ func (s *Service) analyzeOnce(ctx context.Context, dataURL, sourceID string) (*m
 	return nil, fmt.Errorf("%w: %v", ErrInvalidOutput, lastErr)
 }
 
-func chooseResponse(responses []*model.AnalysisResponse) *model.AnalysisResponse {
-	best := responses[0]
-	for _, response := range responses[1:] {
-		if len(response.Recipes) > len(best.Recipes) ||
-			(len(response.Recipes) == len(best.Recipes) &&
-				len([]rune(response.Paleography.Transliteration)) > len([]rune(best.Paleography.Transliteration))) {
-			best = response
-		}
-	}
-	return best
-}
-
-func mergeRecipes(base, other *model.AnalysisResponse) {
-	seen := make(map[string]struct{}, len(base.Recipes))
-	for _, recipe := range base.Recipes {
-		seen[plantKey(recipe.PlantLocalName)] = struct{}{}
-	}
-	for _, recipe := range other.Recipes {
-		key := plantKey(recipe.PlantLocalName)
-		if key == "" {
-			continue
-		}
-		if _, ok := seen[key]; ok {
-			continue
-		}
-		if len(base.Recipes) >= 6 {
-			break
-		}
-		seen[key] = struct{}{}
-		base.Recipes = append(base.Recipes, recipe)
-	}
-}
-
-func plantKey(name string) string {
-	value := strings.ToLower(strings.TrimSpace(name))
-	value = strings.TrimPrefix(value, "taru ")
-	value = strings.Map(func(char rune) rune {
-		if unicode.IsLetter(char) || unicode.IsDigit(char) || unicode.IsSpace(char) {
-			return char
-		}
-		return -1
-	}, value)
-	return strings.Join(strings.Fields(value), " ")
-}
-
 func (s *Service) complete(ctx context.Context, messages []Message) (string, error) {
 	content, err := s.primary.Complete(ctx, messages)
 	if err == nil {
@@ -197,8 +130,11 @@ func (s *Service) complete(ctx context.Context, messages []Message) (string, err
 }
 
 func (s *Service) enrich(response *model.AnalysisResponse, sourceID string) {
-	if len(response.Recipes) == 0 && strings.TrimSpace(response.Ethnomedicinal.PlantLocalName) != "" {
-		response.Recipes = []model.Recipe{model.RecipeFromResponse(response)}
+	if len(response.Recipes) == 0 {
+		recipe := model.RecipeFromResponse(response)
+		if !recipe.Empty() {
+			response.Recipes = []model.Recipe{recipe}
+		}
 	}
 	for index := range response.Recipes {
 		s.enrichRecipe(&response.Recipes[index])
@@ -206,6 +142,17 @@ func (s *Service) enrich(response *model.AnalysisResponse, sourceID string) {
 	if len(response.Recipes) > 0 {
 		response.Ethnomedicinal = response.Recipes[0].ToEthnomedicinal()
 		response.Scientific = response.Recipes[0].ToScientific()
+	}
+	if len(response.Recipes) == 0 {
+		response.Scientific = model.Scientific{
+			PhytochemicalCompounds: []string{},
+			ReferenceStudies:       []string{},
+			ReferenceLinks:         []model.ReferenceLink{},
+			SafetyDisclaimer:       model.SafetyDisclaimer,
+		}
+		response.Ethnomedicinal.KBMatch = false
+		response.Ethnomedicinal.PlantScientificName = ""
+		response.Ethnomedicinal.BotanicalFamily = ""
 	}
 	response.Scientific.SafetyDisclaimer = model.SafetyDisclaimer
 	if strings.TrimSpace(response.ManuscriptID) == "" {
@@ -222,15 +169,10 @@ func (s *Service) enrichRecipe(recipe *model.Recipe) {
 		if entry.EnergyCharacter != "" {
 			recipe.EnergyCharacter = entry.EnergyCharacter
 		}
-		if len(entry.PhytochemicalCompounds) > 0 {
-			recipe.PhytochemicalCompounds = append([]string(nil), entry.PhytochemicalCompounds...)
-		}
-		if entry.ModernAction != "" {
-			recipe.ModernAction = entry.ModernAction
-		}
-		if len(entry.ReferenceStudies) > 0 {
-			recipe.ReferenceStudies = append([]string(nil), entry.ReferenceStudies...)
-		}
+		recipe.PhytochemicalCompounds = append([]string{}, entry.PhytochemicalCompounds...)
+		recipe.ModernAction = entry.ModernAction
+		recipe.ReferenceStudies = append([]string{}, entry.ReferenceStudies...)
+		recipe.ReferenceLinks = append([]model.ReferenceLink{}, entry.ReferenceLinks...)
 		return
 	}
 	recipe.KBMatch = false
@@ -238,9 +180,8 @@ func (s *Service) enrichRecipe(recipe *model.Recipe) {
 	recipe.BotanicalFamily = ""
 	recipe.PhytochemicalCompounds = []string{}
 	recipe.ReferenceStudies = []string{}
-	if strings.TrimSpace(recipe.ModernAction) == "" {
-		recipe.ModernAction = "Belum ada validasi farmakologis modern yang terverifikasi di Taru Pramana Knowledge Base untuk tanaman ini."
-	}
+	recipe.ReferenceLinks = []model.ReferenceLink{}
+	recipe.ModernAction = "Belum ada validasi farmakologis modern yang terverifikasi di Taru Pramana Knowledge Base untuk tanaman ini."
 }
 
 func safeSourceID(value string) string {

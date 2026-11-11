@@ -25,8 +25,25 @@ export function resultRecipes(result: AnalysisResponse): Recipe[] {
       phytochemical_compounds: validation.phytochemical_compounds,
       modern_pharmacological_action: validation.modern_pharmacological_action,
       reference_studies: validation.reference_studies,
+      reference_links: validation.reference_links,
     },
   ]
+}
+
+export function hasBalinese(value: string | null | undefined): boolean {
+  return !!value && /[\u1B00-\u1B7F]/.test(value)
+}
+
+export function safeReferenceLinks(recipe: Recipe) {
+  if (!recipe.kb_match) return []
+  return (recipe.reference_links ?? []).filter((link) => {
+    try {
+      const url = new URL(link.url)
+      return (url.protocol === 'https:' || url.protocol === 'http:') && !!url.hostname
+    } catch {
+      return false
+    }
+  })
 }
 
 export function hasMedicinalPlant(name: string): boolean {

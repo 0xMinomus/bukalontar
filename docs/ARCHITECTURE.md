@@ -47,11 +47,11 @@ Aplikasi memakai satu kontrak respons untuk dua kebutuhan:
 
 1. **Preprocessing klien.** `apps/web/src/lib/image.ts` mengecilkan gambar, menerapkan CLAHE, dan unsharp mask. Hasilnya dikirim sebagai `multipart/form-data`.
 2. **Validasi.** Handler membatasi ukuran upload 8 MB, tipe gambar, dan rate limit per menit. Tidak ada file yang ditulis ke disk.
-3. **Inferensi.** `apps/api/internal/ai` mengirim gambar sebagai data URL. Dua request independen dijalankan untuk mengurangi hasil yang terpotong.
+3. **Inferensi.** `apps/api/internal/ai` mengirim gambar sebagai data URL untuk satu pembacaan. Sebelumnya `apps/api/internal/ocr` memilih maksimal dua area fokus dari foto yang sama, dan tiga contoh glif berlabel ahli ditambahkan sebagai referensi visual. Jalur Codex menerima `AI_REASONING_EFFORT`, default `low`; model non-Codex memakai temperature 0.
 4. **Parsing.** Respons model harus berupa JSON. Markdown fence dibersihkan sebelum parsing. Satu repair attempt dilakukan bila validasi gagal.
-5. **Merge.** Resep dari kedua hasil digabung, dideduplikasi berdasarkan nama tanaman lokal, dan dibatasi maksimal enam resep. Field top-level memakai resep pertama untuk kompatibilitas.
-6. **Grounding.** Bila nama tanaman cocok dengan Taru Pramana, nama ilmiah, famili, senyawa, rujukan, dan energy character diambil dari knowledge base. Bila tidak cocok, taxonomy dan sitasi dikosongkan agar tidak menjadi halusinasi.
-7. **Respons.** Disclaimer medis kanonik ditulis server. Frontend menampilkan hasil bacaan dan, bila ada, kartu Usadha.
+5. **Resep.** Maksimal enam resep dipertahankan sesuai urutan model. Tidak ada union lintas pembacaan atau pemilihan berdasarkan panjang teks. Persiapan berbeda tidak dihapus hanya karena nama tanamannya sama.
+6. **Grounding.** Nama ilmiah, famili, senyawa, rujukan, tautan literatur, aksi farmakologis, dan energy character berasal dari KB saat tanaman cocok. Tanaman tak dikenal tidak boleh mempertahankan sitasi atau klaim farmakologi dari model.
+7. **Respons.** Disclaimer medis kanonik ditulis server. Resep kosong tetap kosong; informasi yang tidak disebutkan tidak otomatis menjadi obat minum. Klasifikasi naskah dan bahasa boleh tidak diketahui.
 
 ## API
 
@@ -89,6 +89,8 @@ Semua konfigurasi sensitif berasal dari environment:
 ```env
 AI_BASE_URL=http://127.0.0.1:20128/v1
 AI_MODEL=ag/gemini-3.8-flash-low
+AI_REASONING_EFFORT=low
+AI_READING_ASSISTANCE=examples
 AI_API_KEY=
 AI_TIMEOUT_SECONDS=120
 AI_FALLBACK_ENABLED=false
@@ -127,3 +129,5 @@ cd ../..
 npm run lint
 npm run build
 ```
+
+Evaluasi model menggunakan `go run ./cmd/evaluate` dari `apps/api`, atau jalankan dari root dengan `go -C apps/api run ./cmd/evaluate` dan path gambar relatif ke `apps/api`. Detail perintah, hasil mentah, serta batasan training ada di [AI_EVALUATION.md](AI_EVALUATION.md).

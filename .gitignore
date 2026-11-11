@@ -4,6 +4,7 @@ dist/
 bin/
 coverage/
 *.tsbuildinfo
+__pycache__/
 
 # Environment files. Examples are safe and must stay committed.
 .env
@@ -35,6 +36,7 @@ Panduan_Peserta_*.pdf
 /AIWIC2026_0xAlpha_BukaLontar.pdf
 Lontar Test/
 _.jpeg
+/data/corpus/
 
 # Keep the embedded frontend placeholder, not generated assets
 !apps/api/internal/webui/dist/

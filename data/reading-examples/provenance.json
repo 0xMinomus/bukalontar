@@ -1,0 +1,27 @@
+{
+  "context_examples": {
+    "source": "Siahaan, Sutramiani, Suciati, Duija and Darma, DeepLontar dataset for handwritten Balinese character detection and syllable recognition on Lontar manuscript, Scientific Data 9, 761 (2022), Table 1",
+    "doi": "https://doi.org/10.1038/s41597-022-01867-5",
+    "table": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9741579/table/Tab1/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "changes": "Original GIFs are converted to PNG for model requests; published class names are retained verbatim.",
+    "count": 55,
+    "granularity": "isolated handwritten character class illustration",
+    "catalog": "../../apps/api/internal/readingexamples/assets/catalog.json",
+    "limitations": "The article does not identify the source leaf for each illustration. These are not page transcripts, translations, or a numeric class-ID map. Do not use with DeepLontar evaluations because overlap is unknown. Overlap with the separately sourced Aji Kreket scans cannot be ruled out."
+  },
+  "holdout": {
+    "manifest": "holdout/manifest.json",
+    "count": 5,
+    "manuscript_count": 1,
+    "split": "All Aji Kreket scans are reserved for holdout; none are embedded in the context catalog.",
+    "transcription": "Wikisource Balinese-script transcription at historical revisions marked validated by Carma citrawati; individually pinned in manifest. The transcript is human-validated, not a claim of error-free expert ground truth.",
+    "reference_license": "CC BY-SA 4.0",
+    "reference_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "reference_attribution": "Balinese Wikisource contributors, including Carma citrawati; per-page revision and history links in manifest.",
+    "image_license": "Wikimedia Commons identifies the source scan as public domain under PD-ID-exempt; see the file description for the rights statement.",
+    "image_changes": "1280-pixel-wide JPEG page renderings of the Wikimedia Commons PDF.",
+    "limitations": "The five scans come from one manuscript and are not five independent manuscripts. The individual glyph source leaves in the unrelated published exemplar catalog are not identified, so manuscript independence cannot be confirmed. The scan includes two leaf faces; editorial folio markers in the reference may not appear as script in the photo. Page references do not establish translation accuracy."
+  }
+}

@@ -96,6 +96,7 @@ Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa seti
 - Bagian tanaman, sifat tradisional, bentuk racikan, dan indikasi.
 - Senyawa fitokimia dan rujukan ilmiah yang tersedia di knowledge base.
 - Label "belum tercatat" saat tanaman tidak ditemukan di knowledge base.
+- Tautan PubMed dari knowledge base pada kartu dan laporan; pencarian literatur dibedakan dari publikasi tertentu.
 - Disclaimer medis dari server, bukan dari model.
 
 ### Antarmuka
@@ -109,10 +110,10 @@ Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa seti
 
 1. Browser mengecilkan dan mempertajam foto lontar.
 2. Gambar dikirim ke `POST /api/analyze-manuscript`.
-3. Backend memvalidasi ukuran dan tipe file, lalu mengirim gambar ke model multimodal.
-4. Dua pembacaan independen dijalankan untuk mengurangi hasil yang terpotong.
+3. Backend memvalidasi ukuran dan tipe file. Detektor teks lokal terlatih memilih maksimal dua area fokus dari foto yang sama, dan tiga contoh glif berlabel ahli disertakan sebagai referensi visual.
+4. Satu pembacaan dijalankan per permintaan; hasil dua pembacaan tidak lagi digabung berdasarkan panjang teks atau jumlah tanaman.
 5. Setiap respons diparse sebagai JSON, divalidasi, dan diperbaiki satu kali bila schema tidak sesuai.
-6. Hasil digabung. Untuk lontar Usadha, resep digabung dan dideduplikasi. Untuk naskah umum, daftar resep dapat kosong.
+6. Maksimal enam resep dipertahankan dalam urutan bacaan. Persiapan berbeda yang memakai tanaman sama tidak dihapus berdasarkan nama tanaman saja. Naskah umum dapat memiliki daftar resep kosong.
 7. Nama ilmiah, famili, senyawa, dan rujukan digrounding ke Taru Pramana. Field yang tidak cocok dikosongkan, bukan ditebak.
 8. Frontend menampilkan hasil bacaan dan, bila ada, kartu resep Usadha.
 
@@ -123,10 +124,13 @@ Model tidak dipakai untuk menulis disclaimer, membuat sitasi palsu, atau mengisi
 ```mermaid
 flowchart LR
     U["Browser<br/>React + Canvas"] -->|multipart image| A["Go API<br/>validasi + rate limit"]
-    A -->|dua pembacaan independen| R["9router<br/>OpenAI-compatible"]
+    A -->|foto| O["Detektor teks lokal<br/>model terlatih"]
+    O -->|maks 2 crop fokus| A
+    E["Contoh glif ahli<br/>embedded"] -->|maks 3 referensi| A
+    A -->|foto + fokus + contoh| R["9router<br/>OpenAI-compatible"]
     R --> G["Model multimodal"]
     G -->|JSON| A
-    A -->|validasi + merge| K["Taru Pramana KB<br/>embedded JSON"]
+    A -->|validasi| K["Taru Pramana KB<br/>embedded JSON"]
     K -->|hasil ter-grounding| A
     A -->|AnalysisResponse| U
     U --> P["Tampilan hasil + laporan PDF"]
@@ -144,6 +148,7 @@ Detail teknis ada di [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Kontrak res
 | Gateway AI | 9router dengan endpoint OpenAI-compatible |
 | Model | Model multimodal melalui 9router, fallback opsional |
 | Knowledge base | JSON Taru Pramana yang di-embed dengan `go:embed` |
+| Bantuan pembacaan | Detektor teks ridge + LinearSVC HOG dilatih dari DeepLontar; 55 contoh glif ahli di-embed |
 | Kontrak | JSON Schema di `packages/schema/analysis.json` |
 | Deployment | Vercel Services: `web` (Vite) dan `api` (Go); binary mandiri opsional |
 
@@ -236,6 +241,12 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 
 Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI coding assistant digunakan untuk membantu implementasi dan dokumentasi. Prompt, log, dan konfigurasi agen tidak disimpan di repository. Keputusan teknis dan source code tetap menjadi tanggung jawab tim.
 
+## Evaluasi AI
+
+[Laporan evaluasi final](docs/AI_EVALUATION.md) mencatat perbandingan model, latensi, konsistensi, keluaran mentah, dan keterbatasan penilaian. Runner Go menggunakan jalur analisis aplikasi yang sebenarnya; tidak menyajikan jawaban cache.
+
+Korpus lokal berisi 200 citra asli lontar Bali dari DeepLontar v2, dengan manifest, checksum, dan lisensi CC BY 4.0. Satu berkas anotasi dikarantina karena ID kelas di luar spesifikasi. Data ini dipakai melatih detektor teks dan pengenal glif lokal; bobot model bahasa tidak diubah. Lihat [sumber data](docs/DATA_SOURCES.md) dan [dokumen training OCR](docs/OCR_TRAINING.md).
+
 ## Batasan Saat Ini
 
 - Output model tidak deterministik. Dua permintaan berturut-turut dapat membaca baris atau resep yang berbeda.
@@ -258,6 +269,8 @@ Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI c
 - [Alur Usadha](docs/USADHA_MODE.md)
 - [Sumber data dan kredit](docs/DATA_SOURCES.md)
 - [AI dan Technology Disclosure](docs/AI_DISCLOSURE.md)
+- [Evaluasi AI](docs/AI_EVALUATION.md)
+- [Detektor teks dan pengenal glif](docs/OCR_TRAINING.md)
 - [Proposal PDF](docs/proposal/AIWIC2026_0xAlpha_BukaLontar.pdf)
 - [Panduan kontribusi](CONTRIBUTING.md)
 - [Kebijakan keamanan](SECURITY.md)

@@ -11,6 +11,8 @@ Dokumentasi ini menjelaskan produk, arsitektur, alur AI, dan batasan BukaLontar.
 5. [Sumber data](DATA_SOURCES.md) untuk rujukan naskah, foto, dan knowledge base.
 6. [AI Disclosure](AI_DISCLOSURE.md) untuk teknologi dan peran AI.
 7. [Proposal PDF](proposal/AIWIC2026_0xAlpha_BukaLontar.pdf) untuk file submission.
+8. [Evaluasi AI](AI_EVALUATION.md) untuk benchmark model, korpus, dan batasan training.
+9. [Detektor teks dan pengenal glif](OCR_TRAINING.md) untuk model lokal, metrik, dan cara melatih ulang.
 
 ## Peta dokumen
 

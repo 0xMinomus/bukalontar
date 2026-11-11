@@ -36,8 +36,9 @@ Setiap resep memakai struktur yang sama:
 | `phytochemical_compounds` | Senyawa dari knowledge base |
 | `modern_pharmacological_action` | Ringkasan aksi farmakologis dari knowledge base |
 | `reference_studies` | Rujukan yang tersedia di knowledge base |
+| `reference_links` | Tautan literatur atau pencarian literatur yang dikurasi dalam knowledge base; tiap objek berisi `title`, `url`, dan `kind` |
 
-`recipes[]` dapat berisi lebih dari satu resep dari satu lembar. Hasil dibatasi maksimal enam resep dan dideduplikasi berdasarkan nama tanaman lokal.
+`recipes[]` dapat berisi lebih dari satu resep dari satu lembar. Hasil dibatasi maksimal enam resep. Persiapan berbeda dengan tanaman sama tidak dihapus berdasarkan nama tanaman saja; hasil tidak lagi digabung dari dua pembacaan.
 
 ## Grounding Taru Pramana
 
@@ -47,6 +48,8 @@ Knowledge base berada di `apps/api/internal/kb/data/taru-pramana.json`. Aturan g
 - Jika tidak ada kecocokan, nama ilmiah dan famili dikosongkan.
 - Rujukan tidak boleh dikarang.
 - Nama tanaman yang tidak dikenal tetap ditampilkan sebagai nama lokal dengan label belum tercatat.
+- Detail yang tidak disebutkan tetap tidak disebutkan; bentuk racikan tidak otomatis menjadi loloh.
+- Tautan literatur berasal dari knowledge base, bukan dari model atau naskah; hasil pencarian tidak membuktikan khasiat maupun keamanan resep.
 
 Grounding ini penting karena teks lontar dapat memuat nama tanaman yang mirip dengan tanaman lain. Model tidak diberi kebebasan untuk menebak taksonomi.
 

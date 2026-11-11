@@ -134,8 +134,8 @@ export function ResultWorkspace({
           <dt className="label-xs">Aksara Bali</dt>
           <dd className="mt-1 text-sm font-medium">
             {result.paleography.aksara_bali_detected
-              ? 'Terbaca'
-              : 'Tidak terbaca'}
+              ? 'Terdeteksi'
+              : 'Tidak terdeteksi'}
           </dd>
         </div>
         <div className="bg-card px-4 py-3">
@@ -157,6 +157,27 @@ export function ResultWorkspace({
           </dd>
         </div>
       </dl>
+
+      {result.reading_assistance && result.reading_assistance.mode !== 'none' ? (
+        <details className="screen-only mt-4 rounded-lg border border-border bg-card px-4 py-3 text-sm">
+          <summary className="cursor-pointer font-medium">Bantuan pembacaan</summary>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            {result.reading_assistance.ocr_model
+              ? `Model lokal memilih ${result.reading_assistance.focus_regions} area fokus dalam ${result.reading_assistance.ocr_ms} ms. `
+              : ''}
+            {result.reading_assistance.example_count} contoh glif berlabel disertakan sebagai referensi, bukan teks naskah ini.
+            {' '}Pemilihan area teks bukan transkripsi mandiri dan bukan training ulang model bahasa.
+          </p>
+          {result.reading_assistance.example_sources.length > 0 ? (
+            <p className="mt-2 break-words text-xs text-muted-foreground">
+              Sumber contoh: {result.reading_assistance.example_sources.join('; ')}
+            </p>
+          ) : null}
+          {result.reading_assistance.warnings.map((warning, index) => (
+            <p key={index} className="mt-2 text-xs text-muted-foreground">{warning}</p>
+          ))}
+        </details>
+      ) : null}
 
       <div className="screen-only mt-5 grid items-start gap-5 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="order-2 lg:order-1">
@@ -180,7 +201,7 @@ export function ResultWorkspace({
               </div>
               <span className="truncate text-xs text-muted-foreground">
                 {!hasPlant
-                  ? 'Tidak ada tanaman obat'
+                  ? 'Resep belum teridentifikasi'
                   : plantRecipes.length > 1
                     ? `${plantRecipes.length} resep`
                     : plantRecipes[0].plant_local_name}

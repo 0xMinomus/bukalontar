@@ -1,6 +1,7 @@
 package kb
 
 import (
+	"net/url"
 	"strings"
 	"testing"
 )
@@ -40,5 +41,23 @@ func TestCatalogListsEntries(t *testing.T) {
 	catalog := store.Catalog()
 	if !strings.Contains(catalog, "Psidium guajava") || !strings.Contains(catalog, "Alstonia scholaris") {
 		t.Fatalf("catalog missing expected entries:\n%s", catalog)
+	}
+}
+
+func TestCuratedReferenceLinks(t *testing.T) {
+	store, err := Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, entry := range store.entries {
+		if len(entry.ReferenceLinks) == 0 {
+			t.Fatalf("%s has no reference links", entry.ID)
+		}
+		for _, link := range entry.ReferenceLinks {
+			parsed, err := url.Parse(link.URL)
+			if err != nil || parsed.Scheme != "https" || parsed.Host != "pubmed.ncbi.nlm.nih.gov" || link.Title == "" || (link.Kind != "literature" && link.Kind != "literature_search") {
+				t.Fatalf("%s has invalid reference link: %#v", entry.ID, link)
+			}
+		}
 	}
 }

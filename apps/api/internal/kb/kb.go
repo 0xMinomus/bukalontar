@@ -6,21 +6,24 @@ import (
 	"fmt"
 	"strings"
 	"unicode"
+
+	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
 )
 
 //go:embed data/taru-pramana.json
 var seed []byte
 
 type Entry struct {
-	ID                     string   `json:"id"`
-	LocalNames             []string `json:"local_names"`
-	ScientificName         string   `json:"scientific_name"`
-	BotanicalFamily        string   `json:"botanical_family"`
-	EnergyCharacter        string   `json:"energy_character"`
-	PlantPartUsed          string   `json:"plant_part_used"`
-	PhytochemicalCompounds []string `json:"phytochemical_compounds"`
-	ModernAction           string   `json:"modern_pharmacological_action"`
-	ReferenceStudies       []string `json:"reference_studies"`
+	ID                     string                `json:"id"`
+	LocalNames             []string              `json:"local_names"`
+	ScientificName         string                `json:"scientific_name"`
+	BotanicalFamily        string                `json:"botanical_family"`
+	EnergyCharacter        string                `json:"energy_character"`
+	PlantPartUsed          string                `json:"plant_part_used"`
+	PhytochemicalCompounds []string              `json:"phytochemical_compounds"`
+	ModernAction           string                `json:"modern_pharmacological_action"`
+	ReferenceStudies       []string              `json:"reference_studies"`
+	ReferenceLinks         []model.ReferenceLink `json:"reference_links"`
 }
 
 type Store struct {
