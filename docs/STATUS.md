@@ -20,6 +20,7 @@ BukaLontar menyediakan pembacaan eksperimental foto lontar Bali. **Belum siap di
 - Kandidat lokal menghapus katalog tanaman dari prompt, mewajibkan kutipan transliterasi AI untuk resep, dan mengirim foto asli. Kutipan cocok tidak membuktikan bacaan benar atau resep nyata.
 - Pembanding baru 12 November: foto Bali 6/6 diterima, pembanding Jawa dan Kawi 4/4 ditolak; hanya lima foto dan dua pengulangan. Baseline juga 10/10 pada foto yang sama, sehingga belum membuktikan peningkatan deteksi. Akurasi isi tetap gagal; lihat [evaluasi](AI_EVALUATION.md).
 - Diagnostik tambahan pada segmen buku NusaAksara: Bali diterima 1/4, Jawa ditolak 4/4; satu bacaan Bali tidak sesuai anotasi. Ini bukan uji foto lontar dan datanya tidak disertakan dalam produk.
+- Uji foto lontar tambahan: Aji Saraswati kategori Jawa di Commons diterima 3/3 tetapi tidak terbaca; label aksara belum diperiksa ahli. Usada Kacacar diterima 2/2, tetapi kedua bacaan tidak sesuai transkripsi sumber. Lihat [evaluasi foto](AI_EVALUATION.md#uji-tambahan-khusus-foto-lontar).
 - Commit dan push tidak membuktikan deployment produksi atau kelulusan target; pastikan hasil deployment diperiksa sebelum dipakai.
 
 ## Angka terakhir

@@ -239,3 +239,14 @@ Uji diagnostik 12 November 2026 menggunakan `ag/gemini-3.8-flash-low`, bantuan `
 | Median waktu seluruh permintaan | 10,167 detik |
 
 Satu bacaan Bali yang diterima tidak sesuai transliterasi anotator. Karena input berupa potongan buku, bukan foto lontar, hasil ini menunjukkan batas di luar domain target, bukan estimasi akurasi pada foto lontar. Sampel terlalu kecil untuk klaim reliabilitas atau perbandingan kecepatan. Data gambar dan anotasi tidak didistribusikan bersama repository.
+
+## Uji tambahan khusus foto lontar
+
+Pada 12 November, pipeline tanpa perubahan diuji dengan foto asli, `ag/gemini-3.8-flash-low`, dan bantuan `examples`. Nama file tidak diberikan ke model. Respons mentah tersimpan di `evaluation/photo-followup-20261112.jsonl`; foto tidak disalin ke repository.
+
+| Foto | Keputusan | Bacaan dan batas label |
+| --- | --- | --- |
+| [Aji Saraswati](https://commons.wikimedia.org/wiki/File:Palmleaf_of_Aji_saraswati.jpg), SHA-256 `6bfe686430b6211f897e8cad608b1279b7d5a8256aaff2bf987e427913e3e228` | Diterima sebagai Bali 3/3 | Semua menyatakan teks tidak terbaca. Commons mengkategorikannya aksara Jawa, tetapi label aksara belum diperiksa ahli independen. Foto hanya 376 × 480 piksel; hasil tidak membuktikan kinerja pada foto tajam. |
+| [Usada Kacacar](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Kacacar_(Babalining_kacacar).jpg), SHA-256 `a97be48a5012cf074b1bb5951425560729d0c34a3bc7bd9162d89327a9495e88` | Diterima sebagai Bali 2/2 | Kedua bacaan berbeda dan tidak sesuai [transkripsi Wikisource](https://ban.wikisource.org/w/index.php?title=Kaca:Bali-lontar-Balai_Bahasa_Bali-Usada_Kacacar_(Babalining_kacacar).jpg&oldid=105200) yang telah dikoreksi komunitas, bukan validasi ahli independen. |
+
+Foto Kacacar oleh Eka343, CC BY-SA 4.0; Aji Saraswati mengikuti keterangan hak cipta pada halaman sumber. Kedua foto merupakan naskah berbeda, bukan sampel representatif. Hasil ini memperkuat bukti bahwa penerimaan aksara dan bacaan belum andal. Tidak ada perbaikan model atau klaim akurasi baru dari uji ini.
