@@ -2,24 +2,39 @@ package ai
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 	"unicode"
 
 	"github.com/0xMinomus/bukalontar/apps/api/internal/model"
 )
 
-var leafLabel = regexp.MustCompile(`(?i)\[\s*lembar\s+[0-9]+\s*\]`)
+var leafLabel = regexp.MustCompile(`(?i)\[\s*(?:lembar|leaf)\s+([0-9]+)\s*\]`)
+var evidenceBreak = regexp.MustCompile(`\[[^\]]*\]|\.(?:\s*\.)+|…`)
 
 // This proves consistency with the reading, not that the reading matches the image.
 func retainSupportedRecipes(response *model.AnalysisResponse) {
 	reading := response.Paleography.Transliteration
-	if labels := leafLabel.FindAllStringIndex(reading, 2); len(labels) > 1 {
-		reading = reading[:labels[1][0]]
+	if labels := leafLabel.FindAllStringSubmatchIndex(reading, 2); len(labels) > 0 {
+		first := labels[0]
+		number, _ := strconv.Atoi(reading[first[2]:first[3]])
+		if number != 1 {
+			reading = ""
+		} else {
+			end := len(reading)
+			if len(labels) > 1 {
+				end = labels[1][0]
+			}
+			reading = reading[first[1]:end]
+		}
 	}
-	source := evidenceWords(reading)
+	source := evidenceWords(evidenceBreak.ReplaceAllString(reading, "\x00"))
 	hadRecipes := len(response.Recipes) > 0
 	kept := response.Recipes[:0]
 	for _, recipe := range response.Recipes {
+		if evidenceBreak.MatchString(recipe.SourceQuote) {
+			continue
+		}
 		quote := evidenceWords(recipe.SourceQuote)
 		plant := strings.TrimPrefix(evidenceWords(recipe.PlantLocalName), "taru ")
 		if len(strings.Fields(quote)) < 4 || plant == "" ||
@@ -57,10 +72,9 @@ func retainSupportedRecipes(response *model.AnalysisResponse) {
 }
 
 func evidenceWords(value string) string {
-	value = strings.ReplaceAll(strings.ToLower(value), "[tidak terbaca]", " ")
-	value = leafLabel.ReplaceAllString(value, " ")
+	value = strings.ToLower(value)
 	value = strings.Map(func(char rune) rune {
-		if unicode.IsLetter(char) || unicode.IsDigit(char) {
+		if char == 0 || unicode.IsLetter(char) || unicode.IsDigit(char) {
 			return char
 		}
 		return ' '

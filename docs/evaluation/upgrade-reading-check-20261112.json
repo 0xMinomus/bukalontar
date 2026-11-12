@@ -1,0 +1,67 @@
+{
+  "model": "ag/gemini-3.8-flash-low",
+  "prompt": "Check whether the proposed Latin transliteration actually matches the engraved Balinese text in the TARGET image. This is a falsification task: a fluent Balinese-looking passage is not evidence. Compare the first readable clause and subsequent lines against actual visible characters. Do not infer text from genre, title, plant names or a familiar prayer. Return exactly {\"reading_matches_image\":true|false,\"confidence\":\"high|low\"}. Return true/high only if you can substantiate the proposed words against visible glyphs. Otherwise false. Do not correct or complete the reading.",
+  "purpose": "Diagnostic same-model check, not independent validation; positive control is a known Wikisource reference",
+  "runs": [
+    {
+      "variant": "reading-image-check",
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "label": "baseline-reading",
+      "repeat": 1,
+      "elapsed_ms": 23837,
+      "status": 200,
+      "content": "```json\n{\"reading_matches_image\": false, \"confidence\": \"high\"}\n```",
+      "proposed_reading": "[Lembar 1]\n1. // oṁ śrī / tutur ka, apan anak tan wru, brahmaṇya dewa saṅkĕp, pahamĕsankwa, dewan pratyakṣa, tutur wedya, patiṅkeh mahi- \n2. ndra, pahawĕs mahindra, mahapatiṅkeh, samantrya, ṣṭa patiṅkeh, patiṅkeh pastraṅ dewa saṅkĕp, yadyapi patiṅkeh tiṅkah \n3. pratyakṣa kewala, patiṅkeh apada / yaṅ tololik wruḥ amet bapakan manuṣya pandita /"
+    },
+    {
+      "variant": "reading-image-check",
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "label": "baseline-reading",
+      "repeat": 2,
+      "elapsed_ms": 11758,
+      "status": 200,
+      "content": "```json\n{\"reading_matches_image\": true, \"confidence\": \"high\"}\n```",
+      "proposed_reading": "[Lembar 1]\n// om, astu astu, ngaraning, hanusangcaya, yan ananghi rehningkare, \npanasangse, rengatpratingkare, nguni hanglih, bakti luwih, bala\nwanjarangsingkare, yapuanangsingkiti, ngle, \nlan hanangbida, malasabakti, ranangse, mputinadi, baktiluwe\nngangkara, meduyangkasiyabanbakti, resansang, radadane\nprangprangsangbanti, baktiluwanangkara. // 0 // yapuanlaraduta\nranangsangrohanangsinawelembang, ramangkulanglang, 0 \nripanangsayangkayewanapannawa, paningsingsulangkara. //"
+    },
+    {
+      "variant": "reading-image-check",
+      "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg",
+      "label": "baseline-reading",
+      "repeat": 1,
+      "elapsed_ms": 12315,
+      "status": 200,
+      "content": "```json\n{\"reading_matches_image\": true, \"confidence\": \"high\"}\n```",
+      "proposed_reading": "[Lembar 1]\nti, titiyang taru soka, don titiyang panes, akah titiyang panes, dados tamban tiwang brahma, loloh\nnyane akah titiyang, babakan titiyang anggen boreh, dados tamban tiwang bangke, uyah areng,\nlaos, mica, temutis, titiyang taru kelor, don titiyang dumelada, akah titiyang panes,\nsukar matemu, don titiyang dados loloh tamban tiwang brahma,\n\ntitang taru kelor, don titiyang tis, akah titiyang dumelada,\nwah, anggen loloh, anggen boreh, akah titiyang dados tamban tiwang brahma, dados tamban tiwang bangke,\nboreh nyane temu tis, [tidak terbaca], uyah areng, laos, mica, temutis,\nkasurat olih, I Wayan Suta, banjar Brahmana, Gianyar."
+    },
+    {
+      "variant": "reading-image-check",
+      "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg",
+      "label": "baseline-reading",
+      "repeat": 2,
+      "elapsed_ms": 11167,
+      "status": 200,
+      "content": "{\"reading_matches_image\":false,\"confidence\":\"high\"}",
+      "proposed_reading": "[Lembar 1]\n... tityang pinaka ... raksa ... mangda sang maraga panutan ... punika sami, mangda prasida ngamargiang kaweruhan ...\n... mangda sida kapangguh, rahayu lan landuh ring sajeroning jagat ... mangda sami nemu rahayu ...\n... ring sajeroning manah, mangda tulus asih, tan wenten kapiambeng ... prasida rahayu ... mangda sami ...\n... ngardi jagat ... mangda paripurna ... mangda prasida shanti ..."
+    },
+    {
+      "variant": "reading-image-check",
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "label": "source-reference",
+      "repeat": 1,
+      "elapsed_ms": 10368,
+      "status": 200,
+      "content": "```json\n{\"reading_matches_image\": true, \"confidence\": \"high\"}\n```",
+      "proposed_reading": ",1,\n//0//,ᵒiki,ṅa,husadalare,makatṅĕŕwoŋrare,hawasaknā,denprayatnā,ᵒikitatṅĕŕ,panĕstis·,hawa\nsaknāsocanyawoŋrare,yanṣocannyabiru,tuŕmarawatṅatiḥ,masawaŋgadiŋ,waspannya,mtupanĕs·,panĕswaŋma\nṅkaṇnā.mwaḥyannyamasawaŋgadiŋsocannya,rawuḥriŋ-putraputrannyagadiŋ,panĕṣwaŋmaṅkaṇnā.0.yannyamabwaḥbwaḥ\nragannyawoŋlare,bulunnyajriŋ,rambutnyahaṅkasa,-ritaṅannyamtubayudraspakabĕŕbĕŕ,wyaktipanĕswaŋmaṅkaṇnā."
+    },
+    {
+      "variant": "reading-image-check",
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "label": "source-reference",
+      "repeat": 2,
+      "elapsed_ms": 10951,
+      "status": 200,
+      "content": "```json\n{\"reading_matches_image\": true, \"confidence\": \"high\"}\n```",
+      "proposed_reading": ",1,\n//0//,ᵒiki,ṅa,husadalare,makatṅĕŕwoŋrare,hawasaknā,denprayatnā,ᵒikitatṅĕŕ,panĕstis·,hawa\nsaknāsocanyawoŋrare,yanṣocannyabiru,tuŕmarawatṅatiḥ,masawaŋgadiŋ,waspannya,mtupanĕs·,panĕswaŋma\nṅkaṇnā.mwaḥyannyamasawaŋgadiŋsocannya,rawuḥriŋ-putraputrannyagadiŋ,panĕṣwaŋmaṅkaṇnā.0.yannyamabwaḥbwaḥ\nragannyawoŋlare,bulunnyajriŋ,rambutnyahaṅkasa,-ritaṅannyamtubayudraspakabĕŕbĕŕ,wyaktipanĕswaŋmaṅkaṇnā."
+    }
+  ]
+}

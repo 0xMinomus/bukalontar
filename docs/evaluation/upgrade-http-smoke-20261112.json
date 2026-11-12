@@ -1,0 +1,53 @@
+{
+  "status": 200,
+  "elapsed_ms": 17352,
+  "response": {
+    "manuscript_id": "bukalontar-upgradesmoke-1794453044",
+    "source_reference": {
+      "lontar_group": "Tidak diketahui",
+      "language": "Bali"
+    },
+    "paleography": {
+      "aksara_bali_detected": true,
+      "confidence": "medium",
+      "transliteration": "[Lembar 1]\n//o//, i ki, usadha brahma, pananaya pasengatane, pamahutane, yan hana brahma, buhita baler, pasikine, papaneh, brahma sindu, pamahutane, pasengatane, putung-putungane, pasikine pamahutan // o // ya yan brahma rupa\nri pananaya buhaya sawan mas, pamahutane panawa //",
+      "indonesian_translation": "[Lembar 1]\nInilah usadha brahma, pengobatan untuk rasa menusuk/menyengatnya, pemulihannya. Jika ada penyakit brahma, terasa nyeri menusuk, bagian tubuh yang sakit/terasa kaku, terasa panas, brahma sindu, cara pemulihan dan penanganan rasa menyengatnya, rasa patah-patah/remuknya, penanganan bagian tubuh yang sakit // Jika brahma rupa pada bagian tertentu... sawan mas, pemulihannya...",
+      "english_translation": "[Lembar 1]\nThis is the usadha brahma, treatment for its stinging/sharp pain, its recovery. If there is brahma disease, stinging sharp pain, affected areas feeling stiff/painful, hot sensation, brahma sindu, recovery and treatment of stinging pain, broken/crushed aches, treatment for affected body parts // If brahma rupa occurs... sawan mas, recovery..."
+    },
+    "ethnomedicinal_entity": {
+      "plant_local_name": "Tidak disebutkan.",
+      "plant_scientific_name": "",
+      "botanical_family": "",
+      "kb_match": false,
+      "plant_part_used": "Tidak disebutkan.",
+      "energy_character": "Tidak disebutkan.",
+      "formulation_type": "Tidak disebutkan.",
+      "adjuvants": [],
+      "target_ailment": "Tidak disebutkan.",
+      "preparation_instructions": "[tidak terbaca]"
+    },
+    "scientific_validation": {
+      "phytochemical_compounds": [],
+      "modern_pharmacological_action": "",
+      "reference_studies": [],
+      "reference_links": [],
+      "safety_disclaimer": "Informasi ini untuk preservasi warisan budaya dan edukasi fitofarmaka. Untuk penanganan medis, konsultasikan dengan dokter atau tenaga kesehatan profesional."
+    },
+    "recipes": [],
+    "reading_assistance": {
+      "mode": "examples",
+      "ocr_ms": 0,
+      "focus_regions": 0,
+      "leaf_regions": 0,
+      "example_count": 3,
+      "example_sources": [
+        "Siahaan et al., DeepLontar, Scientific Data 2022, Table 1 (CC BY 4.0): https://cdn.ncbi.nlm.nih.gov/pmc/blobs/14cb/9741579/a5aef6d82ba6/41597_2022_1867_Taba_HTML.gif",
+        "Siahaan et al., DeepLontar, Scientific Data 2022, Table 1 (CC BY 4.0): https://cdn.ncbi.nlm.nih.gov/pmc/blobs/14cb/9741579/63b14ea4d0d1/41597_2022_1867_Tabc_HTML.gif",
+        "Siahaan et al., DeepLontar, Scientific Data 2022, Table 1 (CC BY 4.0): https://cdn.ncbi.nlm.nih.gov/pmc/blobs/14cb/9741579/281cac636df8/41597_2022_1867_Tabe_HTML.gif"
+      ],
+      "warnings": [
+        "Model tidak menghasilkan transkripsi aksara Bali literal untuk lembar ini."
+      ]
+    }
+  }
+}

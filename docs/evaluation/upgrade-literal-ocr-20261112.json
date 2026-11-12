@@ -1,0 +1,38 @@
+{
+  "model": "ag/gemini-3.8-flash-low",
+  "purpose": "Diagnostic OCR-only experiment; not integrated; excludes script gate and translation latency",
+  "runs": [
+    {
+      "variant": "literal-ocr",
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "repeat": 1,
+      "elapsed_ms": 15385,
+      "status": 200,
+      "content": "```json\n{\n  \"balinese_transcription\": \"᭐ᭋᭀ᭞ ᬑᬁ᭞ ᬱ᭄ᬝᬶ᭞ ᬓ᭞ ᬳᬂᬲᬗᬵᬮᬗ᭄ᬓᬭ᭞ ᬬᬮᬵᬦ᭄ᬢ᭄ᬮ᭄ᬯᬶᬄ᭞ ᬭᬶᬳᭀᬯᬭᬂᬤ᭞ ᬩᬵᬭᬲᬵᬲ᭄ᬢ᭄ᬭ᭞ ᬭᬾᬔᬵᬢ᭄ᬭᬵᬬᬵᬲ᭄ᬢ᭄ᬭ᭞ ᬱ᭄ᬝᬶᬭᬵᬳ᭄ᬮ᭄ᬯᬶᬄ᭞ ᬧᬢᬶᬱ᭄ᬝᬶᬮᬶ᭞ ᬩᬵᬭᬵ᭞\\nᬬᬲ᭄ᬢ᭄ᬭᬵᬭᭀᬲᬵᬲᬢ᭄ᬬᬭᬶᬳᭀᬯᬭᬂᬤ᭞ ᬬᬭᬂᬓ᭄ᬯᬵᬭᬵᬲᬓ᭄ᬢᬶᬢᬶᬭ᭄ᬢ᭄ᬢ᭞ ᬳ᭄ᬮ᭄ᬯᬶ᭞ ᬯᬵᬭᬵᬩᬵᬳ᭄ᬮ᭄ᬯᬶᬳᬶᬦ᭄ᬤ᭄ᬭ᭞ ᬬᬲᬫᬳᬵᬮᬶᬄ᭞ ᬳᬲᬫᬢ᭄ᬬ᭞ ᬯᬵᬧᬢᬶᬭᬶ᭞ ᬧᬢᬶᬲ᭄ᬯᬵᬬ᭞\\nᬦ᭄ᬤᬵᬓ᭄ᬭᬵ᭞ ᬬᬤ᭄ᬭᬸᬬᬲ᭄ᬢ᭄ᬬ᭞ ᬬᬲᬫᬳᬵᬮᬶᬄ᭞ ᬭᭀᬲᬵᬲᬢ᭄ᬬ᭞ ᬭᬵᬫ᭄ᬭᬸᬤ᭄ᬤᬶ᭞ ᬧ᭄ᬭᬸᬢ᭄ᬭᬧ᭄ᬭᬸᬢ᭄ᬭᬲ᭄ᬢ᭄ᬬ᭞ ᬢᬫᬶᬄ᭞ ᬧᬢᬶᬲ᭄ᬯᬵᬬᬢᬵᬢ᭄ᬭᬵ᭞ ᭐᭞ ᭞ᬬᬲᬢ᭄ᬬ᭞ ᬮᬵᬢ᭄ᬭᬸᬤ᭄ᬤ᭄ᬭᬸᬤ᭄ᬤ\\nᬭᬵᬢᬵᬲ᭄ᬢ᭄ᬬ᭞ ᬭᭀᬳᬵᬲᬵᬭᬂᬤ᭞ ᬢᬵᬢ᭄ᬭᬵᬲ᭄ᬢ᭄ᬬᬰ᭄ᬭᬷ᭞ ᬭᬵᬫ᭄ᬭᬸᬢ᭄ᬭ᭄ᬬᬵᬮᬵᬢ᭄ᬭᬸᬮᬵ᭞ ᭐᭞ ᬭᬵᬢ᭄ᬭᬵᬢᬵᬲ᭄ᬢ᭄ᬬ᭞ ᬧ᭄ᬭᬸᬢᬵᬬ᭄ᬭ᭄ᬬ᭄ᬭᬸᬲᬵᬬᬲᬵᬢᬵᬢᬵ᭞ ᬳ᭄ᬮ᭄ᬯᬶᬄᬢᬶᬲ᭄ᬢ᭄ᬬ᭄ᬬᬮᬵᬢ᭄ᬭᬵ᭞ ᭐᭞\",\n  \"transliteration\": \"ng̃o, oṁ, ṣṭi, ka, haṁsaṅālaṅkara, yalāntlwih̥, rihowaraṁda, bārasāstra, rekhātrāyāstra, ṣṭirāhlwih̥, patiṣṭili, bārā,\\nyastrārosāsatyarihowaraṁda, yaraṁkwārāsaktitirtta, hlwī, wārābāhlwihindra, yasamahālih̥, hasamatya, wapatiri, patiswāya,\\nndākrā, yadruyastya, yasamahālih̥, rosāsatya, rāmruddi, prutraprutrastya, tamih̥, patiswāyatātrā, ng̃, ,yasatya, lātruddrudda\\nrātāstya, rohāsāraṁda, tātrāstyaśrī, rāmrutryālātrulā, ng̃, rātrātāstya, prutāyryrusāyasātātā, hlwih̥tistyylātrā, ng̃,\"\n}\n```"
+    },
+    {
+      "variant": "literal-ocr",
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "repeat": 2,
+      "elapsed_ms": 16412,
+      "status": 200,
+      "content": "```json\n{\n  \"balinese_transcription\": \"᭐ᭋ᭞ ᬰ᭄ᬭᬷᬂ᭞ ᬰ᭄ᬭᬷ᭞ ᬰᬸᬓ᭄ᬮᬶᬢᬄ᭞ ᬳᬧᬳᬢ᭄ᬬᬢᬄ᭞ ᬬᬢ᭄ᬢᬶᬭ᭄ᬢ᭄ᬣᬂ ᬭᭂᬳᬾᬢ᭄ᬢᬢ᭄ᬬᬄ᭞ ᬬᬵᬢᬧᬲᬵᬲ᭄ᬬᬄ᭞ ᬭᭂᬢᬢ᭄ᬬᬬᬄᬲ᭄ᬬᬄ᭞ ᬰᬸᬓ᭄ᬮᬶᬳᬢ᭄ᬢᬶ᭞ ᬧᬢ᭄ᬢᬶᬲ᭄ᬯᬧᬶ᭞ ᬳᬵᬧ\\nᬬᬲ᭄ᬢᬸᬭᭂᬲᬵᬲᬲ᭄ᬬ᭞ ᬭᭂᬳᬾᬢ᭄ᬢᬢ᭄ᬬᬄ᭞ ᬬᬬᬢᬵᬲ᭄ᬬᬲ᭄ᬢ᭄ᬬᬶᬢᬶᬄ᭞ ᬢ᭄ᬢᬶ ᬬᬵᬢᬧᬲ᭄ᬢ᭄ᬬᬳᬶᬤᬄ᭞ ᬬᬲᬧᬳᬶᬢᬄᬳᬶ᭞ ᬬᬲᬧᬢᬲ᭄ᬬ᭞ ᬢ᭄ᬢᬸᬧᬢᬶᬲ᭄ᬯᬶ᭞ ᬧᬢᬶᬲ᭄ᬯᭂᬧ\\nᬓᬢ᭄ᬢ᭄ᬬᬵ᭞ ᬬᬢ᭄ᬢᬸᬬᬲ᭄ᬢ᭄ᬬ᭞ ᬬᬲᬧᬳᬶᬢᬄᬳᬶ᭞ ᬭᭂᬲᬵᬲᬲ᭄ᬬ᭞ ᬭᬵᬳᬢ᭄ᬢᬢ᭄ᬢᬶ᭞ ᬤ᭄ᬭᭂᬳᬵᬤ᭄ᬭᭂᬳᬵᬲ᭄ᬢ᭄ᬬᬢᬶᬳᬶ᭞ ᬧᬢᬶᬲ᭄ᬯᬶᬧᬢ᭄ᬢᬵ᭞ ᭐᭞ ᬬᬲ᭄ᬢ᭄ᬬ᭞ ᬧᬢ᭄ᬢᬸᬭᭂᬢ᭄ᬢᭂᬭᭂ\\nᬢᬵᬢᬲ᭄ᬬ᭞ ᬭᭂᬳᬵᬲᬧᬭᬳᬶᬢᬭ᭄ᬬ᭄ᬬᬲ᭄ᬢ᭄ᬬᬶ᭞ ᬭᬵᬢ᭄ᬢᬸᬳ᭄ᬬᬵᬮᬵᬓ᭄ᬮᬯ᭞ ᭐᭞ ᬭᬶᬳᬵᬢᬢᬲ᭄ᬬ᭞ ᬢ᭄ᬢᬸᬢᬵᬬᭂᬳ᭄ᬭᬲᬵᬧᬲᬵᬢᬵᬢᬵ᭞ ᬳ᭄ᬭᬶᬢ᭄ᬢᬶᬧᬢᬶᬲ᭄ᬯᭂᬧᬢ᭄ᬢᬵ᭞ ᭐᭞\",\n  \"transliteration\": \"om̐, śrīṁ, śrī, śuklitaḥ, hapahatyataḥ, yattirttheṁ rĕhettatyaḥ, yātapasāsyaḥ, rĕtatyayasyasyaḥ, śuklihatti, pattiswapi, hāpa\\nyasturĕsāsasya, rĕhettatyaḥ, yayatāsyastyitiḥ, tti yātapastyahidaḥ, yasapahitāhi, yasapatasya, ttupatiswi, patiswĕpa\\nkattwā, yattuyastya, yasapahitāhi, rĕsāsasya, rāhattatti, drĕhadrĕhāstyatihi, patiswipattā, om̐, yastya, patturĕttĕrĕ\\ntātasya, rĕhāsapahitaryyastyī, rāttuhyālākława, om̐, rihātataya, ttutāyĕhrasāpasātātā, hrittipatiswĕpattā, om̐,\"\n}\n```"
+    },
+    {
+      "variant": "literal-ocr",
+      "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg",
+      "repeat": 2,
+      "elapsed_ms": 14585,
+      "status": 200,
+      "content": "```json\n{\n  \"balinese_transcription\": \"᭛᭑᭖᭜\\nᬖᭂᬲᭂᬂᬅᬧ᭄ᬮᬄᬦᬶᬄ᭞ᬫᬸᬦ᭄ᬢ᭄ᬭ᭞ᬳᭀᬂᬅᬧ᭄ᬮᬄᬫᬦ᭄ᬢ᭄ᬭ᭞ᬳᬶᬦ᭄ᬤ᭄ᬭᬧᬢᬶᬩᬭᬸᬡ᭞ᬯᬸᬧᬲ᭄ᬢ᭄ᬭᭂᬂᬩᬵᬧᬵ᭞ᬬᬧ᭄ᬯᬦ᭄ᬢ᭄ᬭ᭞ᬳᬶᬦ᭄ᬤ᭄ᬭᬧᬢᬶ᭞ᬩᬵᬧᬸᬦ᭄ᬩᬭᬸᬡᬯᬶᬱ᭞ᬲᬷᬭᬳᬂ\\nᬲᬭ᭄ᬯ᭄ᬯᬯᬶᬱ᭞ᬲᬫᬶᬢ᭄ᬭ᭞ᬳᭂᬦᬶᬂᬲᬭ᭄ᬯ᭄ᬯᬯᬶᬱ᭞ᬧ᭄ᬮᬳᬶᬂᬧ᭄ᬮ\\nᬲ᭄ᬢ᭄ᬭ᭞ᬯᬸᬧᬲ᭄ᬢ᭄ᬭᭂᬂᬩᬵᬧᬵ᭞ᬯᬸᬧᬲ᭄ᬢ᭄ᬭᭂᬂᬩᬵᬧᬵ᭞ᬦᬵᬲᬶᬱ᭄ᬬᬦ᭄ᬢ᭄ᬭ᭞ᬯᬵᬭᬸᬡᬶ᭞ᬯᬭ\\nᬧ᭄ᬮᬵᬄ᭞ᬲᬭ᭄ᬯ᭄ᬯᬯᬶᬱ᭞ᬓᭂᬦ᭄ᬤᭂᬮ᭄᭞ᬳᬶᬢᭂᬄ᭞ᬢ᭄ᬯᬦ᭄ᬢ᭄ᬭ᭞ᬢᬸᬫ᭄ᬩ᭄ᬭᭂᬓ᭄ᬢᬦ᭄\\nᬡ᭄ᬡᬯᬶᬱ᭞ᬓᭂᬦ᭄ᬤᭂᬮ᭄᭞ᬳᬶᬢᭂᬄ᭞ᬢ᭄ᬯᬦ᭄ᬢ᭄ᬭ᭞ᬢᬸᬫ᭄ᬩ᭄ᬭᭂᬓ᭄ᬢᬦ᭄\\nᬲ᭄ᬢ᭄ᬭ᭞ᬳᬂᬮ᭄ᬮᬶᬂᬲᬭ᭄ᬯ᭄ᬯ᭞᭞ᬧᬓᬾᬫ᭄ᬩᭂᬗ᭄ᬓ᭄ᬭᬂ᭞᭞ᬦᬵᬦ᭄ᬢ᭄ᬭ᭞ᬳᬶᬤᭂᬧᬓᬸᬓ᭄ᬭᭂᬓ᭄ᬳ\\nᬯ᭄ᬦ᭄ᬢᭂᬦ᭄ᬯᬶᬱ᭞ᬓᭂᬦ᭄ᬤᭂᬮ᭄᭞ᬳᬶᬢᭂᬄ᭞ᬢ᭄ᬯᬦ᭄ᬢ᭄ᬭ᭞ᬢᬸᬫ᭄ᬩ᭄ᬭᭂᬓ᭄ᬢᬦ᭄ᬯᬶᬱ\",\n  \"transliteration\": \"[16]\\ngĕsĕṅ aplah niḥ, muntra, hoṅ aplah mantra, indrapati baruṇa, wupastrĕṅ bāpā, yapwāntra, indrapati, bāpun baruṇa wiṣa, sīra haṅ\\nsarwwawiṣa, samitra, hĕniṅ sarwwawiṣa, plahiṅ pla\\nstra, wupastrĕṅ bāpā, wupastrĕṅ bāpā, nāsiṣyantra, wāruṇi, wara\\nplāḥ, sarwwawiṣa, kĕndĕl, hitĕḥ, twantra, tumbrĕktan\\nṇṇawiṣa, kĕndĕl, hitĕḥ, twantra, tumbrĕktan\\nstra, haṅ lliṅ sarwwa,, pakémbĕṅkraṅ,, nāntra, hidĕpaku krĕk ha\\nwntĕn wiṣa, kĕndĕl, hitĕḥ, twantra, tumbrĕktan wiṣa\"\n}\n```"
+    },
+    {
+      "variant": "literal-ocr",
+      "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg",
+      "repeat": 1,
+      "elapsed_ms": 15725,
+      "status": 200,
+      "content": "```json\n{\n  \"balinese_transcription\": \"᭐᭞ ᬑᬁᬅᬯᬶᬖ᭄ᬦᬫᬲ᭄ᬢᬸ᭞ᬳᬶᬢᬶᬢᬢ᭄ᬯᬓᬾᬱᬢ᭄ᬭᬶᬬᬵᬦ᭄ᬯᬬ᭞ ᬤ᭄ᬬᬄᬫ᭄ᬧᬸᬓᬾᬰᬯ᭞ᬬᬧ᭄ᬭᬢᬶᬱ᭄ᬝ᭞ᬯᬶᬱ᭄ᬡᬸᬫᬹᬃᬢ᭄ᬢᬶ᭞ᬳᬶᬂᬩᬮᬶᬤ᭄ᬯᬶᬧᬫᬡ᭄ᬟᬮ᭞\\nᬲᬗ᭄ᬓ᭄ᬭᬵᬫᬭ᭄ᬤ᭄ᬥᬶᬢᬶᬢ᭄ᬯᬭᬵᬢ᭄ᬯᬮᬶᬭ᭄ᬢᬗ᭄ᬢᬗ᭄ᬲᬗ᭄ᬓᬭ᭄ᬧ᭄ᬢᬶᬭ᭄ᬢ᭄ᬢ᭞ ᬲᬗ᭄ᬓᬭ᭄ᬧ᭄ᬢᬶᬭ᭄ᬢ᭄ᬢᬫᬄᬧᬸᬢ᭄ᬭᬲᬗ᭄ᬢ᭄ᬯᬭᬵᬢ᭄ᬯ᭞ᬲᬗ᭄ᬢ᭄ᬯᬭᬵᬢ᭄ᬯᬫᬄᬧᬸᬢ᭄ᬭᬲᬗ᭄ᬰ᭄ᬭᬷ᭞\\nᬬᬶᬢᬶᬭᬢ᭄ᬦᬶᬗ᭄ᬲᬗ᭄ᬲ᭄ᬭᬹᬢᬶ᭞ᬧ᭄ᬭᬓᬷᬭ᭄ᬢ᭄ᬢᬶᬢᬶᬂᬭᬢ᭄ᬧ᭄ᬭᬢᬶᬱ᭄ᬝᬶᬢ᭞ ᬲᬗ᭄ᬓᬭ᭄ᬧ᭄ᬢᬶᬭ᭄ᬢ᭄ᬢᬫᬄᬧᬸᬢ᭄ᬭᬲᬗ᭄ᬰ᭄ᬭᬷᬫᬳᬵᬭᬵᬚ᭞ᬭᬵᬚᬤᬶᬢ᭄ᬬᬲᬗ᭄ᬓᬭ᭄ᬧ᭄ᬢᬶᬭ᭄ᬢ᭄ᬢ᭞\\nᬰ᭄ᬭᬷᬫᬳᬵᬭᬵᬚᬲᬗ᭄ᬓᬭ᭄ᬧ᭄ᬢᬶᬭ᭄ᬢ᭄ᬢ᭞ ᬭᬵᬚᬤᬶᬢ᭄ᬬ᭞ᬫᬄᬧᬸᬢ᭄ᬭᬲᬗ᭄ᬰ᭄ᬭᬷᬫᬳᬵᬭᬵᬚ᭞ᬭᬵᬚᬤᬶᬢ᭄ᬬᬫᬄᬧᬸᬢ᭄ᬭᬰ᭄ᬭᬷᬫᬳᬵᬭᬵᬚᬫᬳᬵᬤᬾᬯ᭞\",\n  \"transliteration\": \"1. oṃ awighnamastu, iti tatwa keṣatriyānwaya, dyaḥ mpu keśawa, ya pratiṣṭa, wiṣṇumūrtti, hiṅ bali dwipa maṇḍala,\\n saṅ krāmarddhititwarātwaliraṅ taṅ saṅ karpatirtta, saṅ karpatirttamaḥ putra saṅ twarātwa, saṅ twarātwamaḥ putra saṅ śrī,\\nyitiratniṅ saṅ srūti, prakīrttitiṅ rat pratiṣṭita, saṅ karpatirttamaḥ putra saṅ śrī mahārāja, rājaditya saṅ karpatirtta,\\nśrī mahārāja saṅ karpatirtta, rājaditya, maḥ putra saṅ śrī mahārāja, rājadityamaḥ putra śrī mahārāja mahādewa,\"\n}\n```"
+    }
+  ]
+}

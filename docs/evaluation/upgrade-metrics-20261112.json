@@ -1,0 +1,90 @@
+{
+  "photo_metrics": [
+    {
+      "variant": "upgrade-baseline-examples",
+      "model": "ag/gemini-3.8-flash-low",
+      "runs": 8,
+      "successful": 8,
+      "median_seconds": 10.285,
+      "max_seconds": 28.316,
+      "detection_correct": 8,
+      "detection_scored": 8,
+      "expected_balinese_runs": 4,
+      "accepted_balinese_runs": 4,
+      "expected_non_balinese_runs": 4,
+      "rejected_non_balinese_runs": 4,
+      "detected_runs_with_no_readable_text": 0,
+      "detected_runs": 4,
+      "transliteration_pair_agreement": 0.1793,
+      "transliteration_pairs_scored": 2,
+      "plant_set_pair_jaccard": null,
+      "plant_set_pairs_scored": 0,
+      "mean_character_error_rate": 0.8376,
+      "transcription_references_scored": 2,
+      "balinese_character_error_rate": 0.9442,
+      "balinese_reference_runs": 4,
+      "balinese_raw_mean_character_error_rate": 0.9541
+    },
+    {
+      "variant": "upgrade-candidate-examples",
+      "model": "ag/gemini-3.8-flash-low",
+      "runs": 8,
+      "successful": 8,
+      "median_seconds": 13.309,
+      "max_seconds": 22.109,
+      "detection_correct": 8,
+      "detection_scored": 8,
+      "expected_balinese_runs": 4,
+      "accepted_balinese_runs": 4,
+      "expected_non_balinese_runs": 4,
+      "rejected_non_balinese_runs": 4,
+      "detected_runs_with_no_readable_text": 0,
+      "detected_runs": 4,
+      "transliteration_pair_agreement": 0.2504,
+      "transliteration_pairs_scored": 2,
+      "plant_set_pair_jaccard": 0.0,
+      "plant_set_pairs_scored": 1,
+      "mean_character_error_rate": 0.9429,
+      "transcription_references_scored": 2,
+      "balinese_character_error_rate": 1.0,
+      "balinese_reference_runs": 4,
+      "balinese_raw_mean_character_error_rate": 1.0
+    }
+  ],
+  "diagnostic_ocr_CER": [
+    {
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "repeat": 1,
+      "CER": 0.865546218487395
+    },
+    {
+      "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+      "repeat": 2,
+      "CER": 0.8095238095238095
+    },
+    {
+      "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg",
+      "repeat": 2,
+      "CER": 0.9707602339181286
+    },
+    {
+      "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg",
+      "repeat": 1,
+      "CER": 0.9327485380116959
+    }
+  ],
+  "controlled_evidence_cases": {
+    "unsafe_cases": 6,
+    "baseline_unsafe_recipes_retained": 6,
+    "candidate_unsafe_recipes_retained": 0,
+    "supported_cases": 3,
+    "baseline_supported_retained": 3,
+    "candidate_supported_retained": 3
+  },
+  "limitations": [
+    "Synthetic evidence cases measure guards, not manuscript accuracy",
+    "Four images times two repetitions; Kawi image is typeset, not a palm-leaf photo",
+    "Baseline overlapped diagnostic model calls; latency is not a controlled speed experiment",
+    "No expert translation or recipe reference; no medical correctness claim"
+  ]
+}

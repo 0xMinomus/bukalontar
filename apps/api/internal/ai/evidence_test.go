@@ -29,6 +29,14 @@ func TestAnalyzeRequiresTopLeafEvidenceBeforeGrounding(t *testing.T) {
 		{name: "mere plant mention", reading: supported, quote: "taru sotong", plant: "Taru Sotong"},
 		{name: "unquoted complementary ingredient", reading: supported, quote: supported, plant: "Taru Sotong", extra: "arak"},
 		{name: "plant substring is not a plant name", reading: supported, quote: supported, plant: "Otong"},
+		{name: "quote bridges unreadable passage", reading: "Tityang taru sotong [tidak terbaca] don titiang tis, ketumbar bolong ulig lan tempel ring pungsed.", quote: supported, plant: "Taru Sotong"},
+		{name: "quote bridges omitted passage", reading: "Tityang taru sotong ... don titiang tis, ketumbar bolong ulig lan tempel ring pungsed.", quote: supported, plant: "Taru Sotong"},
+		{name: "quote itself includes uncertainty", reading: "Tityang taru sotong [tidak terbaca] don titiang tis, ketumbar bolong ulig lan tempel ring pungsed.", quote: "Tityang taru sotong [tidak terbaca] don titiang tis, ketumbar bolong ulig lan tempel ring pungsed.", plant: "Taru Sotong"},
+		{name: "only second leaf is labeled", reading: "[Lembar 2]\n" + supported, quote: supported, plant: "Taru Sotong"},
+		{name: "preamble is not first leaf evidence", reading: supported + "\n[Lembar 1]\nIki usada lare.", quote: supported, plant: "Taru Sotong"},
+		{name: "English leaf label also scopes evidence", reading: "[Leaf 1]\nIki usada lare.\n[Leaf 2]\n" + supported, quote: supported, plant: "Taru Sotong"},
+		{name: "complete passage after uncertainty remains usable", reading: "[tidak terbaca]\n" + supported, quote: supported, plant: "Taru Sotong", wantRecipe: true},
+		{name: "complete passage on labeled first leaf", reading: "[Lembar 1]\n" + supported + "\n[Lembar 2]\n[tidak terbaca]", quote: supported, plant: "Taru Sotong", wantRecipe: true},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {

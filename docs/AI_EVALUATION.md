@@ -260,3 +260,60 @@ Dua dari empat permintaan gagal dengan respons upstream kosong. Dua lainnya dite
 ### Kandidat riset OCR
 
 [Lontar Project di Leiden](https://lontar.liacs.nl/) menerbitkan [kode pengenal glif terisolasi](https://github.com/erickpaulus/isolated-glyph-recognition) dan tautan dataset/model. Hasil pengenalan glif terisolasi tidak sama dengan membaca foto lengkap, transliterasi, atau terjemahan; sistem ini belum diintegrasikan atau diuji pada foto BukaLontar. Lisensi kode MIT tidak otomatis menetapkan lisensi model dan data.
+
+## Upgrade pengaman kutipan dan pembanding baseline
+
+### Tujuan dan keputusan
+
+Baseline adalah kode pada commit `fc174f9`, dikompilasi sebelum perubahan pengaman. Tujuan pembacaan: menguji OCR literal terpisah sebelum terjemahan; tujuan pengaman: mencegah kutipan melompati bagian hilang atau mengambil bukti dari lembar yang salah. Semua panggilan menggunakan `ag/gemini-3.8-flash-low`, tanpa pergantian model.
+
+**Yang diintegrasikan hanya pengaman kutipan. Pembacaan OCR khusus, akurasi terjemahan, dan keandalan pembeda aksara belum meningkat secara terbukti.** Tidak ada bobot model baru, cache jawaban, atau pengecualian berdasarkan nama foto.
+
+### Perubahan yang lolos pengujian terkontrol
+
+Pemeriksaan lama menghapus `[tidak terbaca]` dan tanda baca sebelum mencocokkan kata. Akibatnya, kutipan dapat cocok dengan gabungan dua bagian yang terpisah oleh teks hilang. Pemeriksaan lembar juga menggunakan bagian sebelum label kedua, sehingga pengantar atau satu label `[Lembar 2]` bisa dianggap bukti daun pertama.
+
+Pemeriksaan baru mempertahankan anotasi dan elipsis sebagai batas yang tidak dapat dilompati. Kutipan yang mengandung tanda ketidakpastian ditolak. Jika ada label, bukti hanya diambil setelah label pertama bernomor 1 hingga label berikutnya. Label `Lembar` dan `Leaf` diperlakukan sama. Kutipan utuh sebelum atau sesudah bagian hilang tetap dapat diterima. Penolakan berlaku sebelum grounding KB; resep, taksonomi, dan rujukan tidak boleh muncul kembali melalui normalisasi.
+
+| Ukuran | Baseline | Upgrade | Jenis bukti |
+| --- | --- | --- | --- |
+| Resep tidak didukung yang lolos pada enam kasus batas baru | 6/6 | 0/6 | Input terkontrol melalui `Service.Analyze`, bukan foto atau label medis |
+| Kutipan utuh yang tetap diterima pada tiga kasus positif | 3/3 | 3/3 | Satu kasus lama dan dua kasus baru, bukan pengukuran recall populasi |
+| Foto Bali diterima | 4/4 | 4/4 | Dua foto × dua pengulangan |
+| Pembanding non-Bali ditolak | 4/4 | 4/4 | Foto Panji dan contoh Kawi cetak × dua pengulangan; label bukan sertifikasi ahli |
+| Respons terstruktur berhasil | 8/8 | 8/8 | Batch yang sama |
+| Median seluruh permintaan | 10,285 detik | 13,309 detik | Bukan uji latensi terkontrol |
+| CER Latin diagnostik Lare, lebih rendah lebih baik | 0,8376 | 0,9429 | Dua respons per versi; referensi Latin render Wikisource, bukan transliterasi ahli independen |
+
+Perbandingan foto menggunakan byte gambar yang sama, bantuan `examples`, temperature 0, dan dua pengulangan per gambar. Nama file tidak diberikan sebagai konteks model. Kawi cetak hanya pembanding aksara tambahan, tidak dihitung sebagai foto lontar. Label dan batas sumber mengikuti `reliability-references-20261112.json`. Baseline berjalan beririsan dengan panggilan eksperimen lain; perubahan latensi tidak boleh diatribusikan ke kode. Pengaman baru tidak menambah panggilan model. Keluaran model tetap berubah antarpermintaan; perubahan angka CER tidak membuktikan efek pengaman terhadap kemampuan membaca.
+
+Enam kasus negatif baru mencakup kutipan yang melompati bagian tidak terbaca, melompati elipsis, mengandung penanda tidak terbaca, hanya memiliki label lembar 2, memakai pengantar sebelum lembar 1, dan mengambil bukti lembar 2 berlabel Inggris. Semua enam sebelumnya gagal pada pengujian yang sama sebelum perbaikan, lalu lulus setelah perbaikan. Ini peningkatan batas konsistensi teks saja: kutipan utuh yang seluruhnya dikarang model tetap dapat lolos, dan pengaman tidak memastikan ada indikasi atau cara racik nyata.
+
+### Kandidat yang tidak diintegrasikan
+
+- **OCR literal terpisah:** empat panggilan pada dua foto Bali, tanpa terjemahan atau metadata naskah. CER Unicode terhadap transkripsi komunitas sekitar 0,8095–0,9708. Semua bacaan melenceng; tidak dipakai sebagai pembaca baru. Latensi percobaan tidak termasuk gate dan terjemahan, sehingga tidak sebanding dengan latensi produk.
+- **Pemeriksa visual kedua:** menerima foto dan usulan bacaan dari empat hasil baseline. Dua bacaan salah tetap diloloskan dengan `true/high`; dua kontrol positif memakai referensi Lare diterima. Pemeriksaan oleh model yang sama bukan validasi independen dan dapat memberi rasa aman palsu, sehingga tidak ditambahkan.
+- **Pelatihan OCR urutan:** arsip DeepLontar lokal berisi kotak dan ID kelas, bukan transkripsi urutan. [Tabel artikel](https://www.nature.com/articles/s41597-022-01867-5/tables/2) memberi nama dan gambar glif, tetapi tidak menetapkan pemetaan ID anotasi ke Unicode. Tautan download resmi AMADI/ICFHR dicoba melalui HTTP dan HTTPS tetapi timeout. Belum diperoleh korpus urutan tambahan yang layak dipakai untuk pelatihan dengan pemisahan naskah. Data holdout tidak dijadikan data latih.
+
+### Verifikasi dan reproduksi
+
+`go test ./internal/ai ./internal/model ./internal/handler` lulus 51 kasus setelah perubahan. `make build` berhasil. Binary hasil build dijalankan pada port 8082; upload foto Lare melalui `POST /api/analyze-manuscript` menghasilkan HTTP 200 dalam 17,352 detik, kontrak JSON lengkap, dan tanpa resep. Ini bukti alur multipart → inferensi → respons lokal, bukan kebenaran bacaannya atau verifikasi deployment produksi. Frontend tidak diubah pada upgrade ini.
+
+Artefak:
+
+- `evaluation/upgrade-baseline-20261112.jsonl` dan `upgrade-candidate-20261112.jsonl`: seluruh delapan hasil per versi, termasuk keputusan negatif.
+- `evaluation/upgrade-literal-ocr-20261112.json` dan `upgrade-reading-check-20261112.json`: hasil kandidat yang ditolak.
+- `evaluation/upgrade-metrics-20261112.json`: ukuran foto, diagnostik OCR literal, hasil kasus batas, dan keterbatasan.
+- `evaluation/upgrade-http-smoke-20261112.json`: respons API foto nyata.
+
+Untuk mengulang ukuran hasil tersimpan, jalankan dari root:
+
+```bash
+python3 scripts/summarize_ai.py \
+  --references docs/evaluation/reliability-references-20261112.json \
+  docs/evaluation/upgrade-baseline-20261112.jsonl \
+  docs/evaluation/upgrade-candidate-20261112.jsonl
+go -C apps/api test ./internal/ai -run TestAnalyzeRequiresTopLeafEvidenceBeforeGrounding
+```
+
+**Hasil akhir:** pengaman resep diperketat dengan bukti regresi, tanpa perubahan model atau tambahan panggilan AI. Sasaran peningkatan akurasi bacaan dan terjemahan belum tercapai; tidak disajikan sebagai upgrade OCR atau bukti produk siap tanpa pemeriksaan manusia.
