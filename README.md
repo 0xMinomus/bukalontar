@@ -25,60 +25,17 @@ Perbaikan pada `main` setelah tag: empat contoh arsip memakai transkripsi rujuka
 
 ## What's New
 
-Perubahan sejak [`v1.0-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.0-submission) hingga versi final terkini di `main`. Daftar berikut memisahkan perubahan yang sudah masuk tag [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission) dari pembaruan setelah tag tersebut. [Lihat seluruh perubahan kode](https://github.com/0xMinomus/bukalontar/compare/v1.0-submission...main).
+Perubahan utama sejak [`v1.0-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.0-submission) hingga versi final terkini di `main`, termasuk pembaruan setelah tag final:
 
-### Pipeline AI dan pengaman resep
+- Menyederhanakan alur AI menjadi pemeriksaan aksara dan satu pembacaan dengan Gemini 3.8 Flash Low, tanpa penggabungan jawaban atau fallback model. AI menerima foto asli; peningkatan kontras hanya untuk pratinjau.
+- Memperketat pengaman resep: wajib memiliki kutipan utuh dari lembar pertama, tidak boleh melompati bagian tidak terbaca, dan tidak diberi data ilmiah jika tanaman belum cocok KB.
+- Menambahkan bantuan glif, detektor teks, dan pengenal glif lokal dari DeepLontar, beserta evaluasi dan dokumentasi batasnya. Bantuan ini masih eksperimental, bukan OCR halaman penuh.
+- Menyediakan empat contoh arsip: Usadha Sukawati, Usadha Rare Kemenuh, Carcan Kucing, dan Kakawin Bharatayuda. Foto arsip yang cocok memakai transkripsi Wikisource dengan label terbuka; dua contoh nonmedis tidak menghasilkan kartu obat.
+- Memperluas KB menjadi **1.316 entri botani bersumber**, dengan penggabungan sinonim, penyaringan alias ambigu, dan pencocokan nama tepat. Katalog ini bukan daftar tanaman Usadha yang seluruhnya telah terverifikasi.
+- Melengkapi kartu dan PDF dengan sumber kutipan serta tautan literatur. Rujukan naskah dibedakan dari kecocokan botani dan bukti khasiat.
+- Menambahkan gerak dan detail visual bernuansa lontar, memperbaiki tampilan rujukan di layar kecil, serta memperbaiki refresh rute `/analisis` dan `/hasil` di Vercel.
 
-Perubahan berikut sudah termasuk dalam tag `v1.1-final-submission`:
-
-- Mengganti dua pembacaan paralel, pemilihan hasil terpanjang/terbanyak, dan penggabungan resep dengan satu pembacaan setelah pemeriksaan aksara. Hasil dari beberapa jawaban model tidak lagi digabung menjadi daftar tanaman tambahan.
-- Menetapkan Gemini 3.8 Flash Low sebagai satu-satunya model produk melalui 9router. Fallback model dan variabel konfigurasi fallback dihapus; server menolak konfigurasi model produk lain.
-- Menambahkan pemeriksaan aksara terpisah sebelum membaca foto baru. Hanya keputusan `balinese/high` yang mencapai pembaca; contoh glif dan katalog tanaman tidak disisipkan ke pemeriksaan ini.
-- Mengirim foto asli ke API. Downscale, CLAHE, unsharp mask, dan mode diperjelas tetap tersedia untuk pratinjau, tetapi hasil olahan browser tidak lagi menggantikan input AI.
-- Mengubah prompt agar membaca foto target tanpa menebak judul, katalog tanaman, atau genre Usadha dari `source_id`. Bahasa, grup naskah, dan bagian yang tidak diketahui dapat tetap dinyatakan tidak diketahui.
-- Mewajibkan `source_quote` untuk setiap resep: kutipan utuh dari lembar pertama yang memuat nama tanaman dan mendukung racikan atau indikasi. Bahan pelengkap yang diklaim harus terdapat dalam kutipan yang sama.
-- Menolak kutipan yang menjembatani bagian tidak terbaca, anotasi, elipsis, pengantar sebelum lembar pertama, atau lembar lain. Label `Lembar` dan `Leaf` diperlakukan setara; resep yang ditolak tidak boleh muncul kembali melalui normalisasi.
-- Mempertahankan hasil tanpa resep ketika tidak ada bukti yang cukup. Penanda kosong dan teks tidak terbaca tidak lagi berubah menjadi kartu tanaman, dan bentuk obat tidak otomatis dianggap loloh.
-- Menjaga sifat tradisional sesuai bacaan, bukan menimpanya dengan nilai bawaan KB. Taksonomi, senyawa, klaim farmakologi, dan sitasi keluaran model diganti dengan data server jika cocok; data ilmiah tanaman yang tidak cocok dikosongkan.
-- Memisahkan aksara terdeteksi dari teks terbaca. Penolakan pembaca atau keluaran yang mengandung konflik aksara tidak dipertahankan sebagai bacaan/resep; transkripsi Unicode eksperimen tidak ditampilkan sebagai hasil terverifikasi.
-- Memperluas kontrak JSON dengan kutipan resep, tautan rujukan, metadata bantuan pembacaan, nilai tidak diketahui, dan transkripsi Unicode opsional untuk evaluasi. Parser keputusan aksara menerima JSON berbungkus code fence; batas keluaran pembaca dinaikkan menjadi 8.000 token.
-- Menambahkan tautan PubMed pada kartu, tab Rujukan, dan laporan PDF. Pencarian literatur dibedakan dari artikel tertentu; adanya tautan tidak dinyatakan sebagai bukti khasiat racikan.
-
-### Bantuan pembacaan, data, dan evaluasi
-
-Penambahan berikut juga sudah termasuk dalam tag `v1.1-final-submission`:
-
-- Menambahkan akuisisi dan validasi korpus DeepLontar: manifest sumber, checksum, pemeriksaan citra/anotasi, serta karantina anotasi dengan ID kelas di luar rentang yang dipublikasikan.
-- Melatih dan menyematkan detektor area teks serta pengenal glif lokal, dengan inferensi Go tanpa layanan tambahan. Pembagian train/dev/test mengelompokkan dua sisi daun fisik yang sama agar tidak tersebar antarbagian.
-- Menambahkan 55 contoh glif bersumber, chart referensi, dan mode bantuan `none`, `examples`, `chart`, `ocr`, `leaves`, `both`, serta `all`. Default `examples` memakai tiga contoh glif; detektor dan crop daun tetap eksperimental, bukan OCR halaman penuh.
-- Menambahkan lima halaman Aji Kreket dengan transkripsi komunitas sebagai holdout, beserta provenance dan batas independensi sumber. Halaman holdout tidak dipakai sebagai contoh jawaban dalam prompt produk.
-- Menambahkan runner evaluasi, keluaran JSONL, penghitungan CER, abstensi, konsistensi bacaan/tanaman, latensi, dan pemeriksaan parity model Go/Python. Pengujian regresi mencakup pengaman aksara, kutipan resep, data kosong, dan grounding rujukan.
-- Mencatat pembanding baseline, kandidat model, ablation bantuan, uji foto Bali/Jawa/Kawi, dan eksperimen yang tidak diintegrasikan. OCR literal terpisah, pemeriksa visual kedua, dan contoh foto–jawaban berpasangan tidak dipromosikan sebagai peningkatan akurasi produk.
-- Mengganti dua contoh pilihan awal dengan sisi depan Usada Lare dan Usada Rare 154 pada tahap ini, disertai kredit foto, sumber transkripsi, lisensi, koordinat crop, dan hash. Contoh pilihan tersebut kemudian diganti lagi pada pembaruan setelah tag.
-- Memperbarui dokumentasi arsitektur, sumber data, pelatihan OCR, disclosure AI, keamanan, konfigurasi, dan panduan kontribusi untuk mencerminkan perilaku eksperimental serta batas pengujian.
-
-Rincian: [evaluasi AI dan pembanding baseline](docs/AI_EVALUATION.md) · [model lokal dan batas OCR](docs/OCR_TRAINING.md) · [disclosure AI](docs/AI_DISCLOSURE.md).
-
-### Pembaruan final di `main` setelah tag
-
-- Mengganti pilihan landing menjadi empat arsip: Usadha Sukawati, Usadha Rare Kemenuh, Carcan Kucing, dan Kakawin Bharatayuda. Setiap pilihan memiliki tautan foto, transkripsi rujukan, dan lisensi yang terpisah.
-- Menambahkan jalur analisis berbantuan transkripsi untuk foto yang SHA-256 byte-nya cocok persis dengan arsip. Server mempertahankan bacaan Latin sumber, sedangkan Gemini tetap menerjemahkan dan mengekstrak isi pada setiap permintaan; bukan cache jawaban analisis.
-- Mengikat identitas arsip ke isi foto, bukan nama file atau `source_id`. Server menetapkan provenance, genre, URL sumber, lisensi, catatan editorial, dan hash; metadata buatan model tidak dapat memilih arsip.
-- Membatasi arsip Carcan dan Kakawin agar tidak menghasilkan kartu obat. Foto lain, termasuk arsip yang diubah byte-nya, tetap melalui pemeriksaan aksara dan pembacaan foto eksperimental.
-- Menambahkan label **Berbantuan transkripsi rujukan** pada hasil dan PDF, serta membedakan kutipan transkripsi komunitas dari transliterasi AI. Pemisahan kata pada bacaan arsip diperiksa agar tidak mengubah huruf atau tanda baca sumber.
-- Memperluas KB menjadi **1.316 entri lookup botani**, dengan sumber PROSEA, data terstruktur Wikidata, dan pencocokan nama ilmiah ke takson diterima GBIF. Ini katalog botani umum, bukan daftar spesies yang dipastikan tercantum dalam Usadha.
-- Menambahkan snapshot sumber berlisensi, ID/revisi sumber, laporan impor, dan generator offline. Impor menolak pencocokan fuzzy/genus/bukan tumbuhan, menggabungkan sinonim menurut accepted usage key, dan menyaring alias ambigu agar tidak menambah kecocokan palsu.
-- Mengganti pencocokan substring dengan indeks alias tepat, mendukung nama ilmiah, ejaan transliterasi, dan awalan bagian tanaman. Nama campuran tidak otomatis cocok hanya karena mengandung nama tanaman yang lebih pendek; alias yang bertabrakan ditolak saat memuat katalog.
-- Melengkapi alias contoh seperti Sembung, Kacemcem, dan Poh Gedang dengan sumber. Dapdap tetap dicatat pada tingkat genus ketika spesies belum dipastikan; istilah naskah yang ambigu tidak diberi identifikasi ilmiah buatan.
-- Menambahkan tautan sumber kutipan pada setiap kartu arsip dan laporan cetak, termasuk kartu yang belum cocok KB. Indikator **Identitas botani di KB** membedakan kecocokan botani dari tersedianya rujukan naskah.
-- Memperbaiki pembungkusan URL rujukan panjang dan batas lebar panel hasil agar sumber tetap terbaca pada layar kecil dan laporan cetak.
-- Menambahkan gerak gulir dan detail material bernuansa lontar: susunan daun saat unggahan bergulir, bingkai arsip, pengungkapan foto sumber, ornamen, serta respons hover. Gerak menghormati preferensi reduced motion dan memiliki fallback ketika fitur browser tidak tersedia.
-- Memperbaiki rewrite SPA pada service web Vercel agar membuka atau me-refresh `/analisis` dan `/hasil` tidak berakhir dengan 404, sehingga aplikasi dapat memulihkan sesi lokal.
-- Melengkapi catatan kesiapan submission, pemeriksaan deployment, kredit arsip, sumber KB, dan batas klaim. Perubahan lanjutan tidak memindahkan tag submission yang sudah diterbitkan.
-
-Rincian: [empat contoh arsip](docs/AI_EVALUATION.md#empat-contoh-arsip-berbantuan-transkripsi) · [sumber dan lisensi KB](docs/KNOWLEDGE_BASE_SOURCES.md) · [status pemeriksaan deployment](docs/STATUS.md).
-
-**Batas klaim:** perubahan ini memperketat pengaman dan menambah penelusuran sumber; belum membuktikan OCR, terjemahan, identifikasi tanaman, atau racikan obat selalu benar. Rujukan naskah bukan verifikasi botani, dan pencarian literatur bukan bukti klinis. Kemampuan unggah/tempel foto, lensa zoom, penyalinan, pemulihan sesi, dan ekspor PDF sudah ada pada baseline; yang baru adalah perbaikan alur, isi, dan penelusuran sumber di atas.
+Pembacaan dan terjemahan tetap eksperimental; rujukan bukan jaminan kebenaran atau keamanan racikan. [Evaluasi AI](docs/AI_EVALUATION.md) · [Sumber KB](docs/KNOWLEDGE_BASE_SOURCES.md) · [Seluruh perubahan kode](https://github.com/0xMinomus/bukalontar/compare/v1.0-submission...main).
 
 ## Daftar Isi
 
