@@ -33,7 +33,7 @@ components:
 
 ## Overview
 
-The supplied antique reference is interpreted as a Balinese reading desk, not a generic museum landing page. The actual workflow remains a web application: choose a manuscript, inspect it, analyze it, read the result. ENERGY 3 / RHYTHM 2 / MOTION 2.
+The supplied antique reference is interpreted as a Balinese reading desk, not a generic museum landing page. The actual workflow remains a web application: choose a manuscript, inspect it, analyze it, read the result. ENERGY 3 / RHYTHM 2 / MOTION 3.
 
 ## Colors
 
@@ -59,7 +59,7 @@ Controls retain the existing small radius. The upload leaves use long rounded ma
 
 Use the supplied logo for header, footer, and favicon. The complete lontar surface activates the native image picker, with visible keyboard focus and Enter/Space support. Do not place separate upload or camera buttons inside it. Mobile camera options belong to the native picker. Keep leaves in their settled pose on load; hover, drag-over, and pointer tilt respond through eased CSS transforms without a perpetual loop.
 
-Keep the initial viewport stable. Only folios below the initial viewport receive one-time intersection transitions. Never use delayed fade-out/fade-in or a timeout to reanimate visible content. Preserve native smooth anchor scrolling and native wheel/touch behavior. Reduced motion reveals content immediately and disables tilt. Existing lens gestures, tabs, copy, print, paste, validation, and sessions remain intact.
+Keep the initial viewport stable. Folios below the initial viewport receive one-time intersection transitions. Native CSS view timelines fan the upload leaves as they leave the viewport, settle archive mounts and the source photograph, and draw the existing engraved ornaments. These gestures embody handling a bound manuscript rather than adding a new interaction. Archive corner mounts and binding slots use the existing brass and paper palette; translucent paper highlights express material, not a second accent. Mouse hover briefly catches light across the upload surface and enlarges archive photographs; nothing loops at rest. Browsers without view timelines retain the settled composition and existing reveals. Never use delayed fade-out/fade-in or a timeout to reanimate visible content. Preserve native smooth anchor scrolling and native wheel/touch behavior. Reduced motion shows every folio immediately and disables spatial animations, scroll timelines, hover movement, and tilt. Existing lens gestures, tabs, copy, print, paste, validation, and sessions remain intact.
 
 ## Do's and Don'ts
 

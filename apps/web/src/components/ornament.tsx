@@ -6,7 +6,7 @@ export function Ornament({ className }: { className?: string }) {
       viewBox="0 0 180 16"
       fill="none"
       aria-hidden="true"
-      className={cn('h-4 w-40 text-brass', className)}
+      className={cn('folio-ornament h-4 w-40 text-brass', className)}
     >
       <path d="M0 8h62" stroke="currentColor" strokeWidth="1" opacity=".55" />
       <path d="M118 8h62" stroke="currentColor" strokeWidth="1" opacity=".55" />

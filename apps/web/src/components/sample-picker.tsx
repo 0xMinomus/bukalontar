@@ -27,7 +27,7 @@ export function SamplePicker({
         {samples.map((sample) => {
           const busy = busyId === sample.id
           return (
-            <div key={sample.id} className="rounded-lg border border-border bg-card/80">
+            <div key={sample.id} className="archive-specimen rounded-lg border border-border bg-card/80">
               <button
                 type="button"
                 onClick={() => onSelect(sample)}
