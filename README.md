@@ -15,7 +15,7 @@ Aplikasi web eksperimental untuk membantu membaca foto lontar beraksara Bali, me
 
 [Repositori](https://github.com/0xMinomus/bukalontar) | [Dokumentasi](docs/README.md) | [AI Disclosure](docs/AI_DISCLOSURE.md)
 
-Rilis final submission: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). [Website](https://www.bukalontar.my.id) | [Status akhir](docs/STATUS.md) | [Perbandingan baseline](docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline)
+Versi final terkini: [`main`](https://github.com/0xMinomus/bukalontar/tree/main). Tag [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission) adalah snapshot historis, bukan versi produksi terbaru. [Website](https://www.bukalontar.my.id) | [Status akhir dan pemeriksaan deployment](docs/STATUS.md) | [Perbandingan baseline](docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline)
 
 Perbaikan pada `main` setelah tag: empat contoh arsip memakai transkripsi rujukan dengan label terbuka. Tag submission tidak dipindah. [Metode contoh arsip](docs/DATA_SOURCES.md#analisis-berbantuan-transkripsi-rujukan) | [Hasil uji contoh](docs/AI_EVALUATION.md#empat-contoh-arsip-berbantuan-transkripsi).
 
