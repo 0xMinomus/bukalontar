@@ -266,16 +266,10 @@ Pada batch empat gambar × dua pengulangan, baseline dan kandidat sama-sama mene
 
 ## Batasan Saat Ini
 
-- Output model tidak deterministik. Dua permintaan berturut-turut dapat membaca baris atau resep yang berbeda.
-- Pembatasan Jawa/Kawi belum andal; foto Bali juga pernah ditolak. Confidence model bukan probabilitas kebenaran.
-- Model dapat menghasilkan bacaan dan resep keliru meskipun kutipan cocok. Hasil bukan edisi filologi terverifikasi atau rekomendasi pengobatan.
-- Unicode Bali di API bersifat eksperimental dan tidak ditampilkan di UI/PDF. OCR lokal mengenali potongan glif, bukan transkripsi kalimat.
-- Kualitas pembacaan bergantung pada kualitas foto, pencahayaan, dan ketajaman goresan.
-- Untuk naskah non-Usadha, hasil terstruktur masih terbatas pada bacaan, terjemahan, dan ringkasan. Klasifikasi genre yang mendalam belum tersedia.
-- Knowledge base masih terbatas pada entri Taru Pramana yang dikurasi.
-- Model membutuhkan gateway AI yang tersedia saat demo.
-- Belum ada autentikasi, database eksternal, atau akun demo.
-- Deployment publik berjalan di Vercel Services. `AI_BASE_URL` Vercel harus mengarah ke endpoint publik 9router agar health check `ok`.
+- Hasil AI dapat keliru atau berbeda antarpercobaan. Periksa bacaan dan resep terhadap sumber; hasil bukan edisi filologi terverifikasi atau rekomendasi pengobatan.
+- Kualitas pembacaan bergantung pada foto. Deteksi aksara juga dapat salah menerima atau menolak gambar.
+- Empat contoh arsip memakai transkripsi rujukan, bukan OCR baru. Pembacaan foto lain masih eksperimental.
+- Basis pengetahuan tanaman terbatas pada entri Taru Pramana yang dikurasi.
 
 ## Tim
 
