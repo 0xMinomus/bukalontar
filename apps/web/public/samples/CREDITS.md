@@ -1,11 +1,11 @@
 # Sample image credits
 
-The two selectable examples are front-side crops of Balinese-script Usadha manuscripts from Balai Bahasa Bali, photographed by Eka343. Both have validated Balinese-script transcriptions on Balinese Wikisource. Script identity comes from source evidence, not the application's accept/reject result.
+The two selectable examples are front-side crops of Balinese-script Usadha manuscripts from Balai Bahasa Bali, photographed by Eka343. Both have proofread Balinese-script transcriptions on Balinese Wikisource (pagequality 3, not independently expert-validated). Script identity comes from source evidence, not the application's accept/reject result.
 
 | File | Author | License | Source |
 | --- | --- | --- | --- |
-| `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons original](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [validated transcription, revision 105197](https://ban.wikisource.org/w/index.php?oldid=105197) |
-| `lontar-usada-rare-154-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons original](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Rare_154.jpg), [validated transcription, revision 105194](https://ban.wikisource.org/w/index.php?oldid=105194) |
+| `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons original](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [proofread transcription, revision 105197](https://ban.wikisource.org/w/index.php?oldid=105197) |
+| `lontar-usada-rare-154-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons original](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Rare_154.jpg), [proofread transcription, revision 105194](https://ban.wikisource.org/w/index.php?oldid=105194) |
 | `lontar-wanagiri-usada-3.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Wanagiri-Usada-3.jpg) |
 | `lontar-sukawati-usada-07.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) |
 
@@ -20,7 +20,7 @@ Coordinates refer to original pixels, `(left, top, right, bottom)`, with right/b
 | `lontar-usada-lare-depan.jpg` | 4730 × 3153 | `(120, 1110, 4680, 1600)` | 2400 × 258 | `ed50de58933f3f837b1850707e3cdca9e1f83b3355372fe3f01938aa349e2d1f` |
 | `lontar-usada-rare-154-depan.jpg` | 5184 × 3456 | `(900, 1140, 4550, 1640)` | 2400 × 329 | `3912ae6f95caa3953f7db32e6556b1156635bc2f0e5b1f5132116983131b0cf5` |
 
-The Wanagiri and Sukawati photographs remain for existing decorative/sharing assets and historical evaluations, not as selectable examples. A rejection by Gemini is not proof that a photograph uses Kawi script. Source transcription validation does not validate the model's generated reading.
+The Wanagiri and Sukawati photographs remain for existing decorative/sharing assets and historical evaluations, not as selectable examples. A rejection by Gemini is not proof that a photograph uses Kawi script. Source proofreading does not validate the model's generated reading.
 
 
 ## Sharing image

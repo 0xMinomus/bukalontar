@@ -217,6 +217,13 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
                   ? `Resep ${index + 1} · ${recipe.plant_local_name}`
                   : recipe.plant_local_name}
               </h3>
+              {recipe.source_quote ? (
+                <>
+                  <h3 className="report-subheading">Kutipan transliterasi AI</h3>
+                  <p className="report-prose">{recipe.source_quote}</p>
+                  <p className="report-prose">Kecocokan teks tidak membuktikan tanaman atau resep terdapat di foto.</p>
+                </>
+              ) : null}
               <dl className="report-kv">
                 <div className="report-field">
                   <dt>Tanaman</dt>

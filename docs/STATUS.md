@@ -4,19 +4,23 @@ Catatan hidup untuk Obsidian dan GitHub. Diperbarui 12 November 2026.
 
 ## Ringkas
 
-BukaLontar membaca foto lontar Bali, menghasilkan transliterasi, terjemahan, dan kartu Usadha. Bantuan lokal: detektor area teks dan pengenal glif terlatih. **Akurasi aksara Bali masih rendah**; jangan mengklaim sebaliknya.
+BukaLontar menyediakan pembacaan eksperimental foto lontar Bali. **Belum siap diklaim akurat atau digunakan sebagai rujukan medis.** Pengujian terbaru menemukan bacaan dan resep yang tidak sesuai sumber, meskipun deteksi aksara dan pemeriksaan kutipan lolos.
 
 ## Yang berjalan
 
 - API Go + frontend React di Vercel Services, produksi `https://www.bukalontar.my.id`.
 - Pemeriksaan aksara terpisah pada foto target, lalu satu pembacaan hanya untuk keputusan `balinese/high`. Semua panggilan memakai `ag/gemini-3.8-flash-low`, tanpa fallback model.
 - Tautan PubMed terkurasi pada kartu Usadha, tab Rujukan, dan PDF.
-- Target ditolak tidak mencapai pembaca. Penolakan pembaca atau konflik aksara mengosongkan seluruh bacaan/resep; Unicode eksperimental tidak ditampilkan di UI/PDF.
+- Target ditolak tidak mencapai pembaca. Jika pemeriksaan awal menerima tetapi pembaca menolak atau keluaran mengandung aksara lain, bacaan/resep dikosongkan dan hasil diberi status tidak terbaca. Unicode eksperimental tidak ditampilkan di UI/PDF.
 - Mode bantuan: `none`, `examples` (default), `chart`, `ocr`, `leaves`, `both`, `all`. Contoh glif dan katalog tidak masuk pemeriksaan aksara.
 - Detektor teks dan pengenal glif lokal dilatih dari 159 lembar DeepLontar; inferensi Go murni.
 - Lima halaman Wikisource berlabel sebagai holdout evaluasi; skrip CER tersedia.
 - Hasil uji penolakan belum memenuhi target: pada batch akhir, dua respons lontar pembanding kategori Jawa lolos dan satu gagal upstream; contoh Kawi cetak ditolak 3/3. Foto Bali diterima 4/6. Lihat [laporan dan batas label](AI_EVALUATION.md#pembatasan-aksara-temuan-awal-12-november).
-- Kedua contoh pilihan diganti menjadi sisi depan Usada Lare dan Usada Rare 154, dengan transkripsi aksara Bali tervalidasi di Wikisource. Uji klik contoh terakhir menghasilkan HTTP 200 untuk keduanya; Rare sempat ditolak pada uji upload awal. Model/pengaman tidak diubah dan tidak ada bypass untuk contoh.
+- Kedua contoh pilihan adalah sisi depan Usada Lare dan Usada Rare 154, dengan transkripsi aksara Bali yang dikoreksi di Wikisource (pagequality 3, bukan validasi ahli independen). Foto Bali tetap bisa ditolak.
+- Kandidat lokal menghapus katalog tanaman dari prompt, mewajibkan kutipan transliterasi AI untuk resep, dan mengirim foto asli. Kutipan cocok tidak membuktikan bacaan benar atau resep nyata.
+- Pembanding baru 12 November: foto Bali 6/6 diterima, pembanding Jawa dan Kawi 4/4 ditolak; hanya lima foto dan dua pengulangan. Baseline juga 10/10 pada foto yang sama, sehingga belum membuktikan peningkatan deteksi. Akurasi isi tetap gagal; lihat [evaluasi](AI_EVALUATION.md).
+- Diagnostik tambahan pada segmen buku NusaAksara: Bali diterima 1/4, Jawa ditolak 4/4; satu bacaan Bali tidak sesuai anotasi. Ini bukan uji foto lontar dan datanya tidak disertakan dalam produk.
+- Commit dan push tidak membuktikan deployment produksi atau kelulusan target; pastikan hasil deployment diperiksa sebelum dipakai.
 
 ## Angka terakhir
 

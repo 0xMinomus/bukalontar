@@ -45,6 +45,7 @@ type Paleography struct {
 
 type Ethnomedicinal struct {
 	PlantLocalName          string   `json:"plant_local_name"`
+	SourceQuote             string   `json:"source_quote,omitempty"`
 	PlantScientificName     string   `json:"plant_scientific_name"`
 	BotanicalFamily         string   `json:"botanical_family"`
 	KBMatch                 bool     `json:"kb_match"`

@@ -63,7 +63,7 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 	}
 	if !accepted {
 		response := &model.AnalysisResponse{}
-		enforceBalineseScope(response)
+		enforceBalineseScope(response, false)
 		response.Normalize()
 		s.enrich(response, sourceID)
 		return response, nil
@@ -97,8 +97,9 @@ func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID
 		}
 		response, err := parseAnalysis(content)
 		if err == nil {
-			enforceBalineseScope(response)
+			enforceBalineseScope(response, true)
 			response.Normalize()
+			retainSupportedRecipes(response)
 			s.enrich(response, sourceID)
 			err = response.Validate()
 		}
@@ -157,9 +158,6 @@ func (s *Service) enrichRecipe(recipe *model.Recipe) {
 		recipe.KBMatch = true
 		recipe.PlantScientificName = entry.ScientificName
 		recipe.BotanicalFamily = entry.BotanicalFamily
-		if entry.EnergyCharacter != "" {
-			recipe.EnergyCharacter = entry.EnergyCharacter
-		}
 		recipe.PhytochemicalCompounds = append([]string{}, entry.PhytochemicalCompounds...)
 		recipe.ModernAction = entry.ModernAction
 		recipe.ReferenceStudies = append([]string{}, entry.ReferenceStudies...)

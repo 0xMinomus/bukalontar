@@ -1,0 +1,46 @@
+{
+  "66349c31a2253031581e385a285412833761956dcd77ce071ffac1f19dc6cd46": {
+    "id": "aji-kreket-page-6",
+    "image_sha256": "66349c31a2253031581e385a285412833761956dcd77ce071ffac1f19dc6cd46",
+    "expected_balinese_text": "[᭔ 4B]\n(᭔)ᬇᬥᭂᬧᬓᬸᬅᬁᬗᬚᬶᬓ᭄ᬭᬾᬓᬾᬢ᭄᭞ ᬫ᭄ᬢᬸᬲᬶᬭᬓᬾᬢ᭄ᬓᬾᬢ᭞ᬭᬶᬂᬧᬓᬭᬗᬦ᭄ᬓᬸᬦᬾ᭞ᬫᬸ\nᬭᬸᬩ᭄ᬭᬶᬂᬧᬓᬭᬗᬦ᭄ᬓᬸᬫᬗ᭄ᬓᬾ᭞ᬅᬢᭂᬧ᭄ᬭᬶᬂᬗᬓᬱ᭞ᬅᬢᭂᬧ᭄ᬭᬶᬂᬲᬧ᭄ᬢᬵᬧᬢᬮᬵ᭞ ᬬ\nᬦᬦᬵᬯᭀᬂᬳᬦ᭄ᬤᬾᬲ᭄ᬢᬶᬳᬗ᭄ᬮᬬᬂ᭞ᬤᬸᬯᬸᬃᬉᬫᬄᬓᬸᬦᬾ᭞ ᬢᬦ᭄ᬓᬯᬱᬵᬲᬶᬭ᭠\nᬧᬸᬫᬓᬸ᭞ᬓᬕᬸᬮᬸᬂ᭞ᬩᬳᬦ᭄ᬳᬚᬶᬓ᭄ᬭᬾᬓᬾᬢ᭄᭞ᬫᬗ᭄ᬓᬦᬵᬰᬓ᭄ᬢ᭄ᬬᬦᬶᬭᬅᬚᬶ\n[᭕ 5A]\nᬓ᭄ᬭᬾᬓᬾᬢ᭄᭞ᬯᭀᬂᬗᬗ᭄ᬮᬾᬬᬓ᭄᭞ᬫᬭᬶᬂᬚᬯ᭞ᬮᬾᬬᬓ᭄ᬩᬮᬶ᭞ᬢᬦ᭄ᬓᬯᭀᬦ᭄ᬧᬓᬭᬗᬦ᭄ᬓᬸ\nᬦᬾ᭞ᬢᬦ᭄ᬯᬦᬶᬅᬗ᭄ᬮᬶᬯᬃᬧᬓᬭᬗᬦ᭄ᬓᬸᬦᬾ᭞ᬢᬦ᭄ᬫᬯᬲ᭄ᬤᬾᬦᬶᬂᬧᬓᬭᬗᬦ᭄ᬓᬸᬦᬾ᭞ᬬ᭠\nᬦ᭄ᬲᬶᬭᬵᬳᬮᬧᬓ᭄ᬱᬦᬾ᭞ᬳᬗ᭄ᬮᬶᬯᬃᬤᬸᬳᬸᬃ᭠ᬉᬫᬄᬓᬸᬦᬾ᭞ᬓᬩᬺᬓᭂᬲ᭄᭞ᬤᬾ᭠\nᬦᬶᬂᬳᬚᬶᬓ᭄ᬭᬾᬓᬾᬢ᭄᭞ᬫᬮᬸᬚᬸᬕ᭄‌ᬭᬶᬂᬧ᭠ᬓᬭᬗᬦ᭄ᬓᬸᬦᬾ᭞ᬓᬬᬳᬶᬓᬶᬓᬲᬶ᭠\n",
+    "reference_validator": "Carma citrawati",
+    "reference_source": "https://ban.wikisource.org/w/index.php?oldid=240",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Bali-lontar-aji-kreket-550ppi.pdf",
+    "aksara_bali_detected": true
+  },
+  "ed50de58933f3f837b1850707e3cdca9e1f83b3355372fe3f01938aa349e2d1f": {
+    "id": "usada-lare",
+    "aksara_bali_detected": true,
+    "reference_source": "https://ban.wikisource.org/w/index.php?oldid=105197",
+    "reference_quality": "Wikisource pagequality 3 (proofread), not independent expert validation",
+    "reference_reviewer": "Carma Rustiana",
+    "image": "apps/web/public/samples/lontar-usada-lare-depan.jpg",
+    "transliteration_reference_source": "https://ban.wikisource.org/w/index.php?title=Usada_Lare_(Balai_Bahasa_Prov._Bali)&oldid=127014",
+    "transliteration_reference_kind": "Wikisource web-rendered Latin; diagnostic only, not separately expert-validated",
+    "recipe_reference_kind": "The displayed front-side reference contains symptoms and no plant preparation; not a whole-manuscript label",
+    "excluded_from_reading_accuracy": "Used as paired in-context development example; retained only for script-presence scoring"
+  },
+  "3912ae6f95caa3953f7db32e6556b1156635bc2f0e5b1f5132116983131b0cf5": {
+    "id": "usada-rare-154",
+    "aksara_bali_detected": true,
+    "expected_balinese_text": "᭑\n\n᭛ᬦ᭄ᬬᬦ᭄ᬢᬶᬗ᭄ᬓᬳᬶᬂᬉᬲᬤ᭄ᬟᬭᬾ᭞ᬓᬯ᭄ᬭᬸᬳᬓ᭄ᬦᬤᬾᬲᬂᬳᬲᬾᬯᬓᬵᬥᬃᬫ᭄ᬫᬵᬩᬸᬤ᭄ᬟᬵᬢᬢ᭄ᬯ᭞ᬬᬧ᭄ᬯᬦ᭄ᬭᬭᬾᬯᬯᬸᬫ᭄ᬢᬸ᭞ᬳᬬ᭄ᬯᬳᬶᬫᬦ᭄ᬳᬘᬶᬘᬶᬤ᭄ᬭ\n\nᬦ᭄ᬧ᭄ᬭᬫᬡᬦᬶᬭᬭᬾ᭞ᬫ᭄ᬯᬂᬕᬕᭂᬮᬦᬶᬂᬢᬗᬦ᭄ᬲᬸᬓᬸᬦ᭄ᬬ᭞ᬢ᭄ᬓᬦᬶᬂᬲᭀᬘᬦ᭄ᬬ᭞ᬬᬦ᭄ᬧᬸᬢᬶᬳᬶᬂᬲᭀᬘᬩᬶᬭᬸ᭞ᬢᬗᬦ᭄ᬲᬸᬓᬸᬦ᭄ᬬᬳ᭄ᬜᭂ᭠\n\nᬫ᭄᭞ᬢᬗᬶᬲ᭄ᬦ᭄ᬬᬲᬺᬢ᭄᭞ᬫ᭄ᬯᬳᬗ᭄ᬮᬶᬬᭂᬧ᭄᭞ᬳᬲᬺᬧ᭄ᬭᬭᬾᬇᬓᬵ᭞ᬩ᭄ᬮᬳᬦ᭄ᬭᬭᬾᬇᬓᬵ᭞ᬰ᭞ᬲᭂᬫ᭄ᬩᬸᬂᬩ᭄ᬭᬲ᭄ᬗᬂ᭞ᬕᬫᭀᬗᬦ᭄᭞ᬫ᭠\n\nᬲ᭄ᬯᬶ᭞ᬢᬫ᭄ᬗᭂᬮᬓ᭄ᬦ᭟ᬫᬓᬵᬯ᭄ᬟᬓ᭄ᬦ᭄ᬬ᭞ᬰ᭞ᬩ᭄ᬯᬄᬩᬲᬾᬓᬸᬦᬶᬂᬓᬸᬦᬶᬂ᭞ᬯᬗ᭄ᬓᭀᬂᬲᬭᬶ᭞ᬚ᭄ᬩᬸᬕᬭᬸᬫ᭄᭞ᬇᬤᬸᬩᬂ᭞ᬯ᭄ᬟᬓ᭄ᬦᬫᬓᬵᬭᬕ᭞ᬳ",
+    "reference_source": "https://ban.wikisource.org/w/index.php?oldid=105194",
+    "reference_quality": "Wikisource pagequality 3 (proofread), not independent expert validation",
+    "reference_reviewer": "Carma Rustiana",
+    "image": "apps/web/public/samples/lontar-usada-rare-154-depan.jpg"
+  },
+  "acfd27691a5217f16c70e1b6700ac904f8f508a3f8a1b7385a4ec1542214ea0a": {
+    "id": "javanese-panji",
+    "aksara_bali_detected": false,
+    "reference_source": "https://commons.wikimedia.org/wiki/File:Javanese_Panji_Manuscript.jpg",
+    "reference_quality": "Commons script description/category, visually inspected; not independently certified",
+    "image": "docs/evaluation/script-inputs/javanese-panji.jpg"
+  },
+  "5989a89abbdb24b8a783264f7f07e58bb25f2def36fc8b6f95fa2dc7d2469069": {
+    "id": "kawi-typeset",
+    "aksara_bali_detected": false,
+    "reference_source": "https://commons.wikimedia.org/wiki/File:Kawi_sample.jpg",
+    "reference_quality": "Commons script description/category, visually inspected; not independently certified",
+    "image": "docs/evaluation/script-inputs/kawi-sample.jpg"
+  }
+}

@@ -45,12 +45,12 @@ Aplikasi memakai satu kontrak respons untuk dua kebutuhan:
 
 ## Alur Request
 
-1. **Preprocessing klien.** `apps/web/src/lib/image.ts` mengecilkan gambar, menerapkan CLAHE, dan unsharp mask. Hasilnya dikirim sebagai `multipart/form-data`.
+1. **Pratinjau klien.** `apps/web/src/lib/image.ts` membuat tampilan CLAHE dan unsharp mask. Gambar asli dikirim ke API agar preprocessing yang belum tervalidasi tidak mengubah goresan untuk model.
 2. **Validasi.** Handler membatasi ukuran upload 8 MB, tipe gambar, dan rate limit per menit. Tidak ada file yang ditulis ke disk.
 3. **Inferensi.** `apps/api/internal/ai` terlebih dahulu mengklasifikasikan aksara pada foto target saja, tanpa contoh glif atau katalog tanaman (maksimal 256 token). Hanya keputusan `balinese/high` melanjutkan satu pembacaan dengan Gemini 3.8 Flash Low. Default `examples` menambahkan tiga contoh glif ahli; crop lokal hanya pada mode eksperimental. Kedua panggilan memakai model yang sama dan berbagi tenggat permintaan. Temperature 0 tidak menjamin determinisme.
 4. **Parsing.** Respons model harus berupa JSON. Markdown fence dibersihkan sebelum parsing. Satu repair attempt dilakukan bila validasi gagal.
-5. **Resep.** Maksimal enam resep dipertahankan sesuai urutan model. Tidak ada union lintas pembacaan atau pemilihan berdasarkan panjang teks. Persiapan berbeda tidak dihapus hanya karena nama tanamannya sama.
-6. **Grounding.** Nama ilmiah, famili, senyawa, rujukan, tautan literatur, aksi farmakologis, dan energy character berasal dari KB saat tanaman cocok. Tanaman tak dikenal tidak boleh mempertahankan sitasi atau klaim farmakologi dari model.
+5. **Resep.** Maksimal enam resep dipertahankan bila `source_quote` cocok dengan kata-kata transliterasi daun pertama, menyebut nama tanaman, dan menyertakan bahan tambahan yang diklaim. Ini pemeriksaan konsistensi teks, bukan validasi resep atau bukti bahwa bacaan AI sesuai foto.
+6. **Grounding.** Nama ilmiah, famili, senyawa, rujukan, tautan literatur dan aksi farmakologis berasal dari KB saat tanaman cocok. Sifat tradisional mengikuti bacaan model, bukan ditimpa KB. Tanaman tak dikenal tidak mempertahankan sitasi atau klaim farmakologi dari model.
 7. **Respons.** Disclaimer medis kanonik ditulis server. Resep kosong tetap kosong; informasi yang tidak disebutkan tidak otomatis menjadi obat minum. Klasifikasi naskah dan bahasa boleh tidak diketahui.
 
 ## API

@@ -227,6 +227,17 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                         {recipe.kb_match ? 'Tercatat' : 'Belum tercatat'}
                       </Badge>
                     </div>
+                    {recipe.source_quote ? (
+                      <blockquote className="mt-4 border-l border-border pl-3">
+                        <p className="label-xs">Kutipan transliterasi AI</p>
+                        <p className="mt-1 whitespace-pre-line text-sm leading-7">
+                          {recipe.source_quote}
+                        </p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          Cocok secara teks, tetapi belum membuktikan tanaman atau resep terdapat di foto.
+                        </p>
+                      </blockquote>
+                    ) : null}
 
                     <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                       <div>

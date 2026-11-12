@@ -64,4 +64,4 @@ Parity diuji oleh `TestGlyphModelPythonParity`: kelas dan margin harus sama dala
 
 ## Ground truth halaman
 
-`data/reading-examples/holdout/` berisi lima halaman pindaian Wikisource dengan transkripsi Bali yang divalidasi (revisi tertaut, lisensi CC BY-SA 4.0; pindaian Commons menyatakan PD-ID-exempt). Semua dari satu naskah (*Aji Kreket*), disimpan sebagai holdout dan tidak dikirim sebagai contoh konteks. Independensi dari sumber glif Tabel 1 tidak dapat dibuktikan karena artikel tidak menyebut identitas lembar.
+`data/reading-examples/holdout/` berisi lima halaman pindaian Wikisource dengan transkripsi Bali yang ditinjau komunitas (revisi tertaut, lisensi CC BY-SA 4.0; pindaian Commons menyatakan PD-ID-exempt). Status peninjauan Wikisource bukan bukti validasi ahli independen. Semua dari satu naskah (*Aji Kreket*), disimpan sebagai holdout dan tidak dikirim sebagai contoh konteks. Independensi dari sumber glif Tabel 1 tidak dapat dibuktikan karena artikel tidak menyebut identitas lembar.

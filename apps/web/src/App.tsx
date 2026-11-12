@@ -257,7 +257,6 @@ export default function App() {
     try {
       const nextResult = await analyzeManuscript({
         file: manuscriptFile,
-        enhanced: currentEnhanced?.blob ?? null,
         sampleId: sourceId,
         signal: controller.signal,
         onStage: (nextStep) => {

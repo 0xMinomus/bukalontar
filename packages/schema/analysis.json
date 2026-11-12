@@ -64,6 +64,7 @@
       ],
       "properties": {
         "plant_local_name": { "type": "string", "minLength": 1 },
+        "source_quote": { "type": "string", "minLength": 1 },
         "plant_scientific_name": { "type": "string" },
         "botanical_family": { "type": "string" },
         "kb_match": { "type": "boolean" },
@@ -112,6 +113,7 @@
         ],
         "properties": {
           "plant_local_name": { "type": "string", "minLength": 1 },
+          "source_quote": { "type": "string", "minLength": 1 },
           "plant_scientific_name": { "type": "string" },
           "botanical_family": { "type": "string" },
           "kb_match": { "type": "boolean" },

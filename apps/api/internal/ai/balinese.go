@@ -51,7 +51,7 @@ func foreignScript(char rune) bool {
 
 // A rejected target must not retain a reading or acquire recipes during enrichment.
 // This checks output consistency; image classification still depends on the model.
-func enforceBalineseScope(response *model.AnalysisResponse) {
+func enforceBalineseScope(response *model.AnalysisResponse, accepted bool) {
 	conflict := false
 	for _, value := range []string{
 		response.Paleography.BalineseTranscription,
@@ -64,18 +64,23 @@ func enforceBalineseScope(response *model.AnalysisResponse) {
 			}
 		}
 	}
-	if response.Paleography.AksaraBaliDetected && !conflict {
+	if accepted && response.Paleography.AksaraBaliDetected && !conflict {
 		return
+	}
+	message := "Tidak terdeteksi."
+	if accepted {
+		message = "Tidak terbaca."
 	}
 	response.SourceReference = model.SourceReference{
 		LontarGroup: "Tidak diketahui",
 		Language:    "Tidak diketahui",
 	}
 	response.Paleography = model.Paleography{
+		AksaraBaliDetected:    accepted,
 		Confidence:            "low",
-		Transliteration:       "Tidak terdeteksi.",
-		IndonesianTranslation: "Tidak terdeteksi.",
-		EnglishTranslation:    "Tidak terdeteksi.",
+		Transliteration:       message,
+		IndonesianTranslation: message,
+		EnglishTranslation:    message,
 	}
 	response.Recipes = []model.Recipe{}
 	response.Ethnomedicinal = model.Ethnomedicinal{
@@ -85,7 +90,7 @@ func enforceBalineseScope(response *model.AnalysisResponse) {
 		FormulationType:         "Tidak disebutkan.",
 		Adjuvants:               []string{},
 		TargetAilment:           "Tidak disebutkan.",
-		PreparationInstructions: "Tidak terdeteksi.",
+		PreparationInstructions: message,
 	}
 	response.Scientific = model.Scientific{
 		PhytochemicalCompounds: []string{},

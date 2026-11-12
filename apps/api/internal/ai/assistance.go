@@ -53,10 +53,10 @@ func (s *Service) prepareReading(ctx context.Context, image []byte, mimeType str
 		ExampleSources: append([]string{}, s.exampleSources...), Warnings: []string{},
 	}
 	parts := make([]ContentPart, 0, 2+len(s.exampleParts)+4)
-	parts = append(parts, ContentPart{Type: "text", Text: userPrompt(s.kb)})
+	parts = append(parts, ContentPart{Type: "text", Text: userPrompt()})
 	parts = append(parts, s.exampleParts...)
 	parts = append(parts,
-		ContentPart{Type: "text", Text: "TARGET MANUSCRIPT: read this photograph. Reference glyph examples above are NOT text from this manuscript."},
+		ContentPart{Type: "text", Text: "TARGET MANUSCRIPT: read this photograph. Reference examples above are NOT text from this manuscript. Derive the reading from this target's strokes, not the example's passage."},
 		ContentPart{Type: "image_url", ImageURL: &ImageURL{URL: imageDataURL(image, mimeType)}},
 	)
 	if s.ocr != nil && (s.assistanceMode == "leaves" || s.assistanceMode == "all") {

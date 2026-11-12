@@ -6,7 +6,7 @@ import { Progress } from '@/components/ui/progress'
 import { cn } from '@/lib/utils'
 
 const steps = [
-  { title: 'Menyiapkan citra', detail: 'Kontras dan ketajaman' },
+  { title: 'Menyiapkan citra', detail: 'Foto asli tanpa perubahan aksara' },
   { title: 'Membaca aksara', detail: 'Aksara Bali dan pasang aksara' },
   { title: 'Menyusun terjemahan', detail: 'Indonesia dan Inggris' },
   { title: 'Memeriksa konteks', detail: 'Sumber naskah dan resep Usadha bila ada' },

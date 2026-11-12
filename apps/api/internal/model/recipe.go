@@ -4,6 +4,7 @@ import "strings"
 
 type Recipe struct {
 	PlantLocalName          string          `json:"plant_local_name"`
+	SourceQuote             string          `json:"source_quote,omitempty"`
 	PlantScientificName     string          `json:"plant_scientific_name"`
 	BotanicalFamily         string          `json:"botanical_family"`
 	KBMatch                 bool            `json:"kb_match"`
@@ -21,6 +22,7 @@ type Recipe struct {
 
 func (r *Recipe) Normalize() {
 	r.PlantLocalName = strings.TrimSpace(r.PlantLocalName)
+	r.SourceQuote = strings.TrimSpace(r.SourceQuote)
 	r.PlantScientificName = strings.TrimSpace(r.PlantScientificName)
 	r.BotanicalFamily = strings.TrimSpace(r.BotanicalFamily)
 	r.PlantPartUsed = strings.TrimSpace(r.PlantPartUsed)
@@ -60,6 +62,7 @@ func (r Recipe) Empty() bool {
 func (r Recipe) ToEthnomedicinal() Ethnomedicinal {
 	return Ethnomedicinal{
 		PlantLocalName:          r.PlantLocalName,
+		SourceQuote:             r.SourceQuote,
 		PlantScientificName:     r.PlantScientificName,
 		BotanicalFamily:         r.BotanicalFamily,
 		KBMatch:                 r.KBMatch,
@@ -85,6 +88,7 @@ func (r Recipe) ToScientific() Scientific {
 func RecipeFromResponse(response *AnalysisResponse) Recipe {
 	return Recipe{
 		PlantLocalName:          response.Ethnomedicinal.PlantLocalName,
+		SourceQuote:             response.Ethnomedicinal.SourceQuote,
 		PlantScientificName:     response.Ethnomedicinal.PlantScientificName,
 		BotanicalFamily:         response.Ethnomedicinal.BotanicalFamily,
 		KBMatch:                 response.Ethnomedicinal.KBMatch,

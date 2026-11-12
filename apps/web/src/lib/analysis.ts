@@ -34,6 +34,7 @@ export interface ReferenceLink {
 
 export interface Recipe {
   plant_local_name: string
+  source_quote?: string
   plant_scientific_name: string
   botanical_family: string
   kb_match: boolean
@@ -66,6 +67,7 @@ export interface AnalysisResponse {
   }
   ethnomedicinal_entity: {
     plant_local_name: string
+    source_quote?: string
     plant_scientific_name: string
     botanical_family: string
     kb_match: boolean

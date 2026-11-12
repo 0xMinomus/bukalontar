@@ -27,12 +27,13 @@ func serviceTestResponse() model.AnalysisResponse {
 		Paleography: model.Paleography{
 			AksaraBaliDetected:    true,
 			Confidence:            "high",
-			Transliteration:       "Tityang taru sotong",
+			Transliteration:       "Tityang taru sotong, don titiang tis, ketumbar bolong ulig lan tempel ring pungsed.",
 			IndonesianTranslation: "Hamba pohon jambu biji",
 			EnglishTranslation:    "I am the guava tree",
 		},
 		Ethnomedicinal: model.Ethnomedicinal{
 			PlantLocalName:          "Taru Sotong",
+			SourceQuote:             "Tityang taru sotong, don titiang tis, ketumbar bolong ulig lan tempel ring pungsed.",
 			PlantScientificName:     "Model guess",
 			BotanicalFamily:         "Wrong family",
 			KBMatch:                 false,
@@ -107,8 +108,8 @@ func TestAnalyzeRepairsInvalidOutputAndAppliesKB(t *testing.T) {
 	if response.Ethnomedicinal.BotanicalFamily != "Myrtaceae" {
 		t.Fatalf("family not grounded: %q", response.Ethnomedicinal.BotanicalFamily)
 	}
-	if response.Ethnomedicinal.EnergyCharacter != "Panes (Hangat)" {
-		t.Fatalf("energy not grounded: %q", response.Ethnomedicinal.EnergyCharacter)
+	if response.Ethnomedicinal.EnergyCharacter != "Tis (Dingin)" {
+		t.Fatalf("KB must not replace the source's traditional property: %q", response.Ethnomedicinal.EnergyCharacter)
 	}
 	if response.Scientific.SafetyDisclaimer != model.SafetyDisclaimer {
 		t.Fatal("safety disclaimer not canonical")
@@ -224,7 +225,7 @@ func TestAnalyzeReplacesModelCitationsWithCuratedSources(t *testing.T) {
 	}
 }
 
-func TestAnalyzeWithholdsRejectedOrConflictingScript(t *testing.T) {
+func TestAcceptedScriptWithholdsUnreadableOrConflictingOutput(t *testing.T) {
 	for _, script := range []string{"rejected", "ꦲꦤ", "𑼒𑼀", "ᬅꦲ"} {
 		t.Run(script, func(t *testing.T) {
 			input := serviceTestResponse()
@@ -258,11 +259,11 @@ func TestAnalyzeWithholdsRejectedOrConflictingScript(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if result.Paleography.AksaraBaliDetected || result.Paleography.Confidence != "low" ||
+			if !result.Paleography.AksaraBaliDetected || result.Paleography.Confidence != "low" ||
 				result.Paleography.BalineseTranscription != "" ||
-				result.Paleography.Transliteration != "Tidak terdeteksi." ||
-				result.Paleography.IndonesianTranslation != "Tidak terdeteksi." ||
-				result.Paleography.EnglishTranslation != "Tidak terdeteksi." {
+				result.Paleography.Transliteration != "Tidak terbaca." ||
+				result.Paleography.IndonesianTranslation != "Tidak terbaca." ||
+				result.Paleography.EnglishTranslation != "Tidak terbaca." {
 				t.Fatalf("rejected target leaked a reading: %+v", result.Paleography)
 			}
 			if len(result.Recipes) != 0 || result.Ethnomedicinal.KBMatch ||
@@ -285,7 +286,7 @@ func serveAcceptedScript(w http.ResponseWriter, r *http.Request) bool {
 	}
 	_ = json.NewEncoder(w).Encode(map[string]any{
 		"choices": []any{map[string]any{"message": map[string]any{
-			"content": `{"script":"balinese","confidence":"high"}`,
+			"content": "```json\n{\"script\":\"balinese\",\"confidence\":\"high\"}\n```",
 		}}},
 	})
 	return true
@@ -295,6 +296,7 @@ func TestScriptGateNeverReadsRejectedOrInvalidDecisions(t *testing.T) {
 	for _, decision := range []string{
 		`{"script":"javanese","confidence":"high"}`,
 		`{"script":"kawi","confidence":"high"}`,
+		"```json\n{\"script\":\"kawi\",\"confidence\":\"high\"}\n```",
 		`{"script":"mixed","confidence":"high"}`,
 		`{"script":"uncertain","confidence":"low"}`,
 		`{"script":"balinese","confidence":"low"}`,

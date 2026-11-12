@@ -15,12 +15,12 @@ Naskah asli tetap menjadi sumber utama. Hasil AI tidak menggantikan pemeriksaan 
 
 ## Foto Sampel
 
-Contoh yang dapat dipilih adalah sisi depan Usada Lare dan Usada Rare 154 dari Balai Bahasa Bali. Keduanya memiliki transkripsi aksara Bali tervalidasi di Wikisource Bali. Pemotongan membuang latar meja dan sisi belakang, bukan menggambar ulang aksara. Penolakan model tidak menentukan identitas aksara.
+Contoh yang dapat dipilih adalah sisi depan Usada Lare dan Usada Rare 154 dari Balai Bahasa Bali. Keduanya memiliki transkripsi aksara Bali yang telah dikoreksi di Wikisource Bali (pagequality 3), belum diverifikasi ahli independen. Pemotongan membuang latar meja dan sisi belakang, bukan menggambar ulang aksara. Penolakan model tidak menentukan identitas aksara.
 
 | File | Kreator | Lisensi | Sumber |
 | --- | --- | --- | --- |
-| `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [transkripsi tervalidasi](https://ban.wikisource.org/w/index.php?oldid=105197) |
-| `lontar-usada-rare-154-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Rare_154.jpg), [transkripsi tervalidasi](https://ban.wikisource.org/w/index.php?oldid=105194) |
+| `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [transkripsi dikoreksi](https://ban.wikisource.org/w/index.php?oldid=105197) |
+| `lontar-usada-rare-154-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Rare_154.jpg), [transkripsi dikoreksi](https://ban.wikisource.org/w/index.php?oldid=105194) |
 | `lontar-wanagiri-usada-3.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Wanagiri-Usada-3.jpg) |
 | `lontar-sukawati-usada-07.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) |
 

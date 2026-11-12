@@ -132,7 +132,8 @@ export function PreviewStage({
           </Button>
 
           <p className="mt-2 text-center text-xs leading-relaxed text-muted-foreground">
-            AI membaca aksara dan menerjemahkan isi naskah. Resep Usadha ditampilkan bila ditemukan.
+            Foto asli dikirim ke AI. Tampilan diperjelas hanya untuk pratinjau.
+            Resep harus menyertakan kutipan bacaan.
           </p>
 
           <Separator className="my-5" />

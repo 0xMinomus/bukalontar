@@ -13,7 +13,7 @@ import statistics
 
 def reading_text(response):
     text = response.get('paleography', {}).get('transliteration', '').lower()
-    text = re.sub(r'\[lembar\s+\d+\]|\[tidak terbaca\]|tidak terdeteksi\.?|tidak disebutkan\.?', '', text)
+    text = re.sub(r'\[lembar\s+\d+\]|\[tidak terbaca\]|tidak terbaca\.?|tidak terdeteksi\.?|tidak disebutkan\.?', '', text)
     return ' '.join(re.findall(r'[^\W\d_]+', text, re.UNICODE))
 
 
@@ -62,6 +62,8 @@ def summarize(rows, references):
                     balinese_scored += 1
                     balinese_raw_cer.append(edit_distance(expected, actual) / len(expected))
         durations = sorted(row['elapsed_ms'] / 1000 for row in runs)
+        positive = [row for row in runs if references.get(row['image_sha256'], {}).get('aksara_bali_detected') is True]
+        negative = [row for row in runs if references.get(row['image_sha256'], {}).get('aksara_bali_detected') is False]
         by_image = defaultdict(list)
         detection = []
         cer = []
@@ -91,6 +93,10 @@ def summarize(rows, references):
             'median_seconds': round(statistics.median(durations), 3),
             'max_seconds': round(max(durations), 3),
             'detection_correct': sum(detection), 'detection_scored': len(detection),
+            'expected_balinese_runs': len(positive),
+            'accepted_balinese_runs': sum(not row.get('error') and (row.get('response') or {}).get('paleography', {}).get('aksara_bali_detected') is True for row in positive),
+            'expected_non_balinese_runs': len(negative),
+            'rejected_non_balinese_runs': sum(not row.get('error') and (row.get('response') or {}).get('paleography', {}).get('aksara_bali_detected') is False for row in negative),
             'detected_runs_with_no_readable_text': sum(not reading_text(row['response']) for row in detected),
             'detected_runs': len(detected),
             'transliteration_pair_agreement': round(statistics.mean(agreements), 4) if agreements else None,

@@ -187,6 +187,11 @@ export function ResultWorkspace({
               </span>
             </div>
 
+            <p className="border-b border-border bg-brass-soft/55 px-4 py-3 text-xs leading-relaxed text-brass-strong sm:px-5">
+              Bacaan dan resep AI dapat keliru atau mengarang. Kutipan yang cocok
+              dengan transliterasi AI belum membuktikan kesesuaian dengan foto.
+              Periksa bersama ahli sebelum menggunakan informasi ini.
+            </p>
             <div className="p-4 sm:p-5">
               <AnalysisTabs result={result} />
             </div>

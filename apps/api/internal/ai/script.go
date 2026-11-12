@@ -24,7 +24,11 @@ func (s *Service) acceptsScript(ctx context.Context, image []byte, mimeType stri
 		Script     string `json:"script"`
 		Confidence string `json:"confidence"`
 	}
-	if err := json.Unmarshal([]byte(content), &decision); err != nil {
+	raw, err := extractJSON(content)
+	if err != nil {
+		return false, fmt.Errorf("%w: script classification: %v", ErrInvalidOutput, err)
+	}
+	if err := json.Unmarshal(raw, &decision); err != nil {
 		return false, fmt.Errorf("%w: script classification: %v", ErrInvalidOutput, err)
 	}
 	switch decision.Script {

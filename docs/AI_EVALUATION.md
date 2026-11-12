@@ -199,3 +199,43 @@ Pengujian nyata memakai Gemini 3.8 Flash Low yang sama, preprocessing browser de
 
 Seluruh hasil, termasuk penolakan awal, disimpan di `evaluation/replacement-samples-web-20261112.jsonl`. Kedua tombol contoh lolos pemeriksaan terakhir, tetapi satu penolakan pada sumber yang sama menunjukkan masalah deteksi belum hilang. Ini verifikasi penggantian contoh dan alur antarmuka, bukan bukti akurasi bacaan, stabilitas, atau peningkatan model. Thumbnail keduanya termuat; pada viewport 390 px lebar dokumen tetap 390 px dan tidak ada error JavaScript yang tercatat.
 
+
+## Evaluasi keandalan lanjutan dan batas kelulusan
+
+Semua panggilan menggunakan `ag/gemini-3.8-flash-low`. Dibandingkan pada gambar byte asli yang sama: dua sisi depan Usada (Lare dan Rare 154), satu halaman Aji Kreket, satu foto naskah Panji kategori aksara Jawa di Commons, dan satu contoh cetak Kawi. Masing-masing dua kali. Kategori Jawa dan transkripsi Wikisource belum disertifikasi ahli independen. Lare/Rare adalah Wikisource **pagequality 3 (proofread)**, bukan validasi ahli; status yang lebih kuat pada catatan lama harus dibaca dengan koreksi ini. Tidak tersedia ground truth terjemahan atau resep yang diperiksa ahli.
+
+| Versi | Bali diterima | Jawa/Kawi ditolak | Respons berhasil | Median seluruh permintaan |
+| --- | --- | --- | --- | --- |
+| Baseline sebelum perubahan | 6/6 | 4/4 | 10/10 | 18,462 detik |
+| Prompt tanpa katalog saja | 4/6 | 3/4 | 8/10 | 22,192 detik |
+| Kandidat prompt netral, kutipan, pemisahan deteksi/bacaan | 6/6 | 4/4 | 10/10 | 16,498 detik |
+| Eksperimen contoh foto dan bacaan berpasangan | 6/6 | 4/4 | 10/10 | 17,026 detik |
+
+Angka ini bukan estimasi akurasi populasi. Baseline dan kandidat sama-sama 10/10 pada sampel kecil ini, sementara evaluasi sebelumnya menemukan Jawa lolos dan Bali tertolak. Ketersediaan dan latensi router bervariasi. Tidak ada bukti perbaikan andal dalam deteksi, kecepatan, atau konsistensi.
+
+Pada Rare 154, kandidat menghasilkan resep `bayem` dengan kutipan yang cocok dengan transliterasi AI, tetapi teks pembanding Wikisource menyebut bahan lain. Kecocokan string bukan verifikasi terhadap foto dan bahkan tidak membuktikan kutipan memuat cara racik. Ini contoh kegagalan yang tersisa, bukan resep tervalidasi. Model juga menghasilkan dua bacaan Lare yang berbeda dari sumber dan dari satu sama lain. Terjemahan tidak dapat dinilai tanpa rujukan ahli.
+
+Eksperimen pasangan foto–bacaan berhasil meniru Lare yang sama dengan contoh konteks; ini kontaminasi input, bukan generalisasi. Untuk Rare dan Aji yang tidak dipakai sebagai contoh, CER Unicode tercatat 1,0 (keluaran kosong), dibanding 0,9038 pada baseline. Perbandingan CER ini **tidak setara** karena baseline diminta mengisi transkripsi Unicode sedangkan prompt baru mengizinkan kosong. Tidak ada bukti peningkatan akurasi; pasangan contoh tidak dipakai pada produk.
+
+Kandidat menambahkan: parser JSON classifier yang menerima code fence; status aksara tetap terdeteksi tetapi teks tidak terbaca jika pembaca menolak setelah gate; prompt netral tanpa katalog; kutipan resep dicocokkan ke transliterasi daun pertama dan bahan yang disebut; sifat tradisional tidak lagi ditimpa nilai KB; browser mengirim foto asli dan menampilkan peringatan. Tidak ada perubahan bobot model. Pengujian regresi backend: 43 kasus lulus pada paket AI, model, handler. Pengujian metrik: 4 lulus. Build produksi berhasil; pada browser lokal Usada Lare menghasilkan HTTP 200, peringatan terlihat, viewport 390 px tanpa overflow atau error JavaScript. Bacaan dari uji browser tersebut tetap tidak sesuai sumber.
+
+Data mentah `evaluation/reliability-{baseline,no-catalog,final,paired-context}-20261112.jsonl`, referensi `evaluation/reliability-references-20261112.json`, referensi independen tanpa teks contoh Lare `evaluation/reliability-heldout-references-20261112.json`, dan metrik `evaluation/reliability-metrics-20261112.json`. Input Jawa/Kawi ada di `evaluation/script-inputs/`. Eksperimen pasangan tidak disertakan dalam pipeline.
+
+**Status: empat sasaran belum memenuhi kriteria 100% atau kelayakan akurasi.** Diperlukan label aksara dan transkripsi halaman yang diperiksa ahli pada koleksi Bali/Jawa/Kawi beragam, terjemahan/resep pembanding, pembagian sumber yang independen, dan classifier/pembaca yang tervalidasi. Tanpa prasyarat itu tidak ada dasar mengklaim selesai atau aman untuk keputusan medis.
+
+## Sumber pembanding tambahan: NusaAksara
+
+[NusaAksara](https://aclanthology.org/2025.acl-long.1377/) menyediakan segmen citra beserta transkripsi, transliterasi, dan terjemahan yang dianotasi dan ditinjau manusia. [Dataset publik](https://huggingface.co/datasets/NusaAksara/NusaAksara) mencakup 459 segmen Bali dan 816 segmen Jawa. Bahasa Kawi dapat ditulis dengan aksara Bali; label bahasa `kaw` tidak berarti aksaranya Kawi.
+
+Dataset berasal dari buku yang dipindai, bukan foto lontar. Penulis menyatakan lisensi nonkomersial; data tidak disalin ke produk atau repository. Pembanding ini berguna untuk diagnosis tambahan, tetapi tidak menggantikan uji foto lontar, foto ponsel, naskah Kawi, maupun resep Usadha.
+
+Uji diagnostik 12 November 2026 menggunakan `ag/gemini-3.8-flash-low`, bantuan `examples`, satu pengulangan pada masing-masing empat segmen Bali (`Bali_2_0`, `Bali_3_0`, `Bali_4_0`, `Bali_5_1`) dan empat Jawa (`Jawa_0_0`, `Jawa_1_1`, `Jawa_2_1`, `Jawa_3_2`). Pilihan adalah segmen pertama dengan transliterasi lebih dari 35 karakter pada empat nomor grup pertama yang memenuhi syarat per aksara; nomor grup tidak membuktikan sumber buku berbeda.
+
+| Hasil pada segmen buku | Jumlah |
+| --- | --- |
+| Bali diterima | 1/4 |
+| Jawa ditolak | 4/4 |
+| Respons terstruktur | 8/8 |
+| Median waktu seluruh permintaan | 10,167 detik |
+
+Satu bacaan Bali yang diterima tidak sesuai transliterasi anotator. Karena input berupa potongan buku, bukan foto lontar, hasil ini menunjukkan batas di luar domain target, bukan estimasi akurasi pada foto lontar. Sampel terlalu kecil untuk klaim reliabilitas atau perbandingan kecepatan. Data gambar dan anotasi tidak didistribusikan bersama repository.

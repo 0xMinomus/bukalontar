@@ -13,6 +13,7 @@ export function resultRecipes(result: AnalysisResponse): Recipe[] {
   return [
     {
       plant_local_name: entity.plant_local_name,
+      source_quote: entity.source_quote,
       plant_scientific_name: entity.plant_scientific_name,
       botanical_family: entity.botanical_family,
       kb_match: entity.kb_match,

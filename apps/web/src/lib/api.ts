@@ -3,7 +3,6 @@ import { sleep } from './utils'
 
 export interface AnalyzeInput {
   file: File
-  enhanced: Blob | null
   sampleId?: string
   signal?: AbortSignal
   onStage?: (stage: number) => void
@@ -11,7 +10,6 @@ export interface AnalyzeInput {
 
 export async function analyzeManuscript({
   file,
-  enhanced,
   sampleId,
   signal,
   onStage,
@@ -32,7 +30,7 @@ export async function analyzeManuscript({
   }
 
   const form = new FormData()
-  form.append('image', enhanced ?? file, 'lontar.jpg')
+  form.append('image', file, file.name)
   form.append('source_id', sampleId ?? 'upload')
 
   onStage?.(2)
