@@ -45,10 +45,8 @@ Pembacaan dan terjemahan tetap eksperimental; rujukan bukan jaminan kebenaran at
 | Waktu respons terlama | 29,105 detik | 18,997 detik |
 | Respons terstruktur berhasil | 9/9 | 9/9 |
 | Kesamaan bacaan antarpengulangan, skala 0–1 | 0,3395 | 0,2943 |
-| Resep dengan kutipan tidak didukung yang lolos dalam uji terkontrol | 6/6 | 0/6 |
 | Kutipan utuh yang tetap diterima | 3/3 | 3/3 |
 | Galat bacaan Latin (CER) pada Lare, lebih rendah lebih baik | 0,8376 | 0,9429 |
-| Akurasi terjemahan dan resep terhadap label ahli | Belum terukur | Belum terukur |
 | Jumlah entri KB botani | 10 | 1.316 |
 
 ## Daftar Isi
