@@ -50,8 +50,8 @@ Live smoke test:
 
 ```bash
 curl -sS http://127.0.0.1:8080/health | jq .
-curl -sS -F image=@apps/web/public/samples/lontar-wanagiri-usada-3.jpg \
-  -F source_id=wanagiri \
+curl -sS -F image=@apps/web/public/samples/lontar-usadha-sukawati-depan.jpg \
+  -F source_id=usada-sukawati \
   http://127.0.0.1:8080/api/analyze-manuscript | jq .
 ```
 

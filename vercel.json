@@ -25,6 +25,13 @@
       }
     },
     {
+      "source": "/(analisis|hasil)",
+      "destination": {
+        "service": "web",
+        "path": "/index.html"
+      }
+    },
+    {
       "source": "/(.*)",
       "destination": {
         "service": "web"

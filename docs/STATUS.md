@@ -6,6 +6,15 @@ Status `main` setelah perbaikan empat contoh arsip, 12 November 2026. Tag [`v1.1
 
 BukaLontar menyediakan pembacaan eksperimental foto lontar Bali. **Belum siap diklaim akurat atau digunakan sebagai rujukan medis.** Pengujian terbaru menemukan bacaan dan resep yang tidak sesuai sumber, meskipun deteksi aksara dan pemeriksaan kutipan lolos.
 
+## Pemeriksaan kesiapan submission, 12 November 2026
+
+- `go test ./...`: 63 tes lulus dalam 11 paket; `go vet ./...` selesai tanpa temuan.
+- `npm run lint` selesai tanpa error, dengan dua peringatan Fast Refresh pada primitive `badge.tsx` dan `button.tsx`. `make build` berhasil membangun frontend dan binary Go dengan frontend ter-embed.
+- Health produksi mengembalikan `ok=true`, model `ag/gemini-3.8-flash-low`, dan 10 entri KB. Alur tombol Sukawati, pratinjau, analisis nyata, serta tab terjemahan, kartu Usadha, dan rujukan berhasil dibuka. Hasil menunjukkan label transkripsi rujukan; ini bukan pengujian akurasi OCR.
+- Ditemukan penghambat deployment: refresh `/hasil` di produksi menghasilkan `404: NOT_FOUND` sebelum aplikasi dapat memulihkan IndexedDB. Konfigurasi lokal kini mengarahkan `/analisis` dan `/hasil` ke `/index.html` pada service web. Skema dan prioritas routing telah diperiksa; perbaikan ini **belum dideploy atau diverifikasi di produksi**. Jangan nyatakan website final siap sebelum deployment baru dan pemeriksaan refresh berhasil.
+- Landing produksi pada viewport 390 px tidak memiliki overflow horizontal. Pemeriksaan ini bukan audit aksesibilitas menyeluruh.
+- Folder `persiapan-final` tidak diubah atau dipush dalam pemeriksaan ini. Folder tersebut sudah tercatat pada commit sebelumnya; jangan menganggapnya belum pernah dipublikasikan.
+
 ## Yang berjalan
 
 - API Go + frontend React di Vercel Services, produksi `https://www.bukalontar.my.id`.

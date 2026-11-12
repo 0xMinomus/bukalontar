@@ -22,6 +22,8 @@ Frontend for BukaLontar's experimental palm-leaf reading aid: React 19, TypeScri
 
 Routing uses `BrowserRouter`, so URLs are path based, never hash based. The header logo returns to `/` and clears the active manuscript. The footer is shared by every route. The active result, original photo, enhanced preview, file name, and view state are persisted in IndexedDB, so `/hasil` survives a refresh; the logo or `Naskah baru` clears the session. A direct `/hasil` or `/analisis` load without a stored session redirects to `/`. Clearing this browser data does not prove deletion at the AI gateway.
 
+Vercel Services must rewrite `/analisis` and `/hasil` to the web service's `/index.html`; forwarding those paths unchanged returns a platform 404 before React can restore the session. The root `vercel.json` defines these rewrites before the general web rule, leaving API, health, and static assets unchanged. After deployment, verify both direct URLs and refresh an existing result. Rollback consists of reverting this routing rule.
+
 ## Run
 
 From the repository root:
