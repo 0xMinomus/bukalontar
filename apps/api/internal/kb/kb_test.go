@@ -18,6 +18,9 @@ func TestLookupAliases(t *testing.T) {
 		"Kayu Pule":   "Alstonia scholaris",
 		"Turi Putih":  "Sesbania grandiflora",
 		"Tabia Bun":   "Capsicum annuum",
+		"dapdap":      "Erythrina spp.",
+		"sĕmbuŋ":      "Blumea balsamifera",
+		"kacĕmcĕm":    "Spondias pinnata",
 	}
 	for name, scientific := range cases {
 		entry, ok := store.Lookup(name)
@@ -28,8 +31,10 @@ func TestLookupAliases(t *testing.T) {
 			t.Fatalf("lookup %q: got %q, want %q", name, entry.ScientificName, scientific)
 		}
 	}
-	if _, ok := store.Lookup("Taru Khayalan"); ok {
-		t.Fatal("unknown plant must not match")
+	for _, name := range []string{"Taru Khayalan", "bwaḥ base", "humbintuñtuŋ", "daun dewa", "leunca"} {
+		if entry, ok := store.Lookup(name); ok {
+			t.Fatalf("unknown or ambiguous plant %q matched %s", name, entry.ScientificName)
+		}
 	}
 }
 
@@ -57,6 +62,32 @@ func TestCuratedReferenceLinks(t *testing.T) {
 			parsed, err := url.Parse(link.URL)
 			if err != nil || parsed.Scheme != "https" || parsed.Host != "pubmed.ncbi.nlm.nih.gov" || link.Title == "" || (link.Kind != "literature" && link.Kind != "literature_search") {
 				t.Fatalf("%s has invalid reference link: %#v", entry.ID, link)
+			}
+		}
+	}
+}
+
+func TestCatalogAliasesDoNotOverwriteOtherPlants(t *testing.T) {
+	store, err := Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	ids := make(map[string]bool)
+	aliases := make(map[string]string)
+	for _, entry := range store.entries {
+		if entry.ID == "" || ids[entry.ID] {
+			t.Fatalf("empty or duplicate plant ID: %q", entry.ID)
+		}
+		ids[entry.ID] = true
+		for _, name := range entry.LocalNames {
+			key := normalize(name)
+			if previous, exists := aliases[key]; exists && previous != entry.ID {
+				t.Fatalf("alias %q identifies both %s and %s", name, previous, entry.ID)
+			}
+			aliases[key] = entry.ID
+			found, ok := store.Lookup(name)
+			if !ok || found.ID != entry.ID {
+				t.Fatalf("alias %q resolves to %s instead of %s", name, found.ID, entry.ID)
 			}
 		}
 	}

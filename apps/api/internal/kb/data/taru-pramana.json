@@ -1,173 +1,2520 @@
 [
   {
     "id": "taru-sotong",
-    "local_names": ["Taru Sotong", "Sotong", "Jambu Biji", "Jambu Sotong", "Guava"],
+    "local_names": [
+      "Taru Sotong",
+      "Sotong",
+      "Jambu Biji",
+      "Jambu Sotong",
+      "Guava"
+    ],
     "scientific_name": "Psidium guajava",
     "botanical_family": "Myrtaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Don (Daun)",
-    "phytochemical_compounds": ["Tannin", "Quercetin", "Flavonoid"],
+    "phytochemical_compounds": [
+      "Tannin",
+      "Quercetin",
+      "Flavonoid"
+    ],
     "modern_pharmacological_action": "Antimikroba terhadap Escherichia coli dan antispasmodik untuk meredakan kontraksi usus.",
     "reference_studies": [
       "Tinjauan fitokimia Psidium guajava",
       "Uji antimikroba ekstrak daun jambu biji"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Psidium guajava", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Psidium+guajava", "kind": "literature_search"},
-      {"title": "Gutiérrez dkk. (2008): tinjauan Psidium guajava", "url": "https://pubmed.ncbi.nlm.nih.gov/18353572/", "kind": "literature"}
+      {
+        "title": "PubMed: pencarian Psidium guajava",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Psidium+guajava",
+        "kind": "literature_search"
+      },
+      {
+        "title": "Gutiérrez dkk. (2008): tinjauan Psidium guajava",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18353572/",
+        "kind": "literature"
+      }
     ]
   },
   {
     "id": "taru-pule",
-    "local_names": ["Taru Pule", "Pule", "Kayu Pule", "Pulai"],
+    "local_names": [
+      "Taru Pule",
+      "Pule",
+      "Kayu Pule",
+      "Pulai"
+    ],
     "scientific_name": "Alstonia scholaris",
     "botanical_family": "Apocynaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Babakan (Kulit Kayu)",
-    "phytochemical_compounds": ["Echitamine", "Alstonine", "Alkaloid"],
+    "phytochemical_compounds": [
+      "Echitamine",
+      "Alstonine",
+      "Alkaloid"
+    ],
     "modern_pharmacological_action": "Analgesik dan antipiretik; alkaloid kulit batang pule diteliti untuk efek antinyeri dan penurun demam.",
     "reference_studies": [
       "Tinjauan alkaloid Alstonia scholaris",
       "Kajian etnofarmakologi kulit batang pule"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Alstonia scholaris", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Alstonia+scholaris", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Alstonia scholaris",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Alstonia+scholaris",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-kaliasem",
-    "local_names": ["Taru Kaliasem", "Kaliasem", "Kalyasem", "Kalianasem", "Babakan Kaliasem"],
+    "local_names": [
+      "Taru Kaliasem",
+      "Kaliasem",
+      "Kalyasem",
+      "Kalianasem",
+      "Babakan Kaliasem"
+    ],
     "scientific_name": "Syzygium polycephalum",
     "botanical_family": "Myrtaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Babakan (Kulit Kayu)",
-    "phytochemical_compounds": ["Flavonoid", "Tannin", "Minyak atsiri"],
+    "phytochemical_compounds": [
+      "Flavonoid",
+      "Tannin",
+      "Minyak atsiri"
+    ],
     "modern_pharmacological_action": "Aktivitas antioksidan dan antimikroba dari ekstrak kulit batang dan daun.",
     "reference_studies": [
       "Etnobotani Syzygium polycephalum",
       "Skrining fitokimia kulit batang kaliasem"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Syzygium polycephalum", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Syzygium%20polycephalum", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Syzygium polycephalum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Syzygium%20polycephalum",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-kunyit",
-    "local_names": ["Taru Kunyit", "Kunyit", "Kunir", "Kunyit Warangan"],
+    "local_names": [
+      "Taru Kunyit",
+      "Kunyit",
+      "Kunir",
+      "Kunyit Warangan"
+    ],
     "scientific_name": "Curcuma longa",
     "botanical_family": "Zingiberaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Akah (Akar)",
-    "phytochemical_compounds": ["Kurkumin", "Turmerone", "Flavonoid"],
+    "phytochemical_compounds": [
+      "Kurkumin",
+      "Turmerone",
+      "Flavonoid"
+    ],
     "modern_pharmacological_action": "Antiinflamasi dan antioksidan; kurkumin diteliti untuk efek antiradang dan hepatoprotektif.",
     "reference_studies": [
       "Tinjauan farmakologi kurkumin",
       "Kajian etnomedisin Curcuma longa"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Curcuma longa", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Curcuma%20longa", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Curcuma longa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Curcuma%20longa",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-sirih",
-    "local_names": ["Taru Sirih", "Sirih", "Sirih Bali"],
+    "local_names": [
+      "Taru Sirih",
+      "Sirih",
+      "Sirih Bali"
+    ],
     "scientific_name": "Piper betle",
     "botanical_family": "Piperaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Don (Daun)",
-    "phytochemical_compounds": ["Eugenol", "Chavicol", "Tannin"],
+    "phytochemical_compounds": [
+      "Eugenol",
+      "Chavicol",
+      "Tannin"
+    ],
     "modern_pharmacological_action": "Antiseptik dan antioksidan; ekstrak daun sirih digunakan pada sediaan topikal.",
     "reference_studies": [
       "Tinjauan fitokimia Piper betle",
       "Uji aktivitas antimikroba ekstrak daun sirih"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Piper betle", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Piper+betle", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Piper betle",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Piper+betle",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-asam",
-    "local_names": ["Taru Asam", "Asam", "Asam Jawa"],
+    "local_names": [
+      "Taru Asam",
+      "Asam",
+      "Asam Jawa"
+    ],
     "scientific_name": "Tamarindus indica",
     "botanical_family": "Fabaceae",
     "energy_character": "Tis (Dingin)",
     "plant_part_used": "Buah",
-    "phytochemical_compounds": ["Asam tartarat", "Tannin", "Flavonoid"],
+    "phytochemical_compounds": [
+      "Asam tartarat",
+      "Tannin",
+      "Flavonoid"
+    ],
     "modern_pharmacological_action": "Laksatif ringan dan antioksidan; daging buah digunakan dalam ramuan tradisional.",
     "reference_studies": [
       "Tinjauan fitokimia Tamarindus indica",
       "Kajian etnofarmakologi asam jawa"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Tamarindus indica", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Tamarindus+indica", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Tamarindus indica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Tamarindus+indica",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-turi",
-    "local_names": ["Taru Turi", "Turi", "Turi Putih", "Turi Merah", "Sesbania"],
+    "local_names": [
+      "Taru Turi",
+      "Turi",
+      "Turi Putih",
+      "Turi Merah",
+      "Sesbania"
+    ],
     "scientific_name": "Sesbania grandiflora",
     "botanical_family": "Fabaceae",
     "energy_character": "Tis (Dingin)",
     "plant_part_used": "Don (Daun)",
-    "phytochemical_compounds": ["Flavonoid", "Saponin", "Tannin"],
+    "phytochemical_compounds": [
+      "Flavonoid",
+      "Saponin",
+      "Tannin"
+    ],
     "modern_pharmacological_action": "Antiinflamasi dan antioksidan; daun turi digunakan dalam ramuan tradisional untuk demam dan batuk.",
     "reference_studies": [
       "Tinjauan fitokimia Sesbania grandiflora",
       "Kajian etnofarmakologi daun turi"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Sesbania grandiflora", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sesbania%20grandiflora", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Sesbania grandiflora",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sesbania%20grandiflora",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-tabia-bun",
-    "local_names": ["Taru Tabia Bun", "Tabia Bun", "Tabia", "Cabai Besar", "Capsicum"],
+    "local_names": [
+      "Taru Tabia Bun",
+      "Tabia Bun",
+      "Tabia",
+      "Cabai Besar",
+      "Capsicum"
+    ],
     "scientific_name": "Capsicum annuum",
     "botanical_family": "Solanaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Buah",
-    "phytochemical_compounds": ["Kapsaisin", "Flavonoid", "Vitamin C"],
+    "phytochemical_compounds": [
+      "Kapsaisin",
+      "Flavonoid",
+      "Vitamin C"
+    ],
     "modern_pharmacological_action": "Kapsaisin memberi efek analgesik topikal dan antiinflamasi; buah cabai juga digunakan dalam ramuan penghangat tradisional.",
     "reference_studies": [
       "Tinjauan fitokimia Capsicum annuum",
       "Kajian kapsaisin untuk nyeri topikal"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Capsicum annuum", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Capsicum%20annuum", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Capsicum annuum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Capsicum%20annuum",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-ketumbar",
-    "local_names": ["Taru Ketumbar", "Ketumbar", "Ketumbar Bolong", "Coriander"],
+    "local_names": [
+      "Taru Ketumbar",
+      "Ketumbar",
+      "Ketumbar Bolong",
+      "Coriander"
+    ],
     "scientific_name": "Coriandrum sativum",
     "botanical_family": "Apiaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Buah",
-    "phytochemical_compounds": ["Linalool", "Flavonoid", "Minyak atsiri"],
+    "phytochemical_compounds": [
+      "Linalool",
+      "Flavonoid",
+      "Minyak atsiri"
+    ],
     "modern_pharmacological_action": "Karminatif dan antispasmodik ringan; biji ketumbar digunakan sebagai adjuvan pencernaan.",
     "reference_studies": [
       "Tinjauan fitokimia Coriandrum sativum",
       "Kajian farmakologi biji ketumbar"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Coriandrum sativum", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Coriandrum%20sativum", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Coriandrum sativum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Coriandrum%20sativum",
+        "kind": "literature_search"
+      }
     ]
   },
   {
     "id": "taru-adas",
-    "local_names": ["Taru Adas", "Adas", "Adas Pulosari", "Fennel"],
+    "local_names": [
+      "Taru Adas",
+      "Adas",
+      "Adas Pulosari",
+      "Fennel"
+    ],
     "scientific_name": "Foeniculum vulgare",
     "botanical_family": "Apiaceae",
     "energy_character": "Panes (Hangat)",
     "plant_part_used": "Buah",
-    "phytochemical_compounds": ["Anethole", "Fenchone", "Flavonoid"],
+    "phytochemical_compounds": [
+      "Anethole",
+      "Fenchone",
+      "Flavonoid"
+    ],
     "modern_pharmacological_action": "Karminatif dan antispasmodik; minyak atsiri adas membantu meredakan kembung.",
     "reference_studies": [
       "Tinjauan fitokimia Foeniculum vulgare",
       "Kajian farmakologi buah adas"
     ],
     "reference_links": [
-      {"title": "PubMed: pencarian Foeniculum vulgare", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Foeniculum+vulgare", "kind": "literature_search"}
+      {
+        "title": "PubMed: pencarian Foeniculum vulgare",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Foeniculum+vulgare",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-dapdap",
+    "local_names": [
+      "Dapdap",
+      "Dadap"
+    ],
+    "scientific_name": "Erythrina spp.",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Nama dadap mencakup beberapa spesies Erythrina. Spesies pada naskah belum dipastikan; khasiat dan keamanan racikan belum diverifikasi.",
+    "reference_studies": [
+      "PROSEA: Erythrina, nama dadap dipakai untuk beberapa spesies (https://plantuse.plantnet.org/en/Erythrina_(PROSEA_Medicinal_plants)).",
+      "Sinarsih, Ambarnuari, dan Kartika (2024), Dadap as Hindu Ethnomedicine from Lontar Usadha Taru Pramana (https://ojs.uhnsugriwa.ac.id/index.php/IJHC/article/view/4378). Kajian etnomedisin, bukan uji klinis racikan Sukawati."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian genus Erythrina (spesies belum dipastikan)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Erythrina",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sembung",
+    "local_names": [
+      "Sembung",
+      "sĕmbuŋ",
+      "Sembung utan",
+      "Sembung gantung"
+    ],
+    "scientific_name": "Blumea balsamifera",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Blumea balsamifera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Blumea_balsamifera_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Blumea balsamifera",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Blumea%20balsamifera",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kacemcem",
+    "local_names": [
+      "Kacemcem",
+      "Kacĕmcĕm",
+      "Kedongdong leuweung"
+    ],
+    "scientific_name": "Spondias pinnata",
+    "botanical_family": "Anacardiaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Spondias pinnata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Spondias_pinnata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Spondias pinnata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Spondias%20pinnata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jahe",
+    "local_names": [
+      "Jahe",
+      "Jae",
+      "Lia"
+    ],
+    "scientific_name": "Zingiber officinale",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Zingiber officinale, identitas dan nama lokal (https://plantuse.plantnet.org/en/Zingiber_officinale_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Zingiber officinale",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Zingiber%20officinale",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kencur",
+    "local_names": [
+      "Kencur",
+      "Cekur"
+    ],
+    "scientific_name": "Kaempferia galanga",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Kaempferia galanga, identitas dan nama lokal (https://plantuse.plantnet.org/en/Kaempferia_galanga_(PROSEA)).",
+      "Famili menurut PROSEA: Zingiberaceae (https://plantuse.plantnet.org/en/Kaempferia_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Kaempferia galanga",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Kaempferia%20galanga",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-langkuas",
+    "local_names": [
+      "Langkuas",
+      "Laos",
+      "Laja",
+      "Lengkuas"
+    ],
+    "scientific_name": "Alpinia galanga",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Alpinia galanga, identitas dan nama lokal (https://plantuse.plantnet.org/en/Alpinia_galanga_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Alpinia galanga",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Alpinia%20galanga",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-temu-lawak",
+    "local_names": [
+      "Temu lawak",
+      "Temulawak",
+      "Koneng gede"
+    ],
+    "scientific_name": "Curcuma xanthorrhiza",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Curcuma xanthorrhiza, identitas dan nama lokal (https://plantuse.plantnet.org/en/Curcuma_xanthorrhiza_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Curcuma xanthorrhiza",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Curcuma%20xanthorrhiza",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-temu-putih",
+    "local_names": [
+      "Temu putih",
+      "Koneng tegal"
+    ],
+    "scientific_name": "Curcuma zedoaria",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Curcuma zedoaria, identitas dan nama lokal (https://plantuse.plantnet.org/en/Curcuma_zedoaria_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Curcuma zedoaria",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Curcuma%20zedoaria",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-temu-hitam",
+    "local_names": [
+      "Temu hitam",
+      "Temu ireng",
+      "Koneng hideung"
+    ],
+    "scientific_name": "Curcuma aeruginosa",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Curcuma aeruginosa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Curcuma_aeruginosa_(PROSEA)).",
+      "Famili menurut PROSEA: Zingiberaceae (https://plantuse.plantnet.org/en/Curcuma_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Curcuma aeruginosa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Curcuma%20aeruginosa",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-temu-kunci",
+    "local_names": [
+      "Temu kunci",
+      "Tumbu konci"
+    ],
+    "scientific_name": "Boesenbergia rotunda",
+    "botanical_family": "Zingiberaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Boesenbergia rotunda, identitas dan nama lokal (https://plantuse.plantnet.org/en/Boesenbergia_rotunda_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Boesenbergia rotunda",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Boesenbergia%20rotunda",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-pala",
+    "local_names": [
+      "Pala",
+      "Pala Banda"
+    ],
+    "scientific_name": "Myristica fragrans",
+    "botanical_family": "Myristicaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Myristica fragrans, identitas dan nama lokal (https://plantuse.plantnet.org/en/Myristica_fragrans_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Myristica fragrans",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Myristica%20fragrans",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-cengkeh",
+    "local_names": [
+      "Cengkeh"
+    ],
+    "scientific_name": "Syzygium aromaticum",
+    "botanical_family": "Myrtaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Syzygium aromaticum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Syzygium_aromaticum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Syzygium aromaticum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Syzygium%20aromaticum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kemiri",
+    "local_names": [
+      "Kemiri",
+      "Miri",
+      "Muncang"
+    ],
+    "scientific_name": "Aleurites moluccanus",
+    "botanical_family": "Euphorbiaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Aleurites moluccanus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Aleurites_moluccanus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Aleurites moluccanus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Aleurites%20moluccanus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-bawang-putih",
+    "local_names": [
+      "Bawang putih",
+      "Bawang bodas"
+    ],
+    "scientific_name": "Allium sativum",
+    "botanical_family": "Liliaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Allium sativum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Allium_sativum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Allium sativum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Allium%20sativum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-bawang-daun",
+    "local_names": [
+      "Bawang daun",
+      "Bawang bakung",
+      "Bawang oncang"
+    ],
+    "scientific_name": "Allium fistulosum",
+    "botanical_family": "Liliaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Allium fistulosum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Allium_fistulosum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Allium fistulosum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Allium%20fistulosum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kucai",
+    "local_names": [
+      "Kucai"
+    ],
+    "scientific_name": "Allium tuberosum",
+    "botanical_family": "Liliaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Allium tuberosum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Allium_tuberosum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Allium tuberosum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Allium%20tuberosum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-serai-dapur",
+    "local_names": [
+      "Serai dapur",
+      "Sereh"
+    ],
+    "scientific_name": "Cymbopogon citratus",
+    "botanical_family": "Gramineae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cymbopogon citratus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cymbopogon_citratus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cymbopogon citratus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cymbopogon%20citratus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-pandan-wangi",
+    "local_names": [
+      "Pandan wangi",
+      "Pandan rampe"
+    ],
+    "scientific_name": "Pandanus amaryllifolius",
+    "botanical_family": "Pandanaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Pandanus amaryllifolius, identitas dan nama lokal (https://plantuse.plantnet.org/en/Pandanus_amaryllifolius_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Pandanus amaryllifolius",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Pandanus%20amaryllifolius",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kelapa",
+    "local_names": [
+      "Kelapa",
+      "Nyiur",
+      "Krambil"
+    ],
+    "scientific_name": "Cocos nucifera",
+    "botanical_family": "Palmae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cocos nucifera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cocos_nucifera_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cocos nucifera",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cocos%20nucifera",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-pinang",
+    "local_names": [
+      "Pinang",
+      "Jambe"
+    ],
+    "scientific_name": "Areca catechu",
+    "botanical_family": "Palmae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Areca catechu, identitas dan nama lokal (https://plantuse.plantnet.org/en/Areca_catechu_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Areca catechu",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Areca%20catechu",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-lontar",
+    "local_names": [
+      "Lontar",
+      "Siwalan"
+    ],
+    "scientific_name": "Borassus flabellifer",
+    "botanical_family": "Palmae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Borassus flabellifer, identitas dan nama lokal (https://plantuse.plantnet.org/en/Borassus_flabellifer_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Borassus flabellifer",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Borassus%20flabellifer",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-aren",
+    "local_names": [
+      "Aren",
+      "Enau",
+      "Kawung"
+    ],
+    "scientific_name": "Arenga pinnata",
+    "botanical_family": "Palmae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Arenga pinnata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Arenga_pinnata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Arenga pinnata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Arenga%20pinnata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-bambu-kuning",
+    "local_names": [
+      "Bambu kuning",
+      "Bambu ampel"
+    ],
+    "scientific_name": "Bambusa vulgaris",
+    "botanical_family": "Gramineae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Bambusa vulgaris, identitas dan nama lokal (https://plantuse.plantnet.org/en/Bambusa_vulgaris_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Bambusa vulgaris",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Bambusa%20vulgaris",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-bidara",
+    "local_names": [
+      "Bidara",
+      "Widara"
+    ],
+    "scientific_name": "Ziziphus mauritiana",
+    "botanical_family": "Rhamnaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Ziziphus mauritiana, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ziziphus_mauritiana_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Ziziphus mauritiana",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ziziphus%20mauritiana",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kelor",
+    "local_names": [
+      "Kelor",
+      "Marunga"
+    ],
+    "scientific_name": "Moringa oleifera",
+    "botanical_family": "Moringaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Moringa oleifera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Moringa_oleifera_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Moringa oleifera",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Moringa%20oleifera",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-papaya",
+    "local_names": [
+      "Papaya",
+      "Kates"
+    ],
+    "scientific_name": "Carica papaya",
+    "botanical_family": "Caricaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Carica papaya, identitas dan nama lokal (https://plantuse.plantnet.org/en/Carica_papaya_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Carica papaya",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Carica%20papaya",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-mengkudu",
+    "local_names": [
+      "Mengkudu",
+      "Pace",
+      "Bengkudu",
+      "Cangkudu"
+    ],
+    "scientific_name": "Morinda citrifolia",
+    "botanical_family": "Rubiaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Morinda citrifolia, identitas dan nama lokal (https://plantuse.plantnet.org/en/Morinda_citrifolia_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Morinda citrifolia",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Morinda%20citrifolia",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-manggis",
+    "local_names": [
+      "Manggis"
+    ],
+    "scientific_name": "Garcinia mangostana",
+    "botanical_family": "Guttiferae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Garcinia mangostana, identitas dan nama lokal (https://plantuse.plantnet.org/en/Garcinia_mangostana_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Garcinia mangostana",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Garcinia%20mangostana",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-mangga",
+    "local_names": [
+      "Mangga",
+      "Mempelam"
+    ],
+    "scientific_name": "Mangifera indica",
+    "botanical_family": "Anacardiaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Mangifera indica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Mangifera_indica_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Mangifera indica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Mangifera%20indica",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-blimbing-wuluh",
+    "local_names": [
+      "Blimbing wuluh",
+      "Belimbing wuluh",
+      "Belimbing asam"
+    ],
+    "scientific_name": "Averrhoa bilimbi",
+    "botanical_family": "Oxalidaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Averrhoa bilimbi, identitas dan nama lokal (https://plantuse.plantnet.org/en/Averrhoa_bilimbi_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Averrhoa bilimbi",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Averrhoa%20bilimbi",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-belimbing-manis",
+    "local_names": [
+      "Belimbing manis"
+    ],
+    "scientific_name": "Averrhoa carambola",
+    "botanical_family": "Oxalidaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Averrhoa carambola, identitas dan nama lokal (https://plantuse.plantnet.org/en/Averrhoa_carambola_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Averrhoa carambola",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Averrhoa%20carambola",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jeruk-nipis",
+    "local_names": [
+      "Jeruk nipis",
+      "Jeruk pecel"
+    ],
+    "scientific_name": "Citrus aurantiifolia",
+    "botanical_family": "Rutaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Citrus aurantiifolia, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_aurantiifolia_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Citrus aurantiifolia",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Citrus%20aurantiifolia",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jeruk-purut",
+    "local_names": [
+      "Jeruk purut",
+      "Limo purut"
+    ],
+    "scientific_name": "Citrus hystrix",
+    "botanical_family": "Rutaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Citrus hystrix, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_hystrix_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Citrus hystrix",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Citrus%20hystrix",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jeruk-manis",
+    "local_names": [
+      "Jeruk manis"
+    ],
+    "scientific_name": "Citrus sinensis",
+    "botanical_family": "Rutaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Citrus sinensis, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_sinensis_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Citrus sinensis",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Citrus%20sinensis",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jeruk-bali",
+    "local_names": [
+      "Jeruk bali",
+      "Jeruk besar"
+    ],
+    "scientific_name": "Citrus maxima",
+    "botanical_family": "Rutaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Citrus maxima, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_maxima_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Citrus maxima",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Citrus%20maxima",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sirsak",
+    "local_names": [
+      "Sirsak",
+      "Nangka belanda",
+      "Nangka seberang"
+    ],
+    "scientific_name": "Annona muricata",
+    "botanical_family": "Annonaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Annona muricata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Annona_muricata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Annona muricata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Annona%20muricata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sirkaja",
+    "local_names": [
+      "Sirkaja",
+      "Sarikaja"
+    ],
+    "scientific_name": "Annona squamosa",
+    "botanical_family": "Annonaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Annona squamosa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Annona_squamosa_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Annona squamosa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Annona%20squamosa",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-nangka",
+    "local_names": [
+      "Nangka",
+      "Nongko"
+    ],
+    "scientific_name": "Artocarpus heterophyllus",
+    "botanical_family": "Moraceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Artocarpus heterophyllus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Artocarpus_heterophyllus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Artocarpus heterophyllus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Artocarpus%20heterophyllus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sukun",
+    "local_names": [
+      "Sukun"
+    ],
+    "scientific_name": "Artocarpus altilis",
+    "botanical_family": "Moraceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Artocarpus altilis, identitas dan nama lokal (https://plantuse.plantnet.org/en/Artocarpus_altilis_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Artocarpus altilis",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Artocarpus%20altilis",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sawo-manila",
+    "local_names": [
+      "Sawo manila",
+      "Sawo londo"
+    ],
+    "scientific_name": "Manilkara zapota",
+    "botanical_family": "Sapotaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Manilkara zapota, identitas dan nama lokal (https://plantuse.plantnet.org/en/Manilkara_zapota_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Manilkara zapota",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Manilkara%20zapota",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sambilata",
+    "local_names": [
+      "Sambilata",
+      "Ki oray",
+      "Ampadu"
+    ],
+    "scientific_name": "Andrographis paniculata",
+    "botanical_family": "Acanthaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Andrographis paniculata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Andrographis_paniculata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Andrographis paniculata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Andrographis%20paniculata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-pegagan",
+    "local_names": [
+      "Pegagan",
+      "Daun kaki kuda",
+      "Antanan gede"
+    ],
+    "scientific_name": "Centella asiatica",
+    "botanical_family": "Umbelliferae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Centella asiatica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Centella_asiatica_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Centella asiatica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Centella%20asiatica",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kumis-kucing",
+    "local_names": [
+      "Kumis kucing",
+      "Kumis ucing",
+      "Remuk jung"
+    ],
+    "scientific_name": "Orthosiphon aristatus",
+    "botanical_family": "Labiatae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Orthosiphon aristatus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Orthosiphon_aristatus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Orthosiphon aristatus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Orthosiphon%20aristatus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-beluntas",
+    "local_names": [
+      "Beluntas",
+      "Luntas",
+      "Baruntas"
+    ],
+    "scientific_name": "Pluchea indica",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Pluchea indica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Pluchea_indica_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Pluchea indica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Pluchea%20indica",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-brotowali",
+    "local_names": [
+      "Brotowali",
+      "Andawali",
+      "Putrowali"
+    ],
+    "scientific_name": "Tinospora crispa",
+    "botanical_family": "Menispermaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Tinospora crispa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Tinospora_crispa_(PROSEA)).",
+      "Famili menurut PROSEA: Menispermaceae (https://plantuse.plantnet.org/en/Tinospora_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Tinospora crispa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Tinospora%20crispa",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-sambung-mjawa",
+    "local_names": [
+      "Sambung mjawa",
+      "Kalingsir"
+    ],
+    "scientific_name": "Gynura procumbens",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Gynura procumbens, identitas dan nama lokal (https://plantuse.plantnet.org/en/Gynura_procumbens_(PROSEA)).",
+      "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Gynura_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Gynura procumbens",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Gynura%20procumbens",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-beluntas-cina",
+    "local_names": [
+      "Beluntas cina",
+      "Sam sit"
+    ],
+    "scientific_name": "Gynura pseudochina",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Gynura pseudochina, identitas dan nama lokal (https://plantuse.plantnet.org/en/Gynura_pseudochina_(PROSEA)).",
+      "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Gynura_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Gynura pseudochina",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Gynura%20pseudochina",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-katuk",
+    "local_names": [
+      "Katuk",
+      "Babing",
+      "Simani"
+    ],
+    "scientific_name": "Sauropus androgynus",
+    "botanical_family": "Euphorbiaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Sauropus androgynus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Sauropus_androgynus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Sauropus androgynus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sauropus%20androgynus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kenikir",
+    "local_names": [
+      "Kenikir",
+      "Randa midang"
+    ],
+    "scientific_name": "Cosmos caudatus",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cosmos caudatus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cosmos_caudatus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cosmos caudatus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cosmos%20caudatus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-selasih",
+    "local_names": [
+      "Selasih",
+      "Surawung"
+    ],
+    "scientific_name": "Ocimum basilicum",
+    "botanical_family": "Labiatae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Ocimum basilicum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ocimum_basilicum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Ocimum basilicum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ocimum%20basilicum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-nilam-wangi",
+    "local_names": [
+      "Nilam wangi",
+      "Nilam",
+      "Singalon"
+    ],
+    "scientific_name": "Pogostemon cablin",
+    "botanical_family": "Labiatae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Pogostemon cablin, identitas dan nama lokal (https://plantuse.plantnet.org/en/Pogostemon_cablin_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Pogostemon cablin",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Pogostemon%20cablin",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-lidah-buaya",
+    "local_names": [
+      "Lidah buaya"
+    ],
+    "scientific_name": "Aloe vera",
+    "botanical_family": "Asphodelaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Aloe vera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Aloe_vera_(PROSEA)).",
+      "Famili menurut PROSEA: Asphodelaceae (https://plantuse.plantnet.org/en/Aloe_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Aloe vera",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Aloe%20vera",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-urang-aring",
+    "local_names": [
+      "Urang-aring",
+      "Orang-aring",
+      "Daun sipat"
+    ],
+    "scientific_name": "Eclipta prostrata",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Eclipta prostrata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Eclipta_prostrata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Eclipta prostrata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Eclipta%20prostrata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-tapak-dara",
+    "local_names": [
+      "Tapak dara",
+      "Bunga serdadu",
+      "Kembang tembaga"
+    ],
+    "scientific_name": "Catharanthus roseus",
+    "botanical_family": "Apocynaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Catharanthus roseus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Catharanthus_roseus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Catharanthus roseus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Catharanthus%20roseus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-tapak-liman",
+    "local_names": [
+      "Tapak liman",
+      "Talpak tana"
+    ],
+    "scientific_name": "Elephantopus scaber",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Elephantopus scaber, identitas dan nama lokal (https://plantuse.plantnet.org/en/Elephantopus_scaber_(PROSEA)).",
+      "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Elephantopus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Elephantopus scaber",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Elephantopus%20scaber",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-patikan-kebo",
+    "local_names": [
+      "Patikan kebo",
+      "Nanangkaan"
+    ],
+    "scientific_name": "Euphorbia hirta",
+    "botanical_family": "Euphorbiaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Euphorbia hirta, identitas dan nama lokal (https://plantuse.plantnet.org/en/Euphorbia_hirta_(PROSEA)).",
+      "Famili menurut PROSEA: Euphorbiaceae (https://plantuse.plantnet.org/en/Euphorbia_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Euphorbia hirta",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Euphorbia%20hirta",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-ceplukan",
+    "local_names": [
+      "Ceplukan",
+      "Cicendet an"
+    ],
+    "scientific_name": "Physalis angulata",
+    "botanical_family": "Solanaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Physalis angulata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Physalis_angulata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Physalis angulata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Physalis%20angulata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-takokak",
+    "local_names": [
+      "Takokak",
+      "Pokak",
+      "Terong pipit"
+    ],
+    "scientific_name": "Solanum torvum",
+    "botanical_family": "Solanaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Solanum torvum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Solanum_torvum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Solanum torvum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Solanum%20torvum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-terong",
+    "local_names": [
+      "Terong",
+      "Encung",
+      "Tiung"
+    ],
+    "scientific_name": "Solanum melongena",
+    "botanical_family": "Solanaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Solanum melongena, identitas dan nama lokal (https://plantuse.plantnet.org/en/Solanum_melongena_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Solanum melongena",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Solanum%20melongena",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-pare",
+    "local_names": [
+      "Pare",
+      "Paria",
+      "Papari"
+    ],
+    "scientific_name": "Momordica charantia",
+    "botanical_family": "Cucurbitaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Momordica charantia, identitas dan nama lokal (https://plantuse.plantnet.org/en/Momordica_charantia_(PROSEA)).",
+      "Famili menurut PROSEA: Cucurbitaceae (https://plantuse.plantnet.org/en/Momordica_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Momordica charantia",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Momordica%20charantia",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-mentimun",
+    "local_names": [
+      "Mentimun",
+      "Ketimun",
+      "Bonteng"
+    ],
+    "scientific_name": "Cucumis sativus",
+    "botanical_family": "Cucurbitaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cucumis sativus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cucumis_sativus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cucumis sativus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cucumis%20sativus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-labu-siam",
+    "local_names": [
+      "Labu siam",
+      "Waluh jepang"
+    ],
+    "scientific_name": "Sechium edule",
+    "botanical_family": "Cucurbitaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Sechium edule, identitas dan nama lokal (https://plantuse.plantnet.org/en/Sechium_edule_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Sechium edule",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sechium%20edule",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-labu-merah",
+    "local_names": [
+      "Labu merah"
+    ],
+    "scientific_name": "Cucurbita moschata",
+    "botanical_family": "Cucurbitaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cucurbita moschata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cucurbita_moschata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cucurbita moschata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cucurbita%20moschata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-oyong",
+    "local_names": [
+      "Oyong",
+      "Gambas",
+      "Petola"
+    ],
+    "scientific_name": "Luffa acutangula",
+    "botanical_family": "Cucurbitaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Luffa acutangula, identitas dan nama lokal (https://plantuse.plantnet.org/en/Luffa_acutangula_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Luffa acutangula",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Luffa%20acutangula",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kecipir",
+    "local_names": [
+      "Kecipir"
+    ],
+    "scientific_name": "Psophocarpus tetragonolobus",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Psophocarpus tetragonolobus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Psophocarpus_tetragonolobus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Psophocarpus tetragonolobus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Psophocarpus%20tetragonolobus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kacang-hijau",
+    "local_names": [
+      "Kacang hijau",
+      "Arta ijo"
+    ],
+    "scientific_name": "Vigna radiata",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Vigna radiata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Vigna_radiata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Vigna radiata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Vigna%20radiata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kedelai",
+    "local_names": [
+      "Kedelai",
+      "Kacang jepun",
+      "Kacang bulu"
+    ],
+    "scientific_name": "Glycine max",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Glycine max, identitas dan nama lokal (https://plantuse.plantnet.org/en/Glycine_max_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Glycine max",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Glycine%20max",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-wijen",
+    "local_names": [
+      "Wijen",
+      "Bidjan",
+      "Lenga"
+    ],
+    "scientific_name": "Sesamum indicum",
+    "botanical_family": "Pedaliaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Sesamum indicum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Sesamum_indicum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Sesamum indicum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sesamum%20indicum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jinten-hitam",
+    "local_names": [
+      "Jinten hitam"
+    ],
+    "scientific_name": "Nigella sativa",
+    "botanical_family": "Ranunculaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Nigella sativa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Nigella_sativa_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Nigella sativa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Nigella%20sativa",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-jinten-putih",
+    "local_names": [
+      "Jinten putih",
+      "Jinten bodas",
+      "Jinten poteh"
+    ],
+    "scientific_name": "Cuminum cyminum",
+    "botanical_family": "Umbelliferae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cuminum cyminum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cuminum_cyminum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cuminum cyminum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cuminum%20cyminum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-lada",
+    "local_names": [
+      "Lada",
+      "Merica"
+    ],
+    "scientific_name": "Piper nigrum",
+    "botanical_family": "Piperaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Piper nigrum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Piper_nigrum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Piper nigrum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Piper%20nigrum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-cabe-jawa",
+    "local_names": [
+      "Cabe jawa",
+      "Lada panjang"
+    ],
+    "scientific_name": "Piper retrofractum",
+    "botanical_family": "Piperaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Piper retrofractum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Piper_retrofractum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Piper retrofractum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Piper%20retrofractum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kayu-secang",
+    "local_names": [
+      "Kayu secang",
+      "Secang",
+      "Soga jawa"
+    ],
+    "scientific_name": "Caesalpinia sappan",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Caesalpinia sappan, identitas dan nama lokal (https://plantuse.plantnet.org/en/Caesalpinia_sappan_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Caesalpinia sappan",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Caesalpinia%20sappan",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kayu-putih",
+    "local_names": [
+      "Kayu putih",
+      "Galam",
+      "Gelam"
+    ],
+    "scientific_name": "Melaleuca cajuputi",
+    "botanical_family": "Myrtaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Melaleuca cajuputi, identitas dan nama lokal (https://plantuse.plantnet.org/en/Melaleuca_cajuputi_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Melaleuca cajuputi",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Melaleuca%20cajuputi",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-nyamplung",
+    "local_names": [
+      "Nyamplung",
+      "Dingkaran"
+    ],
+    "scientific_name": "Calophyllum inophyllum",
+    "botanical_family": "Guttiferae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Calophyllum inophyllum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Calophyllum_inophyllum_(PROSEA)).",
+      "Famili menurut PROSEA: Guttiferae (https://plantuse.plantnet.org/en/Calophyllum_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Calophyllum inophyllum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Calophyllum%20inophyllum",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kembang-sepatu",
+    "local_names": [
+      "Kembang sepatu",
+      "Wora-wari",
+      "Waribang"
+    ],
+    "scientific_name": "Hibiscus rosa-sinensis",
+    "botanical_family": "Malvaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Hibiscus rosa-sinensis, identitas dan nama lokal (https://plantuse.plantnet.org/en/Hibiscus_rosa-sinensis_(PROSEA)).",
+      "Famili menurut PROSEA: Malvaceae (https://plantuse.plantnet.org/en/Hibiscus_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Hibiscus rosa-sinensis",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Hibiscus%20rosa-sinensis",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-waru",
+    "local_names": [
+      "Waru",
+      "Waru laut",
+      "Baru"
+    ],
+    "scientific_name": "Hibiscus tiliaceus",
+    "botanical_family": "Malvaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Hibiscus tiliaceus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Hibiscus_tiliaceus_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Hibiscus tiliaceus",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Hibiscus%20tiliaceus",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-rosela",
+    "local_names": [
+      "Rosela",
+      "Gamet walanda"
+    ],
+    "scientific_name": "Hibiscus sabdariffa",
+    "botanical_family": "Malvaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Hibiscus sabdariffa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Hibiscus_sabdariffa_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Hibiscus sabdariffa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Hibiscus%20sabdariffa",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kembang-telang",
+    "local_names": [
+      "Kembang telang",
+      "Bunga biru"
+    ],
+    "scientific_name": "Clitoria ternatea",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Clitoria ternatea, identitas dan nama lokal (https://plantuse.plantnet.org/en/Clitoria_ternatea_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Clitoria ternatea",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Clitoria%20ternatea",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-kenanga",
+    "local_names": [
+      "Kenanga",
+      "Kananga",
+      "Sepalen"
+    ],
+    "scientific_name": "Cananga odorata",
+    "botanical_family": "Annonaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cananga odorata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cananga_odorata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cananga odorata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cananga%20odorata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-melati",
+    "local_names": [
+      "Melati",
+      "Menur"
+    ],
+    "scientific_name": "Jasminum sambac",
+    "botanical_family": "Oleaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Jasminum sambac, identitas dan nama lokal (https://plantuse.plantnet.org/en/Jasminum_sambac_(PROSEA)).",
+      "Famili menurut PROSEA: Oleaceae (https://plantuse.plantnet.org/en/Jasminum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Jasminum sambac",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Jasminum%20sambac",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-mimba",
+    "local_names": [
+      "Mimba",
+      "Membha",
+      "Intaran"
+    ],
+    "scientific_name": "Azadirachta indica",
+    "botanical_family": "Meliaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Azadirachta indica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Azadirachta_indica_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Azadirachta indica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Azadirachta%20indica",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-beringin",
+    "local_names": [
+      "Beringin",
+      "Caringing",
+      "Waringin"
+    ],
+    "scientific_name": "Ficus benjamina",
+    "botanical_family": "Moraceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Ficus benjamina, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ficus_benjamina_(PROSEA)).",
+      "Famili menurut PROSEA: Moraceae (https://plantuse.plantnet.org/en/Ficus_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Ficus benjamina",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ficus%20benjamina",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-awar-awar",
+    "local_names": [
+      "Awar-awar",
+      "Ki ciyat",
+      "Tagalolo"
+    ],
+    "scientific_name": "Ficus septica",
+    "botanical_family": "Moraceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Ficus septica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ficus_septica_(PROSEA)).",
+      "Famili menurut PROSEA: Moraceae (https://plantuse.plantnet.org/en/Ficus_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Ficus septica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ficus%20septica",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-alang-alang",
+    "local_names": [
+      "Alang-alang",
+      "Ilalang",
+      "Lalang",
+      "Kambengan"
+    ],
+    "scientific_name": "Imperata cylindrica",
+    "botanical_family": "Gramineae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Imperata cylindrica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Imperata_cylindrica_(PROSEA)).",
+      "Famili menurut PROSEA: Gramineae (https://plantuse.plantnet.org/en/Imperata_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Imperata cylindrica",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Imperata%20cylindrica",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-babadotan",
+    "local_names": [
+      "Babadotan",
+      "Wedusan",
+      "Dus-bedusan"
+    ],
+    "scientific_name": "Ageratum conyzoides",
+    "botanical_family": "Compositae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Ageratum conyzoides, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ageratum_conyzoides_(PROSEA)).",
+      "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Ageratum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Ageratum conyzoides",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ageratum%20conyzoides",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-ketepeng-kebo",
+    "local_names": [
+      "Ketepeng kebo",
+      "Daun kupang"
+    ],
+    "scientific_name": "Senna alata",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Senna alata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Senna_alata_(PROSEA)).",
+      "Famili menurut PROSEA: Leguminosae (https://plantuse.plantnet.org/en/Senna_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Senna alata",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Senna%20alata",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-trengguli",
+    "local_names": [
+      "Trengguli",
+      "Bobondelan",
+      "Klobop"
+    ],
+    "scientific_name": "Cassia fistula",
+    "botanical_family": "Leguminosae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Cassia fistula, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cassia_fistula_(PROSEA)).",
+      "Famili menurut PROSEA: Leguminosae (https://plantuse.plantnet.org/en/Cassia_(PROSEA_Medicinal_plants)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Cassia fistula",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Cassia%20fistula",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-ketapang",
+    "local_names": [
+      "Ketapang"
+    ],
+    "scientific_name": "Terminalia catappa",
+    "botanical_family": "Combretaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Terminalia catappa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Terminalia_catappa_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Terminalia catappa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Terminalia%20catappa",
+        "kind": "literature_search"
+      }
+    ]
+  },
+  {
+    "id": "taru-delima",
+    "local_names": [
+      "Delima"
+    ],
+    "scientific_name": "Punica granatum",
+    "botanical_family": "Punicaceae",
+    "energy_character": "Tidak disebutkan",
+    "plant_part_used": "Tidak disebutkan",
+    "phytochemical_compounds": [],
+    "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
+    "reference_studies": [
+      "PROSEA: Punica granatum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Punica_granatum_(PROSEA)).",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+    ],
+    "reference_links": [
+      {
+        "title": "PubMed: pencarian Punica granatum",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Punica%20granatum",
+        "kind": "literature_search"
+      }
     ]
   }
 ]

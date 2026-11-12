@@ -86,3 +86,42 @@ func TestAnalyzeBindsReferenceToExactBytesNotSourceID(t *testing.T) {
 		})
 	}
 }
+
+func TestArchivePlantsReceiveLiteratureWithoutClinicalClaims(t *testing.T) {
+	store, err := kb.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	service := &Service{kb: store}
+	for _, tc := range []struct {
+		name       string
+		scientific string
+	}{
+		{"dapdap", "Erythrina spp."},
+		{"sĕmbuŋ", "Blumea balsamifera"},
+		{"kacĕmcĕm", "Spondias pinnata"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			response := serviceTestResponse()
+			response.Ethnomedicinal.PlantLocalName = tc.name
+			service.enrich(&response, "archive")
+			if !response.Ethnomedicinal.KBMatch || response.Ethnomedicinal.PlantScientificName != tc.scientific {
+				t.Fatalf("archive plant not identified: %+v", response.Ethnomedicinal)
+			}
+			if len(response.Scientific.ReferenceLinks) == 0 || len(response.Scientific.ReferenceStudies) == 0 {
+				t.Fatalf("archive plant has no reference card: %+v", response.Scientific)
+			}
+			for _, link := range response.Scientific.ReferenceLinks {
+				if link.Kind != "literature_search" {
+					t.Fatalf("literature search presented as verified study: %+v", link)
+				}
+			}
+			if len(response.Scientific.PhytochemicalCompounds) != 0 || response.Scientific.SafetyDisclaimer != model.SafetyDisclaimer {
+				t.Fatalf("botanical identification acquired unsupported clinical data: %+v", response.Scientific)
+			}
+			if response.Ethnomedicinal.EnergyCharacter != "Tis (Dingin)" {
+				t.Fatal("botanical catalog replaced the manuscript's traditional property")
+			}
+		})
+	}
+}

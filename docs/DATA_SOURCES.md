@@ -62,9 +62,10 @@ Korpus lokal menggunakan [DeepLontar v2](https://doi.org/10.6084/m9.figshare.201
 
 - Lokasi: `apps/api/internal/kb/data/taru-pramana.json`.
 - Fungsi: pencocokan nama tanaman, famili, senyawa, dan rujukan. Sifat tradisional pada hasil mengikuti bacaan AI, bukan nilai bawaan KB.
-- Knowledge base dikurasi untuk MVP. Entri di luar katalog tidak diberi taksonomi atau sitasi.
+- Knowledge base berisi 100 entri: 99 identitas spesies dan satu identitas genus (Dapdap, **Erythrina spp.**, spesies belum dipastikan). Ini katalog pencocokan botani, bukan 100 tanaman yang dipastikan tercantum dalam Taru Pramana. Entri di luar katalog tidak diberi taksonomi atau sitasi.
 - Kutipan dan istilah dari lontar dipertahankan sebagai bagian dari konteks.
-- `reference_links` dikurasi di server: pencarian PubMed per nama ilmiah dan satu tinjauan Psidium guajava ([PMID 18353572](https://pubmed.ncbi.nlm.nih.gov/18353572/)). Pencarian adalah pintu masuk literatur, bukan sitasi studi tertentu.
+- [Sumber perluasan 90 entri](KNOWLEDGE_BASE_SOURCES.md) mencatat pemetaan nama lokal, identitas, famili, dan batas kurasi per tanaman. Sembung dan Kacemcem mencakup ejaan transkripsi contoh arsip. Nama ambigu tidak dipaksa menjadi spesies tertentu.
+- `reference_links` ditentukan server: pencarian PubMed per takson dan satu tinjauan Psidium guajava ([PMID 18353572](https://pubmed.ncbi.nlm.nih.gov/18353572/)). Pencarian adalah pintu masuk literatur, bukan sitasi studi tertentu. Entri baru tidak menambahkan klaim senyawa atau khasiat; deskripsi rujukannya berisi sumber botani.
 - Tautan tersebut bukan sumber naskah dan tidak membuktikan keamanan atau khasiat resep. Deskripsi `reference_studies` lama bukan kutipan bibliografis yang telah diverifikasi; pembaca perlu memeriksa publikasi aslinya.
 
 ## Model dan Gateway
