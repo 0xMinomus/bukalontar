@@ -2,7 +2,7 @@
 
 Dokumen ini menjelaskan arsitektur MVP yang ada di repository. Fokusnya adalah perilaku kode saat ini pada dua mode deployment: binary mandiri dan Vercel Services.
 
-Snapshot final submission: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). Frontend mengirim foto asli; peningkatan kontras hanya pratinjau. Pengaman kutipan adalah pemeriksaan konsistensi teks, bukan model OCR atau verifikasi ahli.
+Tag [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission) tetap menjadi snapshot lama. `main` menambahkan empat arsip berbantuan transkripsi rujukan. Frontend tetap mengirim foto asli; peningkatan kontras hanya pratinjau. Pengaman kutipan bukan verifikasi filologis.
 
 ## Gambaran Runtime
 
@@ -49,9 +49,9 @@ Aplikasi memakai satu kontrak respons untuk dua kebutuhan:
 
 1. **Pratinjau klien.** `apps/web/src/lib/image.ts` membuat tampilan CLAHE dan unsharp mask. Gambar asli dikirim ke API agar preprocessing yang belum tervalidasi tidak mengubah goresan untuk model.
 2. **Validasi.** Handler membatasi ukuran upload 8 MB, tipe gambar, dan rate limit per menit. Tidak ada file yang ditulis ke disk.
-3. **Inferensi.** `apps/api/internal/ai` terlebih dahulu mengklasifikasikan aksara pada foto target saja, tanpa contoh glif atau katalog tanaman (maksimal 256 token). Hanya keputusan `balinese/high` melanjutkan satu pembacaan dengan Gemini 3.8 Flash Low. Default `examples` menambahkan tiga contoh glif ahli; crop lokal hanya pada mode eksperimental. Kedua panggilan memakai model yang sama dan berbagi tenggat permintaan. Temperature 0 tidak menjamin determinisme.
+3. **Inferensi.** SHA-256 byte foto dicocokkan dengan empat referensi tersemat. Kecocokan memilih transkripsi komunitas dan genre sumber; Gemini menerjemahkan/mengekstrak teks itu tanpa foto, gate visual, atau contoh glif. Latin sumber dipertahankan server. Jika tidak cocok, jalur lama tetap: klasifikasi foto target tanpa referensi (maksimal 256 token), keputusan `balinese/high`, lalu pembacaan dengan Flash Low dan bantuan `examples` default. Tidak ada pencocokan berdasarkan `source_id`, hasil analisis tersimpan, atau pergantian model.
 4. **Parsing.** Respons model harus berupa JSON. Markdown fence dibersihkan sebelum parsing. Satu repair attempt dilakukan bila validasi gagal.
-5. **Resep.** Maksimal enam resep dipertahankan bila `source_quote` cocok dengan satu bagian utuh transliterasi daun pertama, menyebut nama tanaman, dan menyertakan bahan tambahan yang diklaim. Tanda bagian tidak terbaca, anotasi dalam kurung siku, dan elipsis menjadi batas; kata di kedua sisinya tidak digabungkan untuk membenarkan kutipan. Jika ada label lembar, bukti harus berasal dari bagian setelah label pertama bernomor 1, bukan pengantar atau lembar lain. Ini pemeriksaan konsistensi teks, bukan validasi resep atau bukti bahwa bacaan AI sesuai foto.
+5. **Resep.** Maksimal enam resep harus memiliki `source_quote` pada satu bagian utuh bacaan daun pertama, menyebut nama tanaman dan bahan tambahan yang diklaim. Bacaan itu berasal dari AI untuk foto baru atau sumber komunitas untuk arsip cocok. Bagian tidak terbaca, anotasi kurung siku, elipsis, pengantar, dan daun lain tidak dapat menjembatani bukti. Arsip Carcan/Kakawin dibatasi tanpa resep. Pemeriksaan ini tidak memvalidasi terjemahan, tafsir racikan, atau keamanan medis.
 6. **Grounding.** Nama ilmiah, famili, senyawa, rujukan, tautan literatur dan aksi farmakologis berasal dari KB saat tanaman cocok. Sifat tradisional mengikuti bacaan model, bukan ditimpa KB. Tanaman tak dikenal tidak mempertahankan sitasi atau klaim farmakologi dari model.
 7. **Respons.** Disclaimer medis kanonik ditulis server. Resep kosong tetap kosong; informasi yang tidak disebutkan tidak otomatis menjadi obat minum. Klasifikasi naskah dan bahasa boleh tidak diketahui.
 
@@ -75,6 +75,7 @@ Kontrak lengkap ada di `packages/schema/analysis.json`.
 - `ethnomedicinal_entity`: field resep utama untuk kompatibilitas;
 - `scientific_validation`: senyawa, aksi farmakologis, rujukan, dan disclaimer;
 - `recipes[]`: daftar resep pada lembar, termasuk data tanaman dan validasi per resep.
+- `reading_reference` opsional: metode `source_transcription`, SHA-256 foto, judul, genre katalog, URL revisi, lisensi, dan catatan editorial. Server mengisinya hanya dari registry setelah kecocokan byte dan membuang nilai provenance keluaran model. UI/PDF menampilkan metode ini, bukan confidence OCR.
 
 ## Keandalan
 
@@ -83,8 +84,8 @@ Kontrak lengkap ada di `packages/schema/analysis.json`.
 - Validasi schema di Go sebelum respons dikirim ke browser.
 - Error API dikembalikan sebagai pesan yang dapat ditampilkan. Tidak ada hasil palsu.
 - Rate limit default 10 request per menit per klien.
-- Backend tidak menulis file upload, tetapi meneruskan foto ke gateway AI. Foto dan hasil sesi aktif tersimpan di IndexedDB browser; retensi pihak ketiga belum diverifikasi.
-- Pemeriksaan aksara adalah panggilan Gemini terpisah tanpa contoh glif atau katalog. Keputusan non-Bali, campuran, atau meragukan tidak mencapai pembaca; keluaran pemeriksaan rusak menghasilkan error, bukan izin membaca. Server juga mengosongkan seluruh bacaan/resep ketika pembaca menolak atau transkripsi/transliterasi mengandung aksara mirip non-Bali. Kedua pemeriksaan tetap bergantung pada model umum, bukan classifier terlatih independen.
+- Backend tidak menulis file upload. Foto yang tidak cocok arsip diteruskan ke gateway; arsip cocok hanya mengirim transkripsi. Foto dan hasil sesi tersimpan di IndexedDB browser; retensi pihak ketiga belum diverifikasi.
+- Pemeriksaan aksara Gemini terpisah berlaku pada foto yang tidak cocok registry. Keputusan non-Bali, campuran, atau meragukan tidak mencapai pembaca; keluaran gate rusak menghasilkan error. Pembaca yang menolak atau mengandung aksara lain dikosongkan. Ini bukan classifier independen. Identitas empat arsip berasal dari sumber dan hash, bukan keberhasilan gate.
 - Bahasa teks dipisahkan dari aksara: bahasa Kawi dapat ditulis dalam aksara Bali. Transkripsi Unicode eksperimental tidak ditampilkan di UI/PDF karena belum layak berdasarkan evaluasi.
 
 ## Konfigurasi

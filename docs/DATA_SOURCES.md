@@ -2,7 +2,7 @@
 
 Dokumen ini mencatat sumber naskah, foto, knowledge base, dan aset pihak ketiga yang dipakai BukaLontar.
 
-Snapshot rujukan mengikuti tag [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). Kredit aset tidak berarti pengarang, lembaga sumber, atau peninjau Wikisource menyetujui hasil AI BukaLontar.
+Tag [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission) tetap menjadi snapshot lama. Dokumen pada `main` juga mencatat empat contoh arsip yang ditambahkan setelah tag. Kredit aset tidak berarti pengarang, lembaga sumber, atau peninjau Wikisource menyetujui hasil AI BukaLontar.
 
 ## Naskah dan Konteks
 
@@ -17,16 +17,26 @@ Naskah asli tetap menjadi sumber utama. Hasil AI tidak menggantikan pemeriksaan 
 
 ## Foto Sampel
 
-Contoh yang dapat dipilih adalah sisi depan Usada Lare dan Usada Rare 154 dari Balai Bahasa Bali. Keduanya memiliki transkripsi aksara Bali yang telah dikoreksi di Wikisource Bali (pagequality 3), belum diverifikasi ahli independen. Pemotongan membuang latar meja dan sisi belakang, bukan menggambar ulang aksara. Penolakan model tidak menentukan identitas aksara.
+Contoh pilihan pada `main` mencakup dua Usadha dengan racikan pada sisi depan dan dua genre non-Usadha. Semuanya foto lontar beraksara Bali. Bahasa Kawi pada katalog tidak mengubah identitas aksaranya. Pemotongan mempertahankan satu daun utuh tanpa menggambar ulang glif.
 
-| File | Kreator | Lisensi | Sumber |
+| Contoh | Genre | Foto / lisensi | Transkripsi sumber |
 | --- | --- | --- | --- |
-| `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [transkripsi dikoreksi](https://ban.wikisource.org/w/index.php?oldid=105197) |
-| `lontar-usada-rare-154-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Rare_154.jpg), [transkripsi dikoreksi](https://ban.wikisource.org/w/index.php?oldid=105194) |
-| `lontar-wanagiri-usada-3.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Wanagiri-Usada-3.jpg) |
-| `lontar-sukawati-usada-07.jpg` | Eka343 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) |
+| Usadha Sukawati 07 | Usadha | [Eka343, CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) | [Revisi 98029, sisi depan](https://ban.wikisource.org/w/index.php?title=Kaca:Bali-lontar-Sukawati-Usada-07.jpg&oldid=98029) |
+| Usadha Rare Kemenuh 56 | Usadha | [Eka343, CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Bali-lontar-Kemenuh-Usadha_Rare-56.jpg) | [Revisi 107871, sisi depan](https://ban.wikisource.org/w/index.php?title=Kaca:Bali-lontar-Kemenuh-Usadha_Rare-56.jpg&oldid=107871) |
+| Carcan Kucing, 1B | Carcan | [Internet Archive, PD-ID-exempt](https://commons.wikimedia.org/wiki/File:Bali-lontar-carcan-kucing-250ppi.pdf) | [Render Latin revisi 107176, hanya 1B](https://ban.wikisource.org/w/index.php?title=Carcan_Kucing&oldid=107176) |
+| Kakawin Bharatayuda Maarti 01 | Kakawin / susastra | [Eka343, CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Kekawin_Bharatayuda_Maarti_01.jpg) | [Render Latin revisi 134900, sisi depan](https://ban.wikisource.org/w/index.php?title=Kekawin_Bharatayuda_Maarti_(Balai_Bahasa_Prov._Bali)&oldid=134900) |
 
-Wanagiri/Sukawati dipertahankan untuk aset dekoratif/kartu berbagi dan evaluasi historis, bukan pilihan contoh. Detail lisensi, koordinat crop, dan SHA-256 tersedia di [`apps/web/public/samples/CREDITS.md`](../apps/web/public/samples/CREDITS.md).
+Rujukan aksara primer untuk dua render halaman utama: [Carcan 1B, revisi 102232](https://ban.wikisource.org/w/index.php?title=Kaca:Bali-lontar-carcan-kucing-250ppi.pdf/2&oldid=102232) dan [Kakawin 01, revisi 108451](https://ban.wikisource.org/w/index.php?title=Kaca:Bali-lontar-Balai_Bahasa_Bali-Kekawin_Bharatayuda_Maarti_01.jpg&oldid=108451). Revisi halaman utama tidak membekukan transklusi atau mesin render Latin; salinan teks yang digunakan aplikasi disimpan dalam JSON tersemat.
+
+Lare dan Rare 154 lama dipertahankan untuk evaluasi historis, bukan tombol contoh. Sisi depan Lare memuat tanda gejala, bukan racikan tanaman; kartu resep kosong tidak membuktikan seluruh naskah bukan Usadha. Wanagiri/Sukawati versi lama tetap menjadi aset dekoratif/berbagi. Lisensi, koordinat crop, resolusi, dan SHA-256 seluruh aset ada di [CREDITS.md](../apps/web/public/samples/CREDITS.md).
+
+### Analisis berbantuan transkripsi rujukan
+
+`apps/api/internal/ai/manuscript_references.json` menyimpan hash foto, judul, genre, URL revisi, render Latin sumber, dan versi dengan tambahan pemisahan kata. Saat startup server memeriksa bahwa perubahan hanya whitespace, bukan huruf atau tanda baca. Atribusi transkripsi adalah kontributor Wikisource Bali, CC BY-SA 4.0; riwayat revisi mencatat kontributornya. Render Latin dan pemisahan kata proyek bukan transliterasi ahli yang diverifikasi terpisah.
+
+Foto cocok memakai teks rujukan sebagai input Gemini, bukan OCR foto atau jawaban analisis tersimpan. Server mengembalikan transliterasi sumber persis, sedangkan terjemahan dan ekstraksi tetap dihasilkan saat permintaan. Genre Carcan/Kakawin mencegah kartu obat pada dua arsip nonmedis tersebut. `reading_reference` mencatat metode, sumber, lisensi, dan hash; UI/PDF menampilkannya. Ini bantuan arsip yang disetujui pengguna, bukan hasil holdout independen atau peningkatan akurasi OCR.
+
+Nama file dan `source_id` tidak memilih rujukan. Foto yang berubah byte, termasuk hasil kompresi ulang atau crop lain, tetap melalui pemeriksaan aksara dan pembacaan foto eksperimental. Penolakan dan halusinasi pada jalur itu belum terselesaikan.
 
 ## Korpus DeepLontar
 
@@ -73,4 +83,4 @@ Korpus lokal menggunakan [DeepLontar v2](https://doi.org/10.6084/m9.figshare.201
 
 ## Data Pribadi
 
-Jangan mengunggah foto lontar yang memuat informasi pribadi atau materi terbatas tanpa izin. Backend meneruskan foto ke gateway dan penyedia AI; kebijakan retensi pihak ketiga belum diverifikasi. Browser menyimpan foto dan hasil sesi aktif di IndexedDB. Kebijakan keamanan ada di [SECURITY.md](../SECURITY.md).
+Jangan mengunggah foto lontar yang memuat informasi pribadi atau materi terbatas tanpa izin. Untuk foto baru backend meneruskan gambar ke penyedia AI; untuk arsip cocok hanya teks rujukan dikirim. Retensi pihak ketiga belum diverifikasi. Browser menyimpan foto dan hasil sesi aktif di IndexedDB. Lihat [SECURITY.md](../SECURITY.md).

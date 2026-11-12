@@ -109,9 +109,11 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
         <div className="mt-4 max-h-[470px] overflow-y-auto pr-1 [scrollbar-width:thin]">
           <div className="flex items-center justify-between gap-3">
             <Badge variant="outline">
-              {result.paleography.aksara_bali_detected
-                ? 'Aksara Bali terdeteksi'
-                : 'Aksara Bali tidak terdeteksi'}
+              {result.reading_reference
+                ? 'Bacaan rujukan Wikisource'
+                : result.paleography.aksara_bali_detected
+                  ? 'Aksara Bali terdeteksi'
+                  : 'Aksara Bali tidak terdeteksi'}
             </Badge>
             <CopyButton text={transliteration} />
           </div>
@@ -119,7 +121,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
             {transliteration}
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-            <span>{confidenceLabel[result.paleography.confidence]}</span>
+            <span>{result.reading_reference ? 'Transkripsi komunitas, bukan OCR baru' : confidenceLabel[result.paleography.confidence]}</span>
             <span aria-hidden="true">·</span>
             <span>Bahasa teks: {result.source_reference.language}</span>
             <span aria-hidden="true">·</span>
@@ -173,9 +175,11 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                       : 'Resep belum teridentifikasi'}
                   </h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {hasAilment
-                      ? `Hasil pembacaan menyebut ${result.ethnomedicinal_entity.target_ailment}, tetapi belum ada resep tanaman yang berhasil dipetakan.`
-                      : 'Belum ada resep yang berhasil diidentifikasi. Bagian yang tidak terbaca tidak membuktikan bahwa naskah tidak memuat resep.'}
+                    {result.source_reference.lontar_group === 'Non-Usadha'
+                      ? 'Isi naskah ini bukan racikan obat. Kartu Usadha tidak ditampilkan.'
+                      : hasAilment
+                        ? `Hasil pembacaan menyebut ${result.ethnomedicinal_entity.target_ailment}, tetapi belum ada resep tanaman yang berhasil dipetakan.`
+                        : 'Belum ada resep yang berhasil diidentifikasi. Bagian yang tidak terbaca tidak membuktikan bahwa naskah tidak memuat resep.'}
                   </p>
                 </div>
               </div>
@@ -229,7 +233,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                     </div>
                     {recipe.source_quote ? (
                       <blockquote className="mt-4 border-l border-border pl-3">
-                        <p className="label-xs">Kutipan transliterasi AI</p>
+                        <p className="label-xs">{result.reading_reference ? 'Kutipan transkripsi rujukan' : 'Kutipan transliterasi AI'}</p>
                         <p className="mt-1 whitespace-pre-line text-sm leading-7">
                           {recipe.source_quote}
                         </p>

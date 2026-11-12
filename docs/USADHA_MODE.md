@@ -17,6 +17,8 @@ Alur ini mencakup:
 
 Alur ini tidak memberi diagnosis, dosis, atau rekomendasi pengobatan. Hasil AI adalah bahan bacaan dan penelitian, bukan nasihat medis.
 
+Pada `main` setelah tag, Usadha Sukawati dan Rare Kemenuh memakai transkripsi komunitas ketika hash foto cocok persis. Bacaan sumber dipasok ke Gemini untuk terjemahan/ekstraksi; UI dan PDF menyebut **Berbantuan transkripsi rujukan**. Carcan Kucing dan Kakawin Bharatayuda dari registry tidak menghasilkan kartu resep. Foto lain tetap memakai pembacaan foto eksperimental. Ini tidak meningkatkan atau membuktikan akurasi OCR umum.
+
 ## Keluaran
 
 Setiap resep memakai struktur yang sama:
@@ -24,7 +26,7 @@ Setiap resep memakai struktur yang sama:
 | Field | Isi |
 | --- | --- |
 | `plant_local_name` | Nama tanaman dari teks lontar |
-| `source_quote` | Kutipan utuh dari transliterasi AI lembar pertama; bukan kutipan yang sudah divalidasi terhadap foto |
+| `source_quote` | Kutipan utuh dari bacaan daun pertama: transliterasi AI untuk foto baru atau transkripsi komunitas untuk arsip cocok; bukan verifikasi ahli |
 | `plant_scientific_name` | Nama ilmiah jika cocok dengan knowledge base |
 | `botanical_family` | Famili botani jika tersedia |
 | `kb_match` | Status pencocokan dengan Taru Pramana |

@@ -10,9 +10,9 @@ Frontend for BukaLontar's experimental palm-leaf reading aid: React 19, TypeScri
 - Mock mode remains available with `VITE_USE_MOCK=true`. Tanpa env tersebut, frontend memanggil API live.
 - Non-usada leaves show a reading summary instead of empty ethnomedicinal fields; KB-grounded plants keep the usada card.
 - Print view renders the full result as a report, not only the active tab.
-- Selectable examples are front-side photographs of Usada Lare and Usada Rare 154. Community proofreading is not expert certification of AI output. Credits, crop coordinates, and licenses are in `public/samples/CREDITS.md`.
+- Four selectable examples: Usadha Sukawati, Usadha Rare Kemenuh, Carcan Kucing, and Kakawin Bharatayuda. Each has separate photo, reference, and license links. Credits and crop hashes are in `public/samples/CREDITS.md`.
 - Balinese-script detection and reading quality are separate. Kawi may identify a language written in Balinese script, not the detected writing system. Experimental Unicode is not displayed in the UI/PDF.
-- The result warns that AI can invent readings and recipes. Recipe quotes shown in result details/PDF are copied from the AI reading, not independently verified against the photo. The backend rejects quotes crossing unknown spans, ellipses, or leaf boundaries.
+- Exact archive bytes use cited community transcription supplied by the backend, with “Berbantuan transkripsi rujukan” shown in result and PDF. These are not fresh OCR readings or cached model answers. Other uploads remain experimental. Quotes must match the canonical source reading; unknown spans, ellipses, and leaf boundaries cannot be bridged.
 
 ## Routes
 
@@ -55,7 +55,7 @@ VITE_API_BASE_URL=
 
 Set `VITE_USE_MOCK=true` only when working on UI without the Go API. The API key never belongs in this file; it lives in `apps/api/.env`, which is ignored.
 
-The final submission uses live API calls, not mock output as evidence. The latest code build and local photo upload were verified before this documentation snapshot; production health does not expose a deployment commit. See the [final baseline comparison](../../docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline) for results and limitations.
+Main now includes reference-assisted archive examples after the immutable `v1.1-final-submission` snapshot. Live analysis still calls Gemini; `VITE_USE_MOCK` is not evidence. Photo-only accuracy and archive-assisted behavior must be reported separately. Production health does not expose a deployment commit. See [AI evaluation](../../docs/AI_EVALUATION.md).
 
 ## Link previews
 

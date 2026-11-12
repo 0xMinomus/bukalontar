@@ -7,6 +7,20 @@
   "required": ["manuscript_id", "source_reference", "paleography", "ethnomedicinal_entity", "scientific_validation"],
   "properties": {
     "manuscript_id": { "type": "string", "minLength": 1 },
+    "reading_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "image_sha256", "title", "genre", "source_url", "transcript_license_url", "editorial_note"],
+      "properties": {
+        "method": { "const": "source_transcription" },
+        "image_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "title": { "type": "string", "minLength": 1 },
+        "genre": { "enum": ["Usadha", "Carcan", "Kakawin"] },
+        "source_url": { "type": "string", "format": "uri" },
+        "transcript_license_url": { "type": "string", "format": "uri" },
+        "editorial_note": { "type": "string", "minLength": 1 }
+      }
+    },
     "reading_assistance": {
       "type": "object",
       "additionalProperties": false,
@@ -28,7 +42,7 @@
       "required": ["lontar_group", "language"],
       "properties": {
         "lontar_group": {
-          "enum": ["Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha"]
+          "enum": ["Usadha", "Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha"]
         },
         "lempir_number": { "type": "integer", "minimum": 1 },
         "language": { "enum": ["Kawi / Jawa Kuno", "Bali", "Bali Alus", "Tidak diketahui"] }

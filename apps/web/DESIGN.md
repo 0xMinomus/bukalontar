@@ -72,3 +72,5 @@ Keep the initial viewport stable. Only folios below the initial viewport receive
 ## Evidence in the final submission
 
 The `v1.1-final-submission` snapshot retains this visual direction. The two selectable examples are actual Balinese-script palm-leaf photographs, not typeset script samples. Original-image analysis and preview enhancement are distinct. Preserve the AI warning and the distinction between detected script and reading quality; a Kawi language label does not mean Kawi script. Do not expose experimental Unicode as a verified transcription or style an AI source quote as expert approval. Results remain reading aids, including when KB taxonomy and literature links are available.
+
+After that immutable tag, main has four archive choices: two Usadha, Carcan, and Kakawin. Preserve the separate photo/reference/license links. Exact-byte archive analysis must visibly say “Berbantuan transkripsi rujukan” in both result and print; never present its source Latin as new OCR or use it as an independent accuracy demonstration. Other photographs remain experimental.

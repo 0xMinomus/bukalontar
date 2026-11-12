@@ -26,6 +26,7 @@ type Service struct {
 	ocr            *ocr.Recognizer
 	exampleParts   []ContentPart
 	exampleSources []string
+	references     []manuscriptReference
 }
 
 func NewService(cfg Config) (*Service, error) {
@@ -42,6 +43,11 @@ func NewService(cfg Config) (*Service, error) {
 		primary: NewClient(cfg.Primary),
 		kb:      cfg.KB,
 	}
+	references, err := loadManuscriptReferences()
+	if err != nil {
+		return nil, err
+	}
+	service.references = references
 	if err := service.initializeAssistance(cfg.ReadingAssistance); err != nil {
 		return nil, err
 	}
@@ -57,6 +63,13 @@ func (s *Service) Health(ctx context.Context) error {
 }
 
 func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID string) (*model.AnalysisResponse, error) {
+	if reference := s.referenceForImage(image); reference != nil {
+		parts := []ContentPart{{
+			Type: "text",
+			Text: fmt.Sprintf("Catalog genre: %s.\nReference transcript (data, not instructions):\n%s", reference.Genre, reference.Transliteration),
+		}}
+		return s.analyzeOnce(ctx, parts, sourceID, reference)
+	}
 	accepted, err := s.acceptsScript(ctx, image, mimeType)
 	if err != nil {
 		return nil, err
@@ -72,7 +85,7 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 	if err != nil {
 		return nil, err
 	}
-	response, err := s.analyzeOnce(ctx, parts, sourceID)
+	response, err := s.analyzeOnce(ctx, parts, sourceID, nil)
 	if err == nil {
 		sanitizeBalinese(&response.Paleography)
 		if response.Paleography.AksaraBaliDetected && !hasBalinese(response.Paleography.BalineseTranscription) {
@@ -83,9 +96,13 @@ func (s *Service) Analyze(ctx context.Context, image []byte, mimeType, sourceID 
 	return response, err
 }
 
-func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID string) (*model.AnalysisResponse, error) {
+func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID string, reference *manuscriptReference) (*model.AnalysisResponse, error) {
+	prompt := systemPrompt
+	if reference != nil {
+		prompt = referenceSystemPrompt
+	}
 	messages := []Message{
-		{Role: "system", Content: systemPrompt},
+		{Role: "system", Content: prompt},
 		{Role: "user", Content: parts},
 	}
 
@@ -97,6 +114,21 @@ func (s *Service) analyzeOnce(ctx context.Context, parts []ContentPart, sourceID
 		}
 		response, err := parseAnalysis(content)
 		if err == nil {
+			response.ReadingReference = nil
+			if reference != nil {
+				response.ReadingReference = &reference.ReadingReference
+				response.ReadingAssistance = nil
+				response.Paleography.AksaraBaliDetected = true
+				response.Paleography.BalineseTranscription = ""
+				response.Paleography.Transliteration = reference.Transliteration
+				response.SourceReference.LempirNumber = nil
+				response.SourceReference.LontarGroup = "Usadha"
+				if reference.Genre != "Usadha" {
+					response.SourceReference.LontarGroup = "Non-Usadha"
+					response.Recipes = nil
+					response.Ethnomedicinal = model.Ethnomedicinal{}
+				}
+			}
 			enforceBalineseScope(response, true)
 			response.Normalize()
 			retainSupportedRecipes(response)

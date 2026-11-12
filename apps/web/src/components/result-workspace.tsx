@@ -69,6 +69,7 @@ export function ResultWorkspace({
 }: ResultWorkspaceProps) {
   const source = result.source_reference
   const confidence = result.paleography.confidence
+  const reference = result.reading_reference
   const plantRecipes = resultRecipes(result).filter((recipe) =>
     hasMedicinalPlant(recipe.plant_local_name),
   )
@@ -85,11 +86,11 @@ export function ResultWorkspace({
             Hasil analisis
           </h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
-            {source.lontar_group} · Lempir{' '}
+            {reference?.title ?? source.lontar_group} · Lempir{' '}
             {source.lempir_number ?? 'tidak tercatat'} · Bahasa teks: {source.language}
             <span className="sm:hidden">
               {' '}
-              · {confidenceLabel[confidence]}
+              · {reference ? 'Transkripsi rujukan' : confidenceLabel[confidence]}
             </span>
           </p>
         </div>
@@ -97,10 +98,10 @@ export function ResultWorkspace({
         <div className="flex flex-wrap items-center gap-2">
           {isMock ? <Badge variant="brass">Data contoh</Badge> : null}
           <Badge
-            variant={confidenceVariant[confidence]}
+            variant={reference ? 'brass' : confidenceVariant[confidence]}
             className="hidden sm:inline-flex"
           >
-            {confidenceLabel[confidence]}
+            {reference ? 'Transkripsi rujukan' : confidenceLabel[confidence]}
           </Badge>
           <div className="flex flex-wrap items-center gap-2 print:hidden">
             <Button
@@ -129,19 +130,38 @@ export function ResultWorkspace({
         </div>
       </div>
 
+      {reference ? (
+        <aside className="screen-only mt-5 rounded-lg border border-brass/30 bg-secondary/40 px-4 py-3 text-sm leading-relaxed">
+          <p className="font-semibold">Berbantuan transkripsi rujukan · {reference.genre}</p>
+          <p className="mt-1 text-muted-foreground">
+            Foto cocok persis dengan arsip. Bacaan Latin berasal dari komunitas
+            Wikisource, bukan OCR baru. Gemini menghasilkan terjemahan dan
+            ekstraksi saat analisis; hasilnya tetap perlu ditinjau.
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">{reference.editorial_note}</p>
+          <a href={reference.source_url} target="_blank" rel="noreferrer" className="mt-2 inline-block underline underline-offset-4">
+            Periksa transkripsi sumber
+          </a>
+          {' · '}
+          <a href={reference.transcript_license_url} target="_blank" rel="noreferrer" className="underline underline-offset-4">
+            Lisensi transkripsi
+          </a>
+        </aside>
+      ) : null}
+
       <dl className="screen-only mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border/70 sm:grid-cols-3">
         <div className="bg-card px-4 py-3">
           <dt className="label-xs">Aksara Bali</dt>
           <dd className="mt-1 text-sm font-medium">
             {result.paleography.aksara_bali_detected
-              ? 'Terdeteksi'
+              ? reference ? 'Teridentifikasi dari arsip' : 'Terdeteksi'
               : 'Tidak terdeteksi'}
           </dd>
         </div>
         <div className="bg-card px-4 py-3">
-          <dt className="label-xs">Keterbacaan</dt>
+          <dt className="label-xs">{reference ? 'Sumber bacaan' : 'Keterbacaan'}</dt>
           <dd className="mt-1 text-sm font-medium">
-            {confidenceShort[confidence]}
+            {reference ? 'Transkripsi komunitas' : confidenceShort[confidence]}
           </dd>
         </div>
         <div className="bg-card px-4 py-3">
@@ -188,9 +208,9 @@ export function ResultWorkspace({
             </div>
 
             <p className="border-b border-border bg-brass-soft/55 px-4 py-3 text-xs leading-relaxed text-brass-strong sm:px-5">
-              Bacaan dan resep AI dapat keliru atau mengarang. Kutipan yang cocok
-              dengan transliterasi AI belum membuktikan kesesuaian dengan foto.
-              Periksa bersama ahli sebelum menggunakan informasi ini.
+              {reference
+                ? 'Terjemahan dan resep AI dapat keliru atau mengarang. Kutipan bersumber dari transkripsi komunitas, bukan verifikasi ahli. Periksa bersama ahli sebelum menggunakan informasi ini.'
+                : 'Bacaan dan resep AI dapat keliru atau mengarang. Kutipan yang cocok dengan transliterasi AI belum membuktikan kesesuaian dengan foto. Periksa bersama ahli sebelum menggunakan informasi ini.'}
             </p>
             <div className="p-4 sm:p-5">
               <AnalysisTabs result={result} />

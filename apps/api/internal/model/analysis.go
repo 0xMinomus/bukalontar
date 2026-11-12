@@ -15,6 +15,17 @@ type AnalysisResponse struct {
 	Scientific        Scientific         `json:"scientific_validation"`
 	Recipes           []Recipe           `json:"recipes"`
 	ReadingAssistance *ReadingAssistance `json:"reading_assistance,omitempty"`
+	ReadingReference  *ReadingReference  `json:"reading_reference,omitempty"`
+}
+
+type ReadingReference struct {
+	Method               string `json:"method"`
+	ImageSHA256          string `json:"image_sha256"`
+	Title                string `json:"title"`
+	Genre                string `json:"genre"`
+	SourceURL            string `json:"source_url"`
+	TranscriptLicenseURL string `json:"transcript_license_url"`
+	EditorialNote        string `json:"editorial_note"`
 }
 
 type ReadingAssistance struct {
@@ -164,7 +175,7 @@ func (r *AnalysisResponse) Validate() error {
 
 	require(r.ManuscriptID, "manuscript_id")
 	enum(r.SourceReference.LontarGroup, "source_reference.lontar_group", []string{
-		"Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha",
+		"Usadha", "Usadha Taru Pramana", "Usadha Tiwang", "Usadha Dalem", "Usadha Yeh", "Tidak diketahui", "Non-Usadha",
 	})
 	enum(r.SourceReference.Language, "source_reference.language", []string{
 		"Kawi / Jawa Kuno", "Bali", "Bali Alus", "Tidak diketahui",

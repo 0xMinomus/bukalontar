@@ -53,16 +53,16 @@ export function SiteFooter() {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border/70 pt-4 text-[11px] leading-relaxed text-muted-foreground">
           <p>
-            Foto contoh oleh Eka343, lisensi{' '}
+            Foto arsip: Eka343 (CC BY-SA 4.0) dan Internet Archive
+            (PD-ID-exempt).{' '}
             <a
-              href="https://creativecommons.org/licenses/by-sa/4.0/"
+              href="/samples/CREDITS.md"
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-2 hover:text-foreground"
             >
-              CC BY-SA 4.0
+              Kredit dan perubahan foto
             </a>
-            . Dipakai untuk menguji antarmuka.
           </p>
           <p className="small-caps">BukaLontar, 2026</p>
         </div>

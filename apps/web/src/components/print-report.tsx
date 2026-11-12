@@ -33,6 +33,7 @@ function unique(values: string[]): string[] {
 export function PrintReport({ result, originalUrl }: PrintReportProps) {
   const source = result.source_reference
   const paleography = result.paleography
+  const reference = result.reading_reference
   const entity = result.ethnomedicinal_entity
   const validation = result.scientific_validation
   const recipes = resultRecipes(result)
@@ -87,10 +88,20 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
         <p className="report-kicker">BukaLontar · Laporan Pembacaan</p>
         <h1 className="report-title">Hasil Pembacaan Lontar</h1>
         <p className="report-subtitle">
-          {source.lontar_group} · Lempir{' '}
+          {reference?.title ?? source.lontar_group} · Lempir{' '}
           {source.lempir_number ?? 'tidak tercatat'} · Bahasa teks: {source.language}
         </p>
       </header>
+      {reference ? (
+        <section className="report-section">
+          <h2>Berbantuan transkripsi rujukan · {reference.genre}</h2>
+          <p>Foto cocok persis dengan arsip. Bacaan Latin berasal dari komunitas Wikisource, bukan OCR baru. Terjemahan dan ekstraksi dihasilkan Gemini saat analisis dan tetap perlu ditinjau.</p>
+          <p>{reference.editorial_note}</p>
+          <p>Sumber: <a href={reference.source_url}>{reference.source_url}</a></p>
+          <p>Lisensi transkripsi: <a href={reference.transcript_license_url}>{reference.transcript_license_url}</a></p>
+          <p>SHA-256 foto: {reference.image_sha256}</p>
+        </section>
+      ) : null}
 
       <section className="report-section report-section-overview">
         <div className="report-grid">
@@ -119,12 +130,12 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
               <dd>{plain(source.language)}</dd>
             </div>
             <div className="report-field">
-              <dt>Keterbacaan</dt>
-              <dd>{confidenceLabel[paleography.confidence]}</dd>
+              <dt>{reference ? 'Sumber bacaan' : 'Keterbacaan'}</dt>
+              <dd>{reference ? 'Transkripsi komunitas' : confidenceLabel[paleography.confidence]}</dd>
             </div>
             <div className="report-field">
               <dt>Aksara Bali</dt>
-              <dd>{paleography.aksara_bali_detected ? 'Terdeteksi' : 'Tidak terdeteksi'}</dd>
+              <dd>{reference ? 'Teridentifikasi dari arsip' : paleography.aksara_bali_detected ? 'Terdeteksi' : 'Tidak terdeteksi'}</dd>
             </div>
             <div className="report-field">
               <dt>Tanaman</dt>
@@ -219,7 +230,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
               </h3>
               {recipe.source_quote ? (
                 <>
-                  <h3 className="report-subheading">Kutipan transliterasi AI</h3>
+                  <h3 className="report-subheading">{reference ? 'Kutipan transkripsi rujukan' : 'Kutipan transliterasi AI'}</h3>
                   <p className="report-prose">{recipe.source_quote}</p>
                   <p className="report-prose">Kecocokan teks tidak membuktikan tanaman atau resep terdapat di foto.</p>
                 </>

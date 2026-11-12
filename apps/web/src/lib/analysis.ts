@@ -1,6 +1,7 @@
 export type Confidence = 'low' | 'medium' | 'high'
 
 export type LontarGroup =
+  | 'Usadha'
   | 'Usadha Taru Pramana'
   | 'Usadha Tiwang'
   | 'Usadha Dalem'
@@ -86,6 +87,15 @@ export interface AnalysisResponse {
     safety_disclaimer: string
   }
   recipes?: Recipe[]
+  reading_reference?: {
+    method: 'source_transcription'
+    image_sha256: string
+    title: string
+    genre: 'Usadha' | 'Carcan' | 'Kakawin'
+    source_url: string
+    transcript_license_url: string
+    editorial_note: string
+  }
   reading_assistance?: {
     mode: 'none' | 'examples' | 'ocr' | 'both' | 'leaves' | 'all' | 'chart'
     ocr_model?: string

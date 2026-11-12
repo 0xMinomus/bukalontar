@@ -17,6 +17,8 @@ Aplikasi web eksperimental untuk membantu membaca foto lontar beraksara Bali, me
 
 Rilis final submission: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). [Website](https://www.bukalontar.my.id) | [Status akhir](docs/STATUS.md) | [Perbandingan baseline](docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline)
 
+Perbaikan pada `main` setelah tag: empat contoh arsip memakai transkripsi rujukan dengan label terbuka. Tag submission tidak dipindah. [Metode contoh arsip](docs/DATA_SOURCES.md#analisis-berbantuan-transkripsi-rujukan) | [Hasil uji contoh](docs/AI_EVALUATION.md#empat-contoh-arsip-berbantuan-transkripsi).
+
 </div>
 
 ---
@@ -81,6 +83,8 @@ Landing page BukaLontar: unggah satu lempir, mulai dari arsip contoh, lalu baca 
 
 Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa setiap lontar adalah Usadha, dan naskah non-Usadha tetap dapat dibaca sebagai teks.
 
+Contoh landing saat ini: **Usadha Sukawati**, **Usadha Rare Kemenuh**, **Carcan Kucing**, dan **Kakawin Bharatayuda**. Dua contoh pertama memuat racikan pada sisi yang dipilih; dua lainnya menunjukkan naskah non-Usadha. Untuk foto yang byte-nya cocok persis dengan arsip, bacaan Latin berasal dari transkripsi komunitas Wikisource. Gemini menerjemahkan dan mengekstrak isi saat permintaan berlangsung. UI dan PDF menandai **Berbantuan transkripsi rujukan**; ini bukan demonstrasi OCR murni atau bukti akurasi pada foto baru.
+
 ## Fitur
 
 ### Pembacaan lontar
@@ -111,13 +115,13 @@ Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa seti
 ## Cara Kerja AI
 
 1. Browser menyiapkan pratinjau yang dapat diperjelas, lalu mengirim foto asli ke `POST /api/analyze-manuscript`.
-2. Backend memvalidasi ukuran dan tipe file. Satu panggilan Gemini mengklasifikasikan aksara pada foto target tanpa katalog tanaman atau contoh.
-3. Hanya keputusan `balinese/high` mencapai pembaca. Default `examples` menyertakan tiga contoh glif; detektor lokal dan crop fokus tersedia sebagai bantuan eksperimental, bukan OCR halaman penuh.
-4. Gemini 3.8 Flash Low menghasilkan satu bacaan dan usulan terjemahan. Tidak ada fallback model atau penggabungan bacaan stokastik.
+2. Backend memvalidasi ukuran dan tipe file, lalu mencocokkan SHA-256 dengan empat foto arsip. Kecocokan memilih transkripsi rujukan dan genre sumber; bukan nama file atau `source_id`.
+3. Foto yang tidak cocok tetap melalui pemeriksaan aksara tanpa katalog atau contoh. Hanya `balinese/high` mencapai pembaca; default `examples` menambahkan tiga contoh glif. Detektor lokal tetap eksperimental, bukan OCR halaman penuh.
+4. Gemini 3.8 Flash Low membaca foto baru, atau menerjemahkan dan mengekstrak transkripsi yang dipasok untuk arsip cocok. Bacaan Latin arsip dipertahankan server dari sumber, bukan diganti bacaan model. Tidak ada fallback model atau jawaban hasil analisis yang di-cache.
 5. JSON diparse dan divalidasi; satu percobaan perbaikan struktur diperbolehkan.
-6. Resep memerlukan kutipan utuh dari lembar pertama yang menyebut tanaman dan bahan tambahan yang diklaim. Bagian tidak terbaca, elipsis, pengantar, dan lembar lain tidak boleh menjembatani bukti.
+6. Resep memerlukan kutipan utuh dari lembar pertama yang menyebut tanaman dan bahan tambahan yang diklaim. Sumber kutipan adalah bacaan AI pada foto baru atau transkripsi rujukan pada arsip cocok. Bagian tidak terbaca, elipsis, pengantar, dan lembar lain tidak boleh menjembatani bukti. Arsip Carcan/Kakawin tidak menghasilkan kartu resep.
 7. Nama ilmiah, famili, senyawa, dan rujukan berasal dari KB jika cocok. Sifat tradisional mengikuti bacaan, bukan nilai bawaan KB.
-8. Frontend menampilkan usulan bacaan, peringatan, dan kartu resep jika ada. Kutipan yang cocok dengan bacaan AI tidak membuktikan bahwa bacaan sesuai foto atau bahwa resep benar.
+8. Frontend dan PDF membedakan analisis foto eksperimental dari analisis berbantuan transkripsi rujukan. Kutipan yang cocok tidak membuktikan terjemahan benar atau racikan aman.
 
 Server menetapkan disclaimer medis dan rujukan KB. Model masih dapat mengarang bacaan beserta kutipan yang tampak konsisten; pengaman tidak menggantikan pemeriksaan ahli.
 
@@ -126,12 +130,15 @@ Server menetapkan disclaimer medis dan rujukan KB. Model masih dapat mengarang b
 ```mermaid
 flowchart TD
     U["Browser: foto asli"] --> A["Go API: validasi upload"]
-    A --> C["Gemini: klasifikasi aksara"]
+    A --> M{"SHA-256 cocok arsip?"}
+    M -->|tidak| C["Gemini: klasifikasi aksara"]
+    M -->|ya| T["Transkripsi sumber<br/>Gemini: terjemahan dan ekstraksi"]
     C --> D{"balinese/high?"}
     D -->|tidak| N["Respons penolakan tanpa bacaan/resep"]
     D -->|ya| R["Gemini: satu pembacaan dan terjemahan"]
     E["Tiga contoh glif default<br/>crop lokal eksperimental"] --> R
     R --> V["Validasi JSON dan batas kutipan"]
+    T --> V
     V --> K["Grounding Taru Pramana"]
     K --> H["Hasil dengan peringatan dan laporan PDF"]
     N --> U
@@ -225,7 +232,7 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 
 ## Data, Sumber, dan Kredit
 
-- Foto sampel lontar: Eka343, CC BY-SA 4.0. Detail di [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
+- Foto sampel lontar: Eka343 (CC BY-SA 4.0) dan pindaian Carcan dari Internet Archive (PD-ID-exempt). Transkripsi: kontributor Wikisource Bali. Kredit, revisi, crop, dan hash ada di [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
 - Knowledge base Taru Pramana: `apps/api/internal/kb/data/taru-pramana.json`.
 - Rujukan naskah dan konteks: [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
 - Font: Cormorant Garamond dan Lora, dibundel lokal; lisensi OFL menyertai aset.
@@ -237,7 +244,7 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 - API key hanya dibaca dari environment server.
 - `.env` dan varian lokal di-ignore. Hanya `.env.example` yang masuk repository.
 - Tidak ada data pribadi, data pasien, atau credential demo di repository.
-- Backend memproses gambar di memori, tetapi mengirimkannya ke gateway dan penyedia AI. Kebijakan retensi pihak ketiga belum diverifikasi. Browser menyimpan foto dan hasil sesi aktif di IndexedDB.
+- Backend memproses gambar di memori. Foto yang tidak cocok dengan arsip dikirim ke gateway dan penyedia AI; untuk arsip cocok, hanya teks rujukan dikirim. Retensi pihak ketiga belum diverifikasi. Browser menyimpan foto dan hasil sesi aktif di IndexedDB.
 - Endpoint 9router tidak boleh dibuka ke publik tanpa autentikasi.
 - Laporan kerentanan mengikuti [`SECURITY.md`](SECURITY.md).
 

@@ -21,7 +21,7 @@ Gunakan GitHub Security Advisory pada repository ini, atau hubungi pemelihara me
 ## Data dan Privasi
 
 - Jangan mengunggah data pribadi, data pasien, atau naskah yang tidak memiliki izin publikasi.
-- Backend memproses gambar di memori dan meneruskannya melalui 9router ke penyedia AI. Kebijakan retensi gateway dan penyedia belum diverifikasi; jangan mengunggah materi rahasia.
+- Backend memproses gambar di memori. Foto baru diteruskan melalui 9router ke penyedia AI; foto yang cocok persis dengan empat arsip hanya mengirim transkripsi rujukan. Retensi pihak ketiga belum diverifikasi; jangan mengunggah materi rahasia.
 - Foto asli, pratinjau yang diperjelas, nama berkas, dan hasil sesi aktif dapat tersimpan di IndexedDB browser. Tombol naskah baru atau pembersihan data situs menghapus sesi lokal; ini tidak membuktikan penghapusan pada layanan pihak ketiga.
 
 ## Batas AI
@@ -30,6 +30,7 @@ Gunakan GitHub Security Advisory pada repository ini, atau hubungi pemelihara me
 - Hasil model dapat salah membaca aksara atau istilah.
 - Jangan gunakan hasil AI sebagai satu-satunya dasar untuk keputusan pengobatan atau filologi.
 - Pengaman resep memeriksa konsistensi kutipan dan batas lembar, bukan kebenaran bacaan atau keamanan racikan. Bacaan beserta kutipannya masih dapat sama-sama dikarang model.
+- Provenance arsip dipilih oleh SHA-256 byte gambar, bukan nama file atau `source_id`. Metadata provenance dari keluaran model dibuang. Transkripsi komunitas bukan verifikasi ahli, dan terjemahan/ekstraksi tetap dapat salah.
 - Validasi input dan pembatasan model bukan bukti audit keamanan menyeluruh. Endpoint health tidak mengungkap commit deployment.
 
 ## Endpoint AI

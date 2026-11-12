@@ -321,3 +321,60 @@ go -C apps/api test ./internal/ai -run TestAnalyzeRequiresTopLeafEvidenceBeforeG
 ```
 
 **Hasil akhir:** pengaman resep diperketat dengan bukti regresi, tanpa perubahan model atau tambahan panggilan AI. Sasaran peningkatan akurasi bacaan dan terjemahan belum tercapai; tidak disajikan sebagai upgrade OCR atau bukti produk siap tanpa pemeriksaan manusia.
+
+## Empat contoh arsip berbantuan transkripsi
+
+Perbaikan setelah tag `v1.1-final-submission`, 12 November 2026. Tag tidak dipindah; model tetap hanya `ag/gemini-3.8-flash-low`.
+
+Sisi depan Lare lama berisi tanda gejala, bukan racikan tanaman. Kartu kosong bukan bukti seluruh naskah bukan Usadha. Empat pengganti adalah Usadha Sukawati 07, Usadha Rare Kemenuh 56, Carcan Kucing 1B, dan Kakawin Bharatayuda Maarti 01. Foto dan rujukan masing-masing tersedia di [sumber data](DATA_SOURCES.md#foto-sampel) dan [kredit/crop/hash](../apps/web/public/samples/CREDITS.md).
+
+### Mengapa bukan hanya mengganti foto
+
+Uji awal dua kali per foto masih menunjukkan bacaan berbeda dari sumber. Sukawati menghasilkan `intaran` yang tidak ada pada rujukan sisi depan; Carcan Kucing menghasilkan narasi medis dan satu kartu tanaman. Satu permintaan Rare gagal dengan respons upstream kosong. Default produk memakai contoh glif; detektor DeepLontar tidak berjalan pada mode default itu. Tidak ada bukti bahwa kegagalan ini berasal dari classifier glif lokal.
+
+Pengguna memilih bantuan transkripsi arsip yang dilabeli terbuka. Server mencocokkan SHA-256 byte foto dengan empat referensi tersemat, lalu memasok render Latin transkripsi komunitas kepada Gemini untuk terjemahan/ekstraksi. Server mempertahankan Latin sumber, mengisi provenance sendiri, dan membatasi dua arsip nonmedis tanpa resep. Ini tidak bergantung pada nama file atau `source_id`, tidak menyajikan hasil analisis tersimpan, dan tidak mengubah bobot/model. Foto lain tetap memakai gate dan pembacaan foto eksperimental.
+
+Transkripsi komunitas dan render Latin bukan validasi filologis independen. Pemisahan kata serta penggabungan kata yang terpotong baris bersifat editorial; startup memeriksa bahwa huruf dan tanda baca tidak berubah. Mempertahankan teks yang dipasok bukan prediksi OCR dan tidak boleh dihitung sebagai CER/akurasi holdout. Nama yang belum cocok KB tetap berlabel belum tercatat.
+
+### Hasil pengamatan
+
+Byte foto sama pada kedua batch; masing-masing dua permintaan per foto. Jalur analisis berbeda karena bantuan rujukan disetujui.
+
+| Ukuran | Foto murni sebelum bantuan | Berbantuan transkripsi, batch akhir |
+| --- | --- | --- |
+| Respons berhasil | 7/8 | 8/8 |
+| Permintaan Usadha yang menghasilkan kartu | 1/4, nama `intaran` tidak sesuai rujukan | 4/4, termasuk `dapdap` dan `sĕmbuŋ` dengan kutipan sumber |
+| Kartu obat pada dua arsip nonmedis | 1/4 | 0/4, dibatasi genre sumber |
+| Bacaan Latin | Dihasilkan model, berbeda dari rujukan | 8/8 dipertahankan dari referensi yang dipasok |
+| Median durasi seluruh permintaan | 21,657 detik | 12,474 detik |
+
+Durasi hanya pengamatan, bukan benchmark terkontrol atau bukti model menjadi lebih cepat. Jalur arsip memakai satu analisis teks alih-alih gate dan pembacaan foto; beban provider dan konkurensi tidak dikontrol. Satu permintaan akhir memerlukan 79,817 detik. Delapan keberhasilan tidak menjamin permintaan berikutnya berhasil atau terjemahan/resep benar.
+
+Prompt rujukan pertama gagal pada enum bahasa `Jawa Kuno`/`Kawi`; batch dihentikan setelah lima hasil tercatat. Batas enum diperjelas tanpa melonggarkan validator. Batch berikutnya berhasil 8/8, tetapi kutipan racikan awal Dapdap terlewat dan frasa umum seluruh pucuk daun diperlakukan sebagai tanaman. Kata sumber yang terpotong baris kemudian disambung secara editorial tanpa mengubah karakter, dan prompt membedakan nama tanaman dari bahan generik. Batch akhir menampilkan kutipan Dapdap pada kedua permintaan Sukawati. Ini perbaikan ekstraksi pada contoh bersumber, bukan validasi semua identifikasi.
+
+Empat tombol landing menghasilkan HTTP 200 pada jalur nyata. Dua Usadha menampilkan kartu; Carcan/Kakawin menampilkan catatan non-Usadha. Pengulangan setelah koreksi label memastikan kutipan disebut **Kutipan transkripsi rujukan**, bukan transliterasi AI. UI/PDF menampilkan metode, sumber, lisensi, dan hash. Desktop 1280 px dan mobile 390 px diperiksa; empat thumbnail termuat, lebar dokumen mobile 390 px, dan tidak ada error JavaScript tercatat.
+
+Dua kontrol tambahan memakai foto Panji kategori Jawa dan contoh cetak Kawi, masing-masing sekali, dengan `source_id=usada-sukawati`: keduanya HTTP 422 tanpa provenance arsip. Kawi cetak bukan foto lontar. Label pembanding belum diperiksa ahli independen; hasil ini menguji bahwa ID tidak memberi akses ke transkripsi arsip, bukan jaminan klasifikasi semua aksara.
+
+Paket Go `internal/ai`, `internal/model`, dan `internal/handler` lulus. Empat kasus baru menguji kecocokan byte dibanding ID, provenance keluaran model yang dipalsukan, kutipan yang tidak didukung sumber, serta penghapusan resep pada arsip nonmedis. `make build` berhasil; hasil cetak PDF juga diperiksa. Model dan data latih DeepLontar tidak diganti.
+
+Artefak, termasuk kegagalan:
+
+- `evaluation/four-demo-photo-only-20261112.jsonl`
+- `evaluation/four-demo-reference-initial-20261112.jsonl`
+- `evaluation/four-demo-reference-before-wrap-fix-20261112.jsonl`
+- `evaluation/four-demo-reference-final-20261112.jsonl`
+- `evaluation/four-demo-browser-20261112.jsonl`
+- `evaluation/four-demo-negative-controls-20261112.jsonl`
+
+Reproduksi dari `apps/api`, dengan kredensial gateway lokal:
+
+```bash
+go run ./cmd/evaluate -models ag/gemini-3.8-flash-low -reasoning low \
+  -repeat 2 -variant reference-assisted-editorial-wraps -out /tmp/archive-demo.jsonl \
+  ../web/public/samples/lontar-usadha-sukawati-depan.jpg \
+  ../web/public/samples/lontar-usadha-rare-kemenuh-depan.jpg \
+  ../web/public/samples/lontar-carcan-kucing-1b.jpg \
+  ../web/public/samples/lontar-kakawin-bharatayuda-depan.jpg
+```
+
