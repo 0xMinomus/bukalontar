@@ -2,9 +2,11 @@
 
 Dokumen ini mencatat artefak pembelajaran mesin lokal yang membantu pembacaan lontar. Keduanya dilatih dari data berlabel ahli, bukan dari jawaban model bahasa, dan **bukan** transkripsi halaman penuh.
 
+Status final submission [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission): tidak ada OCR urutan atau bobot baru pada upgrade terakhir. Pengaman kutipan diperbaiki di server; percobaan OCR literal dan pemeriksa visual tambahan tidak diintegrasikan. Lihat [hasil baseline](AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline).
+
 ## Peran dalam produk
 
-- Detektor teks menemukan area berteks pada foto lontar, lalu mengirim maksimal dua perbesaran konteks ke model multimodal.
+- Detektor teks tersedia sebagai bantuan eksperimental untuk memilih maksimal dua crop fokus. Default `examples` memakai contoh glif, bukan detektor atau transkripsi OCR.
 - Pengenal glif mengklasifikasikan potongan aksara yang sudah dilokalisasi ahli ke ID kelas opasitas DeepLontar.
 - Model bahasa tetap membaca foto asli. Hasil detektor bukan teks terbaca, bukan terjemahan, dan tidak mengidentifikasi tanaman obat.
 - ID kelas belum dipetakan ke nama aksara oleh sumber primer, sehingga API runtime tidak pernah mengeluarkan ID tersebut sebagai bacaan.
@@ -13,7 +15,7 @@ Dokumen ini mencatat artefak pembelajaran mesin lokal yang membantu pembacaan lo
 
 - [DeepLontar v2](https://doi.org/10.6084/m9.figshare.20103803.v2), CC BY 4.0, oleh Sutramiani dkk.
 - 200 citra asli beraksara Bali. Satu berkas anotasi (`76a.txt`) dikarantina karena ID kelas di luar rentang 0–54.
-- Pembagian kelompok memakai nomor lembar fisik: kedua sisi (`a`/`b`) satu lembar selalu berada di kelompok yang sama. Train 159 lembar, dev 20, test 20.
+- Pembagian kelompok memakai nomor lembar fisik: kedua sisi (`a`/`b`) satu lembar selalu berada pada kelompok yang sama. Train terdiri dari 80 kelompok dengan 159 citra berlabel setelah karantina; dev dan test masing-masing 10 kelompok dengan 20 citra. Ini bukan 199 lembar fisik atau naskah berbeda.
 - Label hanya lokasi dan kelas karakter. Tidak ada transkripsi halaman, terjemahan, atau label resep pada dataset ini.
 
 ## Artefak

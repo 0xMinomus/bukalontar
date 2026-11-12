@@ -6,7 +6,7 @@
 
 **Baca lontar Bali, dari aksara sampai konteks.**
 
-Aplikasi web untuk membaca citra lontar Bali, menghasilkan transliterasi dan terjemahan, serta menampilkan konteks naskah. Untuk lontar Usadha, BukaLontar menambahkan ekstraksi resep tanaman obat yang terhubung ke basis pengetahuan Taru Pramana.
+Aplikasi web eksperimental untuk membantu membaca foto lontar beraksara Bali, menghasilkan usulan transliterasi dan terjemahan, serta menelusuri konteks naskah. Untuk Usadha, aplikasi dapat menampilkan resep yang lolos pemeriksaan kutipan dan pencocokan tanaman dengan basis pengetahuan Taru Pramana. Hasil tetap perlu diperiksa terhadap foto dan oleh ahli.
 
 ![Status](https://img.shields.io/badge/status-MVP-b08d57)
 ![AI](https://img.shields.io/badge/AI-multimodal-4f6f52)
@@ -14,6 +14,8 @@ Aplikasi web untuk membaca citra lontar Bali, menghasilkan transliterasi dan ter
 ![Competition](https://img.shields.io/badge/competition-Bali%20DigiFest%202026-9c6644)
 
 [Repositori](https://github.com/0xMinomus/bukalontar) | [Dokumentasi](docs/README.md) | [AI Disclosure](docs/AI_DISCLOSURE.md)
+
+Rilis final submission: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). [Website](https://www.bukalontar.my.id) | [Status akhir](docs/STATUS.md) | [Perbandingan baseline](docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline)
 
 </div>
 
@@ -42,7 +44,7 @@ Aplikasi web untuk membaca citra lontar Bali, menghasilkan transliterasi dan ter
 
 Lontar adalah warisan tulis Bali yang mencakup banyak genre: Usadha, Kakawin, Babad, Geguritan, tutur, dan naskah lain. Banyak di antaranya belum terbaca oleh generasi muda, peneliti, atau pengunjung museum karena dua lapis hambatan: aksara Bali kuno dan bahasa Kawi.
 
-BukaLontar adalah pembaca lontar berbasis AI. Unggah foto lempir, lalu aplikasi menampilkan transliterasi Latin, terjemahan Indonesia dan Inggris, serta informasi sumber naskah. Alur ini berlaku untuk lontar Bali secara umum.
+BukaLontar adalah alat bantu pembacaan lontar berbasis AI, bukan pengganti filolog. Unggah foto lempir untuk memperoleh usulan transliterasi Latin, terjemahan Indonesia dan Inggris, serta informasi sumber jika dapat dikenali. Bahasa Kawi/Jawa Kuno dapat ditulis dengan aksara Bali; bahasa tersebut tidak sama dengan aksara Kawi.
 
 Untuk lontar Usadha, hasilnya diperkaya dengan lapisan khusus: nama tanaman lokal, nama ilmiah, bagian tanaman, bentuk racikan, indikasi, senyawa fitokimia, dan rujukan dari Taru Pramana. Lapisan ini tidak dipaksakan pada naskah yang bukan Usadha.
 
@@ -74,8 +76,8 @@ Landing page BukaLontar: unggah satu lempir, mulai dari arsip contoh, lalu baca 
 
 | Alur | Naskah | Keluaran utama |
 | --- | --- | --- |
-| Pembacaan lontar umum | Semua lontar Bali yang dapat dibaca | Transliterasi, terjemahan Indonesia, terjemahan Inggris, ringkasan isi |
-| Alur Usadha | Lontar Usadha | Semua keluaran umum, ditambah satu atau beberapa kartu resep tanaman obat |
+| Pembacaan lontar umum | Foto lontar beraksara Bali | Usulan transliterasi, terjemahan Indonesia dan Inggris, serta ringkasan ketika teks dapat dibaca |
+| Alur Usadha | Foto lontar dengan dugaan resep Usadha | Keluaran umum dan maksimal enam kartu resep yang lolos pemeriksaan kutipan |
 
 Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa setiap lontar adalah Usadha, dan naskah non-Usadha tetap dapat dibaca sebagai teks.
 
@@ -83,10 +85,10 @@ Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa seti
 
 ### Pembacaan lontar
 
-- Preprocessing gambar di browser: downscale, CLAHE, dan unsharp mask.
-- Transkripsi aksara Bali ke Latin.
-- Terjemahan Indonesia dan Inggris.
-- Label sumber, nomor lempir, dan tingkat keterbacaan.
+- Downscale, CLAHE, dan unsharp mask untuk pratinjau browser; API menerima foto asli.
+- Usulan transliterasi Latin, dengan penanda bagian tidak terbaca.
+- Usulan terjemahan Indonesia dan Inggris.
+- Bahasa teks, sumber, dan nomor lempir jika dikenali, serta confidence model yang bukan ukuran akurasi.
 - Tampilan hasil yang bisa disalin dan diekspor menjadi laporan PDF.
 
 ### Alur Usadha
@@ -108,32 +110,32 @@ Alur Usadha bersifat otomatis berdasarkan isi naskah. Tidak ada klaim bahwa seti
 
 ## Cara Kerja AI
 
-1. Browser mengecilkan dan mempertajam foto lontar.
-2. Gambar dikirim ke `POST /api/analyze-manuscript`.
-3. Backend memvalidasi ukuran dan tipe file. Detektor teks lokal terlatih memilih maksimal dua area fokus dari foto yang sama, dan tiga contoh glif berlabel ahli disertakan sebagai referensi visual.
-4. Satu pembacaan dijalankan per permintaan; hasil dua pembacaan tidak lagi digabung berdasarkan panjang teks atau jumlah tanaman.
-5. Setiap respons diparse sebagai JSON, divalidasi, dan diperbaiki satu kali bila schema tidak sesuai.
-6. Maksimal enam resep dipertahankan dalam urutan bacaan. Persiapan berbeda yang memakai tanaman sama tidak dihapus berdasarkan nama tanaman saja. Naskah umum dapat memiliki daftar resep kosong.
-7. Nama ilmiah, famili, senyawa, dan rujukan digrounding ke Taru Pramana. Field yang tidak cocok dikosongkan, bukan ditebak.
-8. Frontend menampilkan hasil bacaan dan, bila ada, kartu resep Usadha.
+1. Browser menyiapkan pratinjau yang dapat diperjelas, lalu mengirim foto asli ke `POST /api/analyze-manuscript`.
+2. Backend memvalidasi ukuran dan tipe file. Satu panggilan Gemini mengklasifikasikan aksara pada foto target tanpa katalog tanaman atau contoh.
+3. Hanya keputusan `balinese/high` mencapai pembaca. Default `examples` menyertakan tiga contoh glif; detektor lokal dan crop fokus tersedia sebagai bantuan eksperimental, bukan OCR halaman penuh.
+4. Gemini 3.8 Flash Low menghasilkan satu bacaan dan usulan terjemahan. Tidak ada fallback model atau penggabungan bacaan stokastik.
+5. JSON diparse dan divalidasi; satu percobaan perbaikan struktur diperbolehkan.
+6. Resep memerlukan kutipan utuh dari lembar pertama yang menyebut tanaman dan bahan tambahan yang diklaim. Bagian tidak terbaca, elipsis, pengantar, dan lembar lain tidak boleh menjembatani bukti.
+7. Nama ilmiah, famili, senyawa, dan rujukan berasal dari KB jika cocok. Sifat tradisional mengikuti bacaan, bukan nilai bawaan KB.
+8. Frontend menampilkan usulan bacaan, peringatan, dan kartu resep jika ada. Kutipan yang cocok dengan bacaan AI tidak membuktikan bahwa bacaan sesuai foto atau bahwa resep benar.
 
-Model tidak dipakai untuk menulis disclaimer, membuat sitasi palsu, atau mengisi taksonomi yang tidak ada di knowledge base.
+Server menetapkan disclaimer medis dan rujukan KB. Model masih dapat mengarang bacaan beserta kutipan yang tampak konsisten; pengaman tidak menggantikan pemeriksaan ahli.
 
 ## Arsitektur
 
 ```mermaid
-flowchart LR
-    U["Browser<br/>React + Canvas"] -->|multipart image| A["Go API<br/>validasi + rate limit"]
-    A -->|foto| O["Detektor teks lokal<br/>model terlatih"]
-    O -->|maks 2 crop fokus| A
-    E["Contoh glif ahli<br/>embedded"] -->|maks 3 referensi| A
-    A -->|foto + fokus + contoh| R["9router<br/>OpenAI-compatible"]
-    R --> G["Model multimodal"]
-    G -->|JSON| A
-    A -->|validasi| K["Taru Pramana KB<br/>embedded JSON"]
-    K -->|hasil ter-grounding| A
-    A -->|AnalysisResponse| U
-    U --> P["Tampilan hasil + laporan PDF"]
+flowchart TD
+    U["Browser: foto asli"] --> A["Go API: validasi upload"]
+    A --> C["Gemini: klasifikasi aksara"]
+    C --> D{"balinese/high?"}
+    D -->|tidak| N["Respons penolakan tanpa bacaan/resep"]
+    D -->|ya| R["Gemini: satu pembacaan dan terjemahan"]
+    E["Tiga contoh glif default<br/>crop lokal eksperimental"] --> R
+    R --> V["Validasi JSON dan batas kutipan"]
+    V --> K["Grounding Taru Pramana"]
+    K --> H["Hasil dengan peringatan dan laporan PDF"]
+    N --> U
+    H --> U
 ```
 
 Detail teknis ada di [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Kontrak respons ada di [`packages/schema/analysis.json`](packages/schema/analysis.json).
@@ -156,9 +158,9 @@ Detail teknis ada di [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Kontrak res
 
 Prasyarat:
 
-- Node.js 20 atau lebih baru
+- Node.js 22.12 atau lebih baru (Vite juga mendukung Node.js 20.19 pada seri 20.x)
 - npm
-- Go 1.24 atau lebih baru
+- Go 1.26 atau lebih baru
 
 ```bash
 npm install
@@ -191,12 +193,14 @@ Buka `http://localhost:8080`. Health check tersedia di `GET /health`.
 
 ## Deployment URL
 
-- Live MVP: <https://bukalontar.my.id>
-- Health check: <https://bukalontar.my.id/health>
+- Live MVP: <https://www.bukalontar.my.id>
+- Health check: <https://www.bukalontar.my.id/health>
 - Hosting: Vercel Services, service `web` dan `api`
 - AI gateway: 9router di `https://dashboard.minomus.my.id/v1`
 
 Untuk deployment Vercel, `AI_BASE_URL` harus diisi endpoint publik 9router, bukan `127.0.0.1`. Health check akan mengembalikan `503` bila env tersebut belum masuk ke project.
+
+Pada 12 November 2026, health produksi melaporkan `ok=true`, 10 entri KB, dan model `ag/gemini-3.8-flash-low`. Endpoint tidak melaporkan commit deployment; health yang baik tidak membuktikan versi produksi sama dengan tag submission.
 
 Pengujian:
 
@@ -224,7 +228,7 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 - Foto sampel lontar: Eka343, CC BY-SA 4.0. Detail di [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
 - Knowledge base Taru Pramana: `apps/api/internal/kb/data/taru-pramana.json`.
 - Rujukan naskah dan konteks: [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
-- Font: Cormorant Garamond dan Lora melalui Google Fonts.
+- Font: Cormorant Garamond dan Lora, dibundel lokal; lisensi OFL menyertai aset.
 - Library frontend: React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge.
 - Gateway AI: 9router, hanya Gemini 3.8 Flash Low tanpa fallback model.
 
@@ -233,13 +237,13 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 - API key hanya dibaca dari environment server.
 - `.env` dan varian lokal di-ignore. Hanya `.env.example` yang masuk repository.
 - Tidak ada data pribadi, data pasien, atau credential demo di repository.
-- Gambar diproses di memori dan tidak disimpan sebagai file oleh backend.
+- Backend memproses gambar di memori, tetapi mengirimkannya ke gateway dan penyedia AI. Kebijakan retensi pihak ketiga belum diverifikasi. Browser menyimpan foto dan hasil sesi aktif di IndexedDB.
 - Endpoint 9router tidak boleh dibuka ke publik tanpa autentikasi.
 - Laporan kerentanan mengikuti [`SECURITY.md`](SECURITY.md).
 
 ## AI dan Technology Disclosure
 
-Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI coding assistant digunakan untuk membantu implementasi dan dokumentasi. Prompt, log, dan konfigurasi agen tidak disimpan di repository. Keputusan teknis dan source code tetap menjadi tanggung jawab tim.
+Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI coding assistant membantu implementasi dan dokumentasi. Percakapan dan konfigurasi rahasia agen tidak disertakan; prompt produk dan keluaran eksperimen model disimpan untuk reproduksi. Keputusan teknis dan source code tetap menjadi tanggung jawab tim.
 
 ## Evaluasi AI
 
@@ -247,9 +251,18 @@ Disclosure lengkap ada di [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md). AI c
 
 Korpus lokal berisi 200 citra asli lontar Bali dari DeepLontar v2, dengan manifest, checksum, dan lisensi CC BY 4.0. Satu berkas anotasi dikarantina karena ID kelas di luar spesifikasi. Data ini dipakai melatih detektor teks dan pengenal glif lokal; bobot model bahasa tidak diubah. Lihat [sumber data](docs/DATA_SOURCES.md) dan [dokumen training OCR](docs/OCR_TRAINING.md).
 
+### Hasil akhir dibanding baseline
+
+Upgrade terakhir memperketat pengaman resep, bukan meningkatkan kemampuan OCR. Pada enam kasus batas terkontrol, resep tidak didukung yang lolos turun dari 6/6 menjadi 0/6; tiga kutipan utuh tetap diterima 3/3. Angka ini bukan akurasi pembacaan foto.
+
+Pada batch empat gambar × dua pengulangan, baseline dan kandidat sama-sama menerima foto Bali 4/4 dan menolak pembanding 4/4. Pembanding Kawi adalah gambar cetak, bukan foto lontar; sampel kecil dan label aksara belum disertifikasi ahli. Tidak ada bukti peningkatan akurasi, konsistensi, atau kecepatan pembacaan. Bukti teknis terakhir: 51 tes backend lulus, build produksi berhasil, dan upload foto melalui API lokal menghasilkan HTTP 200. Rincian dan seluruh keluaran ada pada [evaluasi upgrade](docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline).
+
 ## Batasan Saat Ini
 
 - Output model tidak deterministik. Dua permintaan berturut-turut dapat membaca baris atau resep yang berbeda.
+- Pembatasan Jawa/Kawi belum andal; foto Bali juga pernah ditolak. Confidence model bukan probabilitas kebenaran.
+- Model dapat menghasilkan bacaan dan resep keliru meskipun kutipan cocok. Hasil bukan edisi filologi terverifikasi atau rekomendasi pengobatan.
+- Unicode Bali di API bersifat eksperimental dan tidak ditampilkan di UI/PDF. OCR lokal mengenali potongan glif, bukan transkripsi kalimat.
 - Kualitas pembacaan bergantung pada kualitas foto, pencahayaan, dan ketajaman goresan.
 - Untuk naskah non-Usadha, hasil terstruktur masih terbatas pada bacaan, terjemahan, dan ringkasan. Klasifikasi genre yang mendalam belum tersedia.
 - Knowledge base masih terbatas pada entri Taru Pramana yang dikurasi.

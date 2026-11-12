@@ -2,11 +2,15 @@
 
 Tanggal pengujian: 11–12 November 2026 (timestamp berkas JSONL menggunakan UTC). Hasil ini adalah evaluasi pipeline nyata melalui 9router, bukan hasil fine-tuning.
 
-## Keputusan berdasarkan bukti
+Snapshot final submission: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). Model produk hanya `ag/gemini-3.8-flash-low`; nama model lain di bawah adalah riwayat eksperimen, bukan opsi server produk saat ini. Untuk laporan akhir, gunakan [perbandingan baseline terakhir](#upgrade-pengaman-kutipan-dan-pembanding-baseline). Perbaikan terakhir ada pada pengaman kutipan resep, bukan akurasi OCR.
 
-Sol sudah terintegrasi dan dapat dipilih melalui `AI_MODEL=cx/gpt-6.1-sol` serta `AI_REASONING_EFFORT=low`. Namun, Sol tidak dipilih sebagai default: pada lima citra lontar, seluruh 15 pengulangan pipeline baru hanya menghasilkan penanda tidak terbaca. Respons JSON yang berhasil bukan bukti pembacaan yang berhasil.
+Bagian-bagian berikut mencatat tahap pengujian berbeda. Angka tes, latensi, dan status lokal pada bagian lama berlaku pada tahap tersebut; jangan dijumlahkan atau diperlakukan sebagai hasil rilis yang sama. Sinkronisasi Markdown tidak menjalankan ulang benchmark model. Health produksi pada 12 November melaporkan `ok=true`, 10 entri KB, dan Flash Low, tetapi tidak melaporkan commit deployment.
 
-Default tetap `ag/gemini-3.8-flash-low`. Penghapusan dua pass dan union lintas hasil mempercepat pipeline, tetapi belum membuktikan kenaikan akurasi maupun konsistensi. Total 72 percobaan benchmark telah diselesaikan; diagnostik dan smoke test browser dicatat terpisah.
+## Keputusan model pada evaluasi awal
+
+Pada evaluasi awal, Sol diuji melalui konfigurasi runner dengan `cx/gpt-6.1-sol` dan reasoning `low`. Pada lima citra lontar, seluruh 15 pengulangan pipeline baru hanya menghasilkan penanda tidak terbaca. Respons JSON yang berhasil bukan bukti pembacaan yang berhasil. Server produk saat ini menolak model selain Gemini 3.8 Flash Low.
+
+Keputusan akhir mempertahankan `ag/gemini-3.8-flash-low`. Penghapusan dua pass dan union lintas hasil mempercepat pipeline pada batch awal, tetapi belum membuktikan kenaikan akurasi maupun konsistensi. Angka 72 percobaan merujuk benchmark awal, bukan total seluruh eksperimen lanjutan; diagnostik dan smoke test dicatat terpisah.
 
 ### Kandidat tambahan yang ditolak
 
@@ -66,7 +70,7 @@ Evaluasi 12 November memakai lima halaman Wikisource berlabel dengan field `expe
 
 Anotasi berisi 45.261 kotak karakter. `76a.txt` memiliki 76 ID kelas di luar rentang 0–54 yang dipublikasikan; seluruh 198 kotaknya dikarantina tanpa mengubah berkas asli. Tersisa 199 berkas label dan 45.063 kotak yang memenuhi pemeriksaan format. Label tersebut bukan transkripsi halaman, transliterasi, terjemahan, atau resep Usadha.
 
-Ada pelatihan model lokal, tetapi bukan fine-tuning Sol/Gemini. `scripts/train_lontar_ocr.py` melatih detektor okupansi teks dan pengenal glif karakter dari 159 lembar train; hasil tahan-lihat ada di [OCR_TRAINING.md](OCR_TRAINING.md). ID kelas tetap opasitas karena pemetaan resmi tidak tersedia di arsip dataset.
+Ada pelatihan model lokal, tetapi bukan fine-tuning Sol/Gemini. `scripts/train_lontar_ocr.py` melatih detektor okupansi teks dan pengenal glif karakter dari 159 citra train dalam 80 kelompok daun fisik; hasil tahan-lihat ada di [OCR_TRAINING.md](OCR_TRAINING.md). ID kelas tetap opasitas karena pemetaan resmi tidak tersedia di arsip dataset.
 
 `GET /v1/fine_tuning/jobs` pada router yang tersedia mengembalikan HTTP 404, dan tidak ada akses fine-tuning upstream yang terverifikasi. Gambar tak bertranskripsi tidak dapat dianggap contoh jawaban yang benar. Detektor karakter terpisah tidak otomatis melatih Sol atau menyelesaikan terjemahan Kawi.
 
@@ -180,13 +184,13 @@ Runner menolak menimpa berkas keluaran yang sudah ada. Baseline lama dikompilasi
 - Kontrak JSON Schema: seluruh 36 respons pipeline baru Sol/Gemini lolos validasi draft 2020-12. Ini bukti struktur, bukan kebenaran isi.
 - `make build` berhasil membangun TypeScript/Vite, menyematkan aset terbaru, dan menghasilkan binary Go produksi.
 
-Perubahan dikerjakan dan diuji lokal. Tidak ada klaim deployment produksi diperbarui atau training model berhasil.
+Catatan historis pada tahap ini: perubahan diuji lokal, tanpa klaim deployment produksi telah diperbarui atau fine-tuning model bahasa berhasil. Hasil pelatihan glif lokal dijelaskan terpisah.
 
 ## Penggantian contoh pilihan setelah laporan penolakan
 
-Wanagiri memiliki bacaan yang telah divalidasi di [Wikisource Bali](https://ban.wikisource.org/w/index.php?oldid=127924). Metadata [Commons Sukawati](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) mencantumkan writing system Balinese. Penolakan aplikasi bukan bukti keduanya menggunakan aksara Kawi. Sebelumnya false rejection telah terjadi pada foto Bali; penyebab keputusan spesifik model tidak dapat ditentukan hanya dari HTTP 422.
+Wanagiri memiliki transkripsi komunitas di [Wikisource Bali](https://ban.wikisource.org/w/index.php?oldid=127924). Metadata [Commons Sukawati](https://commons.wikimedia.org/wiki/File:Bali-lontar-Sukawati-Usada-07.jpg) mencantumkan writing system Balinese. Penolakan aplikasi bukan bukti keduanya menggunakan aksara Kawi. Sebelumnya false rejection telah terjadi pada foto Bali; penyebab keputusan spesifik model tidak dapat ditentukan hanya dari HTTP 422.
 
-Kedua contoh pilihan kini memakai sisi depan **Usada Lare** dan **Usada Rare 154**, foto Eka343 dari Balai Bahasa Bali. Transkripsi tervalidasi di Wikisource memakai blok aksara Bali: [Lare, revisi 105197](https://ban.wikisource.org/w/index.php?oldid=105197), [Rare 154, revisi 105194](https://ban.wikisource.org/w/index.php?oldid=105194). Foto dipotong untuk mempertahankan satu sisi daun utuh dan mengurangi latar meja, kemudian diperkecil ke lebar 2400 px. Tidak ada rekonstruksi glif. Kredit, koordinat, dimensi, dan checksum ada di `apps/web/public/samples/CREDITS.md`.
+Kedua contoh pilihan kini memakai sisi depan **Usada Lare** dan **Usada Rare 154**, foto Eka343 dari Balai Bahasa Bali. Transkripsi komunitas Wikisource menggunakan blok aksara Bali: [Lare, revisi 105197](https://ban.wikisource.org/w/index.php?oldid=105197), [Rare 154, revisi 105194](https://ban.wikisource.org/w/index.php?oldid=105194). Keduanya berstatus pagequality 3 (proofread), bukan sertifikasi ahli independen. Foto dipotong untuk mempertahankan satu sisi daun utuh dan mengurangi latar meja, kemudian diperkecil ke lebar 2400 px. Tidak ada rekonstruksi glif. Kredit, koordinat, dimensi, dan checksum ada di `apps/web/public/samples/CREDITS.md`.
 
 Pengujian nyata memakai Gemini 3.8 Flash Low yang sama, preprocessing browser default, tanpa mock atau pengecualian berdasarkan `source_id`. Tidak ada perubahan backend, prompt, atau pengaman penolakan dalam penggantian contoh ini.
 

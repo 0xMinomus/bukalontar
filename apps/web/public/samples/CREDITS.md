@@ -2,6 +2,8 @@
 
 The two selectable examples are front-side crops of Balinese-script Usadha manuscripts from Balai Bahasa Bali, photographed by Eka343. Both have proofread Balinese-script transcriptions on Balinese Wikisource (pagequality 3, not independently expert-validated). Script identity comes from source evidence, not the application's accept/reject result.
 
+Final submission snapshot: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). These credits describe the photographs, not the correctness of BukaLontar's readings. Kawi language in a source catalogue does not change a photograph's Balinese writing system.
+
 | File | Author | License | Source |
 | --- | --- | --- | --- |
 | `lontar-usada-lare-depan.jpg` | Eka343 | CC BY-SA 4.0 | [Commons original](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Lare.jpg), [proofread transcription, revision 105197](https://ban.wikisource.org/w/index.php?oldid=105197) |
@@ -21,6 +23,8 @@ Coordinates refer to original pixels, `(left, top, right, bottom)`, with right/b
 | `lontar-usada-rare-154-depan.jpg` | 5184 × 3456 | `(900, 1140, 4550, 1640)` | 2400 × 329 | `3912ae6f95caa3953f7db32e6556b1156635bc2f0e5b1f5132116983131b0cf5` |
 
 The Wanagiri and Sukawati photographs remain for existing decorative/sharing assets and historical evaluations, not as selectable examples. A rejection by Gemini is not proof that a photograph uses Kawi script. Source proofreading does not validate the model's generated reading.
+
+Live analysis sends the original selected file bytes to the API; browser contrast enhancement affects preview only. The resulting AI text is not a transcription endorsed by the photographer, holding institution, or Wikisource reviewers. The typeset Kawi comparison in the evaluation set is not a selectable example.
 
 
 ## Sharing image

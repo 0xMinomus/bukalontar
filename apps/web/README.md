@@ -1,16 +1,18 @@
 # BukaLontar Web
 
-Frontend prototype for BukaLontar: React 19, TypeScript, Vite, Tailwind CSS v4, and shadcn-style primitives (Radix UI + CVA).
+Frontend for BukaLontar's experimental palm-leaf reading aid: React 19, TypeScript, Vite, Tailwind CSS v4, and shadcn-style primitives (Radix UI + CVA). Final submission snapshot: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission).
 
 ## Status
 
 - States implemented: landing, preview, processing, result, error.
-- Client preprocessing: downscale, CLAHE, and unsharp mask on Canvas.
-- Live AI: Go API at `/api/analyze-manuscript` → 9router/Gemini (set `VITE_USE_MOCK=false`).
+- Canvas downscale, CLAHE, and unsharp mask affect the preview only. Live analysis uploads the original image.
+- Live AI: Go API at `/api/analyze-manuscript`, using only `ag/gemini-3.8-flash-low` through 9router.
 - Mock mode remains available with `VITE_USE_MOCK=true`. Tanpa env tersebut, frontend memanggil API live.
 - Non-usada leaves show a reading summary instead of empty ethnomedicinal fields; KB-grounded plants keep the usada card.
 - Print view renders the full result as a report, not only the active tab.
-- Sample lontar photos are real archive images. Credits and licenses live in `public/samples/CREDITS.md`.
+- Selectable examples are front-side photographs of Usada Lare and Usada Rare 154. Community proofreading is not expert certification of AI output. Credits, crop coordinates, and licenses are in `public/samples/CREDITS.md`.
+- Balinese-script detection and reading quality are separate. Kawi may identify a language written in Balinese script, not the detected writing system. Experimental Unicode is not displayed in the UI/PDF.
+- The result warns that AI can invent readings and recipes. Recipe quotes shown in result details/PDF are copied from the AI reading, not independently verified against the photo. The backend rejects quotes crossing unknown spans, ellipses, or leaf boundaries.
 
 ## Routes
 
@@ -18,11 +20,13 @@ Frontend prototype for BukaLontar: React 19, TypeScript, Vite, Tailwind CSS v4, 
 - `/analisis` upload preview, processing, and error states
 - `/hasil` analysis result
 
-Routing uses `BrowserRouter`, so URLs are path based, never hash based. The header logo returns to `/` and clears the active manuscript. The footer is shared by every route. The active result is persisted in IndexedDB, so `/hasil` survives a refresh; the logo or `Naskah baru` clears it. A direct `/hasil` or `/analisis` load without a stored session redirects to `/`.
+Routing uses `BrowserRouter`, so URLs are path based, never hash based. The header logo returns to `/` and clears the active manuscript. The footer is shared by every route. The active result, original photo, enhanced preview, file name, and view state are persisted in IndexedDB, so `/hasil` survives a refresh; the logo or `Naskah baru` clears the session. A direct `/hasil` or `/analisis` load without a stored session redirects to `/`. Clearing this browser data does not prove deletion at the AI gateway.
 
 ## Run
 
 From the repository root:
+
+Use Node.js 22.12+ (or Node.js 20.19 on the 20.x line), npm, and Go 1.26.
 
 ```bash
 npm install
@@ -50,6 +54,8 @@ VITE_API_BASE_URL=
 ```
 
 Set `VITE_USE_MOCK=true` only when working on UI without the Go API. The API key never belongs in this file; it lives in `apps/api/.env`, which is ignored.
+
+The final submission uses live API calls, not mock output as evidence. The latest code build and local photo upload were verified before this documentation snapshot; production health does not expose a deployment commit. See the [final baseline comparison](../../docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline) for results and limitations.
 
 ## Link previews
 

@@ -1,6 +1,8 @@
 # BukaLontar API
 
-Go stdlib backend for the BukaLontar web app. It accepts one Balinese lontar image, sends it to a multimodal model through 9router in OpenAI-compatible JSON mode, validates the result, grounds botanical fields against the embedded Taru Pramana KB, and returns the `AnalysisResponse` contract. Non-Usadha lontar images return a reading and translation; Usadha leaves may also return recipe cards.
+Experimental Go backend for BukaLontar. It accepts one palm-leaf photograph, classifies its script, and sends accepted Balinese-script images to Gemini 3.8 Flash Low through 9router. It validates JSON and recipe-evidence boundaries, grounds botanical fields against the embedded Taru Pramana KB, and returns the `AnalysisResponse` contract. A structurally valid response is not a verified reading or medical recommendation.
+
+Final submission snapshot: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). Requires Go 1.26; the full frontend build also requires Node.js 22.12+ (or Node.js 20.19 on the 20.x line).
 
 ## Endpoints
 
@@ -57,6 +59,7 @@ curl -sS -F image=@apps/web/public/samples/lontar-wanagiri-usada-3.jpg \
 
 - No third-party Go dependencies; deployment is one binary plus `.env`.
 - Image bytes are read into memory; no temp files.
+- The original upload is sent to the AI gateway. Contrast enhancement is a browser preview, not an upstream replacement. Upstream retention has not been verified.
 - Upload is capped at 8 MB before preprocessing and again before the AI call.
 - AI output is parsed even when wrapped in a markdown fence, then validated. One repair attempt is made with the validation error.
 - Each request first classifies only the target image, with no references or plant catalog. Only `balinese/high` reaches one reading pass, with up to six preparations. Both calls use Gemini 3.8 Flash Low under the request deadline; rejection skips the reader. Results are not unioned across stochastic readings, and distinct preparations using the same plant are not collapsed by plant name. Every request calls the model; no cached response is served.
@@ -70,4 +73,4 @@ Only clearly Balinese-script targets are in scope. A separate classification cal
 
 ## Model evaluation
 
-`cmd/evaluate` runs the same service against real images with repeated calls, exact model IDs, image SHA-256, latency, and structured output recorded as JSONL. See [the evaluation report](../../docs/AI_EVALUATION.md) for reproducible commands and the Sol rejection evidence. `AI_REASONING_EFFORT` affects `cx/` models only; it does not fine-tune model weights.
+`cmd/evaluate` runs the same service against real images with repeated calls, exact model IDs, image SHA-256, latency, and structured output recorded as JSONL. See the [latest baseline comparison](../../docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline). Other model IDs in historical evaluation logs are not supported by the production server. The latest code verification passed 51 backend cases and `make build`; a real local multipart upload returned HTTP 200. The final Markdown-only synchronization does not imply new code testing or improved reading accuracy.

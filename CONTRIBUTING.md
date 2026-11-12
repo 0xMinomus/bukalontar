@@ -1,19 +1,19 @@
 # Contributing
 
-Terima kasih sudah ingin membantu BukaLontar. Repository ini adalah MVP kompetisi, jadi perubahan harus menjaga fungsi utama tetap dapat dijalankan dan diuji.
+Repository ini adalah alat bantu pembacaan lontar eksperimental untuk Bali DigiFest 2026. Snapshot final submission tersedia pada tag [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission); pengembangan setelah submission tetap melalui branch `main`.
 
 ## Prasyarat
 
-- Node.js 20 atau lebih baru
+- Node.js 22.12 atau lebih baru (atau Node.js 20.19 pada seri 20.x)
 - npm
-- Go 1.24 atau lebih baru
+- Go 1.26 atau lebih baru
 
 ## Menyiapkan Lingkungan
 
 ```bash
 npm install
 cp apps/api/.env.example apps/api/.env
-# Isi AI_BASE_URL, AI_MODEL, dan AI_API_KEY.
+# Isi AI_BASE_URL dan AI_API_KEY; pertahankan AI_MODEL=ag/gemini-3.8-flash-low.
 ```
 
 Jalankan API dan frontend:
@@ -43,10 +43,15 @@ npm run build
 - Jaga perilaku naskah non-Usadha agar tetap dapat dibaca.
 - Tulis pesan commit yang menjelaskan alasan perubahan.
 - Sertakan bukti pengujian untuk perubahan perilaku.
+- Pertahankan foto asli sebagai input AI; peningkatan kontras browser hanya pratinjau.
+- Pengaman kutipan tidak boleh melewati bagian tidak terbaca, elipsis, pengantar, atau lembar lain. Resep yang ditolak tidak boleh muncul lagi saat normalisasi/grounding.
+- Perubahan model atau bantuan pembacaan memerlukan pembanding pada foto yang sama. Respons HTTP 200, confidence tinggi, dan kecocokan kutipan bukan bukti akurasi.
 
 ## Dokumentasi
 
 Dokumentasi utama ada di `docs/`. Perbarui halaman yang terkait jika mengubah perilaku produk, arsitektur, atau sumber data.
+
+Perbarui [status](docs/STATUS.md), [evaluasi](docs/AI_EVALUATION.md), dan [disclosure](docs/AI_DISCLOSURE.md) sesuai bukti. Simpan eksperimen lama sebagai riwayat, bukan klaim kemampuan versi sekarang. Tag submission yang sudah dipublikasikan tidak dipindahkan atau ditimpa; buat tag baru untuk snapshot berikutnya.
 
 ## Keamanan
 

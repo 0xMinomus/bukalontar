@@ -2,12 +2,14 @@
 
 Dokumen ini menjelaskan arsitektur MVP yang ada di repository. Fokusnya adalah perilaku kode saat ini pada dua mode deployment: binary mandiri dan Vercel Services.
 
+Snapshot final submission: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). Frontend mengirim foto asli; peningkatan kontras hanya pratinjau. Pengaman kutipan adalah pemeriksaan konsistensi teks, bukan model OCR atau verifikasi ahli.
+
 ## Gambaran Runtime
 
 ```text
 Browser
   React 19 + Vite
-  Canvas preprocessing
+  Canvas preview + IndexedDB sesi aktif
         |
         | multipart/form-data: image, optional source_id
         v
@@ -81,6 +83,7 @@ Kontrak lengkap ada di `packages/schema/analysis.json`.
 - Validasi schema di Go sebelum respons dikirim ke browser.
 - Error API dikembalikan sebagai pesan yang dapat ditampilkan. Tidak ada hasil palsu.
 - Rate limit default 10 request per menit per klien.
+- Backend tidak menulis file upload, tetapi meneruskan foto ke gateway AI. Foto dan hasil sesi aktif tersimpan di IndexedDB browser; retensi pihak ketiga belum diverifikasi.
 - Pemeriksaan aksara adalah panggilan Gemini terpisah tanpa contoh glif atau katalog. Keputusan non-Bali, campuran, atau meragukan tidak mencapai pembaca; keluaran pemeriksaan rusak menghasilkan error, bukan izin membaca. Server juga mengosongkan seluruh bacaan/resep ketika pembaca menolak atau transkripsi/transliterasi mengandung aksara mirip non-Bali. Kedua pemeriksaan tetap bergantung pada model umum, bukan classifier terlatih independen.
 - Bahasa teks dipisahkan dari aksara: bahasa Kawi dapat ditulis dalam aksara Bali. Transkripsi Unicode eksperimental tidak ditampilkan di UI/PDF karena belum layak berdasarkan evaluasi.
 

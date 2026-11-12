@@ -1,15 +1,10 @@
 # Konsep Produk: BukaLontar
 
-**Pembaca lontar Bali berbasis AI, dengan alur khusus untuk naskah Usadha.**
+Alat bantu eksperimental untuk membaca foto lontar beraksara Bali, dengan alur khusus untuk naskah Usadha. Dokumen ini mengikuti snapshot [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission); arah produk tidak sama dengan klaim kemampuan yang telah terbukti.
 
 ## 1. Masalah
 
-Bali memiliki salah satu warisan naskah daun lontar terbesar di Asia Tenggara. Data yang sering dirujuk:
-
-- Dinas Kebudayaan Provinsi Bali mencatat lebih dari 25.000 cakep lontar milik masyarakat.
-- UPTD Gedong Kirtya di Singaraja menyimpan lebih dari 1.750 cakep naskah lontar asli, termasuk kelompok Usadha.
-
-Namun, akses terhadap isinya masih terbatas oleh dua hambatan utama:
+Naskah lontar tersimpan di koleksi masyarakat, perpustakaan, dan museum Bali. Akses terhadap isinya menghadapi dua hambatan utama:
 
 1. **Hambatan aksara.** Aksara Bali kuno ditulis tanpa spasi, dengan pasang aksara yang bertumpuk. Foto lontar sering gelap, aus, atau miring.
 2. **Hambatan bahasa.** Banyak naskah memakai bahasa Kawi klasik, bukan bahasa Bali sehari-hari. Istilah tanaman, penyakit, dan ritual sering tidak lagi dipahami.
@@ -18,12 +13,12 @@ Hambatan ini membuat lontar lebih sering disimpan daripada dibaca. Pengetahuan d
 
 ## 2. Arah Produk
 
-BukaLontar tidak dibatasi pada satu genre naskah. Produk ini adalah pembaca lontar Bali secara umum:
+BukaLontar tidak dibatasi pada satu genre, tetapi membatasi sasaran pada aksara Bali. Bahasa Kawi/Jawa Kuno yang ditulis dalam aksara Bali tetap termasuk lingkup; aksara Jawa dan aksara Kawi tidak termasuk. Pembatasan masih bergantung pada Gemini dan belum andal untuk semua foto.
 
 - menerima foto lempir,
-- menghasilkan transliterasi Latin,
-- menerjemahkan teks ke Indonesia dan Inggris,
-- menampilkan sumber dan tingkat keterbacaan,
+- menghasilkan usulan transliterasi Latin,
+- mengusulkan terjemahan Indonesia dan Inggris,
+- menampilkan dugaan sumber dan confidence model, bukan ukuran akurasi,
 - menyediakan laporan yang dapat disalin atau dicetak.
 
 Di atas alur umum itu, lontar Usadha mendapat perlakuan khusus. Jika naskah memuat resep tanaman obat, BukaLontar mengekstrak tanaman, bagian yang dipakai, bentuk racikan, indikasi, senyawa, dan rujukan. Untuk naskah non-Usadha, lapisan resep tidak dipaksakan.
@@ -41,11 +36,11 @@ Pendekatan ini penting agar produk tidak mengklaim semua lontar sebagai naskah p
 ## 4. Alur Pengguna
 
 1. Pengguna membuka aplikasi dan memilih foto lontar.
-2. Browser melakukan preprocessing ringan: downscale, CLAHE, dan unsharp mask.
-3. Backend memvalidasi gambar dan menjalankan satu pembacaan.
-4. Hasil dibaca sebagai JSON, divalidasi, dan digrounding ke knowledge base tanpa menggabungkan bacaan stokastik.
-5. Pengguna melihat transliterasi, terjemahan, sumber, dan tingkat keterbacaan.
-6. Jika naskah memuat resep Usadha, pengguna melihat kartu tanaman dan rincian racikan.
+2. Browser menyiapkan pratinjau yang dapat diperjelas, tetapi mengirim foto asli ke API.
+3. Backend memvalidasi gambar, mengklasifikasikan aksara, lalu menjalankan satu pembacaan hanya untuk keputusan `balinese/high`.
+4. Backend memvalidasi JSON dan kutipan resep sebelum grounding KB. Pengantar, lembar lain, serta bagian tidak terbaca tidak boleh menjembatani kutipan.
+5. Pengguna melihat usulan transliterasi dan terjemahan beserta peringatan.
+6. Jika resep lolos pengaman, pengguna melihat kartu tanaman dan rujukan KB.
 7. Pengguna dapat menyalin hasil atau mengunduh laporan PDF.
 
 ## 5. Alur Usadha
@@ -67,12 +62,12 @@ Detail teknis ada di [USADHA_MODE.md](USADHA_MODE.md).
 
 ## 6. Prinsip Responsible AI
 
-- **Sumber lebih penting daripada kelancaran.** Teks yang tidak terbaca ditandai, bukan ditebak.
+- **Sumber lebih penting daripada kelancaran.** Prompt meminta penanda bagian tidak terbaca. Ini aturan yang diinginkan, bukan jaminan bahwa model tidak menebak.
 - **Taksonomi tidak boleh dikarang.** Nama ilmiah dan famili hanya diisi jika ada di knowledge base.
 - **Sitasi tidak boleh dikarang.** Rujukan yang tidak tersedia dikosongkan.
 - **Hasil adalah alat bantu.** Pengguna tetap perlu memeriksa lempir asli dan rujukan filologi.
-- **Bukan alat diagnosis.** BukaLontar tidak memberikan diagnosis, dosis, atau instruksi pengobatan.
-- **Privasi.** Gambar diproses untuk analisis dan tidak disimpan sebagai file oleh backend.
+- **Bukan alat diagnosis.** Dugaan indikasi dan racikan ditampilkan sebagai hasil pembacaan sumber, bukan rekomendasi pengobatan atau dosis.
+- **Privasi.** Backend memproses gambar di memori dan meneruskannya ke gateway AI. Browser menyimpan sesi aktif, termasuk foto; kebijakan retensi pihak ketiga belum diverifikasi.
 
 ## 7. Batasan dan Non-Tujuan
 
@@ -81,6 +76,7 @@ Detail teknis ada di [USADHA_MODE.md](USADHA_MODE.md).
 - Bukan database medis dan bukan sumber nasihat pengobatan.
 - Belum melakukan klasifikasi genre naskah secara mendalam.
 - Belum menyediakan pencarian lintas koleksi atau integrasi katalog eksternal.
+- Perbaikan terakhir memperketat konsistensi kutipan resep. Belum ada bukti peningkatan akurasi bacaan atau terjemahan. Angka dan batas pengujian ada pada [evaluasi baseline](AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline).
 
 ## 8. Sumber dan Rujukan
 

@@ -1,6 +1,6 @@
 # Script-scope evaluation inputs
 
-These images are evaluation negatives, not landing-page samples or training examples. Input bytes are preserved so their SHA-256 can be matched to the JSONL runs; `/tmp/` paths in those logs refer to identical bytes.
+These are script-comparison inputs, not landing-page samples or training examples. Source categories and catalogue language labels are not independent paleographic certification. Input bytes are preserved so their SHA-256 can be matched to the JSONL runs; `/tmp/` paths in those logs refer to identical bytes. Final submission snapshot: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission).
 
 | File | Source and attribution | License and changes |
 | --- | --- | --- |
@@ -9,3 +9,5 @@ These images are evaluation negatives, not landing-page samples or training exam
 | `kawi-sample.jpg` | [Kawi sample](https://commons.wikimedia.org/wiki/File:Kawi_sample.jpg), Aditya Bayu (Alteaven), 13 March 2014. Source describes Kawi script from Kakawin Ramayana 16, 31. | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Original JPEG, unchanged. SHA-256: `5989a89abbdb24b8a783264f7f07e58bb25f2def36fc8b6f95fa2dc7d2469069`. This is a modern typeset script sample with Latin labels, **not an ancient lontar photograph**. |
 
 Positive controls use the two existing Bali-script photographs credited in [the app samples](../../../apps/web/public/samples/CREDITS.md). Script identity is based on source metadata and visual inspection, not an independent paleographer's certification. Kawi-script manuscript photographs have not been added to this set; the Kawi result must not be reported as a historical-lontar result.
+
+The final baseline comparison uses Panji and the typeset Kawi sample twice each, alongside the two Balinese-script photos. Its rejection counts must not be described as a validated benchmark of Javanese/Kawi palm-leaf manuscripts. Babad Surapati remains a historical comparison with the catalogue-label caveat stated above. See the [evaluation report](../../AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline).

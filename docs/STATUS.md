@@ -1,6 +1,6 @@
 # Status Proyek
 
-Catatan hidup untuk Obsidian dan GitHub. Diperbarui 12 November 2026.
+Snapshot final submission, 12 November 2026. Tag: [`v1.1-final-submission`](https://github.com/0xMinomus/bukalontar/tree/v1.1-final-submission). Peningkatan kode terakhir: [`4acfb64`](https://github.com/0xMinomus/bukalontar/commit/4acfb64); tag final juga mencakup sinkronisasi dokumentasi sesudah commit tersebut.
 
 ## Ringkas
 
@@ -13,16 +13,19 @@ BukaLontar menyediakan pembacaan eksperimental foto lontar Bali. **Belum siap di
 - Tautan PubMed terkurasi pada kartu Usadha, tab Rujukan, dan PDF.
 - Target ditolak tidak mencapai pembaca. Jika pemeriksaan awal menerima tetapi pembaca menolak atau keluaran mengandung aksara lain, bacaan/resep dikosongkan dan hasil diberi status tidak terbaca. Unicode eksperimental tidak ditampilkan di UI/PDF.
 - Mode bantuan: `none`, `examples` (default), `chart`, `ocr`, `leaves`, `both`, `all`. Contoh glif dan katalog tidak masuk pemeriksaan aksara.
-- Detektor teks dan pengenal glif lokal dilatih dari 159 lembar DeepLontar; inferensi Go murni.
+- Detektor teks dan pengenal glif lokal dilatih dari 159 citra berlabel dalam 80 kelompok daun DeepLontar; inferensi Go murni. Ini bukan pembaca kalimat.
 - Lima halaman Wikisource berlabel sebagai holdout evaluasi; skrip CER tersedia.
 - Hasil uji penolakan belum memenuhi target: pada batch akhir, dua respons lontar pembanding kategori Jawa lolos dan satu gagal upstream; contoh Kawi cetak ditolak 3/3. Foto Bali diterima 4/6. Lihat [laporan dan batas label](AI_EVALUATION.md#pembatasan-aksara-temuan-awal-12-november).
 - Kedua contoh pilihan adalah sisi depan Usada Lare dan Usada Rare 154, dengan transkripsi aksara Bali yang dikoreksi di Wikisource (pagequality 3, bukan validasi ahli independen). Foto Bali tetap bisa ditolak.
-- Kandidat lokal menghapus katalog tanaman dari prompt, mewajibkan kutipan transliterasi AI untuk resep, dan mengirim foto asli. Kutipan cocok tidak membuktikan bacaan benar atau resep nyata.
+- Pipeline menghapus katalog tanaman dari prompt, mewajibkan kutipan transliterasi AI untuk resep, dan mengirim foto asli. Kutipan cocok tidak membuktikan bacaan benar atau resep nyata.
 - Pembanding baru 12 November: foto Bali 6/6 diterima, pembanding Jawa dan Kawi 4/4 ditolak; hanya lima foto dan dua pengulangan. Baseline juga 10/10 pada foto yang sama, sehingga belum membuktikan peningkatan deteksi. Akurasi isi tetap gagal; lihat [evaluasi](AI_EVALUATION.md).
 - Diagnostik tambahan pada segmen buku NusaAksara: Bali diterima 1/4, Jawa ditolak 4/4; satu bacaan Bali tidak sesuai anotasi. Ini bukan uji foto lontar dan datanya tidak disertakan dalam produk.
 - Uji foto lontar tambahan: Aji Saraswati kategori Jawa di Commons diterima 3/3 tetapi tidak terbaca; label aksara belum diperiksa ahli. Usada Kacacar diterima 2/2, tetapi kedua bacaan tidak sesuai transkripsi sumber. Lihat [evaluasi foto](AI_EVALUATION.md#uji-tambahan-khusus-foto-lontar).
 - Upgrade pengaman kutipan: enam kasus batas yang sebelumnya meloloskan resep kini ditolak; tiga kasus kutipan utuh tetap diterima. Ini pengujian terkontrol, bukan akurasi foto. Uji foto sebelum/sesudah tidak membuktikan peningkatan bacaan; OCR literal dan pemeriksa visual tambahan tidak diintegrasikan. Lihat [perbandingan upgrade](AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline).
-- Commit dan push tidak membuktikan deployment produksi atau kelulusan target; pastikan hasil deployment diperiksa sebelum dipakai.
+- Pada pemeriksaan 12 November, health produksi `https://www.bukalontar.my.id/health` melaporkan `ok=true`, model Flash Low, dan 10 entri KB. Health tidak melaporkan commit deployment, sehingga tidak membuktikan produksi identik dengan tag.
+
+
+Verifikasi kode terakhir sebelum sinkronisasi dokumentasi: 51 kasus backend lulus, build produksi berhasil, dan upload foto ke API lokal menghasilkan HTTP 200. Tidak ada klaim uji kode baru dari perubahan Markdown saja.
 
 ## Angka terakhir
 

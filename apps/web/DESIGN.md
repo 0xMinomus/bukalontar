@@ -68,3 +68,7 @@ Keep the initial viewport stable. Only folios below the initial viewport receive
 - Retain source credits and responsible-AI warnings.
 - Do not add a GitHub button to the header.
 - Do not add animation libraries, continuous particle effects, fabricated statistics, or decorative claims.
+
+## Evidence in the final submission
+
+The `v1.1-final-submission` snapshot retains this visual direction. The two selectable examples are actual Balinese-script palm-leaf photographs, not typeset script samples. Original-image analysis and preview enhancement are distinct. Preserve the AI warning and the distinction between detected script and reading quality; a Kawi language label does not mean Kawi script. Do not expose experimental Unicode as a verified transcription or style an AI source quote as expert approval. Results remain reading aids, including when KB taxonomy and literature links are available.
