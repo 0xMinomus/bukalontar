@@ -250,3 +250,13 @@ Pada 12 November, pipeline tanpa perubahan diuji dengan foto asli, `ag/gemini-3.
 | [Usada Kacacar](https://commons.wikimedia.org/wiki/File:Bali-lontar-Balai_Bahasa_Bali-Usada_Kacacar_(Babalining_kacacar).jpg), SHA-256 `a97be48a5012cf074b1bb5951425560729d0c34a3bc7bd9162d89327a9495e88` | Diterima sebagai Bali 2/2 | Kedua bacaan berbeda dan tidak sesuai [transkripsi Wikisource](https://ban.wikisource.org/w/index.php?title=Kaca:Bali-lontar-Balai_Bahasa_Bali-Usada_Kacacar_(Babalining_kacacar).jpg&oldid=105200) yang telah dikoreksi komunitas, bukan validasi ahli independen. |
 
 Foto Kacacar oleh Eka343, CC BY-SA 4.0; Aji Saraswati mengikuti keterangan hak cipta pada halaman sumber. Kedua foto merupakan naskah berbeda, bukan sampel representatif. Hasil ini memperkuat bukti bahwa penerimaan aksara dan bacaan belum andal. Tidak ada perbaikan model atau klaim akurasi baru dari uji ini.
+
+### Percobaan perbesaran setengah daun
+
+Dua foto contoh Usada Lare dan Rare 154 dipotong pada bagian kiri setengah lebar penuh (`0, 0, width//2, height`) dan disimpan sebagai PNG tanpa menambah aksara. Tujuannya menguji apakah lebih sedikit isi per gambar membantu Gemini membaca goresan. Setiap potongan diuji dua kali memakai pipeline dan `ag/gemini-3.8-flash-low` yang sama; hasil mentah ada di `evaluation/half-leaf-20261112.jsonl`.
+
+Dua dari empat permintaan gagal dengan respons upstream kosong. Dua lainnya diterima sebagai Bali, tetapi bacaan Lare tidak sesuai awal transkripsi Wikisource; bacaan Rare juga belum dibuktikan sesuai sumber. Referensi seluruh daun tidak langsung mengukur akurasi potongan, dan percobaan kecil ini tidak menunjukkan peningkatan. Pemotongan tidak diterapkan pada produk.
+
+### Kandidat riset OCR
+
+[Lontar Project di Leiden](https://lontar.liacs.nl/) menerbitkan [kode pengenal glif terisolasi](https://github.com/erickpaulus/isolated-glyph-recognition) dan tautan dataset/model. Hasil pengenalan glif terisolasi tidak sama dengan membaca foto lengkap, transliterasi, atau terjemahan; sistem ini belum diintegrasikan atau diuji pada foto BukaLontar. Lisensi kode MIT tidak otomatis menetapkan lisensi model dan data.
