@@ -202,7 +202,7 @@ func (s *Service) enrichRecipe(recipe *model.Recipe) {
 	recipe.PhytochemicalCompounds = []string{}
 	recipe.ReferenceStudies = []string{}
 	recipe.ReferenceLinks = []model.ReferenceLink{}
-	recipe.ModernAction = "Belum ada validasi farmakologis modern yang terverifikasi di Taru Pramana Knowledge Base untuk tanaman ini."
+	recipe.ModernAction = "Identitas botani belum dapat dipastikan dari knowledge base. Khasiat dan keamanan racikan belum diverifikasi."
 }
 
 func safeSourceID(value string) string {

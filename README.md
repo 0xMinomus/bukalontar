@@ -234,7 +234,7 @@ docs/              Konsep, arsitektur, alur Usadha, sumber data, disclosure
 
 - Foto sampel lontar: Eka343 (CC BY-SA 4.0) dan pindaian Carcan dari Internet Archive (PD-ID-exempt). Transkripsi: kontributor Wikisource Bali. Kredit, revisi, crop, dan hash ada di [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
 - Knowledge base Taru Pramana: `apps/api/internal/kb/data/taru-pramana.json`.
-- Katalog saat ini berisi 100 entri pencocokan botani, termasuk Dapdap pada tingkat genus dan Sembung. [Sumber dan batas kurasi](docs/KNOWLEDGE_BASE_SOURCES.md). Tautan pencarian literatur tidak membuktikan khasiat racikan.
+- Katalog berisi 1.316 entri lookup: 100 entri awal dan 1.216 tambahan berbasis Wikidata/GBIF. Alias ambigu tidak dipaksa cocok; Dapdap tetap pada tingkat genus. [Sumber, lisensi, dan batas kurasi](docs/KNOWLEDGE_BASE_SOURCES.md). Sumber kutipan tersedia pada setiap kartu arsip; pencarian literatur tidak membuktikan khasiat racikan.
 - Rujukan naskah dan konteks: [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
 - Font: Cormorant Garamond dan Lora, dibundel lokal; lisensi OFL menyertai aset.
 - Library frontend: React, Vite, Tailwind CSS, Radix UI, Lucide, class-variance-authority, clsx, tailwind-merge.

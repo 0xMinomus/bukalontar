@@ -100,6 +100,7 @@ func TestArchivePlantsReceiveLiteratureWithoutClinicalClaims(t *testing.T) {
 		{"dapdap", "Erythrina spp."},
 		{"sĕmbuŋ", "Blumea balsamifera"},
 		{"kacĕmcĕm", "Spondias pinnata"},
+		{"poḥgdhaŋ", "Mangifera indica"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			response := serviceTestResponse()

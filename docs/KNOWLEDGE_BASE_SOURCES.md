@@ -1,13 +1,13 @@
 # Sumber perluasan knowledge base tanaman
 
-Tanggal konsultasi: 12 November 2026. Katalog bertambah dari 10 menjadi 100 entri: 99 identitas spesies dan satu identitas genus (Dapdap). Entri bukan daftar 100 tanaman yang dipastikan terdapat dalam Taru Pramana.
+Tahap kurasi awal, 12 November 2026: katalog bertambah dari 10 menjadi 100 entri, terdiri atas 99 identitas spesies dan satu identitas genus (Dapdap). Bagian ini mencatat sumber tahap awal, bukan batas ukuran katalog terkini. Entri bukan daftar tanaman yang dipastikan terdapat dalam Taru Pramana.
 
 ## Batas kurasi
 
 - PROSEA (*Plant Resources of South-East Asia*) pada Pl@ntUse menjadi rujukan nama lokal, identitas, dan famili. Penamaan ilmiah serta famili mengikuti sumber tersebut; ini bukan revisi taksonomi mutakhir. Liliaceae/Alliaceae, Compositae, Leguminosae, Gramineae, Palmae, Guttiferae, Umbelliferae, dan Punicaceae adalah nama famili yang dipakai publikasi sumber.
 - Sembung memakai alias arsip `sĕmbuŋ`; Kacemcem memakai `Kacĕmcĕm`. Variasi whitespace Temulawak/Temu lawak dan Belimbing/Blimbing dicatat sebagai varian ejaan editorial.
 - Dapdap/Dadap hanya dipetakan ke **Erythrina spp.**, bukan dipaksa menjadi E. variegata atau E. subumbrans. PROSEA mencatat beberapa spesies dadap; [kajian Bali oleh Sinarsih dkk. (2024)](https://ojs.uhnsugriwa.ac.id/index.php/IJHC/article/view/4378) juga memakai identitas berbeda dari E. variegata. Spesies pada lempir belum terverifikasi.
-- Alias ambigu `gedang`, `kedongdong`, `daun dewa`, `tutup bumi`, `kemangi`, `leunca`, `bayam`, `bwaḥ base`, dan `humbintuñtuŋ` tidak ditambahkan. Nama seperti ini memerlukan konteks atau sumber identifikasi tambahan. Bahan yang belum cocok tetap tidak memiliki rujukan KB.
+- Alias ambigu `gedang`, `kedongdong`, `daun dewa`, `tutup bumi`, `kemangi`, `leunca`, `bayam`, `bwaḥ base`, dan `humbintuñtuŋ` tidak dipaksa menjadi identitas spesies. Sebaliknya, nama lengkap **Poh Gedang** dipetakan ke mangga berdasarkan [BASAibu, revisi 80836](https://basaibubali.org/w/index.php?title=Poh_Gedang&oldid=80836), dengan ejaan arsip `poḥgdhaŋ`. Nama lain memerlukan konteks atau sumber identifikasi tambahan.
 - Sebanyak 90 entri baru tidak menambahkan klaim senyawa, sifat panas/dingin, bagian tanaman bawaan, dosis, atau khasiat. Deskripsi pada tab Rujukan menyebut sumber botani dan keterbatasannya. Sepuluh entri lama tidak dikurasi ulang dalam perluasan ini.
 - Setiap tautan PubMed baru adalah **pencarian literatur**, bukan artikel terverifikasi atau bukti klinis. Tidak ada klaim bahwa racikan naskah aman, bahwa seluruh hasil ekstraksi benar, atau bahwa kecocokan nama memverifikasi foto.
 
@@ -115,3 +115,50 @@ Tanggal konsultasi: 12 November 2026. Katalog bertambah dari 10 menjadi 100 entr
 - Nama lain yang belum teridentifikasi tetap tidak diberi taksonomi atau rujukan. Angka resep adalah hasil satu permintaan per contoh, bukan jaminan keluaran model selalu sama.
 - Tautan Sembung memakai `target="_blank"` dan `rel="noopener noreferrer"`; pemeriksaan browser tidak mencatat error JavaScript.
 - Perubahan ini diverifikasi lokal, belum menjadi bukti deployment produksi. Hasil lama yang tersimpan di browser perlu dianalisis ulang setelah backend diperbarui.
+
+## Metode impor botani terstruktur
+
+Snapshot saat ini menghasilkan **1.316 entri lookup**: 100 entri kurasi awal dan 1.216 entri impor. Angka ini bukan jumlah resep, bukti khasiat, atau 1.316 spesies Usadha. Tahap impor mencocokkan 1.378 nama kandidat ke GBIF; 1.324 memperoleh pencocokan nama tepat ke takson diterima, sedangkan 54 kandidat lain tidak diimpor melalui jalur ini. Kegagalan akses tidak dianggap bukti nama tersebut tidak valid. Setelah penggabungan sinonim serta pemisahan entri awal, tersisa 1.216 entri tambahan.
+
+Perluasan berikutnya memakai fakta taksonomi, bukan teks khasiat dari ensiklopedia. Kategori Wikipedia Indonesia dipakai hanya untuk menemukan kandidat; keanggotaan kategori “tumbuhan obat” tidak dianggap bukti khasiat. Nama dan alias diambil dari data terstruktur Wikidata yang berlisensi [CC0](https://www.wikidata.org/wiki/Wikidata:Licensing). Kandidat harus memiliki rank spesies, satu nama ilmiah, satu famili, dan jalur induk takson menuju Plantae pada snapshot Wikidata.
+
+Nama ilmiah diperiksa melalui [GBIF Species Match](https://api.gbif.org/v1/species/match?name=Mangifera%20indica&kingdom=Plantae&strict=true). Hanya pencocokan `EXACT`, rank `SPECIES`, kingdom `Plantae`, dan takson diterima yang dipakai. Pencocokan `FUZZY`, genus saja, nama ambigu, kegagalan permintaan, dan takson bukan tumbuhan tidak diubah menjadi identifikasi. Sinonim digabung berdasarkan accepted usage key GBIF agar tidak menambah jumlah spesies semu.
+
+Atribusi GBIF: **GBIF Secretariat (2023). GBIF Backbone Taxonomy. Checklist dataset, https://doi.org/10.15468/39omei**, diakses 12 November 2026. [Metadata dataset dan lisensi](https://api.gbif.org/v1/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c) menetapkan [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Modifikasi proyek meliputi seleksi kandidat, penggabungan sinonim, penyaringan alias ambigu, penyusunan entri lookup, dan penambahan keterangan keterbatasan.
+
+Data impor merupakan katalog botani umum, **bukan daftar spesies Usadha atau hasil kurasi filologis ahli**. Nama lokal bersumber komunitas; beberapa takson hanya memiliki nama ilmiah yang dapat dicocokkan. Tidak ada nama Bali buatan untuk memenuhi target jumlah. Taksonomi GBIF tidak membuktikan bahwa nama pada lempir menunjuk spesies tersebut. Entri baru tidak menambahkan senyawa, dosis, sifat tradisional, atau klaim khasiat.
+
+### Reproduksi tanpa jaringan
+
+- `data/botanical-sources/wikidata-gbif.json` menyimpan fakta kandidat, ID/revisi Wikidata, respons pencocokan dan takson diterima GBIF, tanggal, serta atribusi/lisensi.
+- `python3 scripts/import_botanical_kb.py` membangun katalog dari snapshot tersebut. Ambang 1.001 entri berlaku sebelum berkas katalog ditulis.
+- `data/botanical-sources/import-report.json` mencatat jumlah entri, nama ilmiah yang ditolak, dan alias ambigu yang tidak dimasukkan.
+- `apps/api/internal/kb/data/taru-pramana.json` mempertahankan entri kurasi awal beserta tambahan alias bersumber. `apps/api/internal/kb/data/wikidata-plants.json` berisi takson tambahan.
+- Backend memakai indeks alias tepat. Bagian tanaman seperti `don`, `daun`, atau `babakan` boleh mendahului nama; nama panjang atau campuran tidak dicocokkan hanya karena mengandung nama tanaman pendek.
+
+### Batas rujukan contoh arsip
+
+Setiap kartu dengan kutipan arsip memiliki tautan ke sumber transkripsinya di UI dan laporan cetak, termasuk ketika spesies belum teridentifikasi. Tab Rujukan membedakan sumber kutipan dari literatur botani; indikator **Identitas botani di KB** tetap menghitung kecocokan botani, bukan jumlah tautan yang ditampilkan.
+
+[BASAibu, Poh Gedang](https://basaibubali.org/w/index.php?title=Poh_Gedang&oldid=80836) mendukung penelusuran nama mangga pada ejaan arsip `poḥgdhaŋ`. [BASAibu, Pacang](https://basaibubali.org/Pacang) menerjemahkan kata tersebut sebagai “akan”; token itu sendiri bukan bukti nama tanaman. Prompt ekstraksi membedakan nomina bahan dari kata bantu dan langkah penggunaan, tanpa menghapus nama yang belum dikenal secara otomatis.
+
+Identitas `bohok`, `pahiduḥ`, dan `humbintuñtuŋ`, serta penafsiran bahan gabungan `bwaḥ base`, belum memperoleh dukungan identifikasi yang memadai dalam penelusuran ini. Nama tersebut tidak diberi spesies atau sitasi ilmiah buatan. Menambah jumlah takson tidak menghilangkan kebutuhan identifikasi istilah naskah oleh ahli.
+
+## Verifikasi perluasan 1.316 entri
+
+Pemeriksaan lokal 12–13 November 2026, satu analisis Gemini nyata per contoh:
+
+| Contoh | Kartu yang dihasilkan | Identitas cocok KB | Kartu dengan sumber kutipan di layar | Sumber per kartu pada laporan cetak |
+| --- | --- | --- | --- | --- |
+| Usadha Sukawati | 6 | 4 | 6 | 6 |
+| Usadha Rare Kemenuh | 3 | 1 | 3 | 3 |
+
+Sukawati cocok pada Dapdap (genus), Kacemcem, Poh Gedang, dan Bintaro. `pahiduḥ` dan `bohok` tetap belum dipastikan. Rare cocok pada Sembung; `bwaḥ base` dan hasil ekstraksi `bawaŋṅ dadas·` belum dipastikan. Jumlah dan pemilihan nama oleh model dapat berubah pada permintaan lain. Ini bukan klaim seluruh identitas botani, ekstraksi, terjemahan, atau resep telah benar.
+
+- Paket Go `internal/kb` dan `internal/ai` lulus. Pengujian mencakup batas minimal 1.001 entri, alias yang tidak menimpa tanaman lain, pencocokan tepat/ejaan arsip, penolakan nama campuran yang hanya mengandung alias pendek, serta rujukan tanpa klaim klinis.
+- Empat pengujian Python importer lulus: penolakan fuzzy/genus/bukan tumbuhan, alias bersama yang ambigu, penggabungan sinonim tanpa menambah jumlah spesies, dan hasil rebuild yang tidak mengembalikan alias ambigu. Input kurasi awal dipin dalam snapshot, bukan dibaca dari katalog hasil generasi sebelumnya.
+- Build TypeScript/Vite berhasil. Server lokal memuat 1.316 entri dan frontend ter-embed.
+- Kedua contoh dijalankan melalui tombol landing. Assertion browser memastikan setiap kartu memiliki sumber di layar dan komponen laporan cetak. PDF keduanya dibuat; ekstraksi teks PDF Rare menemukan tiga label “Sumber kutipan”.
+- URL sumber yang panjang sempat memperlebar tampilan mobile; pembungkusan teks dan batas lebar grid diperbaiki. Setelah perbaikan, viewport 390 px memiliki lebar dokumen 390 px. Tab Rujukan dan sumber naskah terlihat, tanpa error JavaScript tercatat.
+
+Pengujian ini lokal. Hasil browser lama perlu dianalisis ulang untuk memperoleh pengayaan KB baru setelah backend produksi diperbarui; commit/push bukan bukti deployment produksi sudah selesai.

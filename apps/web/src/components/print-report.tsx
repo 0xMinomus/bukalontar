@@ -83,7 +83,7 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
       plantRecipes.some((recipe) => safeReferenceLinks(recipe).length > 0))
 
   return (
-    <article className="print-report">
+    <article className="print-report [overflow-wrap:anywhere]">
       <header className="report-header">
         <p className="report-kicker">BukaLontar · Laporan Pembacaan</p>
         <h1 className="report-title">Hasil Pembacaan Lontar</h1>
@@ -150,15 +150,15 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
               </dd>
             </div>
             <div className="report-field">
-              <dt>Rujukan tanaman</dt>
+              <dt>Identitas botani di KB</dt>
               <dd>
                 {!hasPlant
                   ? 'Tidak ada'
                   : plantRecipes.length > 1
-                    ? `${plantRecipes.filter((recipe) => recipe.kb_match).length}/${plantRecipes.length} tercatat di Taru Pramana`
+                    ? `${plantRecipes.filter((recipe) => recipe.kb_match).length}/${plantRecipes.length} cocok dengan KB botani`
                     : plantRecipes[0].kb_match
-                      ? 'Tercatat di Taru Pramana'
-                      : 'Belum tercatat di Taru Pramana'}
+                      ? 'Cocok dengan KB botani'
+                      : 'Identitas botani belum dipastikan'}
               </dd>
             </div>
             <div className="report-field">
@@ -233,6 +233,11 @@ export function PrintReport({ result, originalUrl }: PrintReportProps) {
                   <h3 className="report-subheading">{reference ? 'Kutipan transkripsi rujukan' : 'Kutipan transliterasi AI'}</h3>
                   <p className="report-prose">{recipe.source_quote}</p>
                   <p className="report-prose">Kecocokan teks tidak membuktikan tanaman atau resep terdapat di foto.</p>
+                  {reference ? (
+                    <p className="report-prose">
+                      Sumber kutipan: <a href={reference.source_url}>{reference.title}</a> ({reference.source_url})
+                    </p>
+                  ) : null}
                 </>
               ) : null}
               <dl className="report-kv">

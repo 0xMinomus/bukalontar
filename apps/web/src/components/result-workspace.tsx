@@ -165,7 +165,7 @@ export function ResultWorkspace({
           </dd>
         </div>
         <div className="bg-card px-4 py-3">
-          <dt className="label-xs">Rujukan tanaman</dt>
+          <dt className="label-xs">Identitas botani di KB</dt>
           <dd className="mt-1 text-sm font-medium">
             {!hasPlant
               ? 'Tidak ada'
@@ -191,7 +191,7 @@ export function ResultWorkspace({
           />
         </div>
 
-        <div className="order-1 lg:order-2">
+        <div className="order-1 min-w-0 lg:order-2">
           <Card className="paper-panel flex flex-col overflow-hidden">
             <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3.5 sm:px-5">
               <div className="flex items-center gap-2">

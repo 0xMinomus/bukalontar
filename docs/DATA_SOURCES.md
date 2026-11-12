@@ -60,11 +60,11 @@ Korpus lokal menggunakan [DeepLontar v2](https://doi.org/10.6084/m9.figshare.201
 
 ## Knowledge Base
 
-- Lokasi: `apps/api/internal/kb/data/taru-pramana.json`.
-- Fungsi: pencocokan nama tanaman, famili, senyawa, dan rujukan. Sifat tradisional pada hasil mengikuti bacaan AI, bukan nilai bawaan KB.
-- Knowledge base berisi 100 entri: 99 identitas spesies dan satu identitas genus (Dapdap, **Erythrina spp.**, spesies belum dipastikan). Ini katalog pencocokan botani, bukan 100 tanaman yang dipastikan tercantum dalam Taru Pramana. Entri di luar katalog tidak diberi taksonomi atau sitasi.
+- Lokasi: `apps/api/internal/kb/data/taru-pramana.json` untuk entri kurasi awal dan `apps/api/internal/kb/data/wikidata-plants.json` untuk tambahan botani terstruktur.
+- Fungsi: pencocokan nama tanaman, famili, senyawa, dan rujukan. Sifat tradisional pada hasil mengikuti bacaan, bukan nilai bawaan KB. Entri impor tidak menambahkan klaim senyawa atau khasiat.
+- Katalog memadukan 100 entri kurasi awal dengan takson tambahan dari Wikidata (CC0) yang nama ilmiahnya cocok tepat dengan GBIF Backbone Taxonomy (CC BY 4.0). Sinonim digabung menurut accepted usage key dan alias ambigu tidak dipaksa cocok. Dapdap tetap **Erythrina spp.**, spesies belum dipastikan. Ini bukan daftar tanaman yang dipastikan tercantum dalam Taru Pramana.
 - Kutipan dan istilah dari lontar dipertahankan sebagai bagian dari konteks.
-- [Sumber perluasan 90 entri](KNOWLEDGE_BASE_SOURCES.md) mencatat pemetaan nama lokal, identitas, famili, dan batas kurasi per tanaman. Sembung dan Kacemcem mencakup ejaan transkripsi contoh arsip. Nama ambigu tidak dipaksa menjadi spesies tertentu.
+- [Sumber, lisensi, dan reproduksi](KNOWLEDGE_BASE_SOURCES.md) mencatat kurasi awal, snapshot impor, serta batas identifikasi istilah naskah. Sembung, Kacemcem, dan Poh Gedang mencakup ejaan transkripsi contoh arsip.
 - `reference_links` ditentukan server: pencarian PubMed per takson dan satu tinjauan Psidium guajava ([PMID 18353572](https://pubmed.ncbi.nlm.nih.gov/18353572/)). Pencarian adalah pintu masuk literatur, bukan sitasi studi tertentu. Entri baru tidak menambahkan klaim senyawa atau khasiat; deskripsi rujukannya berisi sumber botani.
 - Tautan tersebut bukan sumber naskah dan tidak membuktikan keamanan atau khasiat resep. Deskripsi `reference_studies` lama bukan kutipan bibliografis yang telah diverifikasi; pembaca perlu memeriksa publikasi aslinya.
 

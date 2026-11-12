@@ -12,15 +12,20 @@ func TestLookupAliases(t *testing.T) {
 		t.Fatal(err)
 	}
 	cases := map[string]string{
-		"Taru Sotong": "Psidium guajava",
-		"jambu biji":  "Psidium guajava",
-		"kalyasĕm":    "Syzygium polycephalum",
-		"Kayu Pule":   "Alstonia scholaris",
-		"Turi Putih":  "Sesbania grandiflora",
-		"Tabia Bun":   "Capsicum annuum",
-		"dapdap":      "Erythrina spp.",
-		"sĕmbuŋ":      "Blumea balsamifera",
-		"kacĕmcĕm":    "Spondias pinnata",
+		"Taru Sotong":      "Psidium guajava",
+		"jambu biji":       "Psidium guajava",
+		"kalyasĕm":         "Syzygium polycephalum",
+		"Kayu Pule":        "Alstonia scholaris",
+		"Turi Putih":       "Sesbania grandiflora",
+		"Tabia Bun":        "Capsicum annuum",
+		"dapdap":           "Erythrina spp.",
+		"sĕmbuŋ":           "Blumea balsamifera",
+		"kacĕmcĕm":         "Spondias pinnata",
+		"poḥgdhaŋ":         "Mangifera indica",
+		"don sĕmbuŋ":       "Blumea balsamifera",
+		"Daun Taru Sotong": "Psidium guajava",
+		"kulit kayu Pule":  "Alstonia scholaris",
+		"Psidium guajava":  "Psidium guajava",
 	}
 	for name, scientific := range cases {
 		entry, ok := store.Lookup(name)
@@ -31,7 +36,7 @@ func TestLookupAliases(t *testing.T) {
 			t.Fatalf("lookup %q: got %q, want %q", name, entry.ScientificName, scientific)
 		}
 	}
-	for _, name := range []string{"Taru Khayalan", "bwaḥ base", "humbintuñtuŋ", "daun dewa", "leunca"} {
+	for _, name := range []string{"Taru Khayalan", "bwaḥ base", "humbintuñtuŋ", "daun dewa", "leunca", "Sotong dan Kunyit", "Sotong yang belum dikenal", "Sirih varietas tidak dikenal", "pacaŋl̥pas·"} {
 		if entry, ok := store.Lookup(name); ok {
 			t.Fatalf("unknown or ambiguous plant %q matched %s", name, entry.ScientificName)
 		}
@@ -71,6 +76,9 @@ func TestCatalogAliasesDoNotOverwriteOtherPlants(t *testing.T) {
 	store, err := Load()
 	if err != nil {
 		t.Fatal(err)
+	}
+	if store.Count() < 1001 {
+		t.Fatalf("botanical coverage below requested 1000+: %d", store.Count())
 	}
 	ids := make(map[string]bool)
 	aliases := make(map[string]string)

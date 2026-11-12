@@ -3,10 +3,12 @@
     "id": "taru-sotong",
     "local_names": [
       "Taru Sotong",
-      "Sotong",
       "Jambu Biji",
       "Jambu Sotong",
-      "Guava"
+      "Guava",
+      "Psidium guajava",
+      "Jambu batu",
+      "Jambu klutuk"
     ],
     "scientific_name": "Psidium guajava",
     "botanical_family": "Myrtaceae",
@@ -20,7 +22,9 @@
     "modern_pharmacological_action": "Antimikroba terhadap Escherichia coli dan antispasmodik untuk meredakan kontraksi usus.",
     "reference_studies": [
       "Tinjauan fitokimia Psidium guajava",
-      "Uji antimikroba ekstrak daun jambu biji"
+      "Uji antimikroba ekstrak daun jambu biji",
+      "GBIF Backbone Taxonomy: Psidium guajava, Myrtaceae (https://www.gbif.org/species/5420380).",
+      "Nama dan alias menurut Wikidata, revisi 2567688370 (https://www.wikidata.org/w/index.php?title=Q166843&oldid=2567688370)."
     ],
     "reference_links": [
       {
@@ -39,9 +43,9 @@
     "id": "taru-pule",
     "local_names": [
       "Taru Pule",
-      "Pule",
       "Kayu Pule",
-      "Pulai"
+      "Pulai",
+      "Alstonia scholaris"
     ],
     "scientific_name": "Alstonia scholaris",
     "botanical_family": "Apocynaceae",
@@ -55,7 +59,9 @@
     "modern_pharmacological_action": "Analgesik dan antipiretik; alkaloid kulit batang pule diteliti untuk efek antinyeri dan penurun demam.",
     "reference_studies": [
       "Tinjauan alkaloid Alstonia scholaris",
-      "Kajian etnofarmakologi kulit batang pule"
+      "Kajian etnofarmakologi kulit batang pule",
+      "GBIF Backbone Taxonomy: Alstonia scholaris, Apocynaceae (https://www.gbif.org/species/5414410).",
+      "Nama dan alias menurut Wikidata, revisi 2566722053 (https://www.wikidata.org/w/index.php?title=Q135307&oldid=2566722053)."
     ],
     "reference_links": [
       {
@@ -69,10 +75,12 @@
     "id": "taru-kaliasem",
     "local_names": [
       "Taru Kaliasem",
-      "Kaliasem",
       "Kalyasem",
       "Kalianasem",
-      "Babakan Kaliasem"
+      "Babakan Kaliasem",
+      "Syzygium polycephalum",
+      "Gowok",
+      "Kupa"
     ],
     "scientific_name": "Syzygium polycephalum",
     "botanical_family": "Myrtaceae",
@@ -86,7 +94,9 @@
     "modern_pharmacological_action": "Aktivitas antioksidan dan antimikroba dari ekstrak kulit batang dan daun.",
     "reference_studies": [
       "Etnobotani Syzygium polycephalum",
-      "Skrining fitokimia kulit batang kaliasem"
+      "Skrining fitokimia kulit batang kaliasem",
+      "GBIF Backbone Taxonomy: Syzygium polycephalum, Myrtaceae (https://www.gbif.org/species/3182214).",
+      "Nama dan alias menurut Wikidata, revisi 2567613485 (https://www.wikidata.org/w/index.php?title=Q15385987&oldid=2567613485)."
     ],
     "reference_links": [
       {
@@ -100,9 +110,10 @@
     "id": "taru-kunyit",
     "local_names": [
       "Taru Kunyit",
-      "Kunyit",
       "Kunir",
-      "Kunyit Warangan"
+      "Kunyit Warangan",
+      "Curcuma longa",
+      "Turmeric"
     ],
     "scientific_name": "Curcuma longa",
     "botanical_family": "Zingiberaceae",
@@ -116,7 +127,9 @@
     "modern_pharmacological_action": "Antiinflamasi dan antioksidan; kurkumin diteliti untuk efek antiradang dan hepatoprotektif.",
     "reference_studies": [
       "Tinjauan farmakologi kurkumin",
-      "Kajian etnomedisin Curcuma longa"
+      "Kajian etnomedisin Curcuma longa",
+      "GBIF Backbone Taxonomy: Curcuma longa, Zingiberaceae (https://www.gbif.org/species/2757624).",
+      "Nama dan alias menurut Wikidata, revisi 2567812479 (https://www.wikidata.org/w/index.php?title=Q42562&oldid=2567812479)."
     ],
     "reference_links": [
       {
@@ -130,8 +143,8 @@
     "id": "taru-sirih",
     "local_names": [
       "Taru Sirih",
-      "Sirih",
-      "Sirih Bali"
+      "Sirih Bali",
+      "Piper betle"
     ],
     "scientific_name": "Piper betle",
     "botanical_family": "Piperaceae",
@@ -145,7 +158,9 @@
     "modern_pharmacological_action": "Antiseptik dan antioksidan; ekstrak daun sirih digunakan pada sediaan topikal.",
     "reference_studies": [
       "Tinjauan fitokimia Piper betle",
-      "Uji aktivitas antimikroba ekstrak daun sirih"
+      "Uji aktivitas antimikroba ekstrak daun sirih",
+      "GBIF Backbone Taxonomy: Piper betle, Piperaceae (https://www.gbif.org/species/4187904).",
+      "Nama dan alias menurut Wikidata, revisi 2567642751 (https://www.wikidata.org/w/index.php?title=Q159532&oldid=2567642751)."
     ],
     "reference_links": [
       {
@@ -159,8 +174,11 @@
     "id": "taru-asam",
     "local_names": [
       "Taru Asam",
-      "Asam",
-      "Asam Jawa"
+      "Asam Jawa",
+      "Tamarindus indica",
+      "asem jawa",
+      "asem",
+      "tamarin"
     ],
     "scientific_name": "Tamarindus indica",
     "botanical_family": "Fabaceae",
@@ -174,7 +192,9 @@
     "modern_pharmacological_action": "Laksatif ringan dan antioksidan; daging buah digunakan dalam ramuan tradisional.",
     "reference_studies": [
       "Tinjauan fitokimia Tamarindus indica",
-      "Kajian etnofarmakologi asam jawa"
+      "Kajian etnofarmakologi asam jawa",
+      "GBIF Backbone Taxonomy: Tamarindus indica, Fabaceae (https://www.gbif.org/species/2975768).",
+      "Nama dan alias menurut Wikidata, revisi 2567934279 (https://www.wikidata.org/w/index.php?title=Q80235&oldid=2567934279)."
     ],
     "reference_links": [
       {
@@ -188,10 +208,11 @@
     "id": "taru-turi",
     "local_names": [
       "Taru Turi",
-      "Turi",
       "Turi Putih",
       "Turi Merah",
-      "Sesbania"
+      "Sesbania",
+      "Sesbania grandiflora",
+      "Aeschynomene grandiflora"
     ],
     "scientific_name": "Sesbania grandiflora",
     "botanical_family": "Fabaceae",
@@ -205,7 +226,9 @@
     "modern_pharmacological_action": "Antiinflamasi dan antioksidan; daun turi digunakan dalam ramuan tradisional untuk demam dan batuk.",
     "reference_studies": [
       "Tinjauan fitokimia Sesbania grandiflora",
-      "Kajian etnofarmakologi daun turi"
+      "Kajian etnofarmakologi daun turi",
+      "GBIF Backbone Taxonomy: Sesbania grandiflora, Fabaceae (https://www.gbif.org/species/8281950).",
+      "Nama dan alias menurut Wikidata, revisi 2557575201 (https://www.wikidata.org/w/index.php?title=Q947251&oldid=2557575201)."
     ],
     "reference_links": [
       {
@@ -219,10 +242,10 @@
     "id": "taru-tabia-bun",
     "local_names": [
       "Taru Tabia Bun",
-      "Tabia Bun",
       "Tabia",
       "Cabai Besar",
-      "Capsicum"
+      "Capsicum",
+      "Capsicum annuum"
     ],
     "scientific_name": "Capsicum annuum",
     "botanical_family": "Solanaceae",
@@ -236,7 +259,8 @@
     "modern_pharmacological_action": "Kapsaisin memberi efek analgesik topikal dan antiinflamasi; buah cabai juga digunakan dalam ramuan penghangat tradisional.",
     "reference_studies": [
       "Tinjauan fitokimia Capsicum annuum",
-      "Kajian kapsaisin untuk nyeri topikal"
+      "Kajian kapsaisin untuk nyeri topikal",
+      "GBIF Backbone Taxonomy: Capsicum annuum, Solanaceae (https://www.gbif.org/species/2932944)."
     ],
     "reference_links": [
       {
@@ -250,9 +274,9 @@
     "id": "taru-ketumbar",
     "local_names": [
       "Taru Ketumbar",
-      "Ketumbar",
       "Ketumbar Bolong",
-      "Coriander"
+      "Coriander",
+      "Coriandrum sativum"
     ],
     "scientific_name": "Coriandrum sativum",
     "botanical_family": "Apiaceae",
@@ -266,7 +290,9 @@
     "modern_pharmacological_action": "Karminatif dan antispasmodik ringan; biji ketumbar digunakan sebagai adjuvan pencernaan.",
     "reference_studies": [
       "Tinjauan fitokimia Coriandrum sativum",
-      "Kajian farmakologi biji ketumbar"
+      "Kajian farmakologi biji ketumbar",
+      "GBIF Backbone Taxonomy: Coriandrum sativum, Apiaceae (https://www.gbif.org/species/3034871).",
+      "Nama dan alias menurut Wikidata, revisi 2567812427 (https://www.wikidata.org/w/index.php?title=Q41611&oldid=2567812427)."
     ],
     "reference_links": [
       {
@@ -280,9 +306,11 @@
     "id": "taru-adas",
     "local_names": [
       "Taru Adas",
-      "Adas",
       "Adas Pulosari",
-      "Fennel"
+      "Fennel",
+      "Foeniculum vulgare",
+      "Adas pedas",
+      "Pohon adas"
     ],
     "scientific_name": "Foeniculum vulgare",
     "botanical_family": "Apiaceae",
@@ -296,7 +324,9 @@
     "modern_pharmacological_action": "Karminatif dan antispasmodik; minyak atsiri adas membantu meredakan kembung.",
     "reference_studies": [
       "Tinjauan fitokimia Foeniculum vulgare",
-      "Kajian farmakologi buah adas"
+      "Kajian farmakologi buah adas",
+      "GBIF Backbone Taxonomy: Foeniculum vulgare, Apiaceae (https://www.gbif.org/species/3034922).",
+      "Nama dan alias menurut Wikidata, revisi 2567823143 (https://www.wikidata.org/w/index.php?title=Q43511&oldid=2567823143)."
     ],
     "reference_links": [
       {
@@ -309,8 +339,7 @@
   {
     "id": "taru-dapdap",
     "local_names": [
-      "Dapdap",
-      "Dadap"
+      "Dapdap"
     ],
     "scientific_name": "Erythrina spp.",
     "botanical_family": "Leguminosae",
@@ -334,9 +363,9 @@
     "id": "taru-sembung",
     "local_names": [
       "Sembung",
-      "sĕmbuŋ",
       "Sembung utan",
-      "Sembung gantung"
+      "Sembung gantung",
+      "Blumea balsamifera"
     ],
     "scientific_name": "Blumea balsamifera",
     "botanical_family": "Compositae",
@@ -346,7 +375,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Blumea balsamifera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Blumea_balsamifera_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Blumea balsamifera, Asteraceae (https://www.gbif.org/species/5395786).",
+      "Nama dan alias menurut Wikidata, revisi 2567796016 (https://www.wikidata.org/w/index.php?title=Q2704178&oldid=2567796016)."
     ],
     "reference_links": [
       {
@@ -360,8 +391,9 @@
     "id": "taru-kacemcem",
     "local_names": [
       "Kacemcem",
-      "Kacĕmcĕm",
-      "Kedongdong leuweung"
+      "Kedongdong leuweung",
+      "Spondias pinnata",
+      "Kedondong hutan"
     ],
     "scientific_name": "Spondias pinnata",
     "botanical_family": "Anacardiaceae",
@@ -371,7 +403,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Spondias pinnata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Spondias_pinnata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Spondias pinnata, Anacardiaceae (https://www.gbif.org/species/3661030).",
+      "Nama dan alias menurut Wikidata, revisi 2568022502 (https://www.wikidata.org/w/index.php?title=Q9395416&oldid=2568022502)."
     ],
     "reference_links": [
       {
@@ -386,7 +420,8 @@
     "local_names": [
       "Jahe",
       "Jae",
-      "Lia"
+      "Lia",
+      "Zingiber officinale"
     ],
     "scientific_name": "Zingiber officinale",
     "botanical_family": "Zingiberaceae",
@@ -396,7 +431,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Zingiber officinale, identitas dan nama lokal (https://plantuse.plantnet.org/en/Zingiber_officinale_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Zingiber officinale, Zingiberaceae (https://www.gbif.org/species/2757280).",
+      "Nama dan alias menurut Wikidata, revisi 2567843318 (https://www.wikidata.org/w/index.php?title=Q35625&oldid=2567843318)."
     ],
     "reference_links": [
       {
@@ -410,7 +447,8 @@
     "id": "taru-kencur",
     "local_names": [
       "Kencur",
-      "Cekur"
+      "Cekur",
+      "Kaempferia galanga"
     ],
     "scientific_name": "Kaempferia galanga",
     "botanical_family": "Zingiberaceae",
@@ -421,7 +459,9 @@
     "reference_studies": [
       "PROSEA: Kaempferia galanga, identitas dan nama lokal (https://plantuse.plantnet.org/en/Kaempferia_galanga_(PROSEA)).",
       "Famili menurut PROSEA: Zingiberaceae (https://plantuse.plantnet.org/en/Kaempferia_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Kaempferia galanga, Zingiberaceae (https://www.gbif.org/species/5301451).",
+      "Nama dan alias menurut Wikidata, revisi 2564919317 (https://www.wikidata.org/w/index.php?title=Q1113398&oldid=2564919317)."
     ],
     "reference_links": [
       {
@@ -437,7 +477,9 @@
       "Langkuas",
       "Laos",
       "Laja",
-      "Lengkuas"
+      "Lengkuas",
+      "Alpinia galanga",
+      "kelawas"
     ],
     "scientific_name": "Alpinia galanga",
     "botanical_family": "Zingiberaceae",
@@ -447,7 +489,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Alpinia galanga, identitas dan nama lokal (https://plantuse.plantnet.org/en/Alpinia_galanga_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Alpinia galanga, Zingiberaceae (https://www.gbif.org/species/5302225).",
+      "Nama dan alias menurut Wikidata, revisi 2567866435 (https://www.wikidata.org/w/index.php?title=Q402971&oldid=2567866435)."
     ],
     "reference_links": [
       {
@@ -461,8 +505,8 @@
     "id": "taru-temu-lawak",
     "local_names": [
       "Temu lawak",
-      "Temulawak",
-      "Koneng gede"
+      "Koneng gede",
+      "Curcuma xanthorrhiza"
     ],
     "scientific_name": "Curcuma xanthorrhiza",
     "botanical_family": "Zingiberaceae",
@@ -472,7 +516,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Curcuma xanthorrhiza, identitas dan nama lokal (https://plantuse.plantnet.org/en/Curcuma_xanthorrhiza_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Curcuma xanthorrhiza, Zingiberaceae (https://www.gbif.org/species/3990387)."
     ],
     "reference_links": [
       {
@@ -486,7 +531,8 @@
     "id": "taru-temu-putih",
     "local_names": [
       "Temu putih",
-      "Koneng tegal"
+      "Koneng tegal",
+      "Curcuma zedoaria"
     ],
     "scientific_name": "Curcuma zedoaria",
     "botanical_family": "Zingiberaceae",
@@ -496,7 +542,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Curcuma zedoaria, identitas dan nama lokal (https://plantuse.plantnet.org/en/Curcuma_zedoaria_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Curcuma zedoaria, Zingiberaceae (https://www.gbif.org/species/2757545).",
+      "Nama dan alias menurut Wikidata, revisi 2567796905 (https://www.wikidata.org/w/index.php?title=Q206733&oldid=2567796905)."
     ],
     "reference_links": [
       {
@@ -511,7 +559,8 @@
     "local_names": [
       "Temu hitam",
       "Temu ireng",
-      "Koneng hideung"
+      "Koneng hideung",
+      "Curcuma aeruginosa"
     ],
     "scientific_name": "Curcuma aeruginosa",
     "botanical_family": "Zingiberaceae",
@@ -522,7 +571,9 @@
     "reference_studies": [
       "PROSEA: Curcuma aeruginosa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Curcuma_aeruginosa_(PROSEA)).",
       "Famili menurut PROSEA: Zingiberaceae (https://plantuse.plantnet.org/en/Curcuma_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Curcuma aeruginosa, Zingiberaceae (https://www.gbif.org/species/2757635).",
+      "Nama dan alias menurut Wikidata, revisi 2567860107 (https://www.wikidata.org/w/index.php?title=Q3517919&oldid=2567860107)."
     ],
     "reference_links": [
       {
@@ -536,7 +587,8 @@
     "id": "taru-temu-kunci",
     "local_names": [
       "Temu kunci",
-      "Tumbu konci"
+      "Tumbu konci",
+      "Boesenbergia rotunda"
     ],
     "scientific_name": "Boesenbergia rotunda",
     "botanical_family": "Zingiberaceae",
@@ -546,7 +598,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Boesenbergia rotunda, identitas dan nama lokal (https://plantuse.plantnet.org/en/Boesenbergia_rotunda_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Boesenbergia rotunda, Zingiberaceae (https://www.gbif.org/species/2758480).",
+      "Nama dan alias menurut Wikidata, revisi 2564320368 (https://www.wikidata.org/w/index.php?title=Q1074199&oldid=2564320368)."
     ],
     "reference_links": [
       {
@@ -560,7 +614,8 @@
     "id": "taru-pala",
     "local_names": [
       "Pala",
-      "Pala Banda"
+      "Pala Banda",
+      "Myristica fragrans"
     ],
     "scientific_name": "Myristica fragrans",
     "botanical_family": "Myristicaceae",
@@ -570,7 +625,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Myristica fragrans, identitas dan nama lokal (https://plantuse.plantnet.org/en/Myristica_fragrans_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Myristica fragrans, Myristicaceae (https://www.gbif.org/species/5406817).",
+      "Nama dan alias menurut Wikidata, revisi 2567796639 (https://www.wikidata.org/w/index.php?title=Q2724976&oldid=2567796639)."
     ],
     "reference_links": [
       {
@@ -583,7 +640,11 @@
   {
     "id": "taru-cengkeh",
     "local_names": [
-      "Cengkeh"
+      "Cengkeh",
+      "Syzygium aromaticum",
+      "Cengkih",
+      "Clove",
+      "pohon cengkih"
     ],
     "scientific_name": "Syzygium aromaticum",
     "botanical_family": "Myrtaceae",
@@ -593,7 +654,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Syzygium aromaticum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Syzygium_aromaticum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Syzygium aromaticum, Myrtaceae (https://www.gbif.org/species/3183002).",
+      "Nama dan alias menurut Wikidata, revisi 2567788859 (https://www.wikidata.org/w/index.php?title=Q26736&oldid=2567788859)."
     ],
     "reference_links": [
       {
@@ -608,7 +671,8 @@
     "local_names": [
       "Kemiri",
       "Miri",
-      "Muncang"
+      "Muncang",
+      "Aleurites moluccanus"
     ],
     "scientific_name": "Aleurites moluccanus",
     "botanical_family": "Euphorbiaceae",
@@ -618,7 +682,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Aleurites moluccanus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Aleurites_moluccanus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Aleurites moluccanus, Euphorbiaceae (https://www.gbif.org/species/4930679).",
+      "Nama dan alias menurut Wikidata, revisi 2564930795 (https://www.wikidata.org/w/index.php?title=Q1160961&oldid=2564930795)."
     ],
     "reference_links": [
       {
@@ -632,7 +698,8 @@
     "id": "taru-bawang-putih",
     "local_names": [
       "Bawang putih",
-      "Bawang bodas"
+      "Bawang bodas",
+      "Allium sativum"
     ],
     "scientific_name": "Allium sativum",
     "botanical_family": "Liliaceae",
@@ -642,7 +709,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Allium sativum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Allium_sativum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Allium sativum, Amaryllidaceae (https://www.gbif.org/species/2856681)."
     ],
     "reference_links": [
       {
@@ -657,7 +725,8 @@
     "local_names": [
       "Bawang daun",
       "Bawang bakung",
-      "Bawang oncang"
+      "Bawang oncang",
+      "Allium fistulosum"
     ],
     "scientific_name": "Allium fistulosum",
     "botanical_family": "Liliaceae",
@@ -667,7 +736,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Allium fistulosum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Allium_fistulosum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Allium fistulosum, Amaryllidaceae (https://www.gbif.org/species/2856504)."
     ],
     "reference_links": [
       {
@@ -680,7 +750,8 @@
   {
     "id": "taru-kucai",
     "local_names": [
-      "Kucai"
+      "Kucai",
+      "Allium tuberosum"
     ],
     "scientific_name": "Allium tuberosum",
     "botanical_family": "Liliaceae",
@@ -690,7 +761,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Allium tuberosum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Allium_tuberosum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Allium tuberosum, Amaryllidaceae (https://www.gbif.org/species/2856297)."
     ],
     "reference_links": [
       {
@@ -704,7 +776,11 @@
     "id": "taru-serai-dapur",
     "local_names": [
       "Serai dapur",
-      "Sereh"
+      "Sereh",
+      "Cymbopogon citratus",
+      "Serai",
+      "Sitronella",
+      "Daun serai"
     ],
     "scientific_name": "Cymbopogon citratus",
     "botanical_family": "Gramineae",
@@ -714,7 +790,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cymbopogon citratus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cymbopogon_citratus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cymbopogon citratus, Poaceae (https://www.gbif.org/species/2705275).",
+      "Nama dan alias menurut Wikidata, revisi 2567843295 (https://www.wikidata.org/w/index.php?title=Q33913&oldid=2567843295)."
     ],
     "reference_links": [
       {
@@ -728,7 +806,9 @@
     "id": "taru-pandan-wangi",
     "local_names": [
       "Pandan wangi",
-      "Pandan rampe"
+      "Pandan rampe",
+      "Pandanus amaryllifolius",
+      "daun pandan"
     ],
     "scientific_name": "Pandanus amaryllifolius",
     "botanical_family": "Pandanaceae",
@@ -738,7 +818,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Pandanus amaryllifolius, identitas dan nama lokal (https://plantuse.plantnet.org/en/Pandanus_amaryllifolius_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Pandanus amaryllifolius, Pandanaceae (https://www.gbif.org/species/9296315).",
+      "Nama dan alias menurut Wikidata, revisi 2567841582 (https://www.wikidata.org/w/index.php?title=Q311090&oldid=2567841582)."
     ],
     "reference_links": [
       {
@@ -753,7 +835,8 @@
     "local_names": [
       "Kelapa",
       "Nyiur",
-      "Krambil"
+      "Krambil",
+      "Cocos nucifera"
     ],
     "scientific_name": "Cocos nucifera",
     "botanical_family": "Palmae",
@@ -763,7 +846,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cocos nucifera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cocos_nucifera_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cocos nucifera, Arecaceae (https://www.gbif.org/species/2735117)."
     ],
     "reference_links": [
       {
@@ -777,7 +861,9 @@
     "id": "taru-pinang",
     "local_names": [
       "Pinang",
-      "Jambe"
+      "Jambe",
+      "Areca catechu",
+      "Pohon Pinang"
     ],
     "scientific_name": "Areca catechu",
     "botanical_family": "Palmae",
@@ -787,7 +873,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Areca catechu, identitas dan nama lokal (https://plantuse.plantnet.org/en/Areca_catechu_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Areca catechu, Arecaceae (https://www.gbif.org/species/2736531).",
+      "Nama dan alias menurut Wikidata, revisi 2567650518 (https://www.wikidata.org/w/index.php?title=Q156969&oldid=2567650518)."
     ],
     "reference_links": [
       {
@@ -801,7 +889,8 @@
     "id": "taru-lontar",
     "local_names": [
       "Lontar",
-      "Siwalan"
+      "Siwalan",
+      "Borassus flabellifer"
     ],
     "scientific_name": "Borassus flabellifer",
     "botanical_family": "Palmae",
@@ -811,7 +900,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Borassus flabellifer, identitas dan nama lokal (https://plantuse.plantnet.org/en/Borassus_flabellifer_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Borassus flabellifer, Arecaceae (https://www.gbif.org/species/2733934).",
+      "Nama dan alias menurut Wikidata, revisi 2567867907 (https://www.wikidata.org/w/index.php?title=Q500857&oldid=2567867907)."
     ],
     "reference_links": [
       {
@@ -826,7 +917,8 @@
     "local_names": [
       "Aren",
       "Enau",
-      "Kawung"
+      "Kawung",
+      "Arenga pinnata"
     ],
     "scientific_name": "Arenga pinnata",
     "botanical_family": "Palmae",
@@ -836,7 +928,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Arenga pinnata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Arenga_pinnata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Arenga pinnata, Arecaceae (https://www.gbif.org/species/2733997).",
+      "Nama dan alias menurut Wikidata, revisi 2567811056 (https://www.wikidata.org/w/index.php?title=Q227984&oldid=2567811056)."
     ],
     "reference_links": [
       {
@@ -850,7 +944,12 @@
     "id": "taru-bambu-kuning",
     "local_names": [
       "Bambu kuning",
-      "Bambu ampel"
+      "Bambu ampel",
+      "Bambusa vulgaris",
+      "bambu aur",
+      "bambu kuning (var)",
+      "bambu gading (var)",
+      "bambu wamin (var)"
     ],
     "scientific_name": "Bambusa vulgaris",
     "botanical_family": "Gramineae",
@@ -860,7 +959,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Bambusa vulgaris, identitas dan nama lokal (https://plantuse.plantnet.org/en/Bambusa_vulgaris_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Bambusa vulgaris, Poaceae (https://www.gbif.org/species/7661971).",
+      "Nama dan alias menurut Wikidata, revisi 2537426516 (https://www.wikidata.org/w/index.php?title=Q3219428&oldid=2537426516)."
     ],
     "reference_links": [
       {
@@ -873,8 +974,10 @@
   {
     "id": "taru-bidara",
     "local_names": [
-      "Bidara",
-      "Widara"
+      "Widara",
+      "Ziziphus mauritiana",
+      "Bukol",
+      "Widoro bukol"
     ],
     "scientific_name": "Ziziphus mauritiana",
     "botanical_family": "Rhamnaceae",
@@ -884,7 +987,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Ziziphus mauritiana, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ziziphus_mauritiana_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Ziziphus mauritiana, Rhamnaceae (https://www.gbif.org/species/3039424).",
+      "Nama dan alias menurut Wikidata, revisi 2567834468 (https://www.wikidata.org/w/index.php?title=Q327859&oldid=2567834468)."
     ],
     "reference_links": [
       {
@@ -898,7 +1003,8 @@
     "id": "taru-kelor",
     "local_names": [
       "Kelor",
-      "Marunga"
+      "Marunga",
+      "Moringa oleifera"
     ],
     "scientific_name": "Moringa oleifera",
     "botanical_family": "Moringaceae",
@@ -908,7 +1014,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Moringa oleifera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Moringa_oleifera_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Moringa oleifera, Moringaceae (https://www.gbif.org/species/3054181).",
+      "Nama dan alias menurut Wikidata, revisi 2567807319 (https://www.wikidata.org/w/index.php?title=Q234193&oldid=2567807319)."
     ],
     "reference_links": [
       {
@@ -922,7 +1030,11 @@
     "id": "taru-papaya",
     "local_names": [
       "Papaya",
-      "Kates"
+      "Kates",
+      "Carica papaya",
+      "pepaya",
+      "karika",
+      "betik"
     ],
     "scientific_name": "Carica papaya",
     "botanical_family": "Caricaceae",
@@ -932,7 +1044,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Carica papaya, identitas dan nama lokal (https://plantuse.plantnet.org/en/Carica_papaya_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Carica papaya, Caricaceae (https://www.gbif.org/species/2874484).",
+      "Nama dan alias menurut Wikidata, revisi 2567855905 (https://www.wikidata.org/w/index.php?title=Q34887&oldid=2567855905)."
     ],
     "reference_links": [
       {
@@ -948,7 +1062,8 @@
       "Mengkudu",
       "Pace",
       "Bengkudu",
-      "Cangkudu"
+      "Cangkudu",
+      "Morinda citrifolia"
     ],
     "scientific_name": "Morinda citrifolia",
     "botanical_family": "Rubiaceae",
@@ -958,7 +1073,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Morinda citrifolia, identitas dan nama lokal (https://plantuse.plantnet.org/en/Morinda_citrifolia_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Morinda citrifolia, Rubiaceae (https://www.gbif.org/species/5339879).",
+      "Nama dan alias menurut Wikidata, revisi 2567807353 (https://www.wikidata.org/w/index.php?title=Q234238&oldid=2567807353)."
     ],
     "reference_links": [
       {
@@ -971,7 +1088,8 @@
   {
     "id": "taru-manggis",
     "local_names": [
-      "Manggis"
+      "Manggis",
+      "Garcinia mangostana"
     ],
     "scientific_name": "Garcinia mangostana",
     "botanical_family": "Guttiferae",
@@ -981,7 +1099,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Garcinia mangostana, identitas dan nama lokal (https://plantuse.plantnet.org/en/Garcinia_mangostana_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Garcinia mangostana, Clusiaceae (https://www.gbif.org/species/3189571)."
     ],
     "reference_links": [
       {
@@ -995,7 +1114,10 @@
     "id": "taru-mangga",
     "local_names": [
       "Mangga",
-      "Mempelam"
+      "Mempelam",
+      "Poh Gedang",
+      "poḥgdhaŋ",
+      "Mangifera indica"
     ],
     "scientific_name": "Mangifera indica",
     "botanical_family": "Anacardiaceae",
@@ -1005,7 +1127,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Mangifera indica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Mangifera_indica_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "BASAibu, Poh Gedang: jenis mangga, bukan pepaya. Alias ejaan arsip poḥgdhaŋ mengikuti konteks ini (https://basaibubali.org/w/index.php?title=Poh_Gedang&oldid=80836). Identifikasi pada lempir tetap perlu ditinjau.",
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Mangifera indica, Anacardiaceae (https://www.gbif.org/species/3190638)."
     ],
     "reference_links": [
       {
@@ -1020,7 +1144,13 @@
     "local_names": [
       "Blimbing wuluh",
       "Belimbing wuluh",
-      "Belimbing asam"
+      "Belimbing asam",
+      "Averrhoa bilimbi",
+      "Belimbing sayur",
+      "Buah belimbing buluh",
+      "Belimbing besi",
+      "Belimbing botol",
+      "Belimbing buluh"
     ],
     "scientific_name": "Averrhoa bilimbi",
     "botanical_family": "Oxalidaceae",
@@ -1030,7 +1160,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Averrhoa bilimbi, identitas dan nama lokal (https://plantuse.plantnet.org/en/Averrhoa_bilimbi_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Averrhoa bilimbi, Oxalidaceae (https://www.gbif.org/species/2891640).",
+      "Nama dan alias menurut Wikidata, revisi 2567808619 (https://www.wikidata.org/w/index.php?title=Q237465&oldid=2567808619)."
     ],
     "reference_links": [
       {
@@ -1043,7 +1175,9 @@
   {
     "id": "taru-belimbing-manis",
     "local_names": [
-      "Belimbing manis"
+      "Belimbing manis",
+      "Averrhoa carambola",
+      "Belimbing"
     ],
     "scientific_name": "Averrhoa carambola",
     "botanical_family": "Oxalidaceae",
@@ -1053,7 +1187,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Averrhoa carambola, identitas dan nama lokal (https://plantuse.plantnet.org/en/Averrhoa_carambola_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Averrhoa carambola, Oxalidaceae (https://www.gbif.org/species/2891641).",
+      "Nama dan alias menurut Wikidata, revisi 2567641409 (https://www.wikidata.org/w/index.php?title=Q159447&oldid=2567641409)."
     ],
     "reference_links": [
       {
@@ -1067,7 +1203,8 @@
     "id": "taru-jeruk-nipis",
     "local_names": [
       "Jeruk nipis",
-      "Jeruk pecel"
+      "Jeruk pecel",
+      "Citrus aurantiifolia"
     ],
     "scientific_name": "Citrus aurantiifolia",
     "botanical_family": "Rutaceae",
@@ -1077,7 +1214,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Citrus aurantiifolia, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_aurantiifolia_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Citrus aurantiifolia, Rutaceae (https://www.gbif.org/species/3190164)."
     ],
     "reference_links": [
       {
@@ -1091,7 +1229,8 @@
     "id": "taru-jeruk-purut",
     "local_names": [
       "Jeruk purut",
-      "Limo purut"
+      "Limo purut",
+      "Citrus hystrix"
     ],
     "scientific_name": "Citrus hystrix",
     "botanical_family": "Rutaceae",
@@ -1101,7 +1240,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Citrus hystrix, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_hystrix_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Citrus hystrix, Rutaceae (https://www.gbif.org/species/6433679).",
+      "Nama dan alias menurut Wikidata, revisi 2567833327 (https://www.wikidata.org/w/index.php?title=Q465934&oldid=2567833327)."
     ],
     "reference_links": [
       {
@@ -1114,7 +1255,11 @@
   {
     "id": "taru-jeruk-manis",
     "local_names": [
-      "Jeruk manis"
+      "Jeruk manis",
+      "Citrus aurantium",
+      "Citrus leiocarpa",
+      "Jeruk koji",
+      "Citrus sinensis"
     ],
     "scientific_name": "Citrus sinensis",
     "botanical_family": "Rutaceae",
@@ -1124,7 +1269,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Citrus sinensis, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_sinensis_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Citrus aurantium, Rutaceae (https://www.gbif.org/species/8077391).",
+      "Nama dan alias menurut Wikidata, revisi 2564293041 (https://www.wikidata.org/w/index.php?title=Q10349285&oldid=2564293041)."
     ],
     "reference_links": [
       {
@@ -1138,7 +1285,8 @@
     "id": "taru-jeruk-bali",
     "local_names": [
       "Jeruk bali",
-      "Jeruk besar"
+      "Jeruk besar",
+      "Citrus maxima"
     ],
     "scientific_name": "Citrus maxima",
     "botanical_family": "Rutaceae",
@@ -1148,7 +1296,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Citrus maxima, identitas dan nama lokal (https://plantuse.plantnet.org/en/Citrus_maxima_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Citrus maxima, Rutaceae (https://www.gbif.org/species/3190160)."
     ],
     "reference_links": [
       {
@@ -1163,7 +1312,8 @@
     "local_names": [
       "Sirsak",
       "Nangka belanda",
-      "Nangka seberang"
+      "Nangka seberang",
+      "Annona muricata"
     ],
     "scientific_name": "Annona muricata",
     "botanical_family": "Annonaceae",
@@ -1173,7 +1323,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Annona muricata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Annona_muricata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Annona muricata, Annonaceae (https://www.gbif.org/species/5407273).",
+      "Nama dan alias menurut Wikidata, revisi 2557166875 (https://www.wikidata.org/w/index.php?title=Q1709343&oldid=2557166875)."
     ],
     "reference_links": [
       {
@@ -1187,7 +1339,10 @@
     "id": "taru-sirkaja",
     "local_names": [
       "Sirkaja",
-      "Sarikaja"
+      "Sarikaja",
+      "Annona squamosa",
+      "Srikaya",
+      "Buah nona"
     ],
     "scientific_name": "Annona squamosa",
     "botanical_family": "Annonaceae",
@@ -1197,7 +1352,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Annona squamosa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Annona_squamosa_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Annona squamosa, Annonaceae (https://www.gbif.org/species/5407099).",
+      "Nama dan alias menurut Wikidata, revisi 2567799608 (https://www.wikidata.org/w/index.php?title=Q275620&oldid=2567799608)."
     ],
     "reference_links": [
       {
@@ -1211,7 +1368,8 @@
     "id": "taru-nangka",
     "local_names": [
       "Nangka",
-      "Nongko"
+      "Nongko",
+      "Artocarpus heterophyllus"
     ],
     "scientific_name": "Artocarpus heterophyllus",
     "botanical_family": "Moraceae",
@@ -1221,7 +1379,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Artocarpus heterophyllus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Artocarpus_heterophyllus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Artocarpus heterophyllus, Moraceae (https://www.gbif.org/species/2984565).",
+      "Nama dan alias menurut Wikidata, revisi 2567831240 (https://www.wikidata.org/w/index.php?title=Q45757&oldid=2567831240)."
     ],
     "reference_links": [
       {
@@ -1234,7 +1394,10 @@
   {
     "id": "taru-sukun",
     "local_names": [
-      "Sukun"
+      "Sukun",
+      "Artocarpus altilis",
+      "Artocarpus camansi",
+      "Kluwih"
     ],
     "scientific_name": "Artocarpus altilis",
     "botanical_family": "Moraceae",
@@ -1244,7 +1407,10 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Artocarpus altilis, identitas dan nama lokal (https://plantuse.plantnet.org/en/Artocarpus_altilis_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Artocarpus altilis, Moraceae (https://www.gbif.org/species/2984573).",
+      "Nama dan alias menurut Wikidata, revisi 2567780703 (https://www.wikidata.org/w/index.php?title=Q14677&oldid=2567780703).",
+      "Nama dan alias menurut Wikidata, revisi 2567795418 (https://www.wikidata.org/w/index.php?title=Q251762&oldid=2567795418)."
     ],
     "reference_links": [
       {
@@ -1258,7 +1424,8 @@
     "id": "taru-sawo-manila",
     "local_names": [
       "Sawo manila",
-      "Sawo londo"
+      "Sawo londo",
+      "Manilkara zapota"
     ],
     "scientific_name": "Manilkara zapota",
     "botanical_family": "Sapotaceae",
@@ -1268,7 +1435,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Manilkara zapota, identitas dan nama lokal (https://plantuse.plantnet.org/en/Manilkara_zapota_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Manilkara zapota, Sapotaceae (https://www.gbif.org/species/2885158).",
+      "Nama dan alias menurut Wikidata, revisi 2566741180 (https://www.wikidata.org/w/index.php?title=Q14959&oldid=2566741180)."
     ],
     "reference_links": [
       {
@@ -1283,7 +1452,9 @@
     "local_names": [
       "Sambilata",
       "Ki oray",
-      "Ampadu"
+      "Ampadu",
+      "Andrographis paniculata",
+      "Sambiloto"
     ],
     "scientific_name": "Andrographis paniculata",
     "botanical_family": "Acanthaceae",
@@ -1293,7 +1464,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Andrographis paniculata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Andrographis_paniculata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Andrographis paniculata, Acanthaceae (https://www.gbif.org/species/3173178).",
+      "Nama dan alias menurut Wikidata, revisi 2567666057 (https://www.wikidata.org/w/index.php?title=Q1551608&oldid=2567666057)."
     ],
     "reference_links": [
       {
@@ -1308,7 +1481,8 @@
     "local_names": [
       "Pegagan",
       "Daun kaki kuda",
-      "Antanan gede"
+      "Antanan gede",
+      "Centella asiatica"
     ],
     "scientific_name": "Centella asiatica",
     "botanical_family": "Umbelliferae",
@@ -1318,7 +1492,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Centella asiatica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Centella_asiatica_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Centella asiatica, Apiaceae (https://www.gbif.org/species/3034128).",
+      "Nama dan alias menurut Wikidata, revisi 2567834435 (https://www.wikidata.org/w/index.php?title=Q324714&oldid=2567834435)."
     ],
     "reference_links": [
       {
@@ -1333,7 +1509,8 @@
     "local_names": [
       "Kumis kucing",
       "Kumis ucing",
-      "Remuk jung"
+      "Remuk jung",
+      "Orthosiphon aristatus"
     ],
     "scientific_name": "Orthosiphon aristatus",
     "botanical_family": "Labiatae",
@@ -1343,7 +1520,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Orthosiphon aristatus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Orthosiphon_aristatus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Orthosiphon aristatus, Lamiaceae (https://www.gbif.org/species/7308026).",
+      "Nama dan alias menurut Wikidata, revisi 2567791295 (https://www.wikidata.org/w/index.php?title=Q2673246&oldid=2567791295)."
     ],
     "reference_links": [
       {
@@ -1358,7 +1537,8 @@
     "local_names": [
       "Beluntas",
       "Luntas",
-      "Baruntas"
+      "Baruntas",
+      "Pluchea indica"
     ],
     "scientific_name": "Pluchea indica",
     "botanical_family": "Compositae",
@@ -1368,7 +1548,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Pluchea indica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Pluchea_indica_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Pluchea indica, Asteraceae (https://www.gbif.org/species/3132728).",
+      "Nama dan alias menurut Wikidata, revisi 2567812073 (https://www.wikidata.org/w/index.php?title=Q4217123&oldid=2567812073)."
     ],
     "reference_links": [
       {
@@ -1383,7 +1565,8 @@
     "local_names": [
       "Brotowali",
       "Andawali",
-      "Putrowali"
+      "Putrowali",
+      "Tinospora crispa"
     ],
     "scientific_name": "Tinospora crispa",
     "botanical_family": "Menispermaceae",
@@ -1394,7 +1577,8 @@
     "reference_studies": [
       "PROSEA: Tinospora crispa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Tinospora_crispa_(PROSEA)).",
       "Famili menurut PROSEA: Menispermaceae (https://plantuse.plantnet.org/en/Tinospora_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Tinospora crispa, Menispermaceae (https://www.gbif.org/species/8298918)."
     ],
     "reference_links": [
       {
@@ -1408,7 +1592,9 @@
     "id": "taru-sambung-mjawa",
     "local_names": [
       "Sambung mjawa",
-      "Kalingsir"
+      "Kalingsir",
+      "Gynura procumbens",
+      "Sambung nyawa"
     ],
     "scientific_name": "Gynura procumbens",
     "botanical_family": "Compositae",
@@ -1419,7 +1605,9 @@
     "reference_studies": [
       "PROSEA: Gynura procumbens, identitas dan nama lokal (https://plantuse.plantnet.org/en/Gynura_procumbens_(PROSEA)).",
       "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Gynura_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Gynura procumbens, Asteraceae (https://www.gbif.org/species/3139818).",
+      "Nama dan alias menurut Wikidata, revisi 2567798794 (https://www.wikidata.org/w/index.php?title=Q2601336&oldid=2567798794)."
     ],
     "reference_links": [
       {
@@ -1433,7 +1621,8 @@
     "id": "taru-beluntas-cina",
     "local_names": [
       "Beluntas cina",
-      "Sam sit"
+      "Sam sit",
+      "Gynura pseudochina"
     ],
     "scientific_name": "Gynura pseudochina",
     "botanical_family": "Compositae",
@@ -1444,7 +1633,8 @@
     "reference_studies": [
       "PROSEA: Gynura pseudochina, identitas dan nama lokal (https://plantuse.plantnet.org/en/Gynura_pseudochina_(PROSEA)).",
       "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Gynura_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Gynura pseudochina, Asteraceae (https://www.gbif.org/species/7715188)."
     ],
     "reference_links": [
       {
@@ -1459,7 +1649,9 @@
     "local_names": [
       "Katuk",
       "Babing",
-      "Simani"
+      "Simani",
+      "Breynia androgyna",
+      "Sauropus androgynus"
     ],
     "scientific_name": "Sauropus androgynus",
     "botanical_family": "Euphorbiaceae",
@@ -1469,7 +1661,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Sauropus androgynus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Sauropus_androgynus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Breynia androgyna, Phyllanthaceae (https://www.gbif.org/species/9197670)."
     ],
     "reference_links": [
       {
@@ -1483,7 +1676,8 @@
     "id": "taru-kenikir",
     "local_names": [
       "Kenikir",
-      "Randa midang"
+      "Randa midang",
+      "Cosmos caudatus"
     ],
     "scientific_name": "Cosmos caudatus",
     "botanical_family": "Compositae",
@@ -1493,7 +1687,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cosmos caudatus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cosmos_caudatus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cosmos caudatus, Asteraceae (https://www.gbif.org/species/3098932)."
     ],
     "reference_links": [
       {
@@ -1507,7 +1702,12 @@
     "id": "taru-selasih",
     "local_names": [
       "Selasih",
-      "Surawung"
+      "Surawung",
+      "Ocimum basilicum",
+      "Basilikum",
+      "Basilicum",
+      "Tlasih",
+      "Telasih"
     ],
     "scientific_name": "Ocimum basilicum",
     "botanical_family": "Labiatae",
@@ -1517,7 +1717,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Ocimum basilicum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ocimum_basilicum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Ocimum basilicum, Lamiaceae (https://www.gbif.org/species/2927096).",
+      "Nama dan alias menurut Wikidata, revisi 2567866397 (https://www.wikidata.org/w/index.php?title=Q38859&oldid=2567866397)."
     ],
     "reference_links": [
       {
@@ -1532,7 +1734,8 @@
     "local_names": [
       "Nilam wangi",
       "Nilam",
-      "Singalon"
+      "Singalon",
+      "Pogostemon cablin"
     ],
     "scientific_name": "Pogostemon cablin",
     "botanical_family": "Labiatae",
@@ -1542,7 +1745,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Pogostemon cablin, identitas dan nama lokal (https://plantuse.plantnet.org/en/Pogostemon_cablin_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Pogostemon cablin, Lamiaceae (https://www.gbif.org/species/2926672).",
+      "Nama dan alias menurut Wikidata, revisi 2567794133 (https://www.wikidata.org/w/index.php?title=Q257757&oldid=2567794133)."
     ],
     "reference_links": [
       {
@@ -1555,7 +1760,8 @@
   {
     "id": "taru-lidah-buaya",
     "local_names": [
-      "Lidah buaya"
+      "Lidah buaya",
+      "Aloe vera"
     ],
     "scientific_name": "Aloe vera",
     "botanical_family": "Asphodelaceae",
@@ -1566,7 +1772,9 @@
     "reference_studies": [
       "PROSEA: Aloe vera, identitas dan nama lokal (https://plantuse.plantnet.org/en/Aloe_vera_(PROSEA)).",
       "Famili menurut PROSEA: Asphodelaceae (https://plantuse.plantnet.org/en/Aloe_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Aloe vera, Asphodelaceae (https://www.gbif.org/species/2777724).",
+      "Nama dan alias menurut Wikidata, revisi 2567934209 (https://www.wikidata.org/w/index.php?title=Q80079&oldid=2567934209)."
     ],
     "reference_links": [
       {
@@ -1581,7 +1789,9 @@
     "local_names": [
       "Urang-aring",
       "Orang-aring",
-      "Daun sipat"
+      "Daun sipat",
+      "Eclipta prostrata",
+      "Eclipta alba"
     ],
     "scientific_name": "Eclipta prostrata",
     "botanical_family": "Compositae",
@@ -1591,7 +1801,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Eclipta prostrata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Eclipta_prostrata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Eclipta prostrata, Asteraceae (https://www.gbif.org/species/5384950).",
+      "Nama dan alias menurut Wikidata, revisi 2567996723 (https://www.wikidata.org/w/index.php?title=Q857092&oldid=2567996723)."
     ],
     "reference_links": [
       {
@@ -1606,7 +1818,9 @@
     "local_names": [
       "Tapak dara",
       "Bunga serdadu",
-      "Kembang tembaga"
+      "Kembang tembaga",
+      "Catharanthus roseus",
+      "Rosy periwinkle"
     ],
     "scientific_name": "Catharanthus roseus",
     "botanical_family": "Apocynaceae",
@@ -1616,7 +1830,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Catharanthus roseus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Catharanthus_roseus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Catharanthus roseus, Apocynaceae (https://www.gbif.org/species/3169830).",
+      "Nama dan alias menurut Wikidata, revisi 2565634715 (https://www.wikidata.org/w/index.php?title=Q161093&oldid=2565634715)."
     ],
     "reference_links": [
       {
@@ -1630,7 +1846,8 @@
     "id": "taru-tapak-liman",
     "local_names": [
       "Tapak liman",
-      "Talpak tana"
+      "Talpak tana",
+      "Elephantopus scaber"
     ],
     "scientific_name": "Elephantopus scaber",
     "botanical_family": "Compositae",
@@ -1641,7 +1858,9 @@
     "reference_studies": [
       "PROSEA: Elephantopus scaber, identitas dan nama lokal (https://plantuse.plantnet.org/en/Elephantopus_scaber_(PROSEA)).",
       "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Elephantopus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Elephantopus scaber, Asteraceae (https://www.gbif.org/species/5395925).",
+      "Nama dan alias menurut Wikidata, revisi 2564294191 (https://www.wikidata.org/w/index.php?title=Q1039719&oldid=2564294191)."
     ],
     "reference_links": [
       {
@@ -1655,7 +1874,8 @@
     "id": "taru-patikan-kebo",
     "local_names": [
       "Patikan kebo",
-      "Nanangkaan"
+      "Nanangkaan",
+      "Euphorbia hirta"
     ],
     "scientific_name": "Euphorbia hirta",
     "botanical_family": "Euphorbiaceae",
@@ -1666,7 +1886,9 @@
     "reference_studies": [
       "PROSEA: Euphorbia hirta, identitas dan nama lokal (https://plantuse.plantnet.org/en/Euphorbia_hirta_(PROSEA)).",
       "Famili menurut PROSEA: Euphorbiaceae (https://plantuse.plantnet.org/en/Euphorbia_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Euphorbia hirta, Euphorbiaceae (https://www.gbif.org/species/3068937).",
+      "Nama dan alias menurut Wikidata, revisi 2567996429 (https://www.wikidata.org/w/index.php?title=Q36177&oldid=2567996429)."
     ],
     "reference_links": [
       {
@@ -1680,7 +1902,8 @@
     "id": "taru-ceplukan",
     "local_names": [
       "Ceplukan",
-      "Cicendet an"
+      "Cicendet an",
+      "Physalis angulata"
     ],
     "scientific_name": "Physalis angulata",
     "botanical_family": "Solanaceae",
@@ -1690,7 +1913,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Physalis angulata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Physalis_angulata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Physalis angulata, Solanaceae (https://www.gbif.org/species/5341792)."
     ],
     "reference_links": [
       {
@@ -1705,7 +1929,9 @@
     "local_names": [
       "Takokak",
       "Pokak",
-      "Terong pipit"
+      "Terong pipit",
+      "Solanum torvum",
+      "Terong hutan"
     ],
     "scientific_name": "Solanum torvum",
     "botanical_family": "Solanaceae",
@@ -1715,7 +1941,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Solanum torvum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Solanum_torvum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Solanum torvum, Solanaceae (https://www.gbif.org/species/2932389).",
+      "Nama dan alias menurut Wikidata, revisi 2568042093 (https://www.wikidata.org/w/index.php?title=Q978609&oldid=2568042093)."
     ],
     "reference_links": [
       {
@@ -1730,7 +1958,9 @@
     "local_names": [
       "Terong",
       "Encung",
-      "Tiung"
+      "Tiung",
+      "Solanum melongena",
+      "terung"
     ],
     "scientific_name": "Solanum melongena",
     "botanical_family": "Solanaceae",
@@ -1740,7 +1970,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Solanum melongena, identitas dan nama lokal (https://plantuse.plantnet.org/en/Solanum_melongena_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Solanum melongena, Solanaceae (https://www.gbif.org/species/2930617).",
+      "Nama dan alias menurut Wikidata, revisi 2567629824 (https://www.wikidata.org/w/index.php?title=Q7540&oldid=2567629824)."
     ],
     "reference_links": [
       {
@@ -1755,7 +1987,9 @@
     "local_names": [
       "Pare",
       "Paria",
-      "Papari"
+      "Papari",
+      "Momordica charantia",
+      "Peria"
     ],
     "scientific_name": "Momordica charantia",
     "botanical_family": "Cucurbitaceae",
@@ -1766,7 +2000,9 @@
     "reference_studies": [
       "PROSEA: Momordica charantia, identitas dan nama lokal (https://plantuse.plantnet.org/en/Momordica_charantia_(PROSEA)).",
       "Famili menurut PROSEA: Cucurbitaceae (https://plantuse.plantnet.org/en/Momordica_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Momordica charantia, Cucurbitaceae (https://www.gbif.org/species/2874581).",
+      "Nama dan alias menurut Wikidata, revisi 2567823183 (https://www.wikidata.org/w/index.php?title=Q428750&oldid=2567823183)."
     ],
     "reference_links": [
       {
@@ -1781,7 +2017,8 @@
     "local_names": [
       "Mentimun",
       "Ketimun",
-      "Bonteng"
+      "Bonteng",
+      "Cucumis sativus"
     ],
     "scientific_name": "Cucumis sativus",
     "botanical_family": "Cucurbitaceae",
@@ -1791,7 +2028,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cucumis sativus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cucumis_sativus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cucumis sativus, Cucurbitaceae (https://www.gbif.org/species/2874569)."
     ],
     "reference_links": [
       {
@@ -1805,7 +2043,8 @@
     "id": "taru-labu-siam",
     "local_names": [
       "Labu siam",
-      "Waluh jepang"
+      "Waluh jepang",
+      "Sechium edule"
     ],
     "scientific_name": "Sechium edule",
     "botanical_family": "Cucurbitaceae",
@@ -1815,7 +2054,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Sechium edule, identitas dan nama lokal (https://plantuse.plantnet.org/en/Sechium_edule_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Sechium edule, Cucurbitaceae (https://www.gbif.org/species/2874612)."
     ],
     "reference_links": [
       {
@@ -1828,7 +2068,9 @@
   {
     "id": "taru-labu-merah",
     "local_names": [
-      "Labu merah"
+      "Labu merah",
+      "Cucurbita moschata",
+      "Labu kuning"
     ],
     "scientific_name": "Cucurbita moschata",
     "botanical_family": "Cucurbitaceae",
@@ -1838,7 +2080,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cucurbita moschata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cucurbita_moschata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cucurbita moschata, Cucurbitaceae (https://www.gbif.org/species/7393329).",
+      "Nama dan alias menurut Wikidata, revisi 2564955338 (https://www.wikidata.org/w/index.php?title=Q160571&oldid=2564955338)."
     ],
     "reference_links": [
       {
@@ -1853,7 +2097,8 @@
     "local_names": [
       "Oyong",
       "Gambas",
-      "Petola"
+      "Petola",
+      "Luffa acutangula"
     ],
     "scientific_name": "Luffa acutangula",
     "botanical_family": "Cucurbitaceae",
@@ -1863,7 +2108,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Luffa acutangula, identitas dan nama lokal (https://plantuse.plantnet.org/en/Luffa_acutangula_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Luffa acutangula, Cucurbitaceae (https://www.gbif.org/species/2874601)."
     ],
     "reference_links": [
       {
@@ -1876,7 +2122,9 @@
   {
     "id": "taru-kecipir",
     "local_names": [
-      "Kecipir"
+      "Kecipir",
+      "Psophocarpus tetragonolobus",
+      "Kacang botol"
     ],
     "scientific_name": "Psophocarpus tetragonolobus",
     "botanical_family": "Leguminosae",
@@ -1886,7 +2134,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Psophocarpus tetragonolobus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Psophocarpus_tetragonolobus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Psophocarpus tetragonolobus, Fabaceae (https://www.gbif.org/species/2944683).",
+      "Nama dan alias menurut Wikidata, revisi 2564064095 (https://www.wikidata.org/w/index.php?title=Q1468260&oldid=2564064095)."
     ],
     "reference_links": [
       {
@@ -1900,7 +2150,8 @@
     "id": "taru-kacang-hijau",
     "local_names": [
       "Kacang hijau",
-      "Arta ijo"
+      "Arta ijo",
+      "Vigna radiata"
     ],
     "scientific_name": "Vigna radiata",
     "botanical_family": "Leguminosae",
@@ -1910,7 +2161,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Vigna radiata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Vigna_radiata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Vigna radiata, Fabaceae (https://www.gbif.org/species/2982380)."
     ],
     "reference_links": [
       {
@@ -1925,7 +2177,8 @@
     "local_names": [
       "Kedelai",
       "Kacang jepun",
-      "Kacang bulu"
+      "Kacang bulu",
+      "Glycine max"
     ],
     "scientific_name": "Glycine max",
     "botanical_family": "Leguminosae",
@@ -1935,7 +2188,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Glycine max, identitas dan nama lokal (https://plantuse.plantnet.org/en/Glycine_max_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Glycine max, Fabaceae (https://www.gbif.org/species/5359660)."
     ],
     "reference_links": [
       {
@@ -1950,7 +2204,10 @@
     "local_names": [
       "Wijen",
       "Bidjan",
-      "Lenga"
+      "Lenga",
+      "Sesamum indicum",
+      "Bijan",
+      "Sesam"
     ],
     "scientific_name": "Sesamum indicum",
     "botanical_family": "Pedaliaceae",
@@ -1960,7 +2217,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Sesamum indicum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Sesamum_indicum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Sesamum indicum, Pedaliaceae (https://www.gbif.org/species/3172622).",
+      "Nama dan alias menurut Wikidata, revisi 2563894960 (https://www.wikidata.org/w/index.php?title=Q2763698&oldid=2563894960)."
     ],
     "reference_links": [
       {
@@ -1973,7 +2232,10 @@
   {
     "id": "taru-jinten-hitam",
     "local_names": [
-      "Jinten hitam"
+      "Jinten hitam",
+      "Nigella sativa",
+      "Jintan hitam",
+      "Habbatussauda"
     ],
     "scientific_name": "Nigella sativa",
     "botanical_family": "Ranunculaceae",
@@ -1983,7 +2245,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Nigella sativa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Nigella_sativa_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Nigella sativa, Ranunculaceae (https://www.gbif.org/species/5371700).",
+      "Nama dan alias menurut Wikidata, revisi 2564964913 (https://www.wikidata.org/w/index.php?title=Q160575&oldid=2564964913)."
     ],
     "reference_links": [
       {
@@ -1998,7 +2262,9 @@
     "local_names": [
       "Jinten putih",
       "Jinten bodas",
-      "Jinten poteh"
+      "Jinten poteh",
+      "Cuminum cyminum",
+      "Jintan putih"
     ],
     "scientific_name": "Cuminum cyminum",
     "botanical_family": "Umbelliferae",
@@ -2008,7 +2274,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cuminum cyminum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cuminum_cyminum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cuminum cyminum, Apiaceae (https://www.gbif.org/species/3034775).",
+      "Nama dan alias menurut Wikidata, revisi 2565783001 (https://www.wikidata.org/w/index.php?title=Q132624&oldid=2565783001)."
     ],
     "reference_links": [
       {
@@ -2022,7 +2290,11 @@
     "id": "taru-lada",
     "local_names": [
       "Lada",
-      "Merica"
+      "Merica",
+      "Piper nigrum",
+      "sahang",
+      "lada hitam",
+      "pepper"
     ],
     "scientific_name": "Piper nigrum",
     "botanical_family": "Piperaceae",
@@ -2032,7 +2304,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Piper nigrum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Piper_nigrum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Piper nigrum, Piperaceae (https://www.gbif.org/species/3086357).",
+      "Nama dan alias menurut Wikidata, revisi 2568106721 (https://www.wikidata.org/w/index.php?title=Q43084&oldid=2568106721)."
     ],
     "reference_links": [
       {
@@ -2046,7 +2320,10 @@
     "id": "taru-cabe-jawa",
     "local_names": [
       "Cabe jawa",
-      "Lada panjang"
+      "Lada panjang",
+      "Piper retrofractum",
+      "cabai jawa",
+      "cabe puyang"
     ],
     "scientific_name": "Piper retrofractum",
     "botanical_family": "Piperaceae",
@@ -2056,7 +2333,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Piper retrofractum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Piper_retrofractum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Piper retrofractum, Piperaceae (https://www.gbif.org/species/3086342).",
+      "Nama dan alias menurut Wikidata, revisi 2567929892 (https://www.wikidata.org/w/index.php?title=Q7504329&oldid=2567929892)."
     ],
     "reference_links": [
       {
@@ -2071,7 +2350,9 @@
     "local_names": [
       "Kayu secang",
       "Secang",
-      "Soga jawa"
+      "Soga jawa",
+      "Biancaea sappan",
+      "Caesalpinia sappan"
     ],
     "scientific_name": "Caesalpinia sappan",
     "botanical_family": "Leguminosae",
@@ -2081,7 +2362,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Caesalpinia sappan, identitas dan nama lokal (https://plantuse.plantnet.org/en/Caesalpinia_sappan_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Biancaea sappan, Fabaceae (https://www.gbif.org/species/2958871).",
+      "Nama dan alias menurut Wikidata, revisi 2567932064 (https://www.wikidata.org/w/index.php?title=Q56088062&oldid=2567932064)."
     ],
     "reference_links": [
       {
@@ -2094,9 +2377,9 @@
   {
     "id": "taru-kayu-putih",
     "local_names": [
-      "Kayu putih",
       "Galam",
-      "Gelam"
+      "Gelam",
+      "Melaleuca cajuputi"
     ],
     "scientific_name": "Melaleuca cajuputi",
     "botanical_family": "Myrtaceae",
@@ -2106,7 +2389,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Melaleuca cajuputi, identitas dan nama lokal (https://plantuse.plantnet.org/en/Melaleuca_cajuputi_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Melaleuca cajuputi, Myrtaceae (https://www.gbif.org/species/5415885)."
     ],
     "reference_links": [
       {
@@ -2120,7 +2404,8 @@
     "id": "taru-nyamplung",
     "local_names": [
       "Nyamplung",
-      "Dingkaran"
+      "Dingkaran",
+      "Calophyllum inophyllum"
     ],
     "scientific_name": "Calophyllum inophyllum",
     "botanical_family": "Guttiferae",
@@ -2131,7 +2416,9 @@
     "reference_studies": [
       "PROSEA: Calophyllum inophyllum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Calophyllum_inophyllum_(PROSEA)).",
       "Famili menurut PROSEA: Guttiferae (https://plantuse.plantnet.org/en/Calophyllum_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Calophyllum inophyllum, Calophyllaceae (https://www.gbif.org/species/9531830).",
+      "Nama dan alias menurut Wikidata, revisi 2567842321 (https://www.wikidata.org/w/index.php?title=Q311471&oldid=2567842321)."
     ],
     "reference_links": [
       {
@@ -2146,7 +2433,10 @@
     "local_names": [
       "Kembang sepatu",
       "Wora-wari",
-      "Waribang"
+      "Waribang",
+      "Hibiscus rosa-sinensis",
+      "Bunga raya",
+      "Hibiscus rosa sinensis"
     ],
     "scientific_name": "Hibiscus rosa-sinensis",
     "botanical_family": "Malvaceae",
@@ -2157,7 +2447,9 @@
     "reference_studies": [
       "PROSEA: Hibiscus rosa-sinensis, identitas dan nama lokal (https://plantuse.plantnet.org/en/Hibiscus_rosa-sinensis_(PROSEA)).",
       "Famili menurut PROSEA: Malvaceae (https://plantuse.plantnet.org/en/Hibiscus_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Hibiscus rosa-sinensis, Malvaceae (https://www.gbif.org/species/3152559).",
+      "Nama dan alias menurut Wikidata, revisi 2567642720 (https://www.wikidata.org/w/index.php?title=Q159534&oldid=2567642720)."
     ],
     "reference_links": [
       {
@@ -2171,8 +2463,9 @@
     "id": "taru-waru",
     "local_names": [
       "Waru",
-      "Waru laut",
-      "Baru"
+      "Baru",
+      "Talipariti tiliaceum",
+      "Hibiscus tiliaceus"
     ],
     "scientific_name": "Hibiscus tiliaceus",
     "botanical_family": "Malvaceae",
@@ -2182,7 +2475,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Hibiscus tiliaceus, identitas dan nama lokal (https://plantuse.plantnet.org/en/Hibiscus_tiliaceus_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Talipariti tiliaceum, Malvaceae (https://www.gbif.org/species/7115794).",
+      "Nama dan alias menurut Wikidata, revisi 2567692069 (https://www.wikidata.org/w/index.php?title=Q15768656&oldid=2567692069)."
     ],
     "reference_links": [
       {
@@ -2196,7 +2491,8 @@
     "id": "taru-rosela",
     "local_names": [
       "Rosela",
-      "Gamet walanda"
+      "Gamet walanda",
+      "Hibiscus sabdariffa"
     ],
     "scientific_name": "Hibiscus sabdariffa",
     "botanical_family": "Malvaceae",
@@ -2206,7 +2502,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Hibiscus sabdariffa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Hibiscus_sabdariffa_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Hibiscus sabdariffa, Malvaceae (https://www.gbif.org/species/3152582)."
     ],
     "reference_links": [
       {
@@ -2220,7 +2517,8 @@
     "id": "taru-kembang-telang",
     "local_names": [
       "Kembang telang",
-      "Bunga biru"
+      "Bunga biru",
+      "Clitoria ternatea"
     ],
     "scientific_name": "Clitoria ternatea",
     "botanical_family": "Leguminosae",
@@ -2230,7 +2528,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Clitoria ternatea, identitas dan nama lokal (https://plantuse.plantnet.org/en/Clitoria_ternatea_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Clitoria ternatea, Fabaceae (https://www.gbif.org/species/2946519)."
     ],
     "reference_links": [
       {
@@ -2245,7 +2544,8 @@
     "local_names": [
       "Kenanga",
       "Kananga",
-      "Sepalen"
+      "Sepalen",
+      "Cananga odorata"
     ],
     "scientific_name": "Cananga odorata",
     "botanical_family": "Annonaceae",
@@ -2255,7 +2555,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Cananga odorata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cananga_odorata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cananga odorata, Annonaceae (https://www.gbif.org/species/5407583).",
+      "Nama dan alias menurut Wikidata, revisi 2567807195 (https://www.wikidata.org/w/index.php?title=Q220963&oldid=2567807195)."
     ],
     "reference_links": [
       {
@@ -2269,7 +2571,10 @@
     "id": "taru-melati",
     "local_names": [
       "Melati",
-      "Menur"
+      "Menur",
+      "Jasminum sambac",
+      "Melati putih",
+      "Sampaguita"
     ],
     "scientific_name": "Jasminum sambac",
     "botanical_family": "Oleaceae",
@@ -2280,7 +2585,9 @@
     "reference_studies": [
       "PROSEA: Jasminum sambac, identitas dan nama lokal (https://plantuse.plantnet.org/en/Jasminum_sambac_(PROSEA)).",
       "Famili menurut PROSEA: Oleaceae (https://plantuse.plantnet.org/en/Jasminum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Jasminum sambac, Oleaceae (https://www.gbif.org/species/7587215).",
+      "Nama dan alias menurut Wikidata, revisi 2566728683 (https://www.wikidata.org/w/index.php?title=Q1356614&oldid=2566728683)."
     ],
     "reference_links": [
       {
@@ -2295,7 +2602,8 @@
     "local_names": [
       "Mimba",
       "Membha",
-      "Intaran"
+      "Intaran",
+      "Azadirachta indica"
     ],
     "scientific_name": "Azadirachta indica",
     "botanical_family": "Meliaceae",
@@ -2305,7 +2613,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Azadirachta indica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Azadirachta_indica_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Azadirachta indica, Meliaceae (https://www.gbif.org/species/3190474).",
+      "Nama dan alias menurut Wikidata, revisi 2557951718 (https://www.wikidata.org/w/index.php?title=Q170461&oldid=2557951718)."
     ],
     "reference_links": [
       {
@@ -2320,7 +2630,9 @@
     "local_names": [
       "Beringin",
       "Caringing",
-      "Waringin"
+      "Waringin",
+      "Ficus benjamina",
+      "Pohon Beringin"
     ],
     "scientific_name": "Ficus benjamina",
     "botanical_family": "Moraceae",
@@ -2331,7 +2643,9 @@
     "reference_studies": [
       "PROSEA: Ficus benjamina, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ficus_benjamina_(PROSEA)).",
       "Famili menurut PROSEA: Moraceae (https://plantuse.plantnet.org/en/Ficus_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Ficus benjamina, Moraceae (https://www.gbif.org/species/5361932).",
+      "Nama dan alias menurut Wikidata, revisi 2567795456 (https://www.wikidata.org/w/index.php?title=Q275160&oldid=2567795456)."
     ],
     "reference_links": [
       {
@@ -2346,7 +2660,8 @@
     "local_names": [
       "Awar-awar",
       "Ki ciyat",
-      "Tagalolo"
+      "Tagalolo",
+      "Ficus septica"
     ],
     "scientific_name": "Ficus septica",
     "botanical_family": "Moraceae",
@@ -2357,7 +2672,9 @@
     "reference_studies": [
       "PROSEA: Ficus septica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ficus_septica_(PROSEA)).",
       "Famili menurut PROSEA: Moraceae (https://plantuse.plantnet.org/en/Ficus_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Ficus septica, Moraceae (https://www.gbif.org/species/7852448).",
+      "Nama dan alias menurut Wikidata, revisi 2567910457 (https://www.wikidata.org/w/index.php?title=Q5446640&oldid=2567910457)."
     ],
     "reference_links": [
       {
@@ -2373,7 +2690,8 @@
       "Alang-alang",
       "Ilalang",
       "Lalang",
-      "Kambengan"
+      "Kambengan",
+      "Imperata cylindrica"
     ],
     "scientific_name": "Imperata cylindrica",
     "botanical_family": "Gramineae",
@@ -2384,7 +2702,9 @@
     "reference_studies": [
       "PROSEA: Imperata cylindrica, identitas dan nama lokal (https://plantuse.plantnet.org/en/Imperata_cylindrica_(PROSEA)).",
       "Famili menurut PROSEA: Gramineae (https://plantuse.plantnet.org/en/Imperata_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Imperata cylindrica, Poaceae (https://www.gbif.org/species/8424006).",
+      "Nama dan alias menurut Wikidata, revisi 2568059818 (https://www.wikidata.org/w/index.php?title=Q693409&oldid=2568059818)."
     ],
     "reference_links": [
       {
@@ -2399,7 +2719,10 @@
     "local_names": [
       "Babadotan",
       "Wedusan",
-      "Dus-bedusan"
+      "Dus-bedusan",
+      "Ageratum conyzoides",
+      "Bandotan",
+      "Babandotan"
     ],
     "scientific_name": "Ageratum conyzoides",
     "botanical_family": "Compositae",
@@ -2410,7 +2733,9 @@
     "reference_studies": [
       "PROSEA: Ageratum conyzoides, identitas dan nama lokal (https://plantuse.plantnet.org/en/Ageratum_conyzoides_(PROSEA)).",
       "Famili menurut PROSEA: Compositae (https://plantuse.plantnet.org/en/Ageratum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Ageratum conyzoides, Asteraceae (https://www.gbif.org/species/5401673).",
+      "Nama dan alias menurut Wikidata, revisi 2567799105 (https://www.wikidata.org/w/index.php?title=Q1949712&oldid=2567799105)."
     ],
     "reference_links": [
       {
@@ -2424,7 +2749,9 @@
     "id": "taru-ketepeng-kebo",
     "local_names": [
       "Ketepeng kebo",
-      "Daun kupang"
+      "Daun kupang",
+      "Senna alata",
+      "Ketepeng cina"
     ],
     "scientific_name": "Senna alata",
     "botanical_family": "Leguminosae",
@@ -2435,7 +2762,9 @@
     "reference_studies": [
       "PROSEA: Senna alata, identitas dan nama lokal (https://plantuse.plantnet.org/en/Senna_alata_(PROSEA)).",
       "Famili menurut PROSEA: Leguminosae (https://plantuse.plantnet.org/en/Senna_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Senna alata, Fabaceae (https://www.gbif.org/species/2956947).",
+      "Nama dan alias menurut Wikidata, revisi 2567811773 (https://www.wikidata.org/w/index.php?title=Q41504&oldid=2567811773)."
     ],
     "reference_links": [
       {
@@ -2450,7 +2779,9 @@
     "local_names": [
       "Trengguli",
       "Bobondelan",
-      "Klobop"
+      "Klobop",
+      "Cassia fistula",
+      "Tengguli"
     ],
     "scientific_name": "Cassia fistula",
     "botanical_family": "Leguminosae",
@@ -2461,7 +2792,9 @@
     "reference_studies": [
       "PROSEA: Cassia fistula, identitas dan nama lokal (https://plantuse.plantnet.org/en/Cassia_fistula_(PROSEA)).",
       "Famili menurut PROSEA: Leguminosae (https://plantuse.plantnet.org/en/Cassia_(PROSEA_Medicinal_plants)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Cassia fistula, Fabaceae (https://www.gbif.org/species/5357108).",
+      "Nama dan alias menurut Wikidata, revisi 2567678591 (https://www.wikidata.org/w/index.php?title=Q161117&oldid=2567678591)."
     ],
     "reference_links": [
       {
@@ -2474,7 +2807,8 @@
   {
     "id": "taru-ketapang",
     "local_names": [
-      "Ketapang"
+      "Ketapang",
+      "Terminalia catappa"
     ],
     "scientific_name": "Terminalia catappa",
     "botanical_family": "Combretaceae",
@@ -2484,7 +2818,9 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Terminalia catappa, identitas dan nama lokal (https://plantuse.plantnet.org/en/Terminalia_catappa_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Terminalia catappa, Combretaceae (https://www.gbif.org/species/3189394).",
+      "Nama dan alias menurut Wikidata, revisi 2567789086 (https://www.wikidata.org/w/index.php?title=Q271179&oldid=2567789086)."
     ],
     "reference_links": [
       {
@@ -2497,7 +2833,8 @@
   {
     "id": "taru-delima",
     "local_names": [
-      "Delima"
+      "Delima",
+      "Punica granatum"
     ],
     "scientific_name": "Punica granatum",
     "botanical_family": "Punicaceae",
@@ -2507,7 +2844,8 @@
     "modern_pharmacological_action": "Khasiat dan keamanan racikan naskah belum diverifikasi. Rujukan botani dan pencarian literatur tidak membuktikan efektivitas klinis.",
     "reference_studies": [
       "PROSEA: Punica granatum, identitas dan nama lokal (https://plantuse.plantnet.org/en/Punica_granatum_(PROSEA)).",
-      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah."
+      "Rujukan botani, bukan bukti klinis keamanan atau khasiat racikan naskah.",
+      "GBIF Backbone Taxonomy: Punica granatum, Lythraceae (https://www.gbif.org/species/5420901)."
     ],
     "reference_links": [
       {

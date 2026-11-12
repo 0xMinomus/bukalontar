@@ -13,6 +13,9 @@ import (
 //go:embed data/taru-pramana.json
 var seed []byte
 
+//go:embed data/wikidata-plants.json
+var botanicalSeed []byte
+
 type Entry struct {
 	ID                     string                `json:"id"`
 	LocalNames             []string              `json:"local_names"`
@@ -33,16 +36,33 @@ type Store struct {
 
 func Load() (*Store, error) {
 	var entries []Entry
-	if err := json.Unmarshal(seed, &entries); err != nil {
-		return nil, fmt.Errorf("parse Taru Pramana KB: %w", err)
+	for _, data := range [][]byte{seed, botanicalSeed} {
+		var batch []Entry
+		if err := json.Unmarshal(data, &batch); err != nil {
+			return nil, fmt.Errorf("parse botanical KB: %w", err)
+		}
+		entries = append(entries, batch...)
 	}
 	store := &Store{entries: entries, aliases: make(map[string]int)}
+	ids := make(map[string]bool, len(entries))
 	for index, entry := range entries {
-		for _, name := range entry.LocalNames {
-			normalized := normalize(name)
-			if normalized != "" {
-				store.aliases[normalized] = index
+		if entry.ID == "" || ids[entry.ID] || len(entry.LocalNames) == 0 || entry.ScientificName == "" || entry.BotanicalFamily == "" {
+			return nil, fmt.Errorf("invalid or duplicate botanical entry: %q", entry.ID)
+		}
+		ids[entry.ID] = true
+		for nameIndex := 0; nameIndex <= len(entry.LocalNames); nameIndex++ {
+			name := entry.ScientificName
+			if nameIndex > 0 {
+				name = entry.LocalNames[nameIndex-1]
 			}
+			normalized := normalize(name)
+			if normalized == "" {
+				return nil, fmt.Errorf("empty botanical alias in %q", entry.ID)
+			}
+			if previous, exists := store.aliases[normalized]; exists && previous != index {
+				return nil, fmt.Errorf("ambiguous botanical alias %q: %s and %s", name, entries[previous].ID, entry.ID)
+			}
+			store.aliases[normalized] = index
 		}
 	}
 	if len(store.entries) == 0 {
@@ -63,12 +83,10 @@ func (s *Store) Lookup(localName string) (Entry, bool) {
 	if index, ok := s.aliases[normalized]; ok {
 		return s.entries[index], true
 	}
-	padded := " " + normalized + " "
-	for _, entry := range s.entries {
-		for _, name := range entry.LocalNames {
-			alias := normalize(name)
-			if alias != "" && strings.Contains(padded, " "+alias+" ") {
-				return entry, true
+	for _, prefix := range [...]string{"kulit kayu ", "babakan ", "daun ", "don ", "akar ", "akah ", "buah ", "bwah ", "bunga ", "sekar "} {
+		if name, ok := strings.CutPrefix(normalized, prefix); ok {
+			if index, found := s.aliases[strings.TrimPrefix(name, "taru ")]; found {
+				return s.entries[index], true
 			}
 		}
 	}
@@ -95,14 +113,16 @@ func (s *Store) Catalog() string {
 	return strings.TrimSpace(builder.String())
 }
 
+var transliterationLetters = strings.NewReplacer(
+	"ĕ", "e", "ə", "e",
+	"ā", "a", "ī", "i", "ū", "u",
+	"ṭ", "t", "ḍ", "d", "ṇ", "n",
+	"ś", "s", "ḥ", "h",
+	"ŋ", "ng", "ṅ", "ng", "ŕ", "r",
+)
+
 func normalize(value string) string {
-	value = strings.ToLower(strings.TrimSpace(value))
-	value = strings.NewReplacer(
-		"ĕ", "e", "ə", "e",
-		"ā", "a", "ī", "i", "ū", "u",
-		"ṭ", "t", "ḍ", "d", "ṇ", "n",
-		"ś", "s", "ḥ", "h",
-	).Replace(value)
+	value = transliterationLetters.Replace(strings.ToLower(strings.TrimSpace(value)))
 	var builder strings.Builder
 	for _, char := range value {
 		if unicode.IsLetter(char) || unicode.IsDigit(char) || unicode.IsSpace(char) {

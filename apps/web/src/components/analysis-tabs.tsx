@@ -95,7 +95,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
   )
 
   return (
-    <Tabs defaultValue="transliterasi" className="w-full">
+    <Tabs defaultValue="transliterasi" className="min-w-0 w-full [overflow-wrap:anywhere]">
       <TabsList aria-label="Bagian hasil analisis">
         <TabsTrigger value="transliterasi">Transliterasi</TabsTrigger>
         <TabsTrigger value="terjemahan">Terjemahan</TabsTrigger>
@@ -220,7 +220,7 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                         <p className="mt-1 text-sm italic text-muted-foreground">
                           {taxonomy.length > 0
                             ? taxonomy.join(' · ')
-                            : 'Belum tercatat di Taru Pramana'}
+                            : 'Identitas botani belum dipastikan'}
                         </p>
                       </div>
                       <Badge
@@ -240,6 +240,11 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                         <p className="mt-1 text-xs text-muted-foreground">
                           Cocok secara teks, tetapi belum membuktikan tanaman atau resep terdapat di foto.
                         </p>
+                        {result.reading_reference ? (
+                          <a className="mt-2 inline-block text-xs underline underline-offset-2" href={result.reading_reference.source_url} target="_blank" rel="noopener noreferrer">
+                            Sumber kutipan: {result.reading_reference.title}
+                          </a>
+                        ) : null}
                       </blockquote>
                     ) : null}
 
@@ -325,6 +330,18 @@ export function AnalysisTabs({ result }: { result: AnalysisResponse }) {
                 : `${plantRecipes.length} resep ditemukan. Nama dan cara racik berasal dari pembacaan naskah; informasi tambahan berasal dari knowledge base bila tanaman tercatat.`}
             </p>
           </div>
+
+          {result.reading_reference && !noPlant ? (
+            <section className="mt-4">
+              <p className="label-xs">Sumber seluruh kutipan resep</p>
+              <a className="mt-1.5 inline-block text-sm underline underline-offset-2" href={result.reading_reference.source_url} target="_blank" rel="noopener noreferrer">
+                {result.reading_reference.title} · transkripsi Wikisource
+              </a>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                Rujukan naskah tersedia meskipun identitas botani belum dipastikan. Kecocokan KB dan pencarian literatur bukan verifikasi tanaman atau khasiat racikan.
+              </p>
+            </section>
+          ) : null}
 
           {!noPlant ? (
             <>
