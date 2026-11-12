@@ -37,6 +37,26 @@ Perubahan utama sejak [`v1.0-submission`](https://github.com/0xMinomus/bukalonta
 
 Pembacaan dan terjemahan tetap eksperimental; rujukan bukan jaminan kebenaran atau keamanan racikan. [Evaluasi AI](docs/AI_EVALUATION.md) · [Sumber KB](docs/KNOWLEDGE_BASE_SOURCES.md) · [Seluruh perubahan kode](https://github.com/0xMinomus/bukalontar/compare/v1.0-submission...main).
 
+**Benchmark lama vs baru**
+
+Angka AI berikut berasal dari batch historis dengan cakupan berbeda, bukan satu pengujian langsung tag `v1.0-submission` melawan `main` terkini.
+
+| Metrik | Lama | Baru | Cakupan |
+| --- | --- | --- | --- |
+| Median waktu respons | 22,207 detik | 14,004 detik | A |
+| Waktu respons terlama | 29,105 detik | 18,997 detik | A |
+| Respons terstruktur berhasil | 9/9 | 9/9 | A; bukan bukti bacaan benar |
+| Kesamaan bacaan antarpengulangan, skala 0–1 | 0,3395 | 0,2943 | A; konsistensi belum membaik, bukan ukuran akurasi |
+| Resep dengan kutipan tidak didukung yang lolos | 6/6 | 0/6 | B; lebih rendah lebih baik |
+| Kutipan utuh yang tetap diterima | 3/3 | 3/3 | B |
+| Galat bacaan Latin (CER) pada Lare | 0,8376 | 0,9429 | B; lebih rendah lebih baik, belum membaik |
+| Akurasi terjemahan dan resep terhadap label ahli | Belum terukur | Belum terukur | Belum tersedia label pembanding ahli |
+| Jumlah entri KB botani | 10 | 1.316 | C; cakupan data, bukan akurasi identifikasi |
+
+- **A:** Gemini Flash Low, tiga gambar identik dengan tiga pengulangan per pipeline; membandingkan dua pembacaan lama dengan satu pembacaan pada evaluasi 11 November 2026. Latensi mencakup input negatif dan kondisi jaringan/provider yang tidak dikontrol, sehingga bukan jaminan kecepatan versi terkini. [Data metrik](docs/evaluation/common-metrics-20261111.json).
+- **B:** Upgrade pengaman kutipan dari `fc174f9` ke `4acfb64`, bukan dari tag Tahap 1. Uji kutipan memakai input terkontrol; CER memakai dua hasil Lare per versi dan transkripsi komunitas, bukan validasi ahli independen. [Metode dan batas pengujian](docs/AI_EVALUATION.md#upgrade-pengaman-kutipan-dan-pembanding-baseline) · [Data metrik](docs/evaluation/upgrade-metrics-20261112.json).
+- **C:** Jumlah entri pada tag `v1.0-submission` dibanding katalog `main` saat ini. Penambahan data tidak membuktikan seluruh nama tanaman pada lontar telah teridentifikasi. [Sumber dan laporan impor](docs/KNOWLEDGE_BASE_SOURCES.md).
+
 ## Daftar Isi
 
 - [What's New](#whats-new)
