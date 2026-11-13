@@ -11,6 +11,7 @@ Aplikasi web eksperimental untuk membantu membaca foto lontar beraksara Bali, me
 ![Status](https://img.shields.io/badge/status-MVP-b08d57)
 ![AI](https://img.shields.io/badge/AI-multimodal-4f6f52)
 ![Stack](https://img.shields.io/badge/stack-React%20%2B%20Go-2f3e46)
+![License](https://img.shields.io/badge/license-MIT-blue)
 ![Competition](https://img.shields.io/badge/competition-Bali%20DigiFest%202026-9c6644)
 
 [Repositori](https://github.com/0xMinomus/bukalontar) | [Dokumentasi](docs/README.md) | [AI Disclosure](docs/AI_DISCLOSURE.md)
@@ -67,6 +68,7 @@ Pembacaan dan terjemahan tetap eksperimental; rujukan bukan jaminan kebenaran at
 - [AI dan Technology Disclosure](#ai-dan-technology-disclosure)
 - [Batasan Saat Ini](#batasan-saat-ini)
 - [Tim](#tim)
+- [Lisensi](#lisensi)
 - [Dokumentasi Lanjutan](#dokumentasi-lanjutan)
 
 ## Tentang
@@ -302,6 +304,10 @@ Pada batch empat gambar × dua pengulangan, baseline dan kandidat sama-sama mene
 ## Tim
 
 - **Andika Putra**: developer dan pemelihara repository.
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah lisensi [MIT](LICENSE). Aset foto sampel pihak ketiga mengikuti lisensi masing-masing (CC BY-SA 4.0 dan Public Domain) sebagaimana tercantum di [`apps/web/public/samples/CREDITS.md`](apps/web/public/samples/CREDITS.md).
 
 ## Dokumentasi Lanjutan
 
